@@ -3,6 +3,7 @@
   <ConnectionProperties>
     <Extension>SQL</Extension>
     <ConnectString>Data Source=ocashvrgdb02s.verge-solutions.com;Initial Catalog=vsuiteprodcopy</ConnectString>
+    <IntegratedSecurity>true</IntegratedSecurity>
   </ConnectionProperties>
   <DataSourceID>1b4127bc-26fa-4975-998d-22cd8fe95bfc</DataSourceID>
 </RptDataSource>

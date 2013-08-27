@@ -8,10 +8,10 @@
       <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>560ea361-411b-48de-b05d-5dc74e4c36ef</rd:DataSourceID>
     </DataSource>
-    <DataSource Name="VSuite_DB">
-      <DataSourceReference>VSuite_DB</DataSourceReference>
+    <DataSource Name="reports_reporting_server">
+      <DataSourceReference>reports_reporting_server</DataSourceReference>
       <rd:SecurityType>None</rd:SecurityType>
-      <rd:DataSourceID>f5af6a37-110e-4ec3-aa6a-f98b22049189</rd:DataSourceID>
+      <rd:DataSourceID>2f403e9f-911c-401d-9141-d5109d4a46db</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -523,14 +523,14 @@ FROM
     </DataSet>
     <DataSet Name="rpm_idr_grouping_page">
       <Query>
-        <DataSourceName>VSuite_DB</DataSourceName>
+        <DataSourceName>reports_reporting_server</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@grouping_type">
             <Value>page</Value>
           </QueryParameter>
         </QueryParameters>
         <CommandType>StoredProcedure</CommandType>
-        <CommandText>reports.rpm_idr_grouping</CommandText>
+        <CommandText>reporting.rpm_idr_grouping</CommandText>
       </Query>
       <Fields>
         <Field Name="id">
@@ -545,9 +545,9 @@ FROM
     </DataSet>
     <DataSet Name="rpm_idr_sorting">
       <Query>
-        <DataSourceName>VSuite_DB</DataSourceName>
+        <DataSourceName>reports_reporting_server</DataSourceName>
         <CommandType>StoredProcedure</CommandType>
-        <CommandText>reports.rpm_idr_sorting</CommandText>
+        <CommandText>reporting.rpm_idr_sorting</CommandText>
       </Query>
       <Fields>
         <Field Name="id">
