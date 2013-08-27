@@ -13,11 +13,6 @@
       <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>f5af6a37-110e-4ec3-aa6a-f98b22049189</rd:DataSourceID>
     </DataSource>
-    <DataSource Name="reports_reporting_server">
-      <DataSourceReference>reports_reporting_server</DataSourceReference>
-      <rd:SecurityType>None</rd:SecurityType>
-      <rd:DataSourceID>2f403e9f-911c-401d-9141-d5109d4a46db</rd:DataSourceID>
-    </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="GetIDsForComments">

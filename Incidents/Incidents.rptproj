@@ -10,6 +10,10 @@
       <Name>VSuite_DB.rds</Name>
       <FullPath>VSuite_DB.rds</FullPath>
     </ProjectItem>
+    <ProjectItem>
+      <Name>reports_reporting_server.rds</Name>
+      <FullPath>reports_reporting_server.rds</FullPath>
+    </ProjectItem>
   </DataSources>
   <DataSets />
   <Reports>
