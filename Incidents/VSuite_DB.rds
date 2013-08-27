@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="VSuite_DB">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=ocashvrgdb02s.verge-solutions.com;Initial Catalog=vsuiteprodcopy</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>1b4127bc-26fa-4975-998d-22cd8fe95bfc</DataSourceID>
+</RptDataSource>
