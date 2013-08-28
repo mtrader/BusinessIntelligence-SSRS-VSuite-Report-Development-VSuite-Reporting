@@ -8,10 +8,10 @@
       <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>560ea361-411b-48de-b05d-5dc74e4c36ef</rd:DataSourceID>
     </DataSource>
-    <DataSource Name="VSuite_DB">
-      <DataSourceReference>VSuite_DB</DataSourceReference>
+    <DataSource Name="reports_reporting_server">
+      <DataSourceReference>reports_reporting_server</DataSourceReference>
       <rd:SecurityType>None</rd:SecurityType>
-      <rd:DataSourceID>1407005e-6126-4797-9a51-5e2aa7987ece</rd:DataSourceID>
+      <rd:DataSourceID>c45559cd-9ae1-477e-95d6-cf517daa12df</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -669,14 +669,14 @@ FROM
     </DataSet>
     <DataSet Name="rpm_rdr_grouping_page">
       <Query>
-        <DataSourceName>VSuite_DB</DataSourceName>
+        <DataSourceName>reports_reporting_server</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@grouping_type">
             <Value>page</Value>
           </QueryParameter>
         </QueryParameters>
         <CommandType>StoredProcedure</CommandType>
-        <CommandText>reports.rpm_rdr_grouping</CommandText>
+        <CommandText>reporting.rpm_rdr_grouping</CommandText>
       </Query>
       <Fields>
         <Field Name="id">

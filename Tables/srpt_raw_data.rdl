@@ -8,16 +8,16 @@
       <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>560ea361-411b-48de-b05d-5dc74e4c36ef</rd:DataSourceID>
     </DataSource>
-    <DataSource Name="VSuite_DB">
-      <DataSourceReference>VSuite_DB</DataSourceReference>
+    <DataSource Name="reports_reporting_server">
+      <DataSourceReference>reports_reporting_server</DataSourceReference>
       <rd:SecurityType>None</rd:SecurityType>
-      <rd:DataSourceID>64c44674-e758-4f61-9a29-89e294ed7b5f</rd:DataSourceID>
+      <rd:DataSourceID>fa302cdd-e027-4fcf-a958-3fd778d55d2f</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="rpt_rdr_main">
       <Query>
-        <DataSourceName>VSuite_DB</DataSourceName>
+        <DataSourceName>reports_reporting_server</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@steventevidence_ids">
             <Value>=Parameters!GetRunIDforComments.Value</Value>
@@ -30,7 +30,7 @@
           </QueryParameter>
         </QueryParameters>
         <CommandType>StoredProcedure</CommandType>
-        <CommandText>reports.rpt_rdr_main</CommandText>
+        <CommandText>reporting.rpt_rdr_main</CommandText>
       </Query>
       <Fields>
         <Field Name="evidence_id">
@@ -197,7 +197,7 @@
     </DataSet>
     <DataSet Name="cor_column_alias">
       <Query>
-        <DataSourceName>VSuite_DB</DataSourceName>
+        <DataSourceName>reports_reporting_server</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@health_system_id">
             <Value>=Parameters!HealthSystemId.Value</Value>
@@ -207,7 +207,7 @@
           </QueryParameter>
         </QueryParameters>
         <CommandType>StoredProcedure</CommandType>
-        <CommandText>reports.cor_column_alias</CommandText>
+        <CommandText>reporting.cor_column_alias</CommandText>
       </Query>
       <Fields>
         <Field Name="staff_first_name_alias">
