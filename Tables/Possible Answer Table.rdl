@@ -451,6 +451,77 @@ FROM
           <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[Selected]" /&gt;</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="none">
+          <Value>=nothing</Value>
+        </Field>
+        <Field Name="dotw_sort">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Observation Date].[Day Of Week].[Day Of Week]" /&gt;</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="month_sort">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Observation Date].[Year - Quarter Year- Month Year - Date].[Month Name Year]" /&gt;</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="quarter_sort">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Observation Date].[Year - Quarter Year- Month Year - Date].[Month Name Year]" /&gt;</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="year_sort">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Observation Date].[Year - Quarter Year- Month Year - Date].[Month Name Year]" /&gt;</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="system_sort">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Health System].[Health System - Org].[Health System Name]" /&gt;</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="org_sort">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Health System].[Health System - Org].[Org Name]" /&gt;</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="setting_sort">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Location].[Health System - Location].[Location Name]" /&gt;</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="audit_sort">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Evidence].[Evidence Name].[Evidence Name]" /&gt;</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="group_sort">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Evidence Question Group].[Evidence Question Group Order].[Evidence Question Group Order]" /&gt;</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="department_sort">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Staff].[Staff Department].[Staff Department]" /&gt;</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="fullname_sort">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Staff].[Health System - Staff Full Name].[Staff Full Name]" /&gt;</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="lastfirst_sort">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Staff].[Staff Last Name].[Staff Last Name]" /&gt;</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="localid_sort">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Staff].[Staff Local Code].[Staff Local Code]" /&gt;</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="vergeid_sort">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Staff].[Health System - Staff Full Name].[Staff Id]" /&gt;</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="title_sort">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Staff].[Staff Title].[Staff Title]" /&gt;</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="answer_sort">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Possible Answer].[Possible Answer Order].[Possible Answer Order]" /&gt;</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="question_sort">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Evidence Question].[Evidence Question Order].[Evidence Question Order]" /&gt;</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
       </Fields>
       <Filters>
         <Filter>
@@ -620,6 +691,170 @@ FROM
         <QueryParameters>
           <QueryParameter Name="@grouping_type">
             <Value>page</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>reporting.rpm_pat_grouping</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="id">
+          <DataField>id</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="id_mdx">
+          <DataField>id_mdx</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="id_sort">
+          <DataField>id_sort</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="definition">
+          <DataField>definition</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="definition_label">
+          <DataField>definition_label</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="sort">
+          <DataField>sort</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="rpm_pat_grouping_column_sort_default">
+      <Query>
+        <DataSourceName>reports_reporting_server</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@grouping_type">
+            <Value>column_sort_default</Value>
+          </QueryParameter>
+          <QueryParameter Name="@grouping">
+            <Value>=Parameters!Format_ColumnGrouping_5.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>reporting.rpm_pat_grouping</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="id">
+          <DataField>id</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="id_mdx">
+          <DataField>id_mdx</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="id_sort">
+          <DataField>id_sort</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="definition">
+          <DataField>definition</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="definition_label">
+          <DataField>definition_label</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="sort">
+          <DataField>sort</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="rpm_pat_grouping_parent_row_sort_default">
+      <Query>
+        <DataSourceName>reports_reporting_server</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@grouping_type">
+            <Value>parent_row_sort_default</Value>
+          </QueryParameter>
+          <QueryParameter Name="@grouping">
+            <Value>=Parameters!Format_ParentRowGrouping_10.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>reporting.rpm_pat_grouping</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="id">
+          <DataField>id</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="id_mdx">
+          <DataField>id_mdx</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="id_sort">
+          <DataField>id_sort</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="definition">
+          <DataField>definition</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="definition_label">
+          <DataField>definition_label</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="sort">
+          <DataField>sort</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="rpm_pat_grouping_child_row_sort_default">
+      <Query>
+        <DataSourceName>reports_reporting_server</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@grouping_type">
+            <Value>child_row_sort_default</Value>
+          </QueryParameter>
+          <QueryParameter Name="@grouping">
+            <Value>=Parameters!Format_ChildRowGrouping_15.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>reporting.rpm_pat_grouping</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="id">
+          <DataField>id</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="id_mdx">
+          <DataField>id_mdx</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="id_sort">
+          <DataField>id_sort</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="definition">
+          <DataField>definition</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="definition_label">
+          <DataField>definition_label</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="sort">
+          <DataField>sort</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="rpm_pat_grouping_grandchild_row_sort_default">
+      <Query>
+        <DataSourceName>reports_reporting_server</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@grouping_type">
+            <Value>grandchild_row_sort_default</Value>
+          </QueryParameter>
+          <QueryParameter Name="@grouping">
+            <Value>=Parameters!Format_GrandChildRowGrouping_20.Value</Value>
           </QueryParameter>
         </QueryParameters>
         <CommandType>StoredProcedure</CommandType>
@@ -4327,7 +4562,7 @@ FROM
                                             <Paragraph>
                                               <TextRuns>
                                                 <TextRun>
-                                                  <Value>=Parameters!ReportTitle.Value</Value>
+                                                  <Value>=ISNUMERIC(Fields(Parameters!ColumnSorting.Value).Value)</Value>
                                                   <Style>
                                                     <FontWeight>Bold</FontWeight>
                                                   </Style>
@@ -4351,6 +4586,7 @@ FROM
                                             <PaddingBottom>2pt</PaddingBottom>
                                           </Style>
                                         </Textbox>
+                                        <rd:Selected>true</rd:Selected>
                                       </CellContents>
                                     </TablixHeader>
                                     <TablixMembers>
@@ -4956,10 +5192,7 @@ FROM
                                                             </Group>
                                                             <SortExpressions>
                                                               <SortExpression>
-                                                                <Value>=IIF(Parameters!Format_ColumnGrouping_5.Value = "question" OR Parameters!Format_ColumnGrouping_5.Value = "group", CINT(Fields!Evidence_Question_Group_Order.Value), IIF(Parameters!Format_ColumnGrouping_5.Value = "month" OR Parameters!Format_ColumnGrouping_5.Value = "quarter" OR Parameters!Format_ColumnGrouping_5.Value = "year", CDATE(Fields!Month_Name_Year.Value), Fields(Code.GetColumnGroupSortOrder(Parameters!Format_ColumnGrouping_5.Value)).Value))</Value>
-                                                              </SortExpression>
-                                                              <SortExpression>
-                                                                <Value>=IIF(Parameters!Format_ColumnGrouping_5.Value = "question", CINT(Fields!Question_Order.Value), Fields(Code.GetColumnGroupSortOrder(Parameters!Format_ColumnGrouping_5.Value)).Value)</Value>
+                                                                <Value>=Fields(Parameters!ColumnSorting.Value).Value</Value>
                                                               </SortExpression>
                                                             </SortExpressions>
                                                             <TablixHeader>
@@ -6336,86 +6569,30 @@ FROM
       </DefaultValue>
       <Prompt>Column:</Prompt>
       <ValidValues>
-        <ParameterValues>
-          <ParameterValue>
-            <Value>dotw</Value>
-            <Label>Date: Day of the Week</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>month</Value>
-            <Label>Date: Month</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>quarter</Value>
-            <Label>Date: Quarter</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>year</Value>
-            <Label>Date: Year</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>system</Value>
-            <Label>Location: Health System</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>org</Value>
-            <Label>Location: Organization</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>setting</Value>
-            <Label>Location: Setting</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>department</Value>
-            <Label>Location: Staff Department</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>audit</Value>
-            <Label>Audit: Title</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>group</Value>
-            <Label>Audit: Question Group</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>question</Value>
-            <Label>Audit: Question</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>answer</Value>
-            <Label>Audit: Question: Possible Answer</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>fullname</Value>
-            <Label>Staff: Full Name</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>lastfirst</Value>
-            <Label>Staff: Last, First</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>localid</Value>
-            <Label>Staff: Local ID</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>vergeid</Value>
-            <Label>Staff: Verge ID</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>title</Value>
-            <Label>Staff: Title</Label>
-          </ParameterValue>
-        </ParameterValues>
+        <DataSetReference>
+          <DataSetName>rpm_pat_grouping_column</DataSetName>
+          <ValueField>id</ValueField>
+          <LabelField>definition</LabelField>
+        </DataSetReference>
       </ValidValues>
     </ReportParameter>
-    <ReportParameter Name="Format_ColumnSorting_6">
+    <ReportParameter Name="ColumnSorting">
       <DataType>String</DataType>
       <DefaultValue>
-        <Values>
-          <Value>month_sort</Value>
-        </Values>
+        <DataSetReference>
+          <DataSetName>rpm_pat_grouping_column_sort_default</DataSetName>
+          <ValueField>id_sort</ValueField>
+        </DataSetReference>
       </DefaultValue>
-      <Prompt>Format_ColumnSorting_6</Prompt>
+      <Prompt>ColumnSorting</Prompt>
+      <Hidden>true</Hidden>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>rpm_pat_grouping_column</DataSetName>
+          <ValueField>id_sort</ValueField>
+          <LabelField>definition</LabelField>
+        </DataSetReference>
+      </ValidValues>
     </ReportParameter>
     <ReportParameter Name="Format_ParentRowGrouping_10">
       <DataType>String</DataType>
@@ -6426,86 +6603,30 @@ FROM
       </DefaultValue>
       <Prompt>Parent Row:</Prompt>
       <ValidValues>
-        <ParameterValues>
-          <ParameterValue>
-            <Value>dotw</Value>
-            <Label>Date: Day of the Week</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>month</Value>
-            <Label>Date: Month</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>quarter</Value>
-            <Label>Date: Quarter</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>year</Value>
-            <Label>Date: Year</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>system</Value>
-            <Label>Location: Health System</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>org</Value>
-            <Label>Location: Organization</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>department</Value>
-            <Label>Location: Staff Department</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>setting</Value>
-            <Label>Location: Setting</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>audit</Value>
-            <Label>Audit: Title</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>group</Value>
-            <Label>Audit: Question Group</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>question</Value>
-            <Label>Audit: Question</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>answer</Value>
-            <Label>Audit: Question: Possible Answer</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>fullname</Value>
-            <Label>Staff: Full Name</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>lastfirst</Value>
-            <Label>Staff: Last, First</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>localid</Value>
-            <Label>Staff: Local ID</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>vergeid</Value>
-            <Label>Staff: Verge ID</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>title</Value>
-            <Label>Staff: Title</Label>
-          </ParameterValue>
-        </ParameterValues>
+        <DataSetReference>
+          <DataSetName>rpm_pat_grouping_parent_row</DataSetName>
+          <ValueField>id</ValueField>
+          <LabelField>definition</LabelField>
+        </DataSetReference>
       </ValidValues>
     </ReportParameter>
-    <ReportParameter Name="Format_ParentRowSorting_11">
+    <ReportParameter Name="ParentRowSorting">
       <DataType>String</DataType>
       <DefaultValue>
-        <Values>
-          <Value>question_sort</Value>
-        </Values>
+        <DataSetReference>
+          <DataSetName>rpm_pat_grouping_parent_row_sort_default</DataSetName>
+          <ValueField>id_sort</ValueField>
+        </DataSetReference>
       </DefaultValue>
-      <Prompt>Format_ParentRowSorting_11</Prompt>
+      <Prompt>ParentRowSorting</Prompt>
+      <Hidden>true</Hidden>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>rpm_pat_grouping_parent_row</DataSetName>
+          <ValueField>id_sort</ValueField>
+          <LabelField>definition</LabelField>
+        </DataSetReference>
+      </ValidValues>
     </ReportParameter>
     <ReportParameter Name="Format_ChildRowGrouping_15">
       <DataType>String</DataType>
@@ -6516,90 +6637,30 @@ FROM
       </DefaultValue>
       <Prompt>Child Row:</Prompt>
       <ValidValues>
-        <ParameterValues>
-          <ParameterValue>
-            <Value>none</Value>
-            <Label>No Child Row</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>dotw</Value>
-            <Label>Date: Day of the Week</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>month</Value>
-            <Label>Date: Month</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>quarter</Value>
-            <Label>Date: Quarter</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>year</Value>
-            <Label>Date: Year</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>system</Value>
-            <Label>Location: Health System</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>org</Value>
-            <Label>Location: Organization</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>department</Value>
-            <Label>Location: Staff Department</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>setting</Value>
-            <Label>Location: Setting</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>audit</Value>
-            <Label>Audit: Title</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>group</Value>
-            <Label>Audit: Question Group</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>question</Value>
-            <Label>Audit: Question</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>answer</Value>
-            <Label>Audit: Question: Possible Answer</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>fullname</Value>
-            <Label>Staff: Full Name</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>lastfirst</Value>
-            <Label>Staff: Last, First</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>localid</Value>
-            <Label>Staff: Local ID</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>vergeid</Value>
-            <Label>Staff: Verge ID</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>title</Value>
-            <Label>Staff: Title</Label>
-          </ParameterValue>
-        </ParameterValues>
+        <DataSetReference>
+          <DataSetName>rpm_pat_grouping_child_row</DataSetName>
+          <ValueField>id</ValueField>
+          <LabelField>definition</LabelField>
+        </DataSetReference>
       </ValidValues>
     </ReportParameter>
-    <ReportParameter Name="Format_ChildRowSorting_16">
+    <ReportParameter Name="ChildRowSorting">
       <DataType>String</DataType>
       <DefaultValue>
-        <Values>
-          <Value>answer_sort</Value>
-        </Values>
+        <DataSetReference>
+          <DataSetName>rpm_pat_grouping_child_row_sort_default</DataSetName>
+          <ValueField>id_sort</ValueField>
+        </DataSetReference>
       </DefaultValue>
-      <Prompt>Format_ChildRowSorting_16</Prompt>
+      <Prompt>ChildRowSorting</Prompt>
+      <Hidden>true</Hidden>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>rpm_pat_grouping_child_row</DataSetName>
+          <ValueField>id_sort</ValueField>
+          <LabelField>definition</LabelField>
+        </DataSetReference>
+      </ValidValues>
     </ReportParameter>
     <ReportParameter Name="Format_GrandChildRowGrouping_20">
       <DataType>String</DataType>
@@ -6610,80 +6671,29 @@ FROM
       </DefaultValue>
       <Prompt>Grand Child Row:</Prompt>
       <ValidValues>
-        <ParameterValues>
-          <ParameterValue>
-            <Value>none</Value>
-            <Label>No Grandchild Row</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>dotw</Value>
-            <Label>Date: Day of the Week</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>month</Value>
-            <Label>Date: Month</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>quarter</Value>
-            <Label>Date: Quarter</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>year</Value>
-            <Label>Date: Year</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>system</Value>
-            <Label>Location: Health System</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>org</Value>
-            <Label>Location: Organization</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>setting</Value>
-            <Label>Location: Setting</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>department</Value>
-            <Label>Location: Staff Department</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>audit</Value>
-            <Label>Audit: Title</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>group</Value>
-            <Label>Audit: Question Group</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>question</Value>
-            <Label>Audit: Question</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>answer</Value>
-            <Label>Audit: Question: Possible Answer</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>fullname</Value>
-            <Label>Staff: Full Name</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>lastfirst</Value>
-            <Label>Staff: Last, First</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>localid</Value>
-            <Label>Staff: Local ID</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>vergeid</Value>
-            <Label>Staff: Verge ID</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>title</Value>
-            <Label>Staff: Title</Label>
-          </ParameterValue>
-        </ParameterValues>
+        <DataSetReference>
+          <DataSetName>rpm_pat_grouping_grandchild_row</DataSetName>
+          <ValueField>id</ValueField>
+          <LabelField>definition</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="GrandChildRowSorting">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>rpm_pat_grouping_grandchild_row_sort_default</DataSetName>
+          <ValueField>id_sort</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>GrandChildRowSorting</Prompt>
+      <Hidden>true</Hidden>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>rpm_pat_grouping_grandchild_row</DataSetName>
+          <ValueField>id_sort</ValueField>
+          <LabelField>definition</LabelField>
+        </DataSetReference>
       </ValidValues>
     </ReportParameter>
     <ReportParameter Name="Format_GroupLabelVisibility_21">
@@ -6706,15 +6716,6 @@ FROM
           </ParameterValue>
         </ParameterValues>
       </ValidValues>
-    </ReportParameter>
-    <ReportParameter Name="Format_GrandChildRowSorting_22">
-      <DataType>String</DataType>
-      <DefaultValue>
-        <Values>
-          <Value>none</Value>
-        </Values>
-      </DefaultValue>
-      <Prompt>Format_GrandChildRowSorting_22</Prompt>
     </ReportParameter>
     <ReportParameter Name="Format_CalculationOptions_25">
       <DataType>String</DataType>
