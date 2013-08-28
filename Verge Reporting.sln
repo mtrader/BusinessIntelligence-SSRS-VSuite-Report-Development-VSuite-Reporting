@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Question Reports", "Questio
 EndProject
 Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "Incidents", "Incidents\Incidents.rptproj", "{85CCAD41-B36F-4F7C-B681-A2482039E3DD}"
 EndProject
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "Tables", "Tables\Tables.rptproj", "{B2DBB7C0-7F0A-4228-A8D4-853FCC26BA79}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Default = Debug|Default
@@ -26,11 +28,22 @@ Global
 		{85CCAD41-B36F-4F7C-B681-A2482039E3DD}.Release|Default.ActiveCfg = Release
 		{85CCAD41-B36F-4F7C-B681-A2482039E3DD}.Release|Default.Build.0 = Release
 		{85CCAD41-B36F-4F7C-B681-A2482039E3DD}.Release|Default.Deploy.0 = Release
+		{B2DBB7C0-7F0A-4228-A8D4-853FCC26BA79}.Debug|Default.ActiveCfg = DebugLocal
+		{B2DBB7C0-7F0A-4228-A8D4-853FCC26BA79}.Debug|Default.Build.0 = DebugLocal
+		{B2DBB7C0-7F0A-4228-A8D4-853FCC26BA79}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{B2DBB7C0-7F0A-4228-A8D4-853FCC26BA79}.DebugLocal|Default.Build.0 = DebugLocal
+		{B2DBB7C0-7F0A-4228-A8D4-853FCC26BA79}.Production Support|Default.ActiveCfg = Release
+		{B2DBB7C0-7F0A-4228-A8D4-853FCC26BA79}.Production Support|Default.Build.0 = Release
+		{B2DBB7C0-7F0A-4228-A8D4-853FCC26BA79}.Production Support|Default.Deploy.0 = Release
+		{B2DBB7C0-7F0A-4228-A8D4-853FCC26BA79}.Release|Default.ActiveCfg = Release
+		{B2DBB7C0-7F0A-4228-A8D4-853FCC26BA79}.Release|Default.Build.0 = Release
+		{B2DBB7C0-7F0A-4228-A8D4-853FCC26BA79}.Release|Default.Deploy.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{85CCAD41-B36F-4F7C-B681-A2482039E3DD} = {245A7194-8245-4027-8D1C-79162EAC038F}
+		{B2DBB7C0-7F0A-4228-A8D4-853FCC26BA79} = {245A7194-8245-4027-8D1C-79162EAC038F}
 	EndGlobalSection
 EndGlobal

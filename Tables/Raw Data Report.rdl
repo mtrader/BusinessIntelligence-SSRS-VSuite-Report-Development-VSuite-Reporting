@@ -1,0 +1,1400 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+  <Description>This template provides a flat-file view of the data that can be viewed in the following different formats; Flat File, Group by UniqueID on the row, Group by Question on the row, and Question grouping on the column.</Description>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="VSuiteCube">
+      <DataSourceReference>VSuite_Cube</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>560ea361-411b-48de-b05d-5dc74e4c36ef</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="VSuite_DB">
+      <DataSourceReference>VSuite_DB</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>1407005e-6126-4797-9a51-5e2aa7987ece</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="GetIDsForComments">
+      <Query>
+        <DataSourceName>VSuiteCube</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="HealthSystemHealthSystemId">
+            <Value>=Parameters!HealthSystemId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="HealthSystemOrgId">
+            <Value>=Parameters!OrgId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="EvidenceEvidenceId">
+            <Value>=Parameters!EvidenceId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="LocationLocationId">
+            <Value>=Parameters!LocationId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="QuestionQuestionId">
+            <Value>=Parameters!QuestionId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="StaffStaffId">
+            <Value>=Parameters!StaffId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="ObservationDateYQMD">
+            <Value>=Parameters!ObservationDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="EnteredDateYQMD">
+            <Value>=Parameters!EnteredDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="UserUserId">
+            <Value>=Parameters!UserId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="EvidenceEntryEvidenceEntryId">
+            <Value>=Parameters!EvidenceEntryId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="QuestionQuestionGroupId">
+            <Value>=Parameters!QuestionGroupId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="QuestionQuestionTypeId">
+            <Value>=Parameters!QuestionTypeId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="EvidenceEntryStatusId">
+            <Value>=Parameters!EvidenceEntryStatusId.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>WITH 
+  SET [Base Set Restricted] AS 
+    NonEmpty
+    (
+      [Evidence Entry].[Evidence Entry Id].[Evidence Entry Id]
+     ,[Measures].[Evidence Entry Count]
+    ) 
+  MEMBER [Measures].[id] AS 
+    Generate
+    (
+      [Base Set Restricted]
+     ,[Evidence Entry].[Evidence Entry Id].CurrentMember.UniqueName
+     ,","
+    ) 
+  MEMBER [Measures].[definition] AS 
+    Generate
+    (
+      [Base Set Restricted]
+     ,[Evidence Entry].[Evidence Entry Id].CurrentMember.Name
+     ,","
+    ) 
+SELECT 
+  {
+    [Measures].[id]
+   ,[Measures].[definition]
+  } ON 0
+FROM 
+(
+  SELECT 
+    StrToSet(@QuestionQuestionTypeId) ON COLUMNS
+  FROM 
+  (
+    SELECT 
+      StrToSet(@QuestionQuestionGroupId) ON COLUMNS
+    FROM 
+    (
+      SELECT 
+        StrToSet(@EvidenceEntryEvidenceEntryId) ON COLUMNS
+      FROM 
+      (
+        SELECT 
+          StrToSet(@UserUserId) ON COLUMNS
+        FROM 
+        (
+          SELECT 
+            StrToSet(@ObservationDateYQMD) ON COLUMNS
+          FROM 
+          (
+            SELECT 
+              StrToSet(@EnteredDateYQMD) ON COLUMNS
+            FROM 
+            (
+              SELECT 
+                StrToSet(@StaffStaffId) ON COLUMNS
+              FROM 
+              (
+                SELECT 
+                  StrToSet(@QuestionQuestionId) ON COLUMNS
+                FROM 
+                (
+                  SELECT 
+                    StrToSet(@LocationLocationId) ON COLUMNS
+                  FROM 
+                  (
+                    SELECT 
+                      StrToSet(@EvidenceEvidenceId) ON COLUMNS
+                    FROM 
+                    (
+                      SELECT 
+                        StrToSet(@HealthSystemOrgId) ON COLUMNS
+                      FROM 
+                      (
+                        SELECT 
+                          StrToSet(@HealthSystemHealthSystemId) ON COLUMNS
+                       FROM 
+                       (
+                         SELECT 
+                             StrToSet(@EvidenceEntryStatusId) ON COLUMNS
+                        FROM [VSuite]
+                       )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+);
+						  </CommandText>
+        <rd:DesignerState><QueryDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/AnalysisServices/QueryDefinition"><CommandType>MDX</CommandType><Type>Query</Type><QuerySpecification xsi:type="MDXQuerySpecification"><Select><Items><Item><ID xsi:type="Measure"><MeasureName>id</MeasureName><UniqueName>[Measures].[id]</UniqueName></ID><ItemCaption>id</ItemCaption><FormattedValue>true</FormattedValue></Item><Item><ID xsi:type="Measure"><MeasureName>definition</MeasureName><UniqueName>[Measures].[definition]</UniqueName></ID><ItemCaption>definition</ItemCaption><FormattedValue>true</FormattedValue></Item></Items></Select><From>VSuite</From><Filter><FilterItems /></Filter><Calculations /><Aggregates /><QueryProperties /></QuerySpecification><Query><Statement>WITH 
+  SET [Base Set Restricted] AS 
+    NonEmpty
+    (
+      [Evidence Entry].[Evidence Entry Id].[Evidence Entry Id]
+     ,[Measures].[Evidence Entry Count]
+    ) 
+  MEMBER [Measures].[id] AS 
+    Generate
+    (
+      [Base Set Restricted]
+     ,[Evidence Entry].[Evidence Entry Id].CurrentMember.UniqueName
+     ,","
+    ) 
+  MEMBER [Measures].[definition] AS 
+    Generate
+    (
+      [Base Set Restricted]
+     ,[Evidence Entry].[Evidence Entry Id].CurrentMember.Name
+     ,","
+    ) 
+SELECT 
+  {
+    [Measures].[id]
+   ,[Measures].[definition]
+  } ON 0
+FROM 
+(
+  SELECT 
+    StrToSet(@QuestionQuestionTypeId) ON COLUMNS
+  FROM 
+  (
+    SELECT 
+      StrToSet(@QuestionQuestionGroupId) ON COLUMNS
+    FROM 
+    (
+      SELECT 
+        StrToSet(@EvidenceEntryEvidenceEntryId) ON COLUMNS
+      FROM 
+      (
+        SELECT 
+          StrToSet(@UserUserId) ON COLUMNS
+        FROM 
+        (
+          SELECT 
+            StrToSet(@ObservationDateYQMD) ON COLUMNS
+          FROM 
+          (
+            SELECT 
+              StrToSet(@EnteredDateYQMD) ON COLUMNS
+            FROM 
+            (
+              SELECT 
+                StrToSet(@StaffStaffId) ON COLUMNS
+              FROM 
+              (
+                SELECT 
+                  StrToSet(@QuestionQuestionId) ON COLUMNS
+                FROM 
+                (
+                  SELECT 
+                    StrToSet(@LocationLocationId) ON COLUMNS
+                  FROM 
+                  (
+                    SELECT 
+                      StrToSet(@EvidenceEvidenceId) ON COLUMNS
+                    FROM 
+                    (
+                      SELECT 
+                        StrToSet(@HealthSystemOrgId) ON COLUMNS
+                      FROM 
+                      (
+                        SELECT 
+                          StrToSet(@HealthSystemHealthSystemId) ON COLUMNS
+                       FROM 
+                       (
+                         SELECT 
+                             StrToSet(@EvidenceEntryStatusId) ON COLUMNS
+                        FROM [VSuite]
+                       )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+);
+						  </Statement><ParameterDefinitions><ParameterDefinition><Name>HealthSystemHealthSystemId</Name><DefaultValues><DefaultValue>[Health System].[Health System Id].&amp;[183]</DefaultValue></DefaultValues><Caption>Health System Id</Caption><HierarchyUniqueName>[Health System].[Health System Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Health System].[Health System Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Health System].[Health System Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Health System].[Health System Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Health System].[Health System Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>HealthSystemOrgId</Name><DefaultValues><DefaultValue>[Health System].[Org Id].[All]</DefaultValue></DefaultValues><Caption>Org Id</Caption><HierarchyUniqueName>[Health System].[Org Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Health System].[Org Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Health System].[Org Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Health System].[Org Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Health System].[Org Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>EvidenceEvidenceId</Name><DefaultValues><DefaultValue>[Evidence].[Evidence Id].[All]</DefaultValue></DefaultValues><Caption>Evidence Id</Caption><HierarchyUniqueName>[Evidence].[Evidence Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Evidence].[Evidence Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Evidence].[Evidence Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Evidence].[Evidence Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Evidence].[Evidence Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>LocationLocationId</Name><DefaultValues><DefaultValue>[Location].[Location Id].[All]</DefaultValue></DefaultValues><Caption>Location.Location Id</Caption><HierarchyUniqueName>[Location].[Location Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Location].[Location Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Location].[Location Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Location].[Location Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Location].[Location Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>QuestionQuestionId</Name><DefaultValues><DefaultValue>[Question].[Question Id].[All]</DefaultValue></DefaultValues><Caption>Question Id</Caption><HierarchyUniqueName>[Question].[Question Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Question].[Question Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Question].[Question Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Question].[Question Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Question].[Question Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>StaffStaffId</Name><DefaultValues><DefaultValue>[Staff].[Staff Id].[All]</DefaultValue></DefaultValues><Caption>Staff Id</Caption><HierarchyUniqueName>[Staff].[Staff Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Staff].[Staff Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Staff].[Staff Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Staff].[Staff Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Staff].[Staff Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>EnteredDateYQMD</Name><DefaultValues><DefaultValue>[Entered Date].[Y - Q - M - D].[All]</DefaultValue></DefaultValues><Caption>EnteredDateYQMD</Caption><HierarchyUniqueName>[Entered Date].[Y - Q - M - D]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Entered Date].[Y - Q - M - D].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Entered Date].[Y - Q - M - D].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Entered Date].[Y - Q - M - D].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Entered Date].[Y - Q - M - D].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>ObservationDateYQMD</Name><DefaultValues><DefaultValue>[Observation Date].[Y - Q - M - D].[Year].&amp;[2012]</DefaultValue></DefaultValues><Caption>Observation Date.Y - Q - M - D</Caption><HierarchyUniqueName>[Observation Date].[Y - Q - M - D]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Observation Date].[Y - Q - M - D].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>UserUserId</Name><DefaultValues><DefaultValue>[User].[User Id].[All]</DefaultValue></DefaultValues><Caption>User Id</Caption><HierarchyUniqueName>[User].[User Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [User].[User Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [User].[User Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [User].[User Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [User].[User Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>EvidenceEntryEvidenceEntryId</Name><DefaultValues><DefaultValue>[Evidence Entry].[Evidence Entry Id].[All]</DefaultValue></DefaultValues><Caption>Evidence Entry Id</Caption><HierarchyUniqueName>[Evidence Entry].[Evidence Entry Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Evidence Entry].[Evidence Entry Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Evidence Entry].[Evidence Entry Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Evidence Entry].[Evidence Entry Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Evidence Entry].[Evidence Entry Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>QuestionQuestionGroupId</Name><DefaultValues><DefaultValue>[Question].[Question Group Id].[All]</DefaultValue></DefaultValues><Caption>Question Group Id</Caption><HierarchyUniqueName>[Question].[Question Group Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Question].[Question Group Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Question].[Question Group Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Question].[Question Group Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Question].[Question Group Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>QuestionQuestionTypeId</Name><DefaultValues><DefaultValue>[Question].[Question Type Id].[All]</DefaultValue></DefaultValues><Caption>Question Type Id</Caption><HierarchyUniqueName>[Question].[Question Type Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Question].[Question Type Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Question].[Question Type Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Question].[Question Type Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Question].[Question Type Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>EvidenceEntryStatusId</Name><DefaultValues><DefaultValue>[Evidence Entry].[Evidence Entry Status Name].[All]</DefaultValue></DefaultValues><Caption>EvidenceEntryStatusId</Caption><HierarchyUniqueName>[Evidence Entry].[Evidence Entry Status Name]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Evidence Entry].[Evidence Entry Status Name].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Evidence Entry].[Evidence Entry Status Name].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Evidence Entry].[Evidence Entry Status Name].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Evidence Entry].[Evidence Entry Status Name].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition></ParameterDefinitions></Query></QueryDefinition></rd:DesignerState>
+      </Query>
+      <Fields>
+        <Field Name="id">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[id]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="definition">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[definition]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="GetQuestionIDsForComments">
+      <Query>
+        <DataSourceName>VSuiteCube</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="HealthSystemHealthSystemId">
+            <Value>=Parameters!HealthSystemId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="HealthSystemOrgId">
+            <Value>=Parameters!OrgId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="EvidenceEvidenceId">
+            <Value>=Parameters!EvidenceId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="LocationLocationId">
+            <Value>=Parameters!LocationId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="QuestionQuestionId">
+            <Value>=Parameters!QuestionId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="StaffStaffId">
+            <Value>=Parameters!StaffId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="ObservationDateYQMD">
+            <Value>=Parameters!ObservationDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="EnteredDateYQMD">
+            <Value>=Parameters!EnteredDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="UserUserId">
+            <Value>=Parameters!UserId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="EvidenceEntryEvidenceEntryId">
+            <Value>=Parameters!EvidenceEntryId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="QuestionQuestionGroupId">
+            <Value>=Parameters!QuestionGroupId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="QuestionQuestionTypeId">
+            <Value>=Parameters!QuestionTypeId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="EvidenceEntryStatusId">
+            <Value>=Parameters!EvidenceEntryStatusId.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>WITH 
+  SET [Base Set Restricted] AS 
+    NonEmpty
+    (
+      [Question].[Question Id].[Question Id]
+     ,[Measures].[Evidence Entry Count]
+    ) 
+  MEMBER [Measures].[id] AS 
+    Generate
+    (
+      [Base Set Restricted]
+     ,[Question].[Question Id].CurrentMember.UniqueName
+     ,","
+    ) 
+  MEMBER [Measures].[definition] AS 
+    Generate
+    (
+      [Base Set Restricted]
+     ,[Question].[Question Id].CurrentMember.Name
+     ,","
+    ) 
+SELECT 
+  {
+    [Measures].[id]
+   ,[Measures].[definition]
+  } ON 0
+FROM 
+(
+  SELECT 
+    StrToSet(@QuestionQuestionTypeId) ON COLUMNS
+  FROM 
+  (
+    SELECT 
+      StrToSet(@QuestionQuestionGroupId) ON COLUMNS
+    FROM 
+    (
+      SELECT 
+        StrToSet(@EvidenceEntryEvidenceEntryId) ON COLUMNS
+      FROM 
+      (
+        SELECT 
+          StrToSet(@UserUserId) ON COLUMNS
+        FROM 
+        (
+          SELECT 
+            StrToSet(@ObservationDateYQMD) ON COLUMNS
+          FROM 
+          (
+            SELECT 
+              StrToSet(@EnteredDateYQMD) ON COLUMNS
+            FROM 
+            (
+              SELECT 
+                StrToSet(@StaffStaffId) ON COLUMNS
+              FROM 
+              (
+                SELECT 
+                  StrToSet(@QuestionQuestionId) ON COLUMNS
+                FROM 
+                (
+                  SELECT 
+                    StrToSet(@LocationLocationId) ON COLUMNS
+                  FROM 
+                  (
+                    SELECT 
+                      StrToSet(@EvidenceEvidenceId) ON COLUMNS
+                    FROM 
+                    (
+                      SELECT 
+                        StrToSet(@HealthSystemOrgId) ON COLUMNS
+                      FROM 
+                      (
+                        SELECT 
+                          StrToSet(@HealthSystemHealthSystemId) ON COLUMNS
+                         FROM 
+                         (
+                           SELECT 
+                               StrToSet(@EvidenceEntryStatusId) ON COLUMNS
+                        FROM [VSuite]
+                       )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+);
+						  </CommandText>
+        <rd:DesignerState><QueryDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/AnalysisServices/QueryDefinition"><CommandType>MDX</CommandType><Type>Query</Type><QuerySpecification xsi:type="MDXQuerySpecification"><Select><Items><Item><ID xsi:type="Measure"><MeasureName>id</MeasureName><UniqueName>[Measures].[id]</UniqueName></ID><ItemCaption>id</ItemCaption><FormattedValue>true</FormattedValue></Item><Item><ID xsi:type="Measure"><MeasureName>definition</MeasureName><UniqueName>[Measures].[definition]</UniqueName></ID><ItemCaption>definition</ItemCaption><FormattedValue>true</FormattedValue></Item></Items></Select><From>VSuite</From><Filter><FilterItems /></Filter><Calculations /><Aggregates /><QueryProperties /></QuerySpecification><Query><Statement>WITH 
+  SET [Base Set Restricted] AS 
+    NonEmpty
+    (
+      [Question].[Question Id].[Question Id]
+     ,[Measures].[Evidence Entry Count]
+    ) 
+  MEMBER [Measures].[id] AS 
+    Generate
+    (
+      [Base Set Restricted]
+     ,[Question].[Question Id].CurrentMember.UniqueName
+     ,","
+    ) 
+  MEMBER [Measures].[definition] AS 
+    Generate
+    (
+      [Base Set Restricted]
+     ,[Question].[Question Id].CurrentMember.Name
+     ,","
+    ) 
+SELECT 
+  {
+    [Measures].[id]
+   ,[Measures].[definition]
+  } ON 0
+FROM 
+(
+  SELECT 
+    StrToSet(@QuestionQuestionTypeId) ON COLUMNS
+  FROM 
+  (
+    SELECT 
+      StrToSet(@QuestionQuestionGroupId) ON COLUMNS
+    FROM 
+    (
+      SELECT 
+        StrToSet(@EvidenceEntryEvidenceEntryId) ON COLUMNS
+      FROM 
+      (
+        SELECT 
+          StrToSet(@UserUserId) ON COLUMNS
+        FROM 
+        (
+          SELECT 
+            StrToSet(@ObservationDateYQMD) ON COLUMNS
+          FROM 
+          (
+            SELECT 
+              StrToSet(@EnteredDateYQMD) ON COLUMNS
+            FROM 
+            (
+              SELECT 
+                StrToSet(@StaffStaffId) ON COLUMNS
+              FROM 
+              (
+                SELECT 
+                  StrToSet(@QuestionQuestionId) ON COLUMNS
+                FROM 
+                (
+                  SELECT 
+                    StrToSet(@LocationLocationId) ON COLUMNS
+                  FROM 
+                  (
+                    SELECT 
+                      StrToSet(@EvidenceEvidenceId) ON COLUMNS
+                    FROM 
+                    (
+                      SELECT 
+                        StrToSet(@HealthSystemOrgId) ON COLUMNS
+                      FROM 
+                      (
+                        SELECT 
+                          StrToSet(@HealthSystemHealthSystemId) ON COLUMNS
+                         FROM 
+                         (
+                           SELECT 
+                               StrToSet(@EvidenceEntryStatusId) ON COLUMNS
+                        FROM [VSuite]
+                       )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+);
+						  </Statement><ParameterDefinitions><ParameterDefinition><Name>HealthSystemHealthSystemId</Name><DefaultValues><DefaultValue>[Health System].[Health System Id].&amp;[183]</DefaultValue></DefaultValues><Caption>Health System Id</Caption><HierarchyUniqueName>[Health System].[Health System Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Health System].[Health System Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Health System].[Health System Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Health System].[Health System Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Health System].[Health System Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>HealthSystemOrgId</Name><DefaultValues><DefaultValue>[Health System].[Org Id].[All]</DefaultValue></DefaultValues><Caption>Org Id</Caption><HierarchyUniqueName>[Health System].[Org Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Health System].[Org Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Health System].[Org Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Health System].[Org Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Health System].[Org Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>EvidenceEvidenceId</Name><DefaultValues><DefaultValue>[Evidence].[Evidence Id].[All]</DefaultValue></DefaultValues><Caption>Evidence Id</Caption><HierarchyUniqueName>[Evidence].[Evidence Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Evidence].[Evidence Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Evidence].[Evidence Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Evidence].[Evidence Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Evidence].[Evidence Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>LocationLocationId</Name><DefaultValues><DefaultValue>[Location].[Location Id].[All]</DefaultValue></DefaultValues><Caption>Location.Location Id</Caption><HierarchyUniqueName>[Location].[Location Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Location].[Location Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Location].[Location Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Location].[Location Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Location].[Location Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>QuestionQuestionId</Name><DefaultValues><DefaultValue>[Question].[Question Id].[All]</DefaultValue></DefaultValues><Caption>Question Id</Caption><HierarchyUniqueName>[Question].[Question Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Question].[Question Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Question].[Question Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Question].[Question Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Question].[Question Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>StaffStaffId</Name><DefaultValues><DefaultValue>[Staff].[Staff Id].[All]</DefaultValue></DefaultValues><Caption>Staff Id</Caption><HierarchyUniqueName>[Staff].[Staff Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Staff].[Staff Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Staff].[Staff Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Staff].[Staff Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Staff].[Staff Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>EnteredDateYQMD</Name><DefaultValues><DefaultValue>[Entered Date].[Y - Q - M - D].[All]</DefaultValue></DefaultValues><Caption>EnteredDateYQMD</Caption><HierarchyUniqueName>[Entered Date].[Y - Q - M - D]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Entered Date].[Y - Q - M - D].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Entered Date].[Y - Q - M - D].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Entered Date].[Y - Q - M - D].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Entered Date].[Y - Q - M - D].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>ObservationDateYQMD</Name><DefaultValues><DefaultValue>[Observation Date].[Y - Q - M - D].[Year].&amp;[2010]</DefaultValue></DefaultValues><Caption>Observation Date.Y - Q - M - D</Caption><HierarchyUniqueName>[Observation Date].[Y - Q - M - D]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Observation Date].[Y - Q - M - D].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>UserUserId</Name><DefaultValues><DefaultValue>[User].[User Id].[All]</DefaultValue></DefaultValues><Caption>User Id</Caption><HierarchyUniqueName>[User].[User Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [User].[User Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [User].[User Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [User].[User Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [User].[User Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>EvidenceEntryEvidenceEntryId</Name><DefaultValues><DefaultValue>[Evidence Entry].[Evidence Entry Id].[All]</DefaultValue></DefaultValues><Caption>Evidence Entry Id</Caption><HierarchyUniqueName>[Evidence Entry].[Evidence Entry Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Evidence Entry].[Evidence Entry Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Evidence Entry].[Evidence Entry Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Evidence Entry].[Evidence Entry Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Evidence Entry].[Evidence Entry Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>QuestionQuestionGroupId</Name><DefaultValues><DefaultValue>[Question].[Question Group Id].[All]</DefaultValue></DefaultValues><Caption>Question Group Id</Caption><HierarchyUniqueName>[Question].[Question Group Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Question].[Question Group Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Question].[Question Group Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Question].[Question Group Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Question].[Question Group Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>QuestionQuestionTypeId</Name><DefaultValues><DefaultValue>[Question].[Question Type Id].[All]</DefaultValue></DefaultValues><Caption>Question Type Id</Caption><HierarchyUniqueName>[Question].[Question Type Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Question].[Question Type Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Question].[Question Type Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Question].[Question Type Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Question].[Question Type Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>EvidenceEntryStatusId</Name><DefaultValues><DefaultValue>[Evidence Entry].[Evidence Entry Status Name].[All]</DefaultValue></DefaultValues><Caption>EvidenceEntryStatusId</Caption><HierarchyUniqueName>[Evidence Entry].[Evidence Entry Status Name]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Evidence Entry].[Evidence Entry Status Name].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Evidence Entry].[Evidence Entry Status Name].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Evidence Entry].[Evidence Entry Status Name].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Evidence Entry].[Evidence Entry Status Name].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition></ParameterDefinitions></Query></QueryDefinition></rd:DesignerState>
+      </Query>
+      <Fields>
+        <Field Name="id">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[id]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="definition">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[definition]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="rpm_rdr_grouping_page">
+      <Query>
+        <DataSourceName>VSuite_DB</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@grouping_type">
+            <Value>page</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>reports.rpm_rdr_grouping</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="id">
+          <DataField>id</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="definition">
+          <DataField>definition</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Rectangle Name="rec_header2">
+            <ReportItems>
+              <Image Name="img_header_3">
+                <Source>External</Source>
+                <Value>="file:" &amp; Parameters!ReportHeaderId.Value(0)</Value>
+                <Left>0.00939in</Left>
+                <Height>0.1in</Height>
+                <Width>7.49061in</Width>
+                <Visibility>
+                  <Hidden>=Microsoft.VisualBasic.Strings.INSTR(Parameters!ReportHeaderId.Value(0), "-1") &lt;&gt; 0</Hidden>
+                </Visibility>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                </Style>
+              </Image>
+              <Image Name="img_header_4">
+                <Source>External</Source>
+                <Value>="file:" &amp; Parameters!ReportHeaderId.Value(1)</Value>
+                <Height>0.1in</Height>
+                <Width>7.5in</Width>
+                <ZIndex>1</ZIndex>
+                <Visibility>
+                  <Hidden>=Microsoft.VisualBasic.Strings.INSTR(Parameters!ReportHeaderId.Value(1), "-1") &lt;&gt; 0</Hidden>
+                </Visibility>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                </Style>
+              </Image>
+            </ReportItems>
+            <KeepTogether>true</KeepTogether>
+            <Height>0.1in</Height>
+            <Width>7.5in</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Rectangle>
+          <Subreport Name="srpt_raw_data_report">
+            <ReportName>srpt_raw_data</ReportName>
+            <Parameters>
+              <Parameter Name="Format_CommentGrouping_5">
+                <Value>=Parameters!Format_CommentGrouping_5.Value</Value>
+              </Parameter>
+              <Parameter Name="Format_TableListOptions_10">
+                <Value>=Parameters!Format_TableListOptions_10.Value</Value>
+              </Parameter>
+              <Parameter Name="Format_CommentsFilterOptions_15">
+                <Value>=Parameters!Format_CommentsFilterOptions_15.Value</Value>
+              </Parameter>
+              <Parameter Name="Format_ShowHideOrgUnit_16">
+                <Value>=Parameters!Format_ShowHideOrgUnit_16.Value</Value>
+              </Parameter>
+              <Parameter Name="Format_ShowObservationTime_17">
+                <Value>=Parameters!Format_ShowObservationTime_17.Value</Value>
+              </Parameter>
+              <Parameter Name="Format_ShowEntryTime_18">
+                <Value>=Parameters!Format_ShowEntryTime_18.Value</Value>
+              </Parameter>
+              <Parameter Name="Format_DisplayScore_20">
+                <Value>=Parameters!Format_DisplayScore_20.Value</Value>
+              </Parameter>
+              <Parameter Name="Format_ShowQuestionGroupCol_25">
+                <Value>=Parameters!Format_ShowQuestionGroupCol_25.Value</Value>
+              </Parameter>
+              <Parameter Name="Format_ShowEntryDateCol_26">
+                <Value>=Parameters!Format_ShowEntryDateCol_26.Value</Value>
+              </Parameter>
+              <Parameter Name="Format_ShowOrganizationCol_27">
+                <Value>=Parameters!Format_ShowOrganizationCol_27.Value</Value>
+              </Parameter>
+              <Parameter Name="Format_ShowAuditTitleCol_28">
+                <Value>=Parameters!Format_ShowAuditTitleCol_28.Value</Value>
+              </Parameter>
+              <Parameter Name="Format_ShowSettingsCol_29">
+                <Value>=Parameters!Format_ShowSettingsCol_29.Value</Value>
+              </Parameter>
+              <Parameter Name="Format_ShowStaffCols_30">
+                <Value>=Parameters!Format_ShowStaffCols_30.Value</Value>
+              </Parameter>
+              <Parameter Name="Format_ShowEnteredBy_31">
+                <Value>=Parameters!Format_ShowEnteredBy_31.Value</Value>
+              </Parameter>
+              <Parameter Name="Format_ShowStatus_32">
+                <Value>=Parameters!Format_ShowStatus_32.Value</Value>
+              </Parameter>
+              <Parameter Name="Format_ShowEntryID_33">
+                <Value>=Parameters!Format_ShowEntryID_33.Value</Value>
+              </Parameter>
+              <Parameter Name="HealthSystemId">
+                <Value>=Parameters!HealthSystemId.Value</Value>
+              </Parameter>
+              <Parameter Name="EvidenceId">
+                <Value>=Parameters!EvidenceId.Value</Value>
+              </Parameter>
+              <Parameter Name="GetRunIDforComments">
+                <Value>=First(Fields!definition.Value, "GetIDsForComments")</Value>
+              </Parameter>
+              <Parameter Name="GetQuestionIDforComments">
+                <Value>=First(Fields!definition.Value, "GetQuestionIDsForComments")</Value>
+              </Parameter>
+            </Parameters>
+            <OmitBorderOnPageBreak>true</OmitBorderOnPageBreak>
+            <Top>0.1in</Top>
+            <Left>0.00939in</Left>
+            <Height>3.76872in</Height>
+            <Width>37.91273in</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Subreport>
+        </ReportItems>
+        <Height>4.01872in</Height>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Body>
+      <Width>37.92212in</Width>
+      <Page>
+        <PageFooter>
+          <Height>0.18004in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Rectangle Name="rec_footer">
+              <ReportItems>
+                <Image Name="img_footer_2">
+                  <Source>External</Source>
+                  <Value>="file:" &amp; Parameters!ReportFooterId.Value(1)</Value>
+                  <Top>0.01007in</Top>
+                  <Left>0.00939in</Left>
+                  <Height>0.1in</Height>
+                  <Width>7.24729in</Width>
+                  <Visibility>
+                    <Hidden>=INSTR(Parameters!ReportFooterId.Value(1) ,"-1") &lt;&gt; 0</Hidden>
+                  </Visibility>
+                  <Style>
+                    <Border>
+                      <Style>None</Style>
+                    </Border>
+                  </Style>
+                </Image>
+                <Image Name="img_footer_1">
+                  <Source>External</Source>
+                  <Value>="file:" &amp; Parameters!ReportFooterId.Value(0)</Value>
+                  <Height>0.1in</Height>
+                  <Width>7.25668in</Width>
+                  <ZIndex>1</ZIndex>
+                  <Visibility>
+                    <Hidden>=INSTR(Parameters!ReportFooterId.Value(0) ,"-1") &lt;&gt; 0</Hidden>
+                  </Visibility>
+                  <Style>
+                    <Border>
+                      <Style>None</Style>
+                    </Border>
+                  </Style>
+                </Image>
+              </ReportItems>
+              <KeepTogether>true</KeepTogether>
+              <Top>0.06997in</Top>
+              <Height>0.11007in</Height>
+              <Width>7.25668in</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+              </Style>
+            </Rectangle>
+          </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageFooter>
+        <PageHeight>8.5in</PageHeight>
+        <PageWidth>20in</PageWidth>
+        <InteractiveHeight>8.5in</InteractiveHeight>
+        <InteractiveWidth>11in</InteractiveWidth>
+        <LeftMargin>0.2in</LeftMargin>
+        <RightMargin>0.2in</RightMargin>
+        <TopMargin>0.2in</TopMargin>
+        <BottomMargin>0.2in</BottomMargin>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="Format_CommentGrouping_5">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>flat</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Group Data By:</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>question</Value>
+            <Label>Each Question (On the Row)</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>questioncolumn</Value>
+            <Label>Each Question (On the Column)</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>uid</Value>
+            <Label>Each Entry (Unique ID)</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>flat</Value>
+            <Label>No Grouping (Each Field in it's own column - Flat)</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Format_TableListOptions_10">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>audit</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Generate a Separate Table for each:</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>rpm_rdr_grouping_page</DataSetName>
+          <ValueField>id</ValueField>
+          <LabelField>definition</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Format_CommentsFilterOptions_15">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>answered</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Filter Options:</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>answered</Value>
+            <Label>Show All Answered Responses (with and without comments)</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>answeredcomments</Value>
+            <Label>Show All Answered Responses with Comments Only</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>all</Value>
+            <Label>Show All Data (answered and not answered)</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>unanswered</Value>
+            <Label>Show All Not Answered Responses Only</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>nocomments</Value>
+            <Label>Hide all Comments</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Format_ShowHideOrgUnit_16">
+      <DataType>Boolean</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>true</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Show Org Units?</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>true</Value>
+            <Label>No</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>false</Value>
+            <Label>Yes</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Format_ShowObservationTime_17">
+      <DataType>Boolean</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>true</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Show Observation Time?</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>false</Value>
+            <Label>Yes</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>true</Value>
+            <Label>No</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Format_ShowEntryTime_18">
+      <DataType>Boolean</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>true</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Show Entry Time?</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>false</Value>
+            <Label>Yes</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>true</Value>
+            <Label>No</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Format_DisplayScore_20">
+      <DataType>Boolean</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>true</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Show Answer Score:</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>false</Value>
+            <Label>True</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>true</Value>
+            <Label>False</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Format_ShowQuestionGroupCol_25">
+      <DataType>Boolean</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>true</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Question Group Column:</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>false</Value>
+            <Label>Show</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>true</Value>
+            <Label>Hide</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Format_ShowEntryDateCol_26">
+      <DataType>Boolean</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>false</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Entry Date Column:</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>false</Value>
+            <Label>Show</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>true</Value>
+            <Label>Hide</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Format_ShowOrganizationCol_27">
+      <DataType>Boolean</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>false</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Organization Column:</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>false</Value>
+            <Label>Show</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>true</Value>
+            <Label>Hide</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Format_ShowAuditTitleCol_28">
+      <DataType>Boolean</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>false</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Show Audit Title Column:</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>false</Value>
+            <Label>Show</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>true</Value>
+            <Label>Hide</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Format_ShowSettingsCol_29">
+      <DataType>Boolean</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>false</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Show Settings Column:</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>false</Value>
+            <Label>Show</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>true</Value>
+            <Label>Hide</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Format_ShowStaffCols_30">
+      <DataType>Boolean</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>true</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Staff Columns:</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>false</Value>
+            <Label>Show</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>true</Value>
+            <Label>Hide</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Format_ShowEnteredBy_31">
+      <DataType>Boolean</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>true</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Entered By Column:</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>false</Value>
+            <Label>Show</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>true</Value>
+            <Label>Hide</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Format_ShowStatus_32">
+      <DataType>Boolean</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>true</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Status Column:</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>false</Value>
+            <Label>Show</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>true</Value>
+            <Label>Hide</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Format_ShowEntryID_33">
+      <DataType>Boolean</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>true</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Entry ID:</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>false</Value>
+            <Label>Show</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>true</Value>
+            <Label>Hide</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="HealthSystemId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Health System].[Health System Id].&amp;[183]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Health System Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="OrgId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Health System].[Org Id].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Org Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="EvidenceId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Evidence].[Evidence Id].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Evidence Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="LocationId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Location].[Location Id].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Location Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="QuestionId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Question].[Question Id].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Question Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="StaffId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Staff].[Staff Id].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Staff Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="EnteredDate">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Entered Date].[Y - Q - M - D].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Entry Date</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="ObservationDate">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Observation Date].[Y - Q - M - D].[Year].&amp;[2012]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Observation Date</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="UserId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[User].[User Id].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>User Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="EvidenceEntryId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Evidence Entry].[Evidence Entry Id].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Evidence Entry Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="ReportTitle">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>Title</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportTitle</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ReportDescription">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=""</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportDescription</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="QuestionGroupId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Question].[Question Group Id].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Question Group Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="QuestionTypeId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Question].[Question Type Id].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Question Type Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="EvidenceEntryStatusId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Evidence Entry].[Evidence Entry Status Name].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>EvidenceEntryStatusId</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="GetRunIDforComments">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>0</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>GetRunIDforComments</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="GetQuestionIDforComments">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>0</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>GetQuestionIDforComments</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ReportHeaderId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>-1</Value>
+          <Value>-1</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>ReportHeaderId</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="ReportFooterId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>-1</Value>
+          <Value>-1</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>ReportFooterId</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+  </ReportParameters>
+  <Code>   PUBLIC FUNCTION GetTableListFieldName(Format_TableListOptions_10Param AS STRING) AS STRING
+
+        Dim TableListField As String
+        TableListField = "EnteredInSystemId"
+
+        Select Case Format_TableListOptions_10Param
+
+            Case "org"
+                TableListField = "organization"
+           Case "orgunit"
+                TableListField = "org_unit"
+            Case "primary_setting"
+                TableListField = "primary_setting"
+            Case "secondary_setting"
+                TableListField = "secondary_setting"
+            Case "department"
+                TableListField = "staff_dept"
+            Case "observed_month"
+                TableListField = "observation_month_name_year"
+            Case "observed_quarter"
+                TableListField = "observation_quarter_name_year"
+            Case "observed_year"
+                TableListField = "observation_year"
+            Case "entered_month"
+                TableListField = "entry_month_name_year"
+            Case "entered_quarter"
+                TableListField = "entry_quarter_name_year"
+            Case "entered_year"
+                TableListField = "entry_year"
+            Case "enteredby"
+                TableListField = "entry_entered_by"
+            Case "audit"
+                TableListField = "audit_title_event_type"
+            Case "question"
+                TableListField = "question_name"
+            Case "questiongroup"
+                TableListField = "question_group_name"
+            Case "uid"
+                TableListField = "uniqueid"
+            Case "status"
+                TableListField = "entry_status"
+            Case "severity"
+                TableListField = "severity_name"
+            Case "fullname"
+                TableListField = "staff_full_name"
+            Case "title"
+                TableListField = "staff_title"
+            Case "patient_mrn"
+                TableListField = "patient_mrn"
+            Case "patient_name"
+                TableListField = "patient_name"
+            Case "medication"
+                TableListField = "brand_name"
+            Case "medication_ndc"
+                TableListField = "med_ndc"
+            Case "medication_class"
+                TableListField = "med_classification"
+        End Select
+
+        Return TableListField
+
+    End Function
+
+
+    Public Function GetTableListSortOrder(Format_TableListOptions_10Param As String) As String
+
+        Dim TableListSortOrder As String
+        TableListSortOrder = "EnteredInSystemId"
+
+        Select Case Format_TableListOptions_10Param
+
+            Case "org"
+                TableListSortOrder = "organization"
+            Case "orgunit"
+                TableListSortOrder = "org_unit"
+            Case "primary_setting"
+                TableListSortOrder = "primary_setting"
+            Case "secondary_setting"
+                TableListSortOrder = "secondary_setting"
+            Case "department"
+                TableListSortOrder = "staff_dept"
+            Case "observed_month"
+                TableListSortOrder = "observation_date"
+            Case "observed_quarter"
+                TableListSortOrder = "observation_quarter_name_year"
+            Case "observed_year"
+                TableListSortOrder = "observation_year"
+            Case "entered_month"
+                TableListSortOrder = "entry_date"
+            Case "entered_quarter"
+                TableListSortOrder = "entry_quarter_name_year"
+            Case "entered_year"
+                TableListSortOrder = "entry_year"
+            Case "audit"
+                TableListSortOrder = "audit_title_event_type"
+            Case "enteredby"
+                TableListSortOrder = "entry_entered_by"
+            Case "question"
+                TableListSortOrder = "question_sort_order"
+            Case "questiongroup"
+                TableListSortOrder = "question_group_sort_order"
+            Case "uid"
+                TableListSortOrder = "observation_date"
+            Case "status"
+                TableListSortOrder = "entry_status"
+            Case "severity"
+                TableListSortOrder = "severity_name"
+            Case "fullname"
+                TableListSortOrder = "staff_last_name"
+            Case "title"
+                TableListSortOrder = "staff_title"
+            Case "patient_mrn"
+                TableListSortOrder = "patient_mrn"
+            Case "patient_name"
+                TableListSortOrder = "patient_name"
+            Case "medication"
+                TableListSortOrder = "brand_name"
+            Case "medication_ndc"
+                TableListSortOrder = "med_ndc"
+            Case "medication_class"
+                TableListSortOrder = "med_classification"
+        End Select
+
+        Return TableListSortOrder
+    End Function
+
+</Code>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportServerUrl>http://ocashvrgrpt01p.verge-solutions.com/reportserver</rd:ReportServerUrl>
+  <rd:ReportID>040250d9-da9e-4b34-bff8-8cc60bd8e158</rd:ReportID>
+</Report>

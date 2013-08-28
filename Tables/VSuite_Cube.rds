@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="VSuite_Cube">
+  <ConnectionProperties>
+    <Extension>OLEDB-MD</Extension>
+    <ConnectString>Data Source=ocashvrgolp01s.verge-solutions.com:2384;Initial Catalog=bi</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>5784b384-04ff-4c94-b0e4-0bd4bbbd075a</DataSourceID>
+</RptDataSource>
