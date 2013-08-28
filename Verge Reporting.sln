@@ -315,9 +315,9 @@ Global
 		{EE11D676-9B88-42DE-9D8C-423CE8E0C6EC}.Debug|Default.Build.0 = DebugLocal
 		{EE11D676-9B88-42DE-9D8C-423CE8E0C6EC}.DebugLocal|Default.ActiveCfg = DebugLocal
 		{EE11D676-9B88-42DE-9D8C-423CE8E0C6EC}.DebugLocal|Default.Build.0 = DebugLocal
-		{EE11D676-9B88-42DE-9D8C-423CE8E0C6EC}.Production Support|Default.ActiveCfg = Release
-		{EE11D676-9B88-42DE-9D8C-423CE8E0C6EC}.Production Support|Default.Build.0 = Release
-		{EE11D676-9B88-42DE-9D8C-423CE8E0C6EC}.Production Support|Default.Deploy.0 = Release
+		{EE11D676-9B88-42DE-9D8C-423CE8E0C6EC}.Production Support|Default.ActiveCfg = Production Support
+		{EE11D676-9B88-42DE-9D8C-423CE8E0C6EC}.Production Support|Default.Build.0 = Production Support
+		{EE11D676-9B88-42DE-9D8C-423CE8E0C6EC}.Production Support|Default.Deploy.0 = Production Support
 		{EE11D676-9B88-42DE-9D8C-423CE8E0C6EC}.Release|Default.ActiveCfg = Release
 		{EE11D676-9B88-42DE-9D8C-423CE8E0C6EC}.Release|Default.Build.0 = Release
 		{EE11D676-9B88-42DE-9D8C-423CE8E0C6EC}.Release|Default.Deploy.0 = Release
@@ -519,9 +519,9 @@ Global
 		{6DBC890F-BBA8-4DC1-9DD8-D90793BF605F}.DebugLocal|Default.ActiveCfg = DebugLocal
 		{6DBC890F-BBA8-4DC1-9DD8-D90793BF605F}.DebugLocal|Default.Build.0 = DebugLocal
 		{6DBC890F-BBA8-4DC1-9DD8-D90793BF605F}.DebugLocal|Default.Deploy.0 = DebugLocal
-		{6DBC890F-BBA8-4DC1-9DD8-D90793BF605F}.Production Support|Default.ActiveCfg = Release
-		{6DBC890F-BBA8-4DC1-9DD8-D90793BF605F}.Production Support|Default.Build.0 = Release
-		{6DBC890F-BBA8-4DC1-9DD8-D90793BF605F}.Production Support|Default.Deploy.0 = Release
+		{6DBC890F-BBA8-4DC1-9DD8-D90793BF605F}.Production Support|Default.ActiveCfg = Production Support
+		{6DBC890F-BBA8-4DC1-9DD8-D90793BF605F}.Production Support|Default.Build.0 = Production Support
+		{6DBC890F-BBA8-4DC1-9DD8-D90793BF605F}.Production Support|Default.Deploy.0 = Production Support
 		{6DBC890F-BBA8-4DC1-9DD8-D90793BF605F}.Release|Default.ActiveCfg = Release
 		{6DBC890F-BBA8-4DC1-9DD8-D90793BF605F}.Release|Default.Build.0 = Release
 		{6DBC890F-BBA8-4DC1-9DD8-D90793BF605F}.Release|Default.Deploy.0 = Release
