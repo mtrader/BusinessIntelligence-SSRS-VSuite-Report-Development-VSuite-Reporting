@@ -9,6 +9,10 @@ Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "Incidents", "Incidents\Inci
 EndProject
 Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "Tables", "Tables\Tables.rptproj", "{B2DBB7C0-7F0A-4228-A8D4-853FCC26BA79}"
 EndProject
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "Activity Reports", "Activity Reports\Activity Reports.rptproj", "{EE11D676-9B88-42DE-9D8C-423CE8E0C6EC}"
+EndProject
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "Static Activity Reports", "Static Activity Reports\Static Activity Reports.rptproj", "{34EF700D-9604-4A7E-A404-18AD973A36AC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Default = Debug|Default
@@ -38,11 +42,33 @@ Global
 		{B2DBB7C0-7F0A-4228-A8D4-853FCC26BA79}.Release|Default.ActiveCfg = Release
 		{B2DBB7C0-7F0A-4228-A8D4-853FCC26BA79}.Release|Default.Build.0 = Release
 		{B2DBB7C0-7F0A-4228-A8D4-853FCC26BA79}.Release|Default.Deploy.0 = Release
+		{EE11D676-9B88-42DE-9D8C-423CE8E0C6EC}.Debug|Default.ActiveCfg = DebugLocal
+		{EE11D676-9B88-42DE-9D8C-423CE8E0C6EC}.Debug|Default.Build.0 = DebugLocal
+		{EE11D676-9B88-42DE-9D8C-423CE8E0C6EC}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{EE11D676-9B88-42DE-9D8C-423CE8E0C6EC}.DebugLocal|Default.Build.0 = DebugLocal
+		{EE11D676-9B88-42DE-9D8C-423CE8E0C6EC}.Production Support|Default.ActiveCfg = Release
+		{EE11D676-9B88-42DE-9D8C-423CE8E0C6EC}.Production Support|Default.Build.0 = Release
+		{EE11D676-9B88-42DE-9D8C-423CE8E0C6EC}.Production Support|Default.Deploy.0 = Release
+		{EE11D676-9B88-42DE-9D8C-423CE8E0C6EC}.Release|Default.ActiveCfg = Release
+		{EE11D676-9B88-42DE-9D8C-423CE8E0C6EC}.Release|Default.Build.0 = Release
+		{EE11D676-9B88-42DE-9D8C-423CE8E0C6EC}.Release|Default.Deploy.0 = Release
+		{34EF700D-9604-4A7E-A404-18AD973A36AC}.Debug|Default.ActiveCfg = DebugLocal
+		{34EF700D-9604-4A7E-A404-18AD973A36AC}.Debug|Default.Build.0 = DebugLocal
+		{34EF700D-9604-4A7E-A404-18AD973A36AC}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{34EF700D-9604-4A7E-A404-18AD973A36AC}.DebugLocal|Default.Build.0 = DebugLocal
+		{34EF700D-9604-4A7E-A404-18AD973A36AC}.Production Support|Default.ActiveCfg = Release
+		{34EF700D-9604-4A7E-A404-18AD973A36AC}.Production Support|Default.Build.0 = Release
+		{34EF700D-9604-4A7E-A404-18AD973A36AC}.Production Support|Default.Deploy.0 = Release
+		{34EF700D-9604-4A7E-A404-18AD973A36AC}.Release|Default.ActiveCfg = Release
+		{34EF700D-9604-4A7E-A404-18AD973A36AC}.Release|Default.Build.0 = Release
+		{34EF700D-9604-4A7E-A404-18AD973A36AC}.Release|Default.Deploy.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{EE11D676-9B88-42DE-9D8C-423CE8E0C6EC} = {BFE5A672-007F-48D8-8C61-12C87ED312E2}
+		{34EF700D-9604-4A7E-A404-18AD973A36AC} = {BFE5A672-007F-48D8-8C61-12C87ED312E2}
 		{85CCAD41-B36F-4F7C-B681-A2482039E3DD} = {245A7194-8245-4027-8D1C-79162EAC038F}
 		{B2DBB7C0-7F0A-4228-A8D4-853FCC26BA79} = {245A7194-8245-4027-8D1C-79162EAC038F}
 	EndGlobalSection
