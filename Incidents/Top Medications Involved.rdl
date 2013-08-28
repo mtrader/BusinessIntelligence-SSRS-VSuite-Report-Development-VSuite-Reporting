@@ -1,0 +1,2195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+  <Description>This report will analyze the medication involved in any event form and provide you with a visual representation for the count of medications and their severity level.  You can choose the number of "Top" medications to display and count.</Description>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="VSuiteCube">
+      <DataSourceReference>VSuite_Cube</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>560ea361-411b-48de-b05d-5dc74e4c36ef</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="VSuiteDB">
+      <DataSourceReference>VSuite_DB</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>34cfba06-d6b9-46c6-a996-d6bfc5600b7e</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="GetIDsForComments">
+      <Query>
+        <DataSourceName>VSuiteCube</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="HealthSystemHealthSystemId">
+            <Value>=Parameters!HealthSystemId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="HealthSystemOrgId">
+            <Value>=Parameters!OrgId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="EvidenceEvidenceId">
+            <Value>=Parameters!EvidenceId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="LocationLocationId">
+            <Value>=Parameters!LocationId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="QuestionQuestionId">
+            <Value>=Parameters!QuestionId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="StaffStaffId">
+            <Value>=Parameters!StaffId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="ObservationDateYQMD">
+            <Value>=Parameters!ObservationDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="UserUserId">
+            <Value>=Parameters!UserId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="EvidenceEntryEvidenceEntryId">
+            <Value>=Parameters!EvidenceEntryId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="QuestionQuestionGroupId">
+            <Value>=Parameters!QuestionGroupId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="QuestionQuestionTypeId">
+            <Value>=Parameters!QuestionTypeId.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>
+SELECT 
+  NON EMPTY 
+    {[Measures].[Evidence Entry Count]} ON COLUMNS
+ ,NON EMPTY 
+    {
+      [Evidence Entry].[Evidence Entry Id].[Evidence Entry Id].ALLMEMBERS
+    }
+  DIMENSION PROPERTIES 
+    MEMBER_CAPTION
+   ,MEMBER_UNIQUE_NAME
+   ON ROWS
+FROM 
+(
+  SELECT 
+    {[Evidence Entry].[Evidence Entry Deleted].&amp;[Not Deleted]} ON COLUMNS
+  FROM 
+  (
+    SELECT 
+      StrToSet(@QuestionQuestionTypeId) ON COLUMNS
+    FROM 
+    (
+      SELECT 
+        StrToSet(@QuestionQuestionGroupId) ON COLUMNS
+      FROM 
+      (
+        SELECT 
+          StrToSet(@EvidenceEntryEvidenceEntryId) ON COLUMNS
+        FROM 
+        (
+          SELECT 
+            StrToSet(@UserUserId) ON COLUMNS
+          FROM 
+          (
+            SELECT 
+              StrToSet(@ObservationDateYQMD) ON COLUMNS
+            FROM 
+            (
+              SELECT 
+                StrToSet(@StaffStaffId) ON COLUMNS
+              FROM 
+              (
+                SELECT 
+                  StrToSet(@QuestionQuestionId) ON COLUMNS
+                FROM 
+                (
+                  SELECT 
+                    StrToSet(@LocationLocationId) ON COLUMNS
+                  FROM 
+                  (
+                    SELECT 
+                      StrToSet(@EvidenceEvidenceId) ON COLUMNS
+                    FROM 
+                    (
+                      SELECT 
+                        StrToSet(@HealthSystemOrgId) ON COLUMNS
+                      FROM 
+                      (
+                        SELECT 
+                          StrToSet(@HealthSystemHealthSystemId) ON COLUMNS
+                        FROM [VSuite]
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+)
+CELL PROPERTIES 
+  VALUE
+ ,BACK_COLOR
+ ,FORE_COLOR
+ ,FORMATTED_VALUE
+ ,FORMAT_STRING
+ ,FONT_NAME
+ ,FONT_SIZE
+ ,FONT_FLAGS;			</CommandText>
+        <rd:DesignerState><QueryDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/AnalysisServices/QueryDefinition"><CommandType>MDX</CommandType><Type>Query</Type><QuerySpecification xsi:type="MDXQuerySpecification"><Select><Items><Item><ID xsi:type="Level"><DimensionName>Evidence Entry</DimensionName><HierarchyName>Evidence Entry Id</HierarchyName><HierarchyUniqueName>[Evidence Entry].[Evidence Entry Id]</HierarchyUniqueName><LevelName>Evidence Entry Id</LevelName><UniqueName>[Evidence Entry].[Evidence Entry Id].[Evidence Entry Id]</UniqueName></ID><ItemCaption>Evidence Entry Id</ItemCaption><UniqueName>true</UniqueName></Item><Item><ID xsi:type="Measure"><MeasureName>Evidence Entry Count</MeasureName><UniqueName>[Measures].[Evidence Entry Count]</UniqueName></ID><ItemCaption>Evidence Entry Count</ItemCaption><BackColor>true</BackColor><ForeColor>true</ForeColor><FontFamily>true</FontFamily><FontSize>true</FontSize><FontWeight>true</FontWeight><FontStyle>true</FontStyle><FontDecoration>true</FontDecoration><FormattedValue>true</FormattedValue><FormatString>true</FormatString></Item></Items></Select><From>VSuite</From><Filter><FilterItems /></Filter><Calculations /><Aggregates /><QueryProperties /></QuerySpecification><Query><Statement>
+SELECT 
+  NON EMPTY 
+    {[Measures].[Evidence Entry Count]} ON COLUMNS
+ ,NON EMPTY 
+    {
+      [Evidence Entry].[Evidence Entry Id].[Evidence Entry Id].ALLMEMBERS
+    }
+  DIMENSION PROPERTIES 
+    MEMBER_CAPTION
+   ,MEMBER_UNIQUE_NAME
+   ON ROWS
+FROM 
+(
+  SELECT 
+    {[Evidence Entry].[Evidence Entry Deleted].&amp;[Not Deleted]} ON COLUMNS
+  FROM 
+  (
+    SELECT 
+      StrToSet(@QuestionQuestionTypeId) ON COLUMNS
+    FROM 
+    (
+      SELECT 
+        StrToSet(@QuestionQuestionGroupId) ON COLUMNS
+      FROM 
+      (
+        SELECT 
+          StrToSet(@EvidenceEntryEvidenceEntryId) ON COLUMNS
+        FROM 
+        (
+          SELECT 
+            StrToSet(@UserUserId) ON COLUMNS
+          FROM 
+          (
+            SELECT 
+              StrToSet(@ObservationDateYQMD) ON COLUMNS
+            FROM 
+            (
+              SELECT 
+                StrToSet(@StaffStaffId) ON COLUMNS
+              FROM 
+              (
+                SELECT 
+                  StrToSet(@QuestionQuestionId) ON COLUMNS
+                FROM 
+                (
+                  SELECT 
+                    StrToSet(@LocationLocationId) ON COLUMNS
+                  FROM 
+                  (
+                    SELECT 
+                      StrToSet(@EvidenceEvidenceId) ON COLUMNS
+                    FROM 
+                    (
+                      SELECT 
+                        StrToSet(@HealthSystemOrgId) ON COLUMNS
+                      FROM 
+                      (
+                        SELECT 
+                          StrToSet(@HealthSystemHealthSystemId) ON COLUMNS
+                        FROM [VSuite]
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+)
+CELL PROPERTIES 
+  VALUE
+ ,BACK_COLOR
+ ,FORE_COLOR
+ ,FORMATTED_VALUE
+ ,FORMAT_STRING
+ ,FONT_NAME
+ ,FONT_SIZE
+ ,FONT_FLAGS;			</Statement><ParameterDefinitions><ParameterDefinition><Name>HealthSystemHealthSystemId</Name><DefaultValues><DefaultValue>[Health System].[Health System Id].&amp;[183]</DefaultValue></DefaultValues><Caption>Health System Id</Caption><HierarchyUniqueName>[Health System].[Health System Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Health System].[Health System Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Health System].[Health System Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Health System].[Health System Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Health System].[Health System Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>HealthSystemOrgId</Name><DefaultValues><DefaultValue>[Health System].[Org Id].[All]</DefaultValue></DefaultValues><Caption>Org Id</Caption><HierarchyUniqueName>[Health System].[Org Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Health System].[Org Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Health System].[Org Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Health System].[Org Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Health System].[Org Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>EvidenceEvidenceId</Name><DefaultValues><DefaultValue>[Evidence].[Evidence Id].[All]</DefaultValue></DefaultValues><Caption>Evidence Id</Caption><HierarchyUniqueName>[Evidence].[Evidence Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Evidence].[Evidence Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Evidence].[Evidence Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Evidence].[Evidence Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Evidence].[Evidence Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>LocationLocationId</Name><DefaultValues><DefaultValue>[Location].[Location Id].[All]</DefaultValue></DefaultValues><Caption>Location.Location Id</Caption><HierarchyUniqueName>[Location].[Location Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Location].[Location Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Location].[Location Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Location].[Location Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Location].[Location Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>QuestionQuestionId</Name><DefaultValues><DefaultValue>[Question].[Question Id].[All]</DefaultValue></DefaultValues><Caption>Question Id</Caption><HierarchyUniqueName>[Question].[Question Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Question].[Question Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Question].[Question Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Question].[Question Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Question].[Question Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>StaffStaffId</Name><DefaultValues><DefaultValue>[Staff].[Staff Id].[All]</DefaultValue></DefaultValues><Caption>Staff Id</Caption><HierarchyUniqueName>[Staff].[Staff Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Staff].[Staff Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Staff].[Staff Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Staff].[Staff Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Staff].[Staff Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>ObservationDateYQMD</Name><DefaultValues><DefaultValue>[Observation Date].[Y - Q - M - D].[All]</DefaultValue></DefaultValues><Caption>Observation Date.Y - Q - M - D</Caption><HierarchyUniqueName>[Observation Date].[Y - Q - M - D]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Observation Date].[Y - Q - M - D].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>UserUserId</Name><DefaultValues><DefaultValue>[User].[User Id].[All]</DefaultValue></DefaultValues><Caption>User Id</Caption><HierarchyUniqueName>[User].[User Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [User].[User Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [User].[User Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [User].[User Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [User].[User Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>EvidenceEntryEvidenceEntryId</Name><DefaultValues><DefaultValue>[Evidence Entry].[Evidence Entry Id].[All]</DefaultValue></DefaultValues><Caption>Evidence Entry Id</Caption><HierarchyUniqueName>[Evidence Entry].[Evidence Entry Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Evidence Entry].[Evidence Entry Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Evidence Entry].[Evidence Entry Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Evidence Entry].[Evidence Entry Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Evidence Entry].[Evidence Entry Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>QuestionQuestionGroupId</Name><DefaultValues><DefaultValue>[Question].[Question Group Id].[All]</DefaultValue></DefaultValues><Caption>Question Group Id</Caption><HierarchyUniqueName>[Question].[Question Group Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Question].[Question Group Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Question].[Question Group Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Question].[Question Group Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Question].[Question Group Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>QuestionQuestionTypeId</Name><DefaultValues><DefaultValue>[Question].[Question Type Id].[All]</DefaultValue></DefaultValues><Caption>Question Type Id</Caption><HierarchyUniqueName>[Question].[Question Type Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Question].[Question Type Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Question].[Question Type Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Question].[Question Type Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Question].[Question Type Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition></ParameterDefinitions></Query></QueryDefinition></rd:DesignerState>
+      </Query>
+      <Fields>
+        <Field Name="Evidence_Entry_Id">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Evidence Entry].[Evidence Entry Id].[Evidence Entry Id]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Evidence_Entry_Count">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[Evidence Entry Count]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Top_Meds_Involved">
+      <Query>
+        <DataSourceName>VSuiteDB</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@steventevidence_ids">
+            <Value>=Parameters!GetRunIDforComments.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@top_medications_included_barchart">
+            <Value>=Parameters!Format_Textbox_TopMedicationsIncludedForBar_5.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@top_medications_included_piechart">
+            <Value>=Parameters!Format_Textbox_TopMedicationsIncludedForPie_10.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@include_all_meds">
+            <Value>=Parameters!Format_IncludeAllMeds_12.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@med_name">
+            <Value>=Parameters!Format_MedName_11.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@sorting_order">
+            <Value>=Parameters!Format_Top40GraphSort_20.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>reports.top_meds_involved</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="generic_name">
+          <DataField>generic_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="health_system">
+          <DataField>health_system</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="severity_name">
+          <DataField>severity_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="med_error_count">
+          <DataField>med_error_count</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="med_severity_count">
+          <DataField>med_severity_count</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="medication_rank">
+          <DataField>medication_rank</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="medication_name">
+          <DataField>medication_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="med_severity_sort">
+          <DataField>med_severity_sort</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="graph_type">
+          <DataField>graph_type</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Top_Meds_Involved_Grouping">
+      <Query>
+        <DataSourceName>VSuiteDB</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@steventevidence_ids">
+            <Value>=Parameters!GetRunIDforComments.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@groupby">
+            <Value>=Parameters!Format_PageListOptions_15.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@include_all_meds">
+            <Value>=Parameters!Format_IncludeAllMeds_12.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@med_name">
+            <Value>=Parameters!Format_MedName_11.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@sorting_order">
+            <Value>=Parameters!Format_Top40GraphSort_20.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>reports.top_meds_involved_by_grouping</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="generic_name">
+          <DataField>generic_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="grouping_col">
+          <DataField>grouping_col</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="grouping_sort_col">
+          <DataField>grouping_sort_col</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="group_med_error_count">
+          <DataField>group_med_error_count</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="medication_name">
+          <DataField>medication_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="severity_name">
+          <DataField>severity_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="group_rank">
+          <DataField>group_rank</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="severity_rank">
+          <DataField>severity_rank</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="group_med_severity_count">
+          <DataField>group_med_severity_count</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Chart Name="Chart2">
+            <ChartCategoryHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Group Name="Chart2_CategoryGroup">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!medication_name.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <Label>=Fields!medication_name.Value</Label>
+                </ChartMember>
+              </ChartMembers>
+            </ChartCategoryHierarchy>
+            <ChartSeriesHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Group Name="Chart2_SeriesGroup">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!severity_name.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!med_severity_sort.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <Label>=Fields!severity_name.Value</Label>
+                </ChartMember>
+              </ChartMembers>
+            </ChartSeriesHierarchy>
+            <ChartData>
+              <ChartSeriesCollection>
+                <ChartSeries Name="med_count">
+                  <ChartDataPoints>
+                    <ChartDataPoint>
+                      <ChartDataPointValues>
+                        <Y>=Sum(Fields!med_severity_count.Value)</Y>
+                      </ChartDataPointValues>
+                      <ChartDataLabel>
+                        <Style />
+                      </ChartDataLabel>
+                      <Style>
+                        <BackgroundGradientType>None</BackgroundGradientType>
+                        <BackgroundGradientEndColor>#00ffffff</BackgroundGradientEndColor>
+                      </Style>
+                      <ChartMarker>
+                        <Style />
+                      </ChartMarker>
+                      <DataElementOutput>Output</DataElementOutput>
+                    </ChartDataPoint>
+                  </ChartDataPoints>
+                  <Type>Bar</Type>
+                  <Subtype>Stacked</Subtype>
+                  <Style />
+                  <ChartEmptyPoints>
+                    <Style />
+                    <ChartMarker>
+                      <Style />
+                    </ChartMarker>
+                    <ChartDataLabel>
+                      <Style />
+                    </ChartDataLabel>
+                  </ChartEmptyPoints>
+                  <ValueAxisName>Primary</ValueAxisName>
+                  <CategoryAxisName>Primary</CategoryAxisName>
+                  <ChartSmartLabel>
+                    <CalloutLineColor>Black</CalloutLineColor>
+                    <MinMovingDistance>0pt</MinMovingDistance>
+                  </ChartSmartLabel>
+                </ChartSeries>
+              </ChartSeriesCollection>
+            </ChartData>
+            <ChartAreas>
+              <ChartArea Name="Default">
+                <ChartCategoryAxes>
+                  <ChartAxis Name="Primary">
+                    <Style>
+                      <Border>
+                        <Color>DimGray</Color>
+                      </Border>
+                      <FontFamily>Calibri</FontFamily>
+                      <FontSize>7pt</FontSize>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption>="Medication Involved" + chr(10) + chr(13) + "Top " + CStr(Parameters!Format_Textbox_TopMedicationsIncludedForBar_5.Value)</Caption>
+                      <Style>
+                        <FontFamily>Calibri</FontFamily>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </ChartAxisTitle>
+                    <Interval>1</Interval>
+                    <ChartMajorGridLines>
+                      <Enabled>False</Enabled>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMinorTickMarks>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <PreventLabelOffset>true</PreventLabelOffset>
+                    <AllowLabelRotation>None</AllowLabelRotation>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                  <ChartAxis Name="Secondary">
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption>Axis Title</Caption>
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </ChartAxisTitle>
+                    <ChartMajorGridLines>
+                      <Enabled>False</Enabled>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMinorTickMarks>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Location>Opposite</Location>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                </ChartCategoryAxes>
+                <ChartValueAxes>
+                  <ChartAxis Name="Primary">
+                    <Style>
+                      <Border>
+                        <Color>DimGray</Color>
+                      </Border>
+                      <FontFamily>Calibri</FontFamily>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </ChartAxisTitle>
+                    <ChartMajorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Silver</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMinorTickMarks>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                  <ChartAxis Name="Secondary">
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption>Axis Title</Caption>
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </ChartAxisTitle>
+                    <ChartMajorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMinorTickMarks>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Location>Opposite</Location>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                </ChartValueAxes>
+                <ChartThreeDProperties>
+                  <Rotation>2</Rotation>
+                </ChartThreeDProperties>
+                <Style>
+                  <BackgroundGradientType>None</BackgroundGradientType>
+                </Style>
+              </ChartArea>
+            </ChartAreas>
+            <ChartLegends>
+              <ChartLegend Name="Default">
+                <Style>
+                  <BackgroundGradientType>None</BackgroundGradientType>
+                  <FontFamily>Calibri</FontFamily>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <Position>RightCenter</Position>
+                <ChartLegendTitle>
+                  <Caption />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </ChartLegendTitle>
+                <AutoFitTextDisabled>true</AutoFitTextDisabled>
+                <HeaderSeparatorColor>Black</HeaderSeparatorColor>
+                <ColumnSeparatorColor>Black</ColumnSeparatorColor>
+                <MaxAutoSize>45</MaxAutoSize>
+                <TextWrapThreshold>20</TextWrapThreshold>
+              </ChartLegend>
+            </ChartLegends>
+            <Palette>Custom</Palette>
+            <ChartCustomPaletteColors>
+              <ChartCustomPaletteColor>#4572a7</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#aa4643</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#89a54e</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#71588f</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#4198af</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#db843d</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#93a9cf</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#d19392</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#21236b</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#b9cd96</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#d81212</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#2229f8</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#e3c726</ChartCustomPaletteColor>
+            </ChartCustomPaletteColors>
+            <ChartBorderSkin>
+              <Style>
+                <BackgroundColor>Gray</BackgroundColor>
+                <BackgroundGradientType>None</BackgroundGradientType>
+                <Color>White</Color>
+              </Style>
+            </ChartBorderSkin>
+            <ChartNoDataMessage Name="NoDataMessage">
+              <Caption>No Data Available</Caption>
+              <Style>
+                <BackgroundGradientType>None</BackgroundGradientType>
+                <TextAlign>General</TextAlign>
+                <VerticalAlign>Top</VerticalAlign>
+              </Style>
+            </ChartNoDataMessage>
+            <DataSetName>Top_Meds_Involved</DataSetName>
+            <Filters>
+              <Filter>
+                <FilterExpression>=Fields!graph_type.Value</FilterExpression>
+                <Operator>Equal</Operator>
+                <FilterValues>
+                  <FilterValue>bar</FilterValue>
+                </FilterValues>
+              </Filter>
+            </Filters>
+            <Top>0.26389in</Top>
+            <Height>10.05278in</Height>
+            <Width>8in</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BackgroundColor>White</BackgroundColor>
+              <BackgroundGradientType>None</BackgroundGradientType>
+            </Style>
+          </Chart>
+          <Rectangle Name="Pie_Chart_Rect">
+            <ReportItems>
+              <Chart Name="Chart1">
+                <ChartCategoryHierarchy>
+                  <ChartMembers>
+                    <ChartMember>
+                      <Label />
+                    </ChartMember>
+                  </ChartMembers>
+                </ChartCategoryHierarchy>
+                <ChartSeriesHierarchy>
+                  <ChartMembers>
+                    <ChartMember>
+                      <Group Name="Chart1_SeriesGroup">
+                        <GroupExpressions>
+                          <GroupExpression>=Fields!medication_name.Value</GroupExpression>
+                        </GroupExpressions>
+                      </Group>
+                      <SortExpressions>
+                        <SortExpression>
+                          <Value>=Fields!medication_rank.Value</Value>
+                        </SortExpression>
+                      </SortExpressions>
+                      <Label>=Fields!medication_name.Value</Label>
+                    </ChartMember>
+                  </ChartMembers>
+                </ChartSeriesHierarchy>
+                <ChartData>
+                  <ChartSeriesCollection>
+                    <ChartSeries Name="answer">
+                      <ChartDataPoints>
+                        <ChartDataPoint>
+                          <ChartDataPointValues>
+                            <Y>=Sum(Fields!med_error_count.Value)</Y>
+                          </ChartDataPointValues>
+                          <ChartDataLabel>
+                            <Style>
+                              <FontFamily>Calibri</FontFamily>
+                              <Format>0;(0)</Format>
+                            </Style>
+                            <UseValueAsLabel>true</UseValueAsLabel>
+                            <Visible>true</Visible>
+                            <Position>Center</Position>
+                          </ChartDataLabel>
+                          <Style />
+                          <ChartMarker>
+                            <Style />
+                          </ChartMarker>
+                          <DataElementOutput>Output</DataElementOutput>
+                        </ChartDataPoint>
+                      </ChartDataPoints>
+                      <Type>Shape</Type>
+                      <Style />
+                      <ChartEmptyPoints>
+                        <Style />
+                        <ChartMarker>
+                          <Style />
+                        </ChartMarker>
+                        <ChartDataLabel>
+                          <Style />
+                        </ChartDataLabel>
+                      </ChartEmptyPoints>
+                      <CustomProperties>
+                        <CustomProperty>
+                          <Name>PieStartAngle</Name>
+                          <Value>270</Value>
+                        </CustomProperty>
+                        <CustomProperty>
+                          <Name>CollectedChartShowLabels</Name>
+                          <Value>true</Value>
+                        </CustomProperty>
+                      </CustomProperties>
+                      <ValueAxisName>Primary</ValueAxisName>
+                      <CategoryAxisName>Primary</CategoryAxisName>
+                      <ChartSmartLabel>
+                        <AllowOutSidePlotArea>True</AllowOutSidePlotArea>
+                        <CalloutLineColor>Black</CalloutLineColor>
+                        <MaxMovingDistance>60pt</MaxMovingDistance>
+                        <MinMovingDistance>0pt</MinMovingDistance>
+                      </ChartSmartLabel>
+                    </ChartSeries>
+                  </ChartSeriesCollection>
+                </ChartData>
+                <ChartAreas>
+                  <ChartArea Name="Default">
+                    <ChartCategoryAxes>
+                      <ChartAxis Name="Primary">
+                        <Style>
+                          <FontSize>8pt</FontSize>
+                        </Style>
+                        <ChartAxisTitle>
+                          <Caption>Axis Title</Caption>
+                          <Style>
+                            <FontSize>8pt</FontSize>
+                          </Style>
+                        </ChartAxisTitle>
+                        <ChartMajorGridLines>
+                          <Enabled>False</Enabled>
+                          <Style>
+                            <Border>
+                              <Color>Gainsboro</Color>
+                            </Border>
+                          </Style>
+                        </ChartMajorGridLines>
+                        <ChartMinorGridLines>
+                          <Style>
+                            <Border>
+                              <Color>Gainsboro</Color>
+                              <Style>Dotted</Style>
+                            </Border>
+                          </Style>
+                        </ChartMinorGridLines>
+                        <ChartMinorTickMarks>
+                          <Length>0.5</Length>
+                        </ChartMinorTickMarks>
+                        <CrossAt>NaN</CrossAt>
+                        <Minimum>NaN</Minimum>
+                        <Maximum>NaN</Maximum>
+                        <ChartAxisScaleBreak>
+                          <Style />
+                        </ChartAxisScaleBreak>
+                      </ChartAxis>
+                      <ChartAxis Name="Secondary">
+                        <Style>
+                          <FontSize>8pt</FontSize>
+                        </Style>
+                        <ChartAxisTitle>
+                          <Caption>Axis Title</Caption>
+                          <Style>
+                            <FontSize>8pt</FontSize>
+                          </Style>
+                        </ChartAxisTitle>
+                        <ChartMajorGridLines>
+                          <Enabled>False</Enabled>
+                          <Style>
+                            <Border>
+                              <Color>Gainsboro</Color>
+                            </Border>
+                          </Style>
+                        </ChartMajorGridLines>
+                        <ChartMinorGridLines>
+                          <Style>
+                            <Border>
+                              <Color>Gainsboro</Color>
+                              <Style>Dotted</Style>
+                            </Border>
+                          </Style>
+                        </ChartMinorGridLines>
+                        <ChartMinorTickMarks>
+                          <Length>0.5</Length>
+                        </ChartMinorTickMarks>
+                        <CrossAt>NaN</CrossAt>
+                        <Location>Opposite</Location>
+                        <Minimum>NaN</Minimum>
+                        <Maximum>NaN</Maximum>
+                        <ChartAxisScaleBreak>
+                          <Style />
+                        </ChartAxisScaleBreak>
+                      </ChartAxis>
+                    </ChartCategoryAxes>
+                    <ChartValueAxes>
+                      <ChartAxis Name="Primary">
+                        <Style>
+                          <FontSize>8pt</FontSize>
+                        </Style>
+                        <ChartAxisTitle>
+                          <Caption>Axis Title</Caption>
+                          <Style>
+                            <FontSize>8pt</FontSize>
+                          </Style>
+                        </ChartAxisTitle>
+                        <ChartMajorGridLines>
+                          <Style>
+                            <Border>
+                              <Color>Gainsboro</Color>
+                            </Border>
+                          </Style>
+                        </ChartMajorGridLines>
+                        <ChartMinorGridLines>
+                          <Style>
+                            <Border>
+                              <Color>Gainsboro</Color>
+                              <Style>Dotted</Style>
+                            </Border>
+                          </Style>
+                        </ChartMinorGridLines>
+                        <ChartMinorTickMarks>
+                          <Length>0.5</Length>
+                        </ChartMinorTickMarks>
+                        <CrossAt>NaN</CrossAt>
+                        <Minimum>NaN</Minimum>
+                        <Maximum>NaN</Maximum>
+                        <ChartAxisScaleBreak>
+                          <Style />
+                        </ChartAxisScaleBreak>
+                      </ChartAxis>
+                      <ChartAxis Name="Secondary">
+                        <Style>
+                          <FontSize>8pt</FontSize>
+                        </Style>
+                        <ChartAxisTitle>
+                          <Caption>Axis Title</Caption>
+                          <Style>
+                            <FontSize>8pt</FontSize>
+                          </Style>
+                        </ChartAxisTitle>
+                        <ChartMajorGridLines>
+                          <Style>
+                            <Border>
+                              <Color>Gainsboro</Color>
+                            </Border>
+                          </Style>
+                        </ChartMajorGridLines>
+                        <ChartMinorGridLines>
+                          <Style>
+                            <Border>
+                              <Color>Gainsboro</Color>
+                              <Style>Dotted</Style>
+                            </Border>
+                          </Style>
+                        </ChartMinorGridLines>
+                        <ChartMinorTickMarks>
+                          <Length>0.5</Length>
+                        </ChartMinorTickMarks>
+                        <CrossAt>NaN</CrossAt>
+                        <Location>Opposite</Location>
+                        <Minimum>NaN</Minimum>
+                        <Maximum>NaN</Maximum>
+                        <ChartAxisScaleBreak>
+                          <Style />
+                        </ChartAxisScaleBreak>
+                      </ChartAxis>
+                    </ChartValueAxes>
+                    <ChartThreeDProperties>
+                      <Rotation>-90</Rotation>
+                    </ChartThreeDProperties>
+                    <Style>
+                      <Border>
+                        <Style>None</Style>
+                      </Border>
+                      <BackgroundGradientType>None</BackgroundGradientType>
+                      <ShadowColor>#00ffffff</ShadowColor>
+                    </Style>
+                  </ChartArea>
+                </ChartAreas>
+                <ChartLegends>
+                  <ChartLegend Name="Legend1">
+                    <Style>
+                      <BackgroundGradientType>None</BackgroundGradientType>
+                      <FontFamily>Calibri</FontFamily>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                    <Position>BottomLeft</Position>
+                    <DockOutsideChartArea>true</DockOutsideChartArea>
+                    <ChartLegendTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                        <TextAlign>Center</TextAlign>
+                      </Style>
+                    </ChartLegendTitle>
+                    <AutoFitTextDisabled>true</AutoFitTextDisabled>
+                    <HeaderSeparatorColor>Black</HeaderSeparatorColor>
+                    <ColumnSeparatorColor>Black</ColumnSeparatorColor>
+                  </ChartLegend>
+                </ChartLegends>
+                <Palette>Custom</Palette>
+                <ChartCustomPaletteColors>
+                  <ChartCustomPaletteColor>#39608e</ChartCustomPaletteColor>
+                  <ChartCustomPaletteColor>#903a38</ChartCustomPaletteColor>
+                  <ChartCustomPaletteColor>#748c41</ChartCustomPaletteColor>
+                  <ChartCustomPaletteColor>#5f4979</ChartCustomPaletteColor>
+                  <ChartCustomPaletteColor>#368195</ChartCustomPaletteColor>
+                  <ChartCustomPaletteColor>#4572a7</ChartCustomPaletteColor>
+                  <ChartCustomPaletteColor>#aa4643</ChartCustomPaletteColor>
+                  <ChartCustomPaletteColor>#89a54e</ChartCustomPaletteColor>
+                  <ChartCustomPaletteColor>#71588f</ChartCustomPaletteColor>
+                  <ChartCustomPaletteColor>#4f81bd</ChartCustomPaletteColor>
+                  <ChartCustomPaletteColor>#db843d</ChartCustomPaletteColor>
+                  <ChartCustomPaletteColor>#c0504d</ChartCustomPaletteColor>
+                  <ChartCustomPaletteColor>#9bbb59</ChartCustomPaletteColor>
+                  <ChartCustomPaletteColor>#8064a2</ChartCustomPaletteColor>
+                  <ChartCustomPaletteColor>#4bacc6</ChartCustomPaletteColor>
+                  <ChartCustomPaletteColor>#f79646</ChartCustomPaletteColor>
+                  <ChartCustomPaletteColor>#93a9cf</ChartCustomPaletteColor>
+                  <ChartCustomPaletteColor>#d19392</ChartCustomPaletteColor>
+                  <ChartCustomPaletteColor>#b9cd96</ChartCustomPaletteColor>
+                  <ChartCustomPaletteColor>#a99bbd</ChartCustomPaletteColor>
+                  <ChartCustomPaletteColor>#91c3d5</ChartCustomPaletteColor>
+                  <ChartCustomPaletteColor>#f9b590</ChartCustomPaletteColor>
+                  <ChartCustomPaletteColor>#bcc8df</ChartCustomPaletteColor>
+                  <ChartCustomPaletteColor>#e0bcbc</ChartCustomPaletteColor>
+                  <ChartCustomPaletteColor>#d1debe</ChartCustomPaletteColor>
+                  <ChartCustomPaletteColor>#c8c0d4</ChartCustomPaletteColor>
+                  <ChartCustomPaletteColor>#bbd7e3</ChartCustomPaletteColor>
+                </ChartCustomPaletteColors>
+                <ChartBorderSkin>
+                  <Style>
+                    <BackgroundColor>Gray</BackgroundColor>
+                    <BackgroundGradientType>None</BackgroundGradientType>
+                    <Color>White</Color>
+                  </Style>
+                </ChartBorderSkin>
+                <ChartNoDataMessage Name="NoDataMessage">
+                  <Caption>No Data Available</Caption>
+                  <Style>
+                    <BackgroundGradientType>None</BackgroundGradientType>
+                    <TextAlign>General</TextAlign>
+                    <VerticalAlign>Top</VerticalAlign>
+                  </Style>
+                </ChartNoDataMessage>
+                <DataSetName>Top_Meds_Involved</DataSetName>
+                <Filters>
+                  <Filter>
+                    <FilterExpression>=Fields!graph_type.Value</FilterExpression>
+                    <Operator>Equal</Operator>
+                    <FilterValues>
+                      <FilterValue>pie</FilterValue>
+                    </FilterValues>
+                  </Filter>
+                </Filters>
+                <Top>0.23611in</Top>
+                <Height>8in</Height>
+                <Width>8in</Width>
+                <Style>
+                  <Border>
+                    <Style>Solid</Style>
+                  </Border>
+                  <TopBorder>
+                    <Color>Black</Color>
+                    <Style>Solid</Style>
+                    <Width>1pt</Width>
+                  </TopBorder>
+                  <BottomBorder>
+                    <Color>Black</Color>
+                    <Style>Solid</Style>
+                    <Width>1pt</Width>
+                  </BottomBorder>
+                  <LeftBorder>
+                    <Color>Black</Color>
+                    <Style>Solid</Style>
+                    <Width>1pt</Width>
+                  </LeftBorder>
+                  <RightBorder>
+                    <Color>Black</Color>
+                    <Style>Solid</Style>
+                    <Width>1pt</Width>
+                  </RightBorder>
+                  <BackgroundColor>White</BackgroundColor>
+                  <BackgroundGradientType>None</BackgroundGradientType>
+                </Style>
+              </Chart>
+              <Textbox Name="Textbox1">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>="Top " + CStr(Parameters!Format_Textbox_TopMedicationsIncludedForPie_10.Value) + " Reported Medications Involved"</Value>
+                        <Style>
+                          <FontFamily>Calibri</FontFamily>
+                          <FontSize>12pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Center</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox1</rd:DefaultName>
+                <Height>0.25in</Height>
+                <Width>8in</Width>
+                <ZIndex>1</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+            </ReportItems>
+            <KeepTogether>true</KeepTogether>
+            <Top>10.38611in</Top>
+            <Height>8.23611in</Height>
+            <Width>8in</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Rectangle>
+          <Textbox Name="Textbox2">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>="Top " + CStr(Parameters!Format_Textbox_TopMedicationsIncludedForBar_5.Value) + " Reported Medications Involved By Severity"</Value>
+                    <Style>
+                      <FontFamily>Calibri</FontFamily>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Height>0.25in</Height>
+            <Width>8in</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Tablix Name="Page_List">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>8in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>10.51389in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Rectangle Name="Page_List_Rect">
+                          <ReportItems>
+                            <Chart Name="Chart3">
+                              <ChartCategoryHierarchy>
+                                <ChartMembers>
+                                  <ChartMember>
+                                    <Label />
+                                  </ChartMember>
+                                </ChartMembers>
+                              </ChartCategoryHierarchy>
+                              <ChartSeriesHierarchy>
+                                <ChartMembers>
+                                  <ChartMember>
+                                    <Group Name="Chart1_SeriesGroup2">
+                                      <GroupExpressions>
+                                        <GroupExpression>=Fields!medication_name.Value</GroupExpression>
+                                      </GroupExpressions>
+                                    </Group>
+                                    <SortExpressions>
+                                      <SortExpression>
+                                        <Value>=Fields!group_rank.Value</Value>
+                                      </SortExpression>
+                                    </SortExpressions>
+                                    <Label>=Fields!medication_name.Value</Label>
+                                  </ChartMember>
+                                </ChartMembers>
+                              </ChartSeriesHierarchy>
+                              <ChartData>
+                                <ChartSeriesCollection>
+                                  <ChartSeries Name="answer">
+                                    <ChartDataPoints>
+                                      <ChartDataPoint>
+                                        <ChartDataPointValues>
+                                          <Y>=Sum(Fields!group_med_severity_count.Value)</Y>
+                                        </ChartDataPointValues>
+                                        <ChartDataLabel>
+                                          <Style>
+                                            <FontFamily>Calibri</FontFamily>
+                                            <Format>0;(0)</Format>
+                                          </Style>
+                                          <UseValueAsLabel>true</UseValueAsLabel>
+                                          <Visible>true</Visible>
+                                          <Position>Center</Position>
+                                        </ChartDataLabel>
+                                        <Style />
+                                        <ChartMarker>
+                                          <Style />
+                                        </ChartMarker>
+                                        <DataElementOutput>Output</DataElementOutput>
+                                      </ChartDataPoint>
+                                    </ChartDataPoints>
+                                    <Type>Shape</Type>
+                                    <Style />
+                                    <ChartEmptyPoints>
+                                      <Style />
+                                      <ChartMarker>
+                                        <Style />
+                                      </ChartMarker>
+                                      <ChartDataLabel>
+                                        <Style />
+                                      </ChartDataLabel>
+                                    </ChartEmptyPoints>
+                                    <ValueAxisName>Primary</ValueAxisName>
+                                    <CategoryAxisName>Primary</CategoryAxisName>
+                                    <ChartSmartLabel>
+                                      <AllowOutSidePlotArea>True</AllowOutSidePlotArea>
+                                      <CalloutLineColor>Black</CalloutLineColor>
+                                      <MaxMovingDistance>60pt</MaxMovingDistance>
+                                      <MinMovingDistance>0pt</MinMovingDistance>
+                                    </ChartSmartLabel>
+                                  </ChartSeries>
+                                </ChartSeriesCollection>
+                              </ChartData>
+                              <ChartAreas>
+                                <ChartArea Name="Default">
+                                  <ChartCategoryAxes>
+                                    <ChartAxis Name="Primary">
+                                      <Style>
+                                        <FontSize>8pt</FontSize>
+                                      </Style>
+                                      <ChartAxisTitle>
+                                        <Caption>Axis Title</Caption>
+                                        <Style>
+                                          <FontSize>8pt</FontSize>
+                                        </Style>
+                                      </ChartAxisTitle>
+                                      <ChartMajorGridLines>
+                                        <Enabled>False</Enabled>
+                                        <Style>
+                                          <Border>
+                                            <Color>Gainsboro</Color>
+                                          </Border>
+                                        </Style>
+                                      </ChartMajorGridLines>
+                                      <ChartMinorGridLines>
+                                        <Style>
+                                          <Border>
+                                            <Color>Gainsboro</Color>
+                                            <Style>Dotted</Style>
+                                          </Border>
+                                        </Style>
+                                      </ChartMinorGridLines>
+                                      <ChartMinorTickMarks>
+                                        <Length>0.5</Length>
+                                      </ChartMinorTickMarks>
+                                      <CrossAt>NaN</CrossAt>
+                                      <Minimum>NaN</Minimum>
+                                      <Maximum>NaN</Maximum>
+                                      <ChartAxisScaleBreak>
+                                        <Style />
+                                      </ChartAxisScaleBreak>
+                                    </ChartAxis>
+                                    <ChartAxis Name="Secondary">
+                                      <Style>
+                                        <FontSize>8pt</FontSize>
+                                      </Style>
+                                      <ChartAxisTitle>
+                                        <Caption>Axis Title</Caption>
+                                        <Style>
+                                          <FontSize>8pt</FontSize>
+                                        </Style>
+                                      </ChartAxisTitle>
+                                      <ChartMajorGridLines>
+                                        <Enabled>False</Enabled>
+                                        <Style>
+                                          <Border>
+                                            <Color>Gainsboro</Color>
+                                          </Border>
+                                        </Style>
+                                      </ChartMajorGridLines>
+                                      <ChartMinorGridLines>
+                                        <Style>
+                                          <Border>
+                                            <Color>Gainsboro</Color>
+                                            <Style>Dotted</Style>
+                                          </Border>
+                                        </Style>
+                                      </ChartMinorGridLines>
+                                      <ChartMinorTickMarks>
+                                        <Length>0.5</Length>
+                                      </ChartMinorTickMarks>
+                                      <CrossAt>NaN</CrossAt>
+                                      <Location>Opposite</Location>
+                                      <Minimum>NaN</Minimum>
+                                      <Maximum>NaN</Maximum>
+                                      <ChartAxisScaleBreak>
+                                        <Style />
+                                      </ChartAxisScaleBreak>
+                                    </ChartAxis>
+                                  </ChartCategoryAxes>
+                                  <ChartValueAxes>
+                                    <ChartAxis Name="Primary">
+                                      <Style>
+                                        <FontSize>8pt</FontSize>
+                                      </Style>
+                                      <ChartAxisTitle>
+                                        <Caption>Axis Title</Caption>
+                                        <Style>
+                                          <FontSize>8pt</FontSize>
+                                        </Style>
+                                      </ChartAxisTitle>
+                                      <ChartMajorGridLines>
+                                        <Style>
+                                          <Border>
+                                            <Color>Gainsboro</Color>
+                                          </Border>
+                                        </Style>
+                                      </ChartMajorGridLines>
+                                      <ChartMinorGridLines>
+                                        <Style>
+                                          <Border>
+                                            <Color>Gainsboro</Color>
+                                            <Style>Dotted</Style>
+                                          </Border>
+                                        </Style>
+                                      </ChartMinorGridLines>
+                                      <ChartMinorTickMarks>
+                                        <Length>0.5</Length>
+                                      </ChartMinorTickMarks>
+                                      <CrossAt>NaN</CrossAt>
+                                      <Minimum>NaN</Minimum>
+                                      <Maximum>NaN</Maximum>
+                                      <ChartAxisScaleBreak>
+                                        <Style />
+                                      </ChartAxisScaleBreak>
+                                    </ChartAxis>
+                                    <ChartAxis Name="Secondary">
+                                      <Style>
+                                        <FontSize>8pt</FontSize>
+                                      </Style>
+                                      <ChartAxisTitle>
+                                        <Caption>Axis Title</Caption>
+                                        <Style>
+                                          <FontSize>8pt</FontSize>
+                                        </Style>
+                                      </ChartAxisTitle>
+                                      <ChartMajorGridLines>
+                                        <Style>
+                                          <Border>
+                                            <Color>Gainsboro</Color>
+                                          </Border>
+                                        </Style>
+                                      </ChartMajorGridLines>
+                                      <ChartMinorGridLines>
+                                        <Style>
+                                          <Border>
+                                            <Color>Gainsboro</Color>
+                                            <Style>Dotted</Style>
+                                          </Border>
+                                        </Style>
+                                      </ChartMinorGridLines>
+                                      <ChartMinorTickMarks>
+                                        <Length>0.5</Length>
+                                      </ChartMinorTickMarks>
+                                      <CrossAt>NaN</CrossAt>
+                                      <Location>Opposite</Location>
+                                      <Minimum>NaN</Minimum>
+                                      <Maximum>NaN</Maximum>
+                                      <ChartAxisScaleBreak>
+                                        <Style />
+                                      </ChartAxisScaleBreak>
+                                    </ChartAxis>
+                                  </ChartValueAxes>
+                                  <ChartThreeDProperties>
+                                    <Enabled>true</Enabled>
+                                    <Rotation>-90</Rotation>
+                                  </ChartThreeDProperties>
+                                  <Style>
+                                    <Border>
+                                      <Style>None</Style>
+                                    </Border>
+                                    <BackgroundGradientType>None</BackgroundGradientType>
+                                    <ShadowColor>#00ffffff</ShadowColor>
+                                  </Style>
+                                </ChartArea>
+                              </ChartAreas>
+                              <ChartLegends>
+                                <ChartLegend Name="Legend1">
+                                  <Style>
+                                    <BackgroundGradientType>None</BackgroundGradientType>
+                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                  <Position>BottomLeft</Position>
+                                  <DockOutsideChartArea>true</DockOutsideChartArea>
+                                  <ChartLegendTitle>
+                                    <Caption />
+                                    <Style>
+                                      <FontSize>8pt</FontSize>
+                                      <FontWeight>Bold</FontWeight>
+                                      <TextAlign>Center</TextAlign>
+                                    </Style>
+                                  </ChartLegendTitle>
+                                  <AutoFitTextDisabled>true</AutoFitTextDisabled>
+                                  <HeaderSeparatorColor>Black</HeaderSeparatorColor>
+                                  <ColumnSeparatorColor>Black</ColumnSeparatorColor>
+                                  <TextWrapThreshold>30</TextWrapThreshold>
+                                </ChartLegend>
+                              </ChartLegends>
+                              <Palette>Custom</Palette>
+                              <ChartCustomPaletteColors>
+                                <ChartCustomPaletteColor>#39608e</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#903a38</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#748c41</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#5f4979</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#368195</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#4572a7</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#aa4643</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#89a54e</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#71588f</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#4f81bd</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#db843d</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#c0504d</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#9bbb59</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#8064a2</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#4bacc6</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#f79646</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#93a9cf</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#d19392</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#b9cd96</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#a99bbd</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#91c3d5</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#f9b590</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#bcc8df</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#e0bcbc</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#d1debe</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#c8c0d4</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#bbd7e3</ChartCustomPaletteColor>
+                              </ChartCustomPaletteColors>
+                              <ChartBorderSkin>
+                                <Style>
+                                  <BackgroundColor>Gray</BackgroundColor>
+                                  <BackgroundGradientType>None</BackgroundGradientType>
+                                  <Color>White</Color>
+                                </Style>
+                              </ChartBorderSkin>
+                              <ChartNoDataMessage Name="NoDataMessage">
+                                <Caption>No Data Available</Caption>
+                                <Style>
+                                  <BackgroundGradientType>None</BackgroundGradientType>
+                                  <TextAlign>General</TextAlign>
+                                  <VerticalAlign>Top</VerticalAlign>
+                                </Style>
+                              </ChartNoDataMessage>
+                              <DataSetName>Top_Meds_Involved_Grouping</DataSetName>
+                              <Top>5.51389in</Top>
+                              <Height>5in</Height>
+                              <Width>8in</Width>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <BackgroundColor>White</BackgroundColor>
+                                <BackgroundGradientType>None</BackgroundGradientType>
+                              </Style>
+                            </Chart>
+                            <Chart Name="Chart4">
+                              <ChartCategoryHierarchy>
+                                <ChartMembers>
+                                  <ChartMember>
+                                    <Group Name="Medications">
+                                      <GroupExpressions>
+                                        <GroupExpression>=Fields!medication_name.Value</GroupExpression>
+                                      </GroupExpressions>
+                                    </Group>
+                                    <Label>=Fields!medication_name.Value</Label>
+                                  </ChartMember>
+                                </ChartMembers>
+                              </ChartCategoryHierarchy>
+                              <ChartSeriesHierarchy>
+                                <ChartMembers>
+                                  <ChartMember>
+                                    <Group Name="Chart2_SeriesGroup2">
+                                      <GroupExpressions>
+                                        <GroupExpression>=Fields!severity_name.Value</GroupExpression>
+                                      </GroupExpressions>
+                                    </Group>
+                                    <SortExpressions>
+                                      <SortExpression>
+                                        <Value>=Fields!severity_rank.Value</Value>
+                                      </SortExpression>
+                                    </SortExpressions>
+                                    <Label>=Fields!severity_name.Value</Label>
+                                  </ChartMember>
+                                </ChartMembers>
+                              </ChartSeriesHierarchy>
+                              <ChartData>
+                                <ChartSeriesCollection>
+                                  <ChartSeries Name="med_count">
+                                    <ChartDataPoints>
+                                      <ChartDataPoint>
+                                        <ChartDataPointValues>
+                                          <Y>=Sum(Fields!group_med_severity_count.Value)</Y>
+                                        </ChartDataPointValues>
+                                        <ChartDataLabel>
+                                          <Style />
+                                        </ChartDataLabel>
+                                        <Style>
+                                          <BackgroundGradientType>None</BackgroundGradientType>
+                                          <BackgroundGradientEndColor>#00ffffff</BackgroundGradientEndColor>
+                                        </Style>
+                                        <ChartMarker>
+                                          <Style />
+                                        </ChartMarker>
+                                        <DataElementOutput>Output</DataElementOutput>
+                                      </ChartDataPoint>
+                                    </ChartDataPoints>
+                                    <Type>Bar</Type>
+                                    <Subtype>Stacked</Subtype>
+                                    <Style />
+                                    <ChartEmptyPoints>
+                                      <Style />
+                                      <ChartMarker>
+                                        <Style />
+                                      </ChartMarker>
+                                      <ChartDataLabel>
+                                        <Style />
+                                      </ChartDataLabel>
+                                    </ChartEmptyPoints>
+                                    <ValueAxisName>Primary</ValueAxisName>
+                                    <CategoryAxisName>Primary</CategoryAxisName>
+                                    <ChartSmartLabel>
+                                      <CalloutLineColor>Black</CalloutLineColor>
+                                      <MinMovingDistance>0pt</MinMovingDistance>
+                                    </ChartSmartLabel>
+                                  </ChartSeries>
+                                </ChartSeriesCollection>
+                              </ChartData>
+                              <ChartAreas>
+                                <ChartArea Name="Default">
+                                  <ChartCategoryAxes>
+                                    <ChartAxis Name="Primary">
+                                      <Style>
+                                        <Border>
+                                          <Color>DimGray</Color>
+                                        </Border>
+                                        <FontFamily>Calibri</FontFamily>
+                                        <FontSize>7pt</FontSize>
+                                      </Style>
+                                      <ChartAxisTitle>
+                                        <Caption>="Top Medications Involved" + chr(10) + chr(13) + Fields!grouping_col.Value</Caption>
+                                        <Style>
+                                          <FontFamily>Calibri</FontFamily>
+                                          <FontSize>8pt</FontSize>
+                                        </Style>
+                                      </ChartAxisTitle>
+                                      <Interval>1</Interval>
+                                      <ChartMajorGridLines>
+                                        <Enabled>False</Enabled>
+                                        <Style>
+                                          <Border>
+                                            <Color>Gainsboro</Color>
+                                          </Border>
+                                        </Style>
+                                      </ChartMajorGridLines>
+                                      <ChartMinorGridLines>
+                                        <Style>
+                                          <Border>
+                                            <Color>Gainsboro</Color>
+                                            <Style>Dotted</Style>
+                                          </Border>
+                                        </Style>
+                                      </ChartMinorGridLines>
+                                      <ChartMinorTickMarks>
+                                        <Length>0.5</Length>
+                                      </ChartMinorTickMarks>
+                                      <CrossAt>NaN</CrossAt>
+                                      <Minimum>NaN</Minimum>
+                                      <Maximum>NaN</Maximum>
+                                      <PreventLabelOffset>true</PreventLabelOffset>
+                                      <AllowLabelRotation>None</AllowLabelRotation>
+                                      <ChartAxisScaleBreak>
+                                        <Style />
+                                      </ChartAxisScaleBreak>
+                                    </ChartAxis>
+                                    <ChartAxis Name="Secondary">
+                                      <Style>
+                                        <FontSize>8pt</FontSize>
+                                      </Style>
+                                      <ChartAxisTitle>
+                                        <Caption>Axis Title</Caption>
+                                        <Style>
+                                          <FontSize>8pt</FontSize>
+                                        </Style>
+                                      </ChartAxisTitle>
+                                      <ChartMajorGridLines>
+                                        <Enabled>False</Enabled>
+                                        <Style>
+                                          <Border>
+                                            <Color>Gainsboro</Color>
+                                          </Border>
+                                        </Style>
+                                      </ChartMajorGridLines>
+                                      <ChartMinorGridLines>
+                                        <Style>
+                                          <Border>
+                                            <Color>Gainsboro</Color>
+                                            <Style>Dotted</Style>
+                                          </Border>
+                                        </Style>
+                                      </ChartMinorGridLines>
+                                      <ChartMinorTickMarks>
+                                        <Length>0.5</Length>
+                                      </ChartMinorTickMarks>
+                                      <CrossAt>NaN</CrossAt>
+                                      <Location>Opposite</Location>
+                                      <Minimum>NaN</Minimum>
+                                      <Maximum>NaN</Maximum>
+                                      <ChartAxisScaleBreak>
+                                        <Style />
+                                      </ChartAxisScaleBreak>
+                                    </ChartAxis>
+                                  </ChartCategoryAxes>
+                                  <ChartValueAxes>
+                                    <ChartAxis Name="Primary">
+                                      <Style>
+                                        <Border>
+                                          <Color>DimGray</Color>
+                                        </Border>
+                                        <FontFamily>Calibri</FontFamily>
+                                        <FontSize>8pt</FontSize>
+                                      </Style>
+                                      <ChartAxisTitle>
+                                        <Caption />
+                                        <Style>
+                                          <FontSize>8pt</FontSize>
+                                        </Style>
+                                      </ChartAxisTitle>
+                                      <Interval>=IIF(MAX(SUM(Fields!group_med_severity_count.Value, "Medications")) &lt; 10, 1, "NaN")</Interval>
+                                      <ChartMajorGridLines>
+                                        <Style>
+                                          <Border>
+                                            <Color>Silver</Color>
+                                          </Border>
+                                        </Style>
+                                      </ChartMajorGridLines>
+                                      <ChartMinorGridLines>
+                                        <Style>
+                                          <Border>
+                                            <Color>Gainsboro</Color>
+                                            <Style>Dotted</Style>
+                                          </Border>
+                                        </Style>
+                                      </ChartMinorGridLines>
+                                      <ChartMinorTickMarks>
+                                        <Length>0.5</Length>
+                                      </ChartMinorTickMarks>
+                                      <CrossAt>NaN</CrossAt>
+                                      <Minimum>NaN</Minimum>
+                                      <Maximum>NaN</Maximum>
+                                      <ChartAxisScaleBreak>
+                                        <Style />
+                                      </ChartAxisScaleBreak>
+                                    </ChartAxis>
+                                    <ChartAxis Name="Secondary">
+                                      <Style>
+                                        <FontSize>8pt</FontSize>
+                                      </Style>
+                                      <ChartAxisTitle>
+                                        <Caption>Axis Title</Caption>
+                                        <Style>
+                                          <FontSize>8pt</FontSize>
+                                        </Style>
+                                      </ChartAxisTitle>
+                                      <ChartMajorGridLines>
+                                        <Style>
+                                          <Border>
+                                            <Color>Gainsboro</Color>
+                                          </Border>
+                                        </Style>
+                                      </ChartMajorGridLines>
+                                      <ChartMinorGridLines>
+                                        <Style>
+                                          <Border>
+                                            <Color>Gainsboro</Color>
+                                            <Style>Dotted</Style>
+                                          </Border>
+                                        </Style>
+                                      </ChartMinorGridLines>
+                                      <ChartMinorTickMarks>
+                                        <Length>0.5</Length>
+                                      </ChartMinorTickMarks>
+                                      <CrossAt>NaN</CrossAt>
+                                      <Location>Opposite</Location>
+                                      <Minimum>NaN</Minimum>
+                                      <Maximum>NaN</Maximum>
+                                      <ChartAxisScaleBreak>
+                                        <Style />
+                                      </ChartAxisScaleBreak>
+                                    </ChartAxis>
+                                  </ChartValueAxes>
+                                  <ChartThreeDProperties>
+                                    <Rotation>2</Rotation>
+                                  </ChartThreeDProperties>
+                                  <Style>
+                                    <BackgroundGradientType>None</BackgroundGradientType>
+                                  </Style>
+                                </ChartArea>
+                              </ChartAreas>
+                              <ChartLegends>
+                                <ChartLegend Name="Default">
+                                  <Style>
+                                    <BackgroundGradientType>None</BackgroundGradientType>
+                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                  <Position>RightCenter</Position>
+                                  <ChartLegendTitle>
+                                    <Caption />
+                                    <Style>
+                                      <FontSize>8pt</FontSize>
+                                      <FontWeight>Bold</FontWeight>
+                                      <TextAlign>Center</TextAlign>
+                                    </Style>
+                                  </ChartLegendTitle>
+                                  <AutoFitTextDisabled>true</AutoFitTextDisabled>
+                                  <HeaderSeparatorColor>Black</HeaderSeparatorColor>
+                                  <ColumnSeparatorColor>Black</ColumnSeparatorColor>
+                                  <MaxAutoSize>45</MaxAutoSize>
+                                  <TextWrapThreshold>20</TextWrapThreshold>
+                                </ChartLegend>
+                              </ChartLegends>
+                              <ChartTitles>
+                                <ChartTitle Name="Title1">
+                                  <Caption>="Top Medications Involved for " + Fields!grouping_col.Value</Caption>
+                                  <Style>
+                                    <BackgroundGradientType>None</BackgroundGradientType>
+                                    <FontSize>12pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <TextAlign>General</TextAlign>
+                                    <VerticalAlign>Top</VerticalAlign>
+                                  </Style>
+                                </ChartTitle>
+                              </ChartTitles>
+                              <Palette>Custom</Palette>
+                              <ChartCustomPaletteColors>
+                                <ChartCustomPaletteColor>#4572a7</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#aa4643</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#89a54e</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#71588f</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#4198af</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#db843d</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#93a9cf</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#d19392</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#21236b</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#b9cd96</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#d81212</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#2229f8</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#e3c726</ChartCustomPaletteColor>
+                              </ChartCustomPaletteColors>
+                              <ChartBorderSkin>
+                                <Style>
+                                  <BackgroundColor>Gray</BackgroundColor>
+                                  <BackgroundGradientType>None</BackgroundGradientType>
+                                  <Color>White</Color>
+                                </Style>
+                              </ChartBorderSkin>
+                              <ChartNoDataMessage Name="NoDataMessage">
+                                <Caption>No Data Available</Caption>
+                                <Style>
+                                  <BackgroundGradientType>None</BackgroundGradientType>
+                                  <TextAlign>General</TextAlign>
+                                  <VerticalAlign>Top</VerticalAlign>
+                                </Style>
+                              </ChartNoDataMessage>
+                              <DataSetName>Top_Meds_Involved_Grouping</DataSetName>
+                              <Height>5.5in</Height>
+                              <Width>8in</Width>
+                              <ZIndex>1</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <BackgroundColor>White</BackgroundColor>
+                                <BackgroundGradientType>None</BackgroundGradientType>
+                              </Style>
+                            </Chart>
+                          </ReportItems>
+                          <KeepTogether>true</KeepTogether>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                          </Style>
+                        </Rectangle>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="Page_Group">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!grouping_col.Value</GroupExpression>
+                    </GroupExpressions>
+                    <PageBreak>
+                      <BreakLocation>Start</BreakLocation>
+                    </PageBreak>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!grouping_sort_col.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>Top_Meds_Involved_Grouping</DataSetName>
+            <Top>18.69167in</Top>
+            <Height>10.51389in</Height>
+            <Width>8in</Width>
+            <ZIndex>3</ZIndex>
+            <Visibility>
+              <Hidden>=Parameters!Format_PageListOptions_15.Value = "none"</Hidden>
+            </Visibility>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+        </ReportItems>
+        <Height>29.20556in</Height>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Body>
+      <Width>8in</Width>
+      <Page>
+        <InteractiveHeight>8.5in</InteractiveHeight>
+        <InteractiveWidth>11in</InteractiveWidth>
+        <LeftMargin>0.2in</LeftMargin>
+        <RightMargin>0.2in</RightMargin>
+        <TopMargin>0.2in</TopMargin>
+        <BottomMargin>0.2in</BottomMargin>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="Format_Textbox_TopMedicationsIncludedForBar_5">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>40</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Specify number of medications to be included in the severity bar chart (&lt;40):</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Format_Textbox_TopMedicationsIncludedForPie_10">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>25</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Specify number of medications to be included in the medication pie chart (&lt;25):</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Format_MedName_11">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>generic</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Display Brand or Generic medication name?</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>generic</Value>
+            <Label>Generic</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>brand</Value>
+            <Label>Brand</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Format_IncludeAllMeds_12">
+      <DataType>Boolean</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>false</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Include events where no medication was selected?</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>true</Value>
+            <Label>Yes</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>false</Value>
+            <Label>No</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Format_PageListOptions_15">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>none</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Generate a seperate page for each:</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>none</Value>
+            <Label>None: System Summary Only</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>org</Value>
+            <Label>One Page per Location: Organization</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>setting</Value>
+            <Label>One Page per Location: Setting</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>fullname</Value>
+            <Label>One Page per Staff: Full Name</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>year</Value>
+            <Label>One Page per Date: Year</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>quarter</Value>
+            <Label>One Page per Date: Quarter</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>month</Value>
+            <Label>One Page per Date: Month</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>dotw</Value>
+            <Label>One Page per Date: Day of the Week</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Format_Top40GraphSort_20">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>highlow</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Sort Medications Errors in order of: </Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>highlow</Value>
+            <Label>Highest - Lowest</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>lowhigh</Value>
+            <Label>Lowest - Highest</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="HealthSystemId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Health System].[Health System Id].&amp;[183]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Health System Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="OrgId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Health System].[Org Id].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Org Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="EvidenceId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Evidence].[Evidence Id].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Evidence Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="LocationId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Location].[Location Id].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Location Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="QuestionId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Question].[Question Id].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Question Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="StaffId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Staff].[Staff Id].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Staff Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="ObservationDate">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Observation Date].[Y - Q - M - D].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Observation Date</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="UserId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[User].[User Id].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>User Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="EvidenceEntryId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Evidence Entry].[Evidence Entry Id].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Evidence Entry Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="ReportTitle">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>Title</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportTitle</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ReportDescription">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=""</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportDescription</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="QuestionGroupId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Question].[Question Group Id].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Question Group Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="QuestionTypeId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Question].[Question Type Id].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Question Type Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="GetRunIDforComments">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>GetIDsForComments</DataSetName>
+          <ValueField>Evidence_Entry_Id</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>GetRunIDforComments</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+  </ReportParameters>
+  <Code>PUBLIC FUNCTION GetColumnGroupFieldName(Format_ColumnGrouping_5Param AS STRING) AS STRING
+
+DIM ColumnGroupField AS STRING
+ColumnGroupField = "Month_Name_Year"
+
+IF (Format_ColumnGrouping_5Param = "month") THEN 
+     ColumnGroupField  = "Month_Name_Year"
+ELSE IF  (Format_ColumnGrouping_5Param = "quarter") THEN
+     ColumnGroupField = "Quarter_Name_Year"
+ELSE IF  (Format_ColumnGrouping_5Param = "year") THEN
+     ColumnGroupField = "Year"
+ELSE IF  (Format_ColumnGrouping_5Param = "dotw") THEN
+     ColumnGroupField = "Day_Of_Week_Name"
+ELSE IF  (Format_ColumnGrouping_5Param = "day") THEN
+     ColumnGroupField = "Date"
+END IF
+
+RETURN ColumnGroupField
+
+END FUNCTION
+
+PUBLIC FUNCTION GetParentRowGroupFieldName(Format_ParentRowGrouping_10Param AS STRING) AS STRING
+
+DIM ParentRowGroupField AS STRING
+ParentRowGroupField = "Org_Name"
+
+IF  (Format_ParentRowGrouping_10Param = "org") THEN
+     ParentRowGroupField = "Org_Name"
+ELSE IF  (Format_ParentRowGrouping_10Param = "department") THEN
+     ParentRowGroupField = "Location_Name"
+ELSE IF  (Format_ParentRowGrouping_10Param = "audit") THEN
+     ParentRowGroupField = "Evidence_Name"
+ELSE
+     ParentRowGroupField = "Org_Name"
+END IF
+
+RETURN ParentRowGroupField
+
+END FUNCTION
+
+PUBLIC FUNCTION GetColumnGroupSortOrder(Format_ColumnGrouping_5Param AS STRING) AS STRING
+
+DIM ColumnGroupSortOrder AS STRING
+ColumnGroupSortOrder = "Month_Name_Year"
+
+IF (Format_ColumnGrouping_5Param = "month") THEN 
+     ColumnGroupSortOrder= "Month"
+ELSE IF  (Format_ColumnGrouping_5Param = "quarter") THEN
+     ColumnGroupSortOrder= "Quarter"
+ELSE IF  (Format_ColumnGrouping_5Param = "year") THEN
+     ColumnGroupSortOrder= "Month_Name_Year"
+ELSE IF  (Format_ColumnGrouping_5Param = "dotw") THEN
+     ColumnGroupSortOrder= "Day_Of_Week"
+ELSE IF  (Format_ColumnGrouping_5Param = "day") THEN
+     ColumnGroupSortOrder= "Date"
+ELSE
+     ColumnGroupSortOrder= "Month_Name_Year"
+
+END IF
+
+RETURN ColumnGroupSortOrder
+
+END FUNCTION
+
+
+
+PUBLIC FUNCTION GetParentRowGroupSortOrder(Format_ParentRowGrouping_10Param AS STRING) AS STRING
+
+DIM ParentRowGroupSortOrder AS STRING
+ParentRowGroupSortOrder = "Org_Name"
+
+IF  (Format_ParentRowGrouping_10Param = "org") THEN
+     ParentRowGroupSortOrder= "Org_Name"
+ELSE IF  (Format_ParentRowGrouping_10Param = "department") THEN
+     ParentRowGroupSortOrder= "Location_Name"
+ELSE IF  (Format_ParentRowGrouping_10Param = "audit") THEN
+     ParentRowGroupSortOrder= "Evidence_Name"
+ELSE
+     ParentRowGroupSortOrder= "Org_Name"
+
+END IF
+
+RETURN ParentRowGroupSortOrder
+
+END FUNCTION
+
+
+</Code>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportServerUrl>http://ocashvrgwa01s.verge-solutions.com/reportserver_staging</rd:ReportServerUrl>
+  <rd:ReportID>040250d9-da9e-4b34-bff8-8cc60bd8e158</rd:ReportID>
+</Report>

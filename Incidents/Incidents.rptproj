@@ -25,6 +25,34 @@
       <Name>srpt_incident_detail.rdl</Name>
       <FullPath>srpt_incident_detail.rdl</FullPath>
     </ProjectItem>
+    <ProjectItem>
+      <Name>Event Count.rdl</Name>
+      <FullPath>Event Count.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Event Graph.rdl</Name>
+      <FullPath>Event Graph.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Event Type Analysis - Graph.rdl</Name>
+      <FullPath>Event Type Analysis - Graph.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Medication Event Severity Analysis.rdl</Name>
+      <FullPath>Medication Event Severity Analysis.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Severity Analysis Graphs.rdl</Name>
+      <FullPath>Severity Analysis Graphs.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Severity Analysis.rdl</Name>
+      <FullPath>Severity Analysis.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Top Medications Involved.rdl</Name>
+      <FullPath>Top Medications Involved.rdl</FullPath>
+    </ProjectItem>
   </Reports>
   <Configurations>
     <Configuration>

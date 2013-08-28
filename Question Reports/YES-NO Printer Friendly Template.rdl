@@ -1,0 +1,1091 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="VSuiteCube">
+      <DataSourceReference>VSuite_Cube</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>560ea361-411b-48de-b05d-5dc74e4c36ef</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="QuestionsAndGroups">
+      <Query>
+        <DataSourceName>VSuiteCube</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="HealthSystemHealthSystemId">
+            <Value>=Parameters!HealthSystemId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="HealthSystemOrgId">
+            <Value>=Parameters!OrgId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="EvidenceEvidenceId">
+            <Value>=Parameters!EvidenceId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="LocationLocationId">
+            <Value>=Parameters!LocationId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="QuestionQuestionId">
+            <Value>=Parameters!QuestionId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="StaffStaffId">
+            <Value>=Parameters!StaffId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="ObservationDateYQMD">
+            <Value>=Parameters!ObservationDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="QuestionQuestionGroupId">
+            <Value>=Parameters!QuestionGroupId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="UserUserId">
+            <Value>=Parameters!UserId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="QuestionQuestionTypeId">
+            <Value>=Parameters!QuestionTypeId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="EvidenceEntryEvidenceEntryId">
+            <Value>=Parameters!EvidenceEntryId.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT 
+  NON EMPTY 
+    {[Measures].[Evidence Entry Count]} ON COLUMNS
+ ,NON EMPTY 
+    {
+        [Evidence].[Evidence Name].[Evidence Name].ALLMEMBERS*
+        [Evidence Question Group].[Evidence Question Group Order].[Evidence Question Group Order].ALLMEMBERS*
+        [Question].[Health System - Question Group - Question Type - Question Name].[Question Group Name].ALLMEMBERS*
+        [Evidence Question].[Evidence Question Order].[Evidence Question Order].ALLMEMBERS*
+        [Question].[Question Name].[Question Name].ALLMEMBERS
+    }
+  DIMENSION PROPERTIES 
+    MEMBER_CAPTION
+   ,MEMBER_UNIQUE_NAME
+   ON ROWS
+FROM 
+(
+  SELECT 
+    StrToSet
+    (@QuestionQuestionTypeId
+     
+    ) ON COLUMNS
+  FROM 
+  (
+    SELECT 
+      StrToSet
+      (@QuestionQuestionGroupId
+       
+      ) ON COLUMNS
+    FROM 
+    (
+      SELECT 
+        StrToSet
+        (@EvidenceEntryEvidenceEntryId
+         
+        ) ON COLUMNS
+      FROM 
+      (
+        SELECT 
+          StrToSet
+          (@UserUserId
+           
+          ) ON COLUMNS
+        FROM 
+        (
+          SELECT 
+            StrToSet
+            (@ObservationDateYQMD
+             
+            ) ON COLUMNS
+          FROM 
+          (
+            SELECT 
+              StrToSet
+              (@StaffStaffId
+               
+              ) ON COLUMNS
+            FROM 
+            (
+              SELECT 
+                StrToSet
+                (@QuestionQuestionId
+                 
+                ) ON COLUMNS
+              FROM 
+              (
+                SELECT 
+                  StrToSet
+                  (@LocationLocationId
+                   
+                  ) ON COLUMNS
+                FROM 
+                (
+                  SELECT 
+                    StrToSet
+                    (@EvidenceEvidenceId
+                     
+                    ) ON COLUMNS
+                  FROM 
+                  (
+                    SELECT 
+                      StrToSet
+                      (@HealthSystemOrgId
+                       
+                      ) ON COLUMNS
+                    FROM 
+                    (
+                      SELECT 
+                        StrToSet
+                        (@HealthSystemHealthSystemId
+                         
+                        ) ON COLUMNS
+                      FROM [VSuite]
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+)
+CELL PROPERTIES 
+  VALUE
+ ,BACK_COLOR
+ ,FORE_COLOR
+ ,FORMATTED_VALUE
+ ,FORMAT_STRING
+ ,FONT_NAME
+ ,FONT_SIZE
+ ,FONT_FLAGS;</CommandText>
+        <rd:DesignerState><QueryDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/AnalysisServices/QueryDefinition"><CommandType>MDX</CommandType><Type>Query</Type><QuerySpecification xsi:type="MDXQuerySpecification"><Select><Items><Item><ID xsi:type="Level"><DimensionName>Evidence</DimensionName><HierarchyName>Evidence Name</HierarchyName><HierarchyUniqueName>[Evidence].[Evidence Name]</HierarchyUniqueName><LevelName>Evidence Name</LevelName><UniqueName>[Evidence].[Evidence Name].[Evidence Name]</UniqueName></ID><ItemCaption>Evidence Name</ItemCaption><UniqueName>true</UniqueName></Item><Item><ID xsi:type="Level"><DimensionName>Evidence Question Group</DimensionName><HierarchyName>Evidence Question Group Order</HierarchyName><HierarchyUniqueName>[Evidence Question Group].[Evidence Question Group Order]</HierarchyUniqueName><LevelName>Evidence Question Group Order</LevelName><UniqueName>[Evidence Question Group].[Evidence Question Group Order].[Evidence Question Group Order]</UniqueName></ID><ItemCaption>Evidence Question Group Order</ItemCaption><UniqueName>true</UniqueName></Item><Item><ID xsi:type="Level"><DimensionName>Question</DimensionName><HierarchyName>Health System - Question Group - Question Type - Question Name</HierarchyName><HierarchyUniqueName>[Question].[Health System - Question Group - Question Type - Question Name]</HierarchyUniqueName><LevelName>Health System Name</LevelName><UniqueName>[Question].[Health System - Question Group - Question Type - Question Name].[Health System Name]</UniqueName></ID><ItemCaption>Health System Name</ItemCaption><UniqueName>true</UniqueName></Item><Item><ID xsi:type="Level"><DimensionName>Question</DimensionName><HierarchyName>Health System - Question Group - Question Type - Question Name</HierarchyName><HierarchyUniqueName>[Question].[Health System - Question Group - Question Type - Question Name]</HierarchyUniqueName><LevelName>Question Group Name</LevelName><UniqueName>[Question].[Health System - Question Group - Question Type - Question Name].[Question Group Name]</UniqueName></ID><ItemCaption>Question Group Name</ItemCaption><UniqueName>true</UniqueName></Item><Item><ID xsi:type="Level"><DimensionName>Evidence Question</DimensionName><HierarchyName>Evidence Question Order</HierarchyName><HierarchyUniqueName>[Evidence Question].[Evidence Question Order]</HierarchyUniqueName><LevelName>Evidence Question Order</LevelName><UniqueName>[Evidence Question].[Evidence Question Order].[Evidence Question Order]</UniqueName></ID><ItemCaption>Evidence Question Order</ItemCaption><UniqueName>true</UniqueName></Item><Item><ID xsi:type="Level"><DimensionName>Question</DimensionName><HierarchyName>Question Name</HierarchyName><HierarchyUniqueName>[Question].[Question Name]</HierarchyUniqueName><LevelName>Question Name</LevelName><UniqueName>[Question].[Question Name].[Question Name]</UniqueName></ID><ItemCaption>Question Name</ItemCaption><UniqueName>true</UniqueName></Item><Item><ID xsi:type="Measure"><MeasureName>Evidence Entry Count</MeasureName><UniqueName>[Measures].[Evidence Entry Count]</UniqueName></ID><ItemCaption>Evidence Entry Count</ItemCaption><BackColor>true</BackColor><ForeColor>true</ForeColor><FontFamily>true</FontFamily><FontSize>true</FontSize><FontWeight>true</FontWeight><FontStyle>true</FontStyle><FontDecoration>true</FontDecoration><FormattedValue>true</FormattedValue><FormatString>true</FormatString></Item></Items></Select><From>VSuite</From><Filter><FilterItems /></Filter><Calculations /><Aggregates /><QueryProperties /></QuerySpecification><Query><Statement>SELECT 
+  NON EMPTY 
+    {[Measures].[Evidence Entry Count]} ON COLUMNS
+ ,NON EMPTY 
+    {
+        [Evidence].[Evidence Name].[Evidence Name].ALLMEMBERS*
+        [Evidence Question Group].[Evidence Question Group Order].[Evidence Question Group Order].ALLMEMBERS*
+        [Question].[Health System - Question Group - Question Type - Question Name].[Question Group Name].ALLMEMBERS*
+        [Evidence Question].[Evidence Question Order].[Evidence Question Order].ALLMEMBERS*
+        [Question].[Question Name].[Question Name].ALLMEMBERS
+    }
+  DIMENSION PROPERTIES 
+    MEMBER_CAPTION
+   ,MEMBER_UNIQUE_NAME
+   ON ROWS
+FROM 
+(
+  SELECT 
+    StrToSet
+    (@QuestionQuestionTypeId
+     
+    ) ON COLUMNS
+  FROM 
+  (
+    SELECT 
+      StrToSet
+      (@QuestionQuestionGroupId
+       
+      ) ON COLUMNS
+    FROM 
+    (
+      SELECT 
+        StrToSet
+        (@EvidenceEntryEvidenceEntryId
+         
+        ) ON COLUMNS
+      FROM 
+      (
+        SELECT 
+          StrToSet
+          (@UserUserId
+           
+          ) ON COLUMNS
+        FROM 
+        (
+          SELECT 
+            StrToSet
+            (@ObservationDateYQMD
+             
+            ) ON COLUMNS
+          FROM 
+          (
+            SELECT 
+              StrToSet
+              (@StaffStaffId
+               
+              ) ON COLUMNS
+            FROM 
+            (
+              SELECT 
+                StrToSet
+                (@QuestionQuestionId
+                 
+                ) ON COLUMNS
+              FROM 
+              (
+                SELECT 
+                  StrToSet
+                  (@LocationLocationId
+                   
+                  ) ON COLUMNS
+                FROM 
+                (
+                  SELECT 
+                    StrToSet
+                    (@EvidenceEvidenceId
+                     
+                    ) ON COLUMNS
+                  FROM 
+                  (
+                    SELECT 
+                      StrToSet
+                      (@HealthSystemOrgId
+                       
+                      ) ON COLUMNS
+                    FROM 
+                    (
+                      SELECT 
+                        StrToSet
+                        (@HealthSystemHealthSystemId
+                         
+                        ) ON COLUMNS
+                      FROM [VSuite]
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+)
+CELL PROPERTIES 
+  VALUE
+ ,BACK_COLOR
+ ,FORE_COLOR
+ ,FORMATTED_VALUE
+ ,FORMAT_STRING
+ ,FONT_NAME
+ ,FONT_SIZE
+ ,FONT_FLAGS;</Statement><ParameterDefinitions><ParameterDefinition><Name>HealthSystemHealthSystemId</Name><DefaultValues><DefaultValue>[Health System].[Health System Id].&amp;[118]</DefaultValue></DefaultValues><Caption>Health System Id</Caption><HierarchyUniqueName>[Health System].[Health System Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Health System].[Health System Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Health System].[Health System Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Health System].[Health System Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Health System].[Health System Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>HealthSystemOrgId</Name><DefaultValues><DefaultValue>[Health System].[Org Id].[All]</DefaultValue></DefaultValues><Caption>Org Id</Caption><HierarchyUniqueName>[Health System].[Org Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Health System].[Org Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Health System].[Org Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Health System].[Org Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Health System].[Org Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>EvidenceEvidenceId</Name><DefaultValues><DefaultValue>[Evidence].[Evidence Id].&amp;[510586]</DefaultValue></DefaultValues><Caption>Evidence Id</Caption><HierarchyUniqueName>[Evidence].[Evidence Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Evidence].[Evidence Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Evidence].[Evidence Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Evidence].[Evidence Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Evidence].[Evidence Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>LocationLocationId</Name><DefaultValues><DefaultValue>[Location].[Location Id].&amp;[6797]</DefaultValue></DefaultValues><Caption>Location.Location Id</Caption><HierarchyUniqueName>[Location].[Location Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Location].[Location Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Location].[Location Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Location].[Location Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Location].[Location Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>QuestionQuestionId</Name><DefaultValues><DefaultValue>[Question].[Question Id].&amp;[46456]</DefaultValue><DefaultValue>[Question].[Question Id].&amp;[46457]</DefaultValue><DefaultValue>[Question].[Question Id].&amp;[46458]</DefaultValue><DefaultValue>[Question].[Question Id].&amp;[46459]</DefaultValue><DefaultValue>[Question].[Question Id].&amp;[46460]</DefaultValue><DefaultValue>[Question].[Question Id].&amp;[46461]</DefaultValue><DefaultValue>[Question].[Question Id].&amp;[46462]</DefaultValue><DefaultValue>[Question].[Question Id].&amp;[46463]</DefaultValue></DefaultValues><Caption>Question Id</Caption><HierarchyUniqueName>[Question].[Question Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Question].[Question Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Question].[Question Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Question].[Question Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Question].[Question Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>StaffStaffId</Name><DefaultValues><DefaultValue>[Staff].[Staff Id].[All]</DefaultValue></DefaultValues><Caption>Staff.Staff Id</Caption><HierarchyUniqueName>[Staff].[Staff Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Staff].[Staff Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Staff].[Staff Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Staff].[Staff Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Staff].[Staff Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>ObservationDateYQMD</Name><DefaultValues><DefaultValue>[Observation Date].[Y - Q - M - D].[Quarter].&amp;[2012]&amp;[1]</DefaultValue><DefaultValue>[Observation Date].[Y - Q - M - D].[Quarter].&amp;[2012]&amp;[2]</DefaultValue></DefaultValues><Caption>Observation Date.Y - Q - M - D</Caption><HierarchyUniqueName>[Observation Date].[Y - Q - M - D]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Observation Date].[Y - Q - M - D].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>UserUserId</Name><DefaultValues><DefaultValue>[User].[User Id].&amp;[37439]</DefaultValue></DefaultValues><Caption>User Id</Caption><HierarchyUniqueName>[User].[User Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [User].[User Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [User].[User Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [User].[User Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [User].[User Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>EvidenceEntryEvidenceEntryId</Name><DefaultValues><DefaultValue>[Evidence Entry].[Evidence Entry Id].[All]</DefaultValue></DefaultValues><Caption>Evidence Entry Id</Caption><HierarchyUniqueName>[Evidence Entry].[Evidence Entry Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Evidence Entry].[Evidence Entry Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Evidence Entry].[Evidence Entry Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Evidence Entry].[Evidence Entry Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Evidence Entry].[Evidence Entry Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>QuestionQuestionGroupId</Name><DefaultValues><DefaultValue>[Question].[Question Group Id].[All]</DefaultValue></DefaultValues><Caption>Question Group Id</Caption><HierarchyUniqueName>[Question].[Question Group Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Question].[Question Group Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Question].[Question Group Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Question].[Question Group Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Question].[Question Group Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>QuestionQuestionTypeId</Name><DefaultValues><DefaultValue>[Question].[Question Type Id].&amp;[1]</DefaultValue><DefaultValue>[Question].[Question Type Id].&amp;[12]</DefaultValue></DefaultValues><Caption>Question Type Id</Caption><HierarchyUniqueName>[Question].[Question Type Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Question].[Question Type Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Question].[Question Type Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Question].[Question Type Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Question].[Question Type Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition></ParameterDefinitions></Query></QueryDefinition></rd:DesignerState>
+      </Query>
+      <Fields>
+        <Field Name="Evidence_Name">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Evidence].[Evidence Name].[Evidence Name]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Evidence_Entry_Count">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[Evidence Entry Count]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Evidence_Question_Group_Order">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Evidence Question Group].[Evidence Question Group Order].[Evidence Question Group Order]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Health_System_Name">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Question].[Health System - Question Group - Question Type - Question Name].[Health System Name]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Question_Group_Name">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Question].[Health System - Question Group - Question Type - Question Name].[Question Group Name]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Evidence_Question_Order">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Evidence Question].[Evidence Question Order].[Evidence Question Order]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Question_Name">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Question].[Question Name].[Question Name]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Tablix Name="Tablix1">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>6.82739in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.2474in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.25781in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.24739in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.26in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Evidence_Name">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Evidence_Name.Value</Value>
+                                  <Style>
+                                    <FontSize>14pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Evidence_Name</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#9eb6e4</BackgroundColor>
+                            <VerticalAlign>Top</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                          </Style>
+                        </Textbox>
+                        <ColSpan>4</ColSpan>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.20626in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Question_Group_Name">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Question_Group_Name.Value</Value>
+                                  <Style>
+                                    <FontSize>11pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Question_Group_Name</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#c6daf8</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                          </Style>
+                        </Textbox>
+                        <ColSpan>4</ColSpan>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.15417in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Question_Name">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Question_Name.Value</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Question_Name</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox37">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Tahoma</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox37</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox41">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Tahoma</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox41</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox45">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Tahoma</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox45</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <TablixHeader>
+                    <Size>0.21875in</Size>
+                    <CellContents>
+                      <Textbox Name="Textbox18">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value />
+                                <Style>
+                                  <FontFamily>Tahoma</FontFamily>
+                                  <FontSize>11pt</FontSize>
+                                  <FontWeight>Bold</FontWeight>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style />
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>Textbox18</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>#7292cc</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <BackgroundColor>#4c68a2</BackgroundColor>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                </TablixMember>
+                <TablixMember>
+                  <TablixHeader>
+                    <Size>0.21875in</Size>
+                    <CellContents>
+                      <Textbox Name="Textbox47">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>Y</Value>
+                                <Style>
+                                  <FontFamily>Tahoma</FontFamily>
+                                  <FontWeight>Bold</FontWeight>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style>
+                              <TextAlign>Center</TextAlign>
+                            </Style>
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>Textbox47</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>#c6daf8</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <BackgroundColor>#9eb6e4</BackgroundColor>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                  <TablixMembers>
+                    <TablixMember />
+                  </TablixMembers>
+                </TablixMember>
+                <TablixMember>
+                  <TablixHeader>
+                    <Size>0.21875in</Size>
+                    <CellContents>
+                      <Textbox Name="Textbox48">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>N</Value>
+                                <Style>
+                                  <FontFamily>Tahoma</FontFamily>
+                                  <FontWeight>Bold</FontWeight>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style>
+                              <TextAlign>Center</TextAlign>
+                            </Style>
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>Textbox48</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>#c6daf8</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <BackgroundColor>#9eb6e4</BackgroundColor>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                  <TablixMembers>
+                    <TablixMember />
+                  </TablixMembers>
+                </TablixMember>
+                <TablixMember>
+                  <TablixHeader>
+                    <Size>0.21875in</Size>
+                    <CellContents>
+                      <Textbox Name="Textbox1">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>na</Value>
+                                <Style>
+                                  <FontFamily>Tahoma</FontFamily>
+                                  <FontWeight>Bold</FontWeight>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style>
+                              <TextAlign>Center</TextAlign>
+                            </Style>
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>Textbox1</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>#c6daf8</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <BackgroundColor>#9eb6e4</BackgroundColor>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                  <TablixMembers>
+                    <TablixMember />
+                  </TablixMembers>
+                </TablixMember>
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="Evidence_Title">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!Evidence_Name.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!Evidence_Name.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixMembers>
+                    <TablixMember />
+                    <TablixMember>
+                      <Group Name="Question_Group_Name">
+                        <GroupExpressions>
+                          <GroupExpression>=Fields!Question_Group_Name.Value</GroupExpression>
+                        </GroupExpressions>
+                      </Group>
+                      <SortExpressions>
+                        <SortExpression>
+                          <Value>=CINT(Fields!Evidence_Question_Group_Order.Value)</Value>
+                        </SortExpression>
+                      </SortExpressions>
+                      <TablixMembers>
+                        <TablixMember>
+                          <KeepWithGroup>After</KeepWithGroup>
+                        </TablixMember>
+                        <TablixMember>
+                          <Group Name="Question_Description">
+                            <GroupExpressions>
+                              <GroupExpression>=Fields!Question_Name.Value</GroupExpression>
+                            </GroupExpressions>
+                          </Group>
+                          <SortExpressions>
+                            <SortExpression>
+                              <Value>=CINT(Fields!Evidence_Question_Order.Value)</Value>
+                            </SortExpression>
+                          </SortExpressions>
+                          <TablixMembers>
+                            <TablixMember />
+                          </TablixMembers>
+                        </TablixMember>
+                      </TablixMembers>
+                    </TablixMember>
+                  </TablixMembers>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <RepeatColumnHeaders>true</RepeatColumnHeaders>
+            <FixedColumnHeaders>true</FixedColumnHeaders>
+            <DataSetName>QuestionsAndGroups</DataSetName>
+            <Top>0.26408in</Top>
+            <Left>0.01295in</Left>
+            <Height>0.83918in</Height>
+            <Width>7.57999in</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Textbox Name="Textbox53">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Date:___ /___ /___</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox53</rd:DefaultName>
+            <Left>0.01295in</Left>
+            <Height>0.23958in</Height>
+            <Width>1.3125in</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox54">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Setting:________________</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox54</rd:DefaultName>
+            <Left>1.5617in</Left>
+            <Height>0.23958in</Height>
+            <Width>1.71875in</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox55">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Unique ID:_________</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox55</rd:DefaultName>
+            <Left>3.34989in</Left>
+            <Height>0.25in</Height>
+            <Width>1.55208in</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox56">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Staff Member: ___________</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox56</rd:DefaultName>
+            <Left>5.11725in</Left>
+            <Height>0.25in</Height>
+            <Width>1.875in</Width>
+            <ZIndex>4</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+        </ReportItems>
+        <Height>1.10326in</Height>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Body>
+      <Width>7.59294in</Width>
+      <Page>
+        <PageHeader>
+          <Height>0.21194in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Textbox Name="Textbox52">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value> Y  | N | na </Value>
+                      <Style>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox52</rd:DefaultName>
+              <Left>6.84034in</Left>
+              <Height>0.21194in</Height>
+              <Width>0.72135in</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <VerticalAlign>Top</VerticalAlign>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+          </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageHeader>
+        <PageHeight>8.5in</PageHeight>
+        <PageWidth>11in</PageWidth>
+        <InteractiveHeight>8.5in</InteractiveHeight>
+        <InteractiveWidth>11in</InteractiveWidth>
+        <LeftMargin>0.2in</LeftMargin>
+        <RightMargin>0.2in</RightMargin>
+        <TopMargin>0.2in</TopMargin>
+        <BottomMargin>0.2in</BottomMargin>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="HealthSystemId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Health System].[Health System Id].&amp;[118]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Health System Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="OrgId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Health System].[Org Id].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Org Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="EvidenceId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Evidence].[Evidence Id].&amp;[510586]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Evidence Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="LocationId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Location].[Location Id].&amp;[6797]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Location Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="QuestionId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Question].[Question Id].&amp;[46456]</Value>
+          <Value>[Question].[Question Id].&amp;[46457]</Value>
+          <Value>[Question].[Question Id].&amp;[46458]</Value>
+          <Value>[Question].[Question Id].&amp;[46459]</Value>
+          <Value>[Question].[Question Id].&amp;[46460]</Value>
+          <Value>[Question].[Question Id].&amp;[46461]</Value>
+          <Value>[Question].[Question Id].&amp;[46462]</Value>
+          <Value>[Question].[Question Id].&amp;[46463]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Question Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="StaffId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Staff].[Staff Id].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Staff Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="ObservationDate">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Observation Date].[Y - Q - M - D].[Quarter].&amp;[2012]&amp;[1]</Value>
+          <Value>[Observation Date].[Y - Q - M - D].[Quarter].&amp;[2012]&amp;[2]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Observation Date</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="UserId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[User].[User Id].&amp;[37439]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>User Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="EvidenceEntryId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Evidence Entry].[Evidence Entry Id].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Evidence Entry Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="ReportTitle">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>Title</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>ReportTitle</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ReportDescription">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>Description</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>ReportDescription</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="QuestionGroupId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Question].[Question Group Id].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Question Group Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="QuestionTypeId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Question].[Question Type Id].&amp;[1]</Value>
+          <Value>[Question].[Question Type Id].&amp;[12]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Question Type Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportServerUrl>http://ocashvrgwa01s.verge-solutions.com/reportserver_staging</rd:ReportServerUrl>
+  <rd:ReportID>040250d9-da9e-4b34-bff8-8cc60bd8e158</rd:ReportID>
+</Report>
