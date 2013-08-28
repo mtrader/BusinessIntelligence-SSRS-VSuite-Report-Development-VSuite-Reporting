@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Chart Name="chr_main">
+        <ChartCategoryHierarchy>
+          <ChartMembers>
+            <ChartMember>
+              <Group Name="Chart3_CategoryGroup">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!process_name.Value</GroupExpression>
+                </GroupExpressions>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields!process_name.Value</Value>
+                </SortExpression>
+              </SortExpressions>
+              <Label>=Fields!process_name.Value</Label>
+            </ChartMember>
+          </ChartMembers>
+        </ChartCategoryHierarchy>
+        <ChartSeriesHierarchy>
+          <ChartMembers>
+            <ChartMember>
+              <Label />
+            </ChartMember>
+          </ChartMembers>
+        </ChartSeriesHierarchy>
+        <ChartData>
+          <ChartSeriesCollection>
+            <ChartSeries Name="Series">
+              <ChartDataPoints>
+                <ChartDataPoint>
+                  <ChartDataPointValues>
+                    <Y>=
+SWITCH
+(
+	AVG(DATEDIFF("s",Fields!process_instance_start_date.Value,IIF(YEAR(Fields!process_instance_end_date.Value) = 1900,Fields!process_instance_start_date.Value,Fields!process_instance_end_date.Value))) &lt;= 60,
+	AVG(DATEDIFF("s",Fields!process_instance_start_date.Value,IIF(YEAR(Fields!process_instance_end_date.Value) = 1900,Fields!process_instance_start_date.Value,Fields!process_instance_end_date.Value))),
+	AVG(DATEDIFF("m",Fields!process_instance_start_date.Value,IIF(YEAR(Fields!process_instance_end_date.Value) = 1900,Fields!process_instance_start_date.Value,Fields!process_instance_end_date.Value))) &lt;= 60,
+	AVG(DATEDIFF("m",Fields!process_instance_start_date.Value,IIF(YEAR(Fields!process_instance_end_date.Value) = 1900,Fields!process_instance_start_date.Value,Fields!process_instance_end_date.Value))),
+	TRUE,
+	AVG(DATEDIFF("s",Fields!process_instance_start_date.Value,IIF(YEAR(Fields!process_instance_end_date.Value) = 1900,Fields!process_instance_start_date.Value,Fields!process_instance_end_date.Value)))
+)</Y>
+                  </ChartDataPointValues>
+                  <ChartDataLabel>
+                    <Style />
+                  </ChartDataLabel>
+                  <Style>
+                    <BackgroundGradientType>HorizontalCenter</BackgroundGradientType>
+                  </Style>
+                  <ChartMarker>
+                    <Style />
+                  </ChartMarker>
+                  <DataElementOutput>Output</DataElementOutput>
+                </ChartDataPoint>
+              </ChartDataPoints>
+              <Type>Bar</Type>
+              <Style />
+              <ChartEmptyPoints>
+                <Style />
+                <ChartMarker>
+                  <Style />
+                </ChartMarker>
+                <ChartDataLabel>
+                  <Style />
+                </ChartDataLabel>
+              </ChartEmptyPoints>
+              <ValueAxisName>Primary</ValueAxisName>
+              <CategoryAxisName>Primary</CategoryAxisName>
+              <ChartSmartLabel>
+                <CalloutLineColor>Black</CalloutLineColor>
+                <MinMovingDistance>0pt</MinMovingDistance>
+              </ChartSmartLabel>
+            </ChartSeries>
+          </ChartSeriesCollection>
+        </ChartData>
+        <ChartAreas>
+          <ChartArea Name="Default">
+            <ChartCategoryAxes>
+              <ChartAxis Name="Primary">
+                <Style>
+                  <FontFamily>Tahoma</FontFamily>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Enabled>False</Enabled>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+              <ChartAxis Name="Secondary">
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption>Axis Title</Caption>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Enabled>False</Enabled>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Location>Opposite</Location>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+            </ChartCategoryAxes>
+            <ChartValueAxes>
+              <ChartAxis Name="Primary">
+                <Style>
+                  <FontFamily>Tahoma</FontFamily>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+              <ChartAxis Name="Secondary">
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption>Axis Title</Caption>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Location>Opposite</Location>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+            </ChartValueAxes>
+            <Style>
+              <BackgroundGradientType>HorizontalCenter</BackgroundGradientType>
+            </Style>
+          </ChartArea>
+        </ChartAreas>
+        <ChartTitles>
+          <ChartTitle Name="Title1">
+            <Caption>="Averge Duration (" &amp; 
+SWITCH
+(
+	AVG(DATEDIFF("s",Fields!process_instance_start_date.Value,IIF(YEAR(Fields!process_instance_end_date.Value) = 1900,Fields!process_instance_start_date.Value,Fields!process_instance_end_date.Value))) &lt;= 60,
+	"Seconds",
+	AVG(DATEDIFF("m",Fields!process_instance_start_date.Value,IIF(YEAR(Fields!process_instance_end_date.Value) = 1900,Fields!process_instance_start_date.Value,Fields!process_instance_end_date.Value))) &lt;= 60,
+	"Minutes",
+	TRUE,
+	"Hours"
+) &amp; ")"</Caption>
+            <Style>
+              <BackgroundGradientType>None</BackgroundGradientType>
+              <FontFamily>Tahoma</FontFamily>
+              <FontSize>8pt</FontSize>
+              <FontWeight>Bold</FontWeight>
+              <TextAlign>General</TextAlign>
+              <VerticalAlign>Top</VerticalAlign>
+            </Style>
+            <Position>BottomCenter</Position>
+            <DockOutsideChartArea>true</DockOutsideChartArea>
+          </ChartTitle>
+        </ChartTitles>
+        <Palette>=Parameters!Format_SeriesColorPalette_31.Value</Palette>
+        <ChartCustomPaletteColors>
+          <ChartCustomPaletteColor>#dc7821</ChartCustomPaletteColor>
+          <ChartCustomPaletteColor>#7b57a8</ChartCustomPaletteColor>
+          <ChartCustomPaletteColor>#799936</ChartCustomPaletteColor>
+          <ChartCustomPaletteColor>#608fd1</ChartCustomPaletteColor>
+          <ChartCustomPaletteColor>#e3c726</ChartCustomPaletteColor>
+          <ChartCustomPaletteColor>#2f3100</ChartCustomPaletteColor>
+          <ChartCustomPaletteColor>#2889a3</ChartCustomPaletteColor>
+          <ChartCustomPaletteColor>#21236b</ChartCustomPaletteColor>
+          <ChartCustomPaletteColor>#388060</ChartCustomPaletteColor>
+          <ChartCustomPaletteColor>#d81212</ChartCustomPaletteColor>
+          <ChartCustomPaletteColor>#5a5c7a</ChartCustomPaletteColor>
+          <ChartCustomPaletteColor>#18bcc4</ChartCustomPaletteColor>
+          <ChartCustomPaletteColor>#20c457</ChartCustomPaletteColor>
+          <ChartCustomPaletteColor>#2229f8</ChartCustomPaletteColor>
+          <ChartCustomPaletteColor>#d33c09</ChartCustomPaletteColor>
+          <ChartCustomPaletteColor>#ac30bf</ChartCustomPaletteColor>
+        </ChartCustomPaletteColors>
+        <ChartBorderSkin>
+          <Style>
+            <BackgroundColor>Gray</BackgroundColor>
+            <BackgroundGradientType>None</BackgroundGradientType>
+            <Color>White</Color>
+          </Style>
+        </ChartBorderSkin>
+        <ChartNoDataMessage Name="NoDataMessage">
+          <Caption>No Data Available</Caption>
+          <Style>
+            <BackgroundGradientType>None</BackgroundGradientType>
+            <TextAlign>General</TextAlign>
+            <VerticalAlign>Top</VerticalAlign>
+          </Style>
+        </ChartNoDataMessage>
+        <DataSetName>rpt_wpi_main</DataSetName>
+        <Top>0.25in</Top>
+        <Height>3in</Height>
+        <Width>10.5in</Width>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <BackgroundColor>White</BackgroundColor>
+          <BackgroundGradientType>None</BackgroundGradientType>
+        </Style>
+      </Chart>
+      <Textbox Name="Textbox25">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>="Process Information &lt;br/&gt;" &amp; FORMAT(Parameters!ProcessInstanceStartDate.Value,"MM/dd/yy") &amp; " - " &amp; FORMAT(Parameters!ProcessInstanceEndDate.Value,"MM/dd/yy")</Value>
+                <MarkupType>HTML</MarkupType>
+                <Style>
+                  <FontFamily>Tahoma</FontFamily>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox25</rd:DefaultName>
+        <Left>0.00001in</Left>
+        <Height>0.25in</Height>
+        <Width>10.5in</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+    </ReportItems>
+    <Height>3.25in</Height>
+    <Style />
+  </Body>
+  <Width>10.50001in</Width>
+  <Page>
+    <InteractiveHeight>8.5in</InteractiveHeight>
+    <InteractiveWidth>11in</InteractiveWidth>
+    <LeftMargin>0.25in</LeftMargin>
+    <RightMargin>0.25in</RightMargin>
+    <TopMargin>0.25in</TopMargin>
+    <BottomMargin>0.25in</BottomMargin>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="SOURCECODE">
+      <DataSourceReference>K2 SmartObjects</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>90845c61-2398-4db7-b735-0ade24fa46e4</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="rpt_wpi_main">
+      <Query>
+        <DataSourceName>SOURCECODE</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="HealthSystemId">
+            <Value>=Parameters!HealthSystemId.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+          <QueryParameter Name="ProcessId">
+            <Value>=Parameters!ProcessId.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+          <QueryParameter Name="ProcessInstanceStartDate">
+            <Value>=Parameters!ProcessInstanceStartDate.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+          <QueryParameter Name="ProcessInstanceEndDate">
+            <Value>=Parameters!ProcessInstanceEndDate.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT
+	a.ProcessName			process_name,
+	b.Folio					process_instance_name,
+	b.StartDate				process_instance_start_date,
+	b.FinishDate			process_instance_end_date
+FROM 
+	process_data a
+	JOIN process_instance b ON (a.ProcessInstanceId = b.ProcessInstanceId)
+	JOIN activity_instance c ON (a.ProcessInstanceId = c.ProcessInstanceId)
+	JOIN event_instance d ON (a.ProcessInstanceId = d.ProcessInstanceId)
+		AND (c.ActivityInstanceid = d.ActivityInstanceid)
+WHERE
+	(
+		(a.DataName IN ('SystemID'))
+		AND (a.DataValue = @HealthSystemId)
+		AND 
+		(
+			a.ProcessName = @ProcessId
+			OR @ProcessId = '-1'
+		)
+		AND (b.StartDate BETWEEN @ProcessInstanceStartDate AND @ProcessInstanceEndDate)
+	)</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="process_name">
+          <DataField>process_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="process_instance_name">
+          <DataField>process_instance_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="process_instance_start_date">
+          <DataField>process_instance_start_date</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="process_instance_end_date">
+          <DataField>process_instance_end_date</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="rpm_wpi_process">
+      <Query>
+        <DataSourceName>SOURCECODE</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="HealthSystemId">
+            <Value>=Parameters!HealthSystemId.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT DISTINCT
+	a.ProcessName		id,
+	a.ProcessName		definition
+FROM 
+	process_data a
+	JOIN process_instance b ON (a.ProcessInstanceId = b.ProcessInstanceId)
+	JOIN activity_instance c ON (a.ProcessInstanceId = c.ProcessInstanceId)
+	JOIN event_instance d ON (a.ProcessInstanceId = d.ProcessInstanceId)
+		AND (c.ActivityInstanceid = d.ActivityInstanceid)
+WHERE
+	a.DataName IN ('SystemID')
+	AND a.DataValue = @HealthSystemId
+		
+UNION
+
+SELECT
+	'-1'				id,
+	'All'				definition</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="id">
+          <DataField>id</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="definition">
+          <DataField>definition</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="HealthSystemId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>1</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>HealthSystemId</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="ProcessId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>-1</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>ProcessId</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>rpm_wpi_process</DataSetName>
+          <ValueField>id</ValueField>
+          <LabelField>definition</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="ProcessInstanceStartDate">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=CDATE("01/01/" &amp; YEAR(NOW()))</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>ProcessInstanceStartDate</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="ProcessInstanceEndDate">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=NOW()</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>ProcessInstanceEndDate</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="Format_SeriesColorPalette_31">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>Custom</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Format_SeriesColorPalette_31</Prompt>
+      <Hidden>true</Hidden>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>Custom</Value>
+            <Label>Professional</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>BrightPastel</Value>
+            <Label>Classic</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>Excel</Value>
+            <Label>Excel</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>79455fc5-d945-445f-9545-2ab419af4108</rd:ReportID>
+</Report>

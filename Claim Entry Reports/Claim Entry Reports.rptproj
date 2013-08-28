@@ -5,8 +5,28 @@
   <DataSets />
   <Reports>
     <ProjectItem>
-      <Name>Entry Details Report.rdl</Name>
-      <FullPath>Entry Details Report.rdl</FullPath>
+      <Name>Auto Claim Form.rdl</Name>
+      <FullPath>Auto Claim Form.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Claim Abstract.rdl</Name>
+      <FullPath>Claim Abstract.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Excess Notice of Claim Form.rdl</Name>
+      <FullPath>Excess Notice of Claim Form.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Payment Form.rdl</Name>
+      <FullPath>Payment Form.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Payment Request Form.rdl</Name>
+      <FullPath>Payment Request Form.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Write-Off Recommendation Form.rdl</Name>
+      <FullPath>Write-Off Recommendation Form.rdl</FullPath>
     </ProjectItem>
   </Reports>
   <Configurations>
@@ -16,7 +36,7 @@
       <Options>
         <OutputPath>bin\Debug</OutputPath>
         <TargetServerVersion>SSRS2008R2</TargetServerVersion>
-        <TargetFolder>EvidenceEntryReports</TargetFolder>
+        <TargetFolder>Claim Entry Reports</TargetFolder>
         <TargetDataSourceFolder>Data Sources</TargetDataSourceFolder>
         <TargetDatasetFolder>Datasets</TargetDatasetFolder>
         <TargetReportPartFolder>Report Parts</TargetReportPartFolder>
@@ -28,7 +48,7 @@
       <Options>
         <OutputPath>bin\DebugLocal</OutputPath>
         <TargetServerVersion>SSRS2008R2</TargetServerVersion>
-        <TargetFolder>EvidenceEntryReports</TargetFolder>
+        <TargetFolder>Claim Entry Reports</TargetFolder>
         <TargetDataSourceFolder>Data Sources</TargetDataSourceFolder>
         <TargetDatasetFolder>Datasets</TargetDatasetFolder>
         <TargetReportPartFolder>Report Parts</TargetReportPartFolder>
@@ -40,7 +60,7 @@
       <Options>
         <OutputPath>bin\Release</OutputPath>
         <TargetServerVersion>SSRS2008R2</TargetServerVersion>
-        <TargetFolder>EvidenceEntryReports</TargetFolder>
+        <TargetFolder>Claim Entry Reports</TargetFolder>
         <TargetDataSourceFolder>Data Sources</TargetDataSourceFolder>
         <TargetDatasetFolder>Datasets</TargetDatasetFolder>
         <TargetReportPartFolder>Report Parts</TargetReportPartFolder>

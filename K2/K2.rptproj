@@ -5,8 +5,28 @@
   <DataSets />
   <Reports>
     <ProjectItem>
-      <Name>Entry Details Report.rdl</Name>
-      <FullPath>Entry Details Report.rdl</FullPath>
+      <Name>Activity Information.rdl</Name>
+      <FullPath>Activity Information.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Activity Instance Destination - Production Support.rdl</Name>
+      <FullPath>Activity Instance Destination - Production Support.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Activity Instance Destination.rdl</Name>
+      <FullPath>Activity Instance Destination.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Process Information.rdl</Name>
+      <FullPath>Process Information.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>srpt_workflow_instance_status_entry_details - Production Support.rdl</Name>
+      <FullPath>srpt_workflow_instance_status_entry_details - Production Support.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Workflow Instance Status - Production Support.rdl</Name>
+      <FullPath>Workflow Instance Status - Production Support.rdl</FullPath>
     </ProjectItem>
   </Reports>
   <Configurations>
@@ -16,7 +36,7 @@
       <Options>
         <OutputPath>bin\Debug</OutputPath>
         <TargetServerVersion>SSRS2008R2</TargetServerVersion>
-        <TargetFolder>EvidenceEntryReports</TargetFolder>
+        <TargetFolder>K2</TargetFolder>
         <TargetDataSourceFolder>Data Sources</TargetDataSourceFolder>
         <TargetDatasetFolder>Datasets</TargetDatasetFolder>
         <TargetReportPartFolder>Report Parts</TargetReportPartFolder>
@@ -28,7 +48,7 @@
       <Options>
         <OutputPath>bin\DebugLocal</OutputPath>
         <TargetServerVersion>SSRS2008R2</TargetServerVersion>
-        <TargetFolder>EvidenceEntryReports</TargetFolder>
+        <TargetFolder>K2</TargetFolder>
         <TargetDataSourceFolder>Data Sources</TargetDataSourceFolder>
         <TargetDatasetFolder>Datasets</TargetDatasetFolder>
         <TargetReportPartFolder>Report Parts</TargetReportPartFolder>
@@ -40,7 +60,7 @@
       <Options>
         <OutputPath>bin\Release</OutputPath>
         <TargetServerVersion>SSRS2008R2</TargetServerVersion>
-        <TargetFolder>EvidenceEntryReports</TargetFolder>
+        <TargetFolder>K2</TargetFolder>
         <TargetDataSourceFolder>Data Sources</TargetDataSourceFolder>
         <TargetDatasetFolder>Datasets</TargetDatasetFolder>
         <TargetReportPartFolder>Report Parts</TargetReportPartFolder>

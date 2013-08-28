@@ -5,8 +5,20 @@
   <DataSets />
   <Reports>
     <ProjectItem>
-      <Name>Entry Details Report.rdl</Name>
-      <FullPath>Entry Details Report.rdl</FullPath>
+      <Name>NonCompliantStandards.rdl</Name>
+      <FullPath>NonCompliantStandards.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Top 10 NonCompliant Chapters Graph.rdl</Name>
+      <FullPath>Top 10 NonCompliant Chapters Graph.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Top 10 NonCompliant Organizations Graph.rdl</Name>
+      <FullPath>Top 10 NonCompliant Organizations Graph.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Top 10 NonCompliant Standards Graph.rdl</Name>
+      <FullPath>Top 10 NonCompliant Standards Graph.rdl</FullPath>
     </ProjectItem>
   </Reports>
   <Configurations>
@@ -16,7 +28,7 @@
       <Options>
         <OutputPath>bin\Debug</OutputPath>
         <TargetServerVersion>SSRS2008R2</TargetServerVersion>
-        <TargetFolder>EvidenceEntryReports</TargetFolder>
+        <TargetFolder>Standards</TargetFolder>
         <TargetDataSourceFolder>Data Sources</TargetDataSourceFolder>
         <TargetDatasetFolder>Datasets</TargetDatasetFolder>
         <TargetReportPartFolder>Report Parts</TargetReportPartFolder>
@@ -28,7 +40,7 @@
       <Options>
         <OutputPath>bin\DebugLocal</OutputPath>
         <TargetServerVersion>SSRS2008R2</TargetServerVersion>
-        <TargetFolder>EvidenceEntryReports</TargetFolder>
+        <TargetFolder>Standards</TargetFolder>
         <TargetDataSourceFolder>Data Sources</TargetDataSourceFolder>
         <TargetDatasetFolder>Datasets</TargetDatasetFolder>
         <TargetReportPartFolder>Report Parts</TargetReportPartFolder>
@@ -40,7 +52,7 @@
       <Options>
         <OutputPath>bin\Release</OutputPath>
         <TargetServerVersion>SSRS2008R2</TargetServerVersion>
-        <TargetFolder>EvidenceEntryReports</TargetFolder>
+        <TargetFolder>Standards</TargetFolder>
         <TargetDataSourceFolder>Data Sources</TargetDataSourceFolder>
         <TargetDatasetFolder>Datasets</TargetDatasetFolder>
         <TargetReportPartFolder>Report Parts</TargetReportPartFolder>

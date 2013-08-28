@@ -5,8 +5,8 @@
   <DataSets />
   <Reports>
     <ProjectItem>
-      <Name>Entry Details Report.rdl</Name>
-      <FullPath>Entry Details Report.rdl</FullPath>
+      <Name>Claim Invoice Cover Sheet.rdl</Name>
+      <FullPath>Claim Invoice Cover Sheet.rdl</FullPath>
     </ProjectItem>
   </Reports>
   <Configurations>
@@ -16,7 +16,7 @@
       <Options>
         <OutputPath>bin\Debug</OutputPath>
         <TargetServerVersion>SSRS2008R2</TargetServerVersion>
-        <TargetFolder>EvidenceEntryReports</TargetFolder>
+        <TargetFolder>Claim Transaction Reports</TargetFolder>
         <TargetDataSourceFolder>Data Sources</TargetDataSourceFolder>
         <TargetDatasetFolder>Datasets</TargetDatasetFolder>
         <TargetReportPartFolder>Report Parts</TargetReportPartFolder>
@@ -28,7 +28,7 @@
       <Options>
         <OutputPath>bin\DebugLocal</OutputPath>
         <TargetServerVersion>SSRS2008R2</TargetServerVersion>
-        <TargetFolder>EvidenceEntryReports</TargetFolder>
+        <TargetFolder>Claim Transaction Reports</TargetFolder>
         <TargetDataSourceFolder>Data Sources</TargetDataSourceFolder>
         <TargetDatasetFolder>Datasets</TargetDatasetFolder>
         <TargetReportPartFolder>Report Parts</TargetReportPartFolder>
@@ -40,7 +40,7 @@
       <Options>
         <OutputPath>bin\Release</OutputPath>
         <TargetServerVersion>SSRS2008R2</TargetServerVersion>
-        <TargetFolder>EvidenceEntryReports</TargetFolder>
+        <TargetFolder>Claim Transaction Reports</TargetFolder>
         <TargetDataSourceFolder>Data Sources</TargetDataSourceFolder>
         <TargetDatasetFolder>Datasets</TargetDatasetFolder>
         <TargetReportPartFolder>Report Parts</TargetReportPartFolder>

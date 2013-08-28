@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Chart Name="chr_main">
+        <ChartCategoryHierarchy>
+          <ChartMembers>
+            <ChartMember>
+              <Group Name="Chart1_CategoryGroup1">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!event_instance_name.Value</GroupExpression>
+                  <GroupExpression>=Fields!event_instance_start_date.Value</GroupExpression>
+                  <GroupExpression>=Fields!event_instance_destination.Value</GroupExpression>
+                </GroupExpressions>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields!event_instance_start_date.Value</Value>
+                </SortExpression>
+              </SortExpressions>
+              <Label>=Fields!event_instance_name.Value &amp; CHR(10) + CHR(13) &amp; Fields!event_instance_destination.Value &amp; CHR(10) + CHR(13) &amp; Fields!event_instance_start_date.Value</Label>
+            </ChartMember>
+          </ChartMembers>
+        </ChartCategoryHierarchy>
+        <ChartSeriesHierarchy>
+          <ChartMembers>
+            <ChartMember>
+              <Label />
+            </ChartMember>
+          </ChartMembers>
+        </ChartSeriesHierarchy>
+        <ChartData>
+          <ChartSeriesCollection>
+            <ChartSeries Name="d_StartDate">
+              <ChartDataPoints>
+                <ChartDataPoint>
+                  <ChartDataPointValues>
+                    <Y>=
+SWITCH
+(
+	DATEDIFF("d",MIN(Fields!event_instance_start_date.Value, "rpt_wit_main"),IIF(YEAR(MAX(Fields!event_instance_finish_date.Value, "rpt_wit_main")) = 1900,NOW,MAX(Fields!event_instance_finish_date.Value, "rpt_wit_main"))) &gt; 1,
+	(
+		FLOOR
+		(
+			AVG
+			(
+				DATEDIFF
+				(
+					"s",
+					Fields!event_instance_start_date.Value,
+					IIF(YEAR(Fields!event_instance_finish_date.Value) = 1900,NOW(),Fields!event_instance_finish_date.Value)
+				)
+			) / 86400
+		)
+	),
+	DATEDIFF("h",MIN(Fields!event_instance_start_date.Value, "rpt_wit_main"),IIF(YEAR(MAX(Fields!event_instance_finish_date.Value, "rpt_wit_main")) = 1900,NOW,MAX(Fields!event_instance_finish_date.Value, "rpt_wit_main"))) &gt; 1,
+	(
+		FLOOR
+		(
+			AVG
+			(
+				DATEDIFF
+				(
+					"s",
+					Fields!event_instance_start_date.Value,
+					IIF(YEAR(Fields!event_instance_finish_date.Value) = 1900,NOW(),Fields!event_instance_finish_date.Value)
+				)
+			) / 3600
+		)
+	),
+	DATEDIFF("m",MIN(Fields!event_instance_start_date.Value, "rpt_wit_main"),IIF(YEAR(MAX(Fields!event_instance_finish_date.Value, "rpt_wit_main")) = 1900,NOW,MAX(Fields!event_instance_finish_date.Value, "rpt_wit_main"))) &gt; 1,
+	(
+		FLOOR
+		(
+			AVG
+			(
+				DATEDIFF
+				(
+					"s",
+					Fields!event_instance_start_date.Value,
+					IIF(YEAR(Fields!event_instance_finish_date.Value) = 1900,NOW(),Fields!event_instance_finish_date.Value)
+				)
+			) / 60
+		)
+	),
+	TRUE,
+	(
+		FLOOR
+		(
+			AVG
+			(
+				DATEDIFF
+				(
+					"s",
+					Fields!event_instance_start_date.Value,
+					IIF(YEAR(Fields!event_instance_finish_date.Value) = 1900,NOW(),Fields!event_instance_finish_date.Value)
+				)
+			) / 1
+		)
+	)
+)</Y>
+                  </ChartDataPointValues>
+                  <ChartDataLabel>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                      <Format>#,0;(#,0)</Format>
+                    </Style>
+                    <Label>=
+SWITCH
+(
+	DATEDIFF("d",MIN(Fields!event_instance_start_date.Value, "rpt_wit_main"),IIF(YEAR(MAX(Fields!event_instance_finish_date.Value, "rpt_wit_main")) = 1900,NOW,MAX(Fields!event_instance_finish_date.Value, "rpt_wit_main"))) &gt; 1,
+	(
+		FLOOR
+		(
+			AVG
+			(
+				DATEDIFF
+				(
+					"s",
+					Fields!event_instance_start_date.Value,
+					IIF(YEAR(Fields!event_instance_finish_date.Value) = 1900,NOW(),Fields!event_instance_finish_date.Value)
+				)
+			) / 86400
+		)
+	),
+	DATEDIFF("h",MIN(Fields!event_instance_start_date.Value, "rpt_wit_main"),IIF(YEAR(MAX(Fields!event_instance_finish_date.Value, "rpt_wit_main")) = 1900,NOW,MAX(Fields!event_instance_finish_date.Value, "rpt_wit_main"))) &gt; 1,
+	(
+		FLOOR
+		(
+			AVG
+			(
+				DATEDIFF
+				(
+					"s",
+					Fields!event_instance_start_date.Value,
+					IIF(YEAR(Fields!event_instance_finish_date.Value) = 1900,NOW(),Fields!event_instance_finish_date.Value)
+				)
+			) / 3600
+		)
+	),
+	DATEDIFF("m",MIN(Fields!event_instance_start_date.Value, "rpt_wit_main"),IIF(YEAR(MAX(Fields!event_instance_finish_date.Value, "rpt_wit_main")) = 1900,NOW,MAX(Fields!event_instance_finish_date.Value, "rpt_wit_main"))) &gt; 1,
+	(
+		FLOOR
+		(
+			AVG
+			(
+				DATEDIFF
+				(
+					"s",
+					Fields!event_instance_start_date.Value,
+					IIF(YEAR(Fields!event_instance_finish_date.Value) = 1900,NOW(),Fields!event_instance_finish_date.Value)
+				)
+			) / 60
+		)
+	),
+	TRUE,
+	(
+		FLOOR
+		(
+			AVG
+			(
+				DATEDIFF
+				(
+					"s",
+					Fields!event_instance_start_date.Value,
+					IIF(YEAR(Fields!event_instance_finish_date.Value) = 1900,NOW(),Fields!event_instance_finish_date.Value)
+				)
+			) / 1
+		)
+	)
+)</Label>
+                    <Visible>true</Visible>
+                    <Position>Top</Position>
+                  </ChartDataLabel>
+                  <Style>
+                    <Border>
+                      <Width>2pt</Width>
+                    </Border>
+                  </Style>
+                  <ChartMarker>
+                    <Type>Circle</Type>
+                    <Size>6pt</Size>
+                    <Style />
+                  </ChartMarker>
+                  <DataElementOutput>Output</DataElementOutput>
+                </ChartDataPoint>
+              </ChartDataPoints>
+              <Type>Line</Type>
+              <Style />
+              <ChartEmptyPoints>
+                <Style />
+                <ChartMarker>
+                  <Style />
+                </ChartMarker>
+                <ChartDataLabel>
+                  <Style />
+                </ChartDataLabel>
+              </ChartEmptyPoints>
+              <ValueAxisName>Primary</ValueAxisName>
+              <CategoryAxisName>Primary</CategoryAxisName>
+              <ChartSmartLabel>
+                <Disabled>true</Disabled>
+                <CalloutLineColor>Black</CalloutLineColor>
+                <MinMovingDistance>0pt</MinMovingDistance>
+              </ChartSmartLabel>
+            </ChartSeries>
+          </ChartSeriesCollection>
+        </ChartData>
+        <ChartAreas>
+          <ChartArea Name="Default">
+            <ChartCategoryAxes>
+              <ChartAxis Name="Primary">
+                <Style>
+                  <Border>
+                    <Color>Gainsboro</Color>
+                  </Border>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <Margin>False</Margin>
+                <LabelInterval>1</LabelInterval>
+                <ChartMajorGridLines>
+                  <Enabled>True</Enabled>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Enabled>True</Enabled>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <Angle>-90</Angle>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+              <ChartAxis Name="Secondary">
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption>Axis Title</Caption>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Enabled>False</Enabled>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Location>Opposite</Location>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+            </ChartCategoryAxes>
+            <ChartValueAxes>
+              <ChartAxis Name="Primary">
+                <Style>
+                  <Border>
+                    <Color>Gainsboro</Color>
+                  </Border>
+                  <FontSize>8pt</FontSize>
+                  <Format>#,0;(#,0)</Format>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption>=
+SWITCH
+(
+	DATEDIFF("d",MIN(Fields!event_instance_start_date.Value, "rpt_wit_main"),IIF(YEAR(MAX(Fields!event_instance_finish_date.Value, "rpt_wit_main")) = 1900,NOW,MAX(Fields!event_instance_finish_date.Value, "rpt_wit_main"))) &gt;= 1,
+	"Days",
+	DATEDIFF("h",MIN(Fields!event_instance_start_date.Value, "rpt_wit_main"),IIF(YEAR(MAX(Fields!event_instance_finish_date.Value, "rpt_wit_main")) = 1900,NOW,MAX(Fields!event_instance_finish_date.Value, "rpt_wit_main"))) &gt;= 1,
+	"Hours",
+	DATEDIFF("m",MIN(Fields!event_instance_start_date.Value, "rpt_wit_main"),IIF(YEAR(MAX(Fields!event_instance_finish_date.Value, "rpt_wit_main")) = 1900,NOW,MAX(Fields!event_instance_finish_date.Value, "rpt_wit_main"))) &gt;= 1,
+	"Minutes",
+	TRUE,
+	"Seconds"
+)</Caption>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </ChartAxisTitle>
+                <IntervalType>Number</IntervalType>
+                <ChartMajorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <LabelsAutoFitDisabled>true</LabelsAutoFitDisabled>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+              <ChartAxis Name="Secondary">
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption>Axis Title</Caption>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Location>Opposite</Location>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+            </ChartValueAxes>
+            <Style>
+              <BackgroundGradientType>None</BackgroundGradientType>
+            </Style>
+          </ChartArea>
+        </ChartAreas>
+        <Palette>BrightPastel</Palette>
+        <ChartBorderSkin>
+          <Style>
+            <BackgroundColor>Gray</BackgroundColor>
+            <BackgroundGradientType>None</BackgroundGradientType>
+            <Color>White</Color>
+          </Style>
+        </ChartBorderSkin>
+        <ChartNoDataMessage Name="NoDataMessage">
+          <Caption>No Data Available</Caption>
+          <Style>
+            <BackgroundGradientType>None</BackgroundGradientType>
+            <TextAlign>General</TextAlign>
+            <VerticalAlign>Top</VerticalAlign>
+          </Style>
+        </ChartNoDataMessage>
+        <DataSetName>rpt_wit_main</DataSetName>
+        <Height>3.5in</Height>
+        <Width>13in</Width>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <BackgroundColor>White</BackgroundColor>
+          <BackgroundGradientType>None</BackgroundGradientType>
+        </Style>
+      </Chart>
+    </ReportItems>
+    <Height>3.5in</Height>
+    <Style />
+  </Body>
+  <Width>13in</Width>
+  <Page>
+    <InteractiveHeight>8.5in</InteractiveHeight>
+    <InteractiveWidth>11in</InteractiveWidth>
+    <LeftMargin>1in</LeftMargin>
+    <RightMargin>1in</RightMargin>
+    <TopMargin>1in</TopMargin>
+    <BottomMargin>1in</BottomMargin>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="SOURCECODE">
+      <DataSourceReference>K2 SmartObjects</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>8ee04eba-5b65-430e-bb5a-e53701c13ea5</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="VSuite_DB">
+      <DataSourceReference>VSuite_DB</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>f1fe19c5-b5df-4a7d-ae82-287d9c9af699</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="rpt_wit_main">
+      <Query>
+        <DataSourceName>SOURCECODE</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@K2ProcInstId">
+            <Value>=Parameters!K2ProcInstId.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT DISTINCT
+	a.activityinstanceid		activity_instance_id,
+	a.activityname				activity_instance_actvity_name,
+	a.startdate					activity_instance_start_date,
+	a.finishdate				activity_instance_finish_date,
+	a.status					activity_instance_status,
+	b.destination				activity_instance_destination,
+	c.eventname					event_instance_name,
+	c.destination				event_instance_destination,
+	c.startdate					event_instance_start_date,
+	c.finishdate				event_instance_finish_date,
+	c.status					event_instance_status
+FROM
+	activity_instance a
+	LEFT JOIN activity_slot_data b ON (a.activityinstanceid = b.activityinstanceid)
+		AND (a.processinstanceid = b.processinstanceid)
+	LEFT JOIN event_instance c ON (a.activityinstanceid = c.activityinstanceid)
+		AND (a.processinstanceid = c.processinstanceid)
+WHERE
+	(a.processinstanceid = @K2ProcInstId)
+	AND (c.status &lt;&gt; 'Empty')
+	AND (c.status &lt;&gt; 'Expired')
+	AND (c.eventname &lt;&gt; 'DataEvent')
+	AND (c.eventname NOT LIKE 'get%')
+	AND (c.eventname NOT LIKE 'read%')</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="activity_instance_actvity_name">
+          <DataField>activity_instance_actvity_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="activity_instance_start_date">
+          <DataField>activity_instance_start_date</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="activity_instance_finish_date">
+          <DataField>activity_instance_finish_date</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="activity_instance_id">
+          <DataField>activity_instance_id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="activity_instance_status">
+          <DataField>activity_instance_status</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="activity_instance_destination">
+          <DataField>activity_instance_destination</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="event_instance_name">
+          <DataField>event_instance_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="event_instance_destination">
+          <DataField>event_instance_destination</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="event_instance_start_date">
+          <DataField>event_instance_start_date</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="event_instance_finish_date">
+          <DataField>event_instance_finish_date</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="event_instance_status">
+          <DataField>event_instance_status</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="rpm_wit_process_instance">
+      <Query>
+        <DataSourceName>VSuite_DB</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@entry_id">
+            <Value>=Parameters!EvidenceEntryId.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>reports.rpm_wit_process_instance</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="id">
+          <DataField>id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="definition">
+          <DataField>definition</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="EvidenceEntryId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>5774060</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>EvidenceEntryId</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="K2ProcInstId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>rpm_wit_process_instance</DataSetName>
+          <ValueField>id</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>fc0277c6-f644-4351-9b87-6a3266eb7c30</rd:ReportID>
+</Report>

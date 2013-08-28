@@ -1,0 +1,597 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="VSuite_DB">
+      <DataSourceReference>VSuite_DB</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>8cf3837b-707a-4825-904d-35816dbbba0f</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="NonCompliantChapters">
+      <Query>
+        <DataSourceName>VSuite_DB</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@OrgID">
+            <Value>=Join(Parameters!OrgID.Value, ",")</Value>
+          </QueryParameter>
+          <QueryParameter Name="@StandardsBodyID">
+            <Value>=Parameters!StandardsBodyID.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT 
+	standardsBodyId,
+	b.organization			AS standardsbody,
+	standardsbodytitle,
+	ChapterCode,
+	ChapterSortOrder,
+	--compliance,
+	COUNT(standardid) AS standard_count
+
+
+	
+FROM vwOrgStandard a
+	INNER JOIN stbody b WITH(NOLOCK) ON a.StandardsBodyId = b.id
+	
+
+WHERE OrganizationId IN (SELECT value FROM dbo.fn_Split(@OrgID, ','))
+AND standardsbodyid IN (SELECT value FROM dbo.fn_Split(@StandardsBodyID, ','))
+AND compliance = 0
+
+
+GROUP BY standardsBodyId, b.organization, standardsbodytitle, ChapterCode, ChapterSortOrder
+
+HAVING COUNT(StandardId) &gt; 1
+
+ORDER BY standard_count DESC</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="standardsBodyId">
+          <DataField>standardsBodyId</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="chaptercode">
+          <DataField>ChapterCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="standardsbody">
+          <DataField>standardsbody</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="standard_count">
+          <DataField>standard_count</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="standardsbodytitle">
+          <DataField>standardsbodytitle</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ChapterSortOrder">
+          <DataField>ChapterSortOrder</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Orgs">
+      <Query>
+        <DataSourceName>VSuite_DB</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@HealthSysID">
+            <Value>=Parameters!HealthSysID.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT vhco_id FROM sthcohealthsystem where sthealthsystem_id = @HealthSysID</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="vhco_id">
+          <DataField>vhco_id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Tablix Name="Table_List">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>10.5in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>6.75in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Rectangle Name="Standards_Bodies_Rect">
+                          <ReportItems>
+                            <Chart Name="Chart1">
+                              <ChartCategoryHierarchy>
+                                <ChartMembers>
+                                  <ChartMember>
+                                    <Group Name="Chart1_CategoryGroup">
+                                      <GroupExpressions>
+                                        <GroupExpression>=Fields!chaptercode.Value</GroupExpression>
+                                      </GroupExpressions>
+                                    </Group>
+                                    <SortExpressions>
+                                      <SortExpression>
+                                        <Value>=Fields!standard_count.Value</Value>
+                                        <Direction>Descending</Direction>
+                                      </SortExpression>
+                                    </SortExpressions>
+                                    <Label>=Fields!chaptercode.Value</Label>
+                                  </ChartMember>
+                                </ChartMembers>
+                              </ChartCategoryHierarchy>
+                              <ChartSeriesHierarchy>
+                                <ChartMembers>
+                                  <ChartMember>
+                                    <Label>standard count</Label>
+                                  </ChartMember>
+                                </ChartMembers>
+                              </ChartSeriesHierarchy>
+                              <ChartData>
+                                <ChartSeriesCollection>
+                                  <ChartSeries Name="ComplianceRate">
+                                    <ChartDataPoints>
+                                      <ChartDataPoint>
+                                        <ChartDataPointValues>
+                                          <Y>=Fields!standard_count.Value</Y>
+                                        </ChartDataPointValues>
+                                        <ChartDataLabel>
+                                          <Style>
+                                            <FontFamily>Calibri</FontFamily>
+                                          </Style>
+                                        </ChartDataLabel>
+                                        <Style>
+                                          <BackgroundGradientType>DiagonalLeft</BackgroundGradientType>
+                                          <BackgroundGradientEndColor>#28010101</BackgroundGradientEndColor>
+                                          <BackgroundHatchType>None</BackgroundHatchType>
+                                        </Style>
+                                        <ChartMarker>
+                                          <Style />
+                                        </ChartMarker>
+                                        <DataElementOutput>Output</DataElementOutput>
+                                      </ChartDataPoint>
+                                    </ChartDataPoints>
+                                    <Style />
+                                    <ChartEmptyPoints>
+                                      <Style />
+                                      <ChartMarker>
+                                        <Style />
+                                      </ChartMarker>
+                                      <ChartDataLabel>
+                                        <Style />
+                                      </ChartDataLabel>
+                                    </ChartEmptyPoints>
+                                    <ChartItemInLegend>
+                                      <Hidden>true</Hidden>
+                                    </ChartItemInLegend>
+                                    <ValueAxisName>Primary</ValueAxisName>
+                                    <CategoryAxisName>Primary</CategoryAxisName>
+                                    <ChartSmartLabel>
+                                      <CalloutLineColor>Black</CalloutLineColor>
+                                      <MinMovingDistance>0pt</MinMovingDistance>
+                                    </ChartSmartLabel>
+                                  </ChartSeries>
+                                </ChartSeriesCollection>
+                              </ChartData>
+                              <ChartAreas>
+                                <ChartArea Name="Default">
+                                  <ChartCategoryAxes>
+                                    <ChartAxis Name="Primary">
+                                      <Style>
+                                        <Border>
+                                          <Color>DimGray</Color>
+                                          <Width>1.5pt</Width>
+                                        </Border>
+                                        <FontFamily>Calibri</FontFamily>
+                                      </Style>
+                                      <ChartAxisTitle>
+                                        <Caption />
+                                        <Style>
+                                          <FontSize>8pt</FontSize>
+                                        </Style>
+                                      </ChartAxisTitle>
+                                      <Interval>1</Interval>
+                                      <ChartMajorGridLines>
+                                        <Enabled>False</Enabled>
+                                        <Style>
+                                          <Border>
+                                            <Color>Gainsboro</Color>
+                                          </Border>
+                                        </Style>
+                                      </ChartMajorGridLines>
+                                      <ChartMinorGridLines>
+                                        <Style>
+                                          <Border>
+                                            <Color>Gainsboro</Color>
+                                            <Style>Dotted</Style>
+                                          </Border>
+                                        </Style>
+                                      </ChartMinorGridLines>
+                                      <ChartMajorTickMarks>
+                                        <Style>
+                                          <Border>
+                                            <Color>Gray</Color>
+                                          </Border>
+                                        </Style>
+                                        <Length>2</Length>
+                                      </ChartMajorTickMarks>
+                                      <ChartMinorTickMarks>
+                                        <Length>0.5</Length>
+                                      </ChartMinorTickMarks>
+                                      <CrossAt>NaN</CrossAt>
+                                      <Minimum>NaN</Minimum>
+                                      <Maximum>NaN</Maximum>
+                                      <PreventWordWrap>true</PreventWordWrap>
+                                      <AllowLabelRotation>Rotate30</AllowLabelRotation>
+                                      <MinFontSize>8pt</MinFontSize>
+                                      <MaxFontSize>12pt</MaxFontSize>
+                                      <ChartAxisScaleBreak>
+                                        <Style />
+                                      </ChartAxisScaleBreak>
+                                    </ChartAxis>
+                                    <ChartAxis Name="Secondary">
+                                      <Style>
+                                        <FontSize>8pt</FontSize>
+                                      </Style>
+                                      <ChartAxisTitle>
+                                        <Caption>Axis Title</Caption>
+                                        <Style>
+                                          <FontSize>8pt</FontSize>
+                                        </Style>
+                                      </ChartAxisTitle>
+                                      <ChartMajorGridLines>
+                                        <Enabled>False</Enabled>
+                                        <Style>
+                                          <Border>
+                                            <Color>Gainsboro</Color>
+                                          </Border>
+                                        </Style>
+                                      </ChartMajorGridLines>
+                                      <ChartMinorGridLines>
+                                        <Style>
+                                          <Border>
+                                            <Color>Gainsboro</Color>
+                                            <Style>Dotted</Style>
+                                          </Border>
+                                        </Style>
+                                      </ChartMinorGridLines>
+                                      <ChartMinorTickMarks>
+                                        <Length>0.5</Length>
+                                      </ChartMinorTickMarks>
+                                      <CrossAt>NaN</CrossAt>
+                                      <Location>Opposite</Location>
+                                      <Minimum>NaN</Minimum>
+                                      <Maximum>NaN</Maximum>
+                                      <ChartAxisScaleBreak>
+                                        <Style />
+                                      </ChartAxisScaleBreak>
+                                    </ChartAxis>
+                                  </ChartCategoryAxes>
+                                  <ChartValueAxes>
+                                    <ChartAxis Name="Primary">
+                                      <Style>
+                                        <Border>
+                                          <Color>DimGray</Color>
+                                        </Border>
+                                        <FontFamily>Calibri</FontFamily>
+                                      </Style>
+                                      <ChartAxisTitle>
+                                        <Caption>Count of Non-Compliant Standards across all Organizations</Caption>
+                                        <Style>
+                                          <FontSize>8pt</FontSize>
+                                        </Style>
+                                      </ChartAxisTitle>
+                                      <Interval>=IIF(MAX(SUM(Fields!standard_count.Value)) &lt; 20, 1, "Auto")</Interval>
+                                      <IntervalType>Number</IntervalType>
+                                      <ChartMajorGridLines>
+                                        <Style>
+                                          <Border>
+                                            <Color>Silver</Color>
+                                          </Border>
+                                        </Style>
+                                      </ChartMajorGridLines>
+                                      <ChartMinorGridLines>
+                                        <Style>
+                                          <Border>
+                                            <Color>Gainsboro</Color>
+                                            <Style>Dotted</Style>
+                                          </Border>
+                                        </Style>
+                                      </ChartMinorGridLines>
+                                      <ChartMajorTickMarks>
+                                        <Style>
+                                          <Border>
+                                            <Color>Gray</Color>
+                                          </Border>
+                                        </Style>
+                                      </ChartMajorTickMarks>
+                                      <ChartMinorTickMarks>
+                                        <Length>0.5</Length>
+                                      </ChartMinorTickMarks>
+                                      <CrossAt>NaN</CrossAt>
+                                      <ChartStripLines>
+                                        <ChartStripLine>
+                                          <Style>
+                                            <Border>
+                                              <Color>Tomato</Color>
+                                              <Style>Solid</Style>
+                                              <Width>2pt</Width>
+                                            </Border>
+                                            <BackgroundGradientType>None</BackgroundGradientType>
+                                            <FontSize>8pt</FontSize>
+                                            <TextAlign>General</TextAlign>
+                                            <VerticalAlign>Top</VerticalAlign>
+                                          </Style>
+                                          <IntervalType>Number</IntervalType>
+                                          <IntervalOffsetType>Number</IntervalOffsetType>
+                                        </ChartStripLine>
+                                      </ChartStripLines>
+                                      <Minimum>NaN</Minimum>
+                                      <Maximum>NaN</Maximum>
+                                      <LabelsAutoFitDisabled>true</LabelsAutoFitDisabled>
+                                      <ChartAxisScaleBreak>
+                                        <Style />
+                                      </ChartAxisScaleBreak>
+                                    </ChartAxis>
+                                    <ChartAxis Name="Secondary">
+                                      <Style>
+                                        <FontSize>8pt</FontSize>
+                                      </Style>
+                                      <ChartAxisTitle>
+                                        <Caption>Axis Title</Caption>
+                                        <Style>
+                                          <FontSize>8pt</FontSize>
+                                        </Style>
+                                      </ChartAxisTitle>
+                                      <ChartMajorGridLines>
+                                        <Style>
+                                          <Border>
+                                            <Color>Gainsboro</Color>
+                                          </Border>
+                                        </Style>
+                                      </ChartMajorGridLines>
+                                      <ChartMinorGridLines>
+                                        <Style>
+                                          <Border>
+                                            <Color>Gainsboro</Color>
+                                            <Style>Dotted</Style>
+                                          </Border>
+                                        </Style>
+                                      </ChartMinorGridLines>
+                                      <ChartMinorTickMarks>
+                                        <Length>0.5</Length>
+                                      </ChartMinorTickMarks>
+                                      <CrossAt>NaN</CrossAt>
+                                      <Location>Opposite</Location>
+                                      <Minimum>NaN</Minimum>
+                                      <Maximum>NaN</Maximum>
+                                      <ChartAxisScaleBreak>
+                                        <Style />
+                                      </ChartAxisScaleBreak>
+                                    </ChartAxis>
+                                  </ChartValueAxes>
+                                  <Style>
+                                    <BackgroundGradientType>None</BackgroundGradientType>
+                                  </Style>
+                                </ChartArea>
+                              </ChartAreas>
+                              <ChartTitles>
+                                <ChartTitle Name="Default">
+                                  <Caption>=Fields!standardsbody.Value + " - " + Fields!standardsbodytitle.Value</Caption>
+                                  <Style>
+                                    <BackgroundGradientType>None</BackgroundGradientType>
+                                    <FontWeight>Bold</FontWeight>
+                                    <TextAlign>General</TextAlign>
+                                    <VerticalAlign>Top</VerticalAlign>
+                                  </Style>
+                                </ChartTitle>
+                              </ChartTitles>
+                              <Palette>Custom</Palette>
+                              <ChartCustomPaletteColors>
+                                <ChartCustomPaletteColor>#608fd1</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#dc7821</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#7b57a8</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#799936</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#e3c726</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#2f3100</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#2889a3</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#21236b</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#388060</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#d81212</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#5a5c7a</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#18bcc4</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#20c457</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#2229f8</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#d33c09</ChartCustomPaletteColor>
+                                <ChartCustomPaletteColor>#ac30bf</ChartCustomPaletteColor>
+                              </ChartCustomPaletteColors>
+                              <PaletteHatchBehavior>None</PaletteHatchBehavior>
+                              <ChartBorderSkin>
+                                <Style>
+                                  <BackgroundColor>Gray</BackgroundColor>
+                                  <BackgroundGradientType>None</BackgroundGradientType>
+                                  <Color>White</Color>
+                                </Style>
+                              </ChartBorderSkin>
+                              <ChartNoDataMessage Name="NoDataMessage">
+                                <Caption>No Data Available</Caption>
+                                <Style>
+                                  <BackgroundGradientType>None</BackgroundGradientType>
+                                  <TextAlign>General</TextAlign>
+                                  <VerticalAlign>Top</VerticalAlign>
+                                </Style>
+                              </ChartNoDataMessage>
+                              <DataSetName>NonCompliantChapters</DataSetName>
+                              <PageName>=Fields!standardsbody.Value + " - " + Fields!standardsbodytitle.Value</PageName>
+                              <Filters>
+                                <Filter>
+                                  <FilterExpression>=Fields!standard_count.Value</FilterExpression>
+                                  <Operator>TopN</Operator>
+                                  <FilterValues>
+                                    <FilterValue DataType="Integer">10</FilterValue>
+                                  </FilterValues>
+                                </Filter>
+                              </Filters>
+                              <Top>0.25in</Top>
+                              <Height>6.5in</Height>
+                              <Width>10.5in</Width>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <BackgroundColor>White</BackgroundColor>
+                                <BackgroundGradientType>None</BackgroundGradientType>
+                              </Style>
+                            </Chart>
+                            <Textbox Name="Textbox2">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>="Top NonCompliant Chapters"</Value>
+                                      <Style>
+                                        <FontFamily>Cambria</FontFamily>
+                                        <FontSize>12pt</FontSize>
+                                        <FontWeight>Bold</FontWeight>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox2</rd:DefaultName>
+                              <Height>0.25in</Height>
+                              <Width>10.5in</Width>
+                              <ZIndex>1</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </ReportItems>
+                          <KeepTogether>true</KeepTogether>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                          </Style>
+                        </Rectangle>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="Standards_Bodies">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!standardsBodyId.Value</GroupExpression>
+                    </GroupExpressions>
+                    <PageBreak>
+                      <BreakLocation>Between</BreakLocation>
+                    </PageBreak>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!standardsBodyId.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>NonCompliantChapters</DataSetName>
+            <Height>6.75in</Height>
+            <Width>10.5in</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+        </ReportItems>
+        <Height>6.75in</Height>
+        <Style />
+      </Body>
+      <Width>10.5in</Width>
+      <Page>
+        <PageHeight>8.5in</PageHeight>
+        <PageWidth>11in</PageWidth>
+        <InteractiveHeight>0in</InteractiveHeight>
+        <InteractiveWidth>0in</InteractiveWidth>
+        <LeftMargin>0.25in</LeftMargin>
+        <RightMargin>0.25in</RightMargin>
+        <TopMargin>0.25in</TopMargin>
+        <BottomMargin>0.25in</BottomMargin>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="HealthSysID">
+      <DataType>String</DataType>
+      <Prompt>Health Sys ID</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="OrgID">
+      <DataType>String</DataType>
+      <Prompt>OrgID</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>Orgs</DataSetName>
+          <ValueField>vhco_id</ValueField>
+          <LabelField>vhco_id</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="StandardsBodyID">
+      <DataType>String</DataType>
+      <Prompt>StandardsBodyID</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+  </ReportParameters>
+  <EmbeddedImages>
+    <EmbeddedImage Name="correct">
+      <MIMEType>image/gif</MIMEType>
+      <ImageData>R0lGODlhFQAQALP/AP///3TBRl63KE6wFEquDkiuCkasCEKsBEKqAkCqAAAAAMDAwAAAAAAAAAAAAAAAACH5BAEAAAsALAAAAAAVABAAQAQ0cMlJq73yBMxrEN0yHMYRnlRAoFIwnIK5CAY7Da/NgvqnL76erBPQTA48FFK0sQVKzZ4tAgA7gILyEwEAOw==</ImageData>
+    </EmbeddedImage>
+    <EmbeddedImage Name="notcorrect">
+      <MIMEType>image/gif</MIMEType>
+      <ImageData>R0lGODlhFAAQALP/AP////9MRv8wKP8cFP8XDv8VDP8TCv8RCP8NBP8LAv8JAAAAAMDAwAAAAAAAAAAAACH5BAEAAAwALAAAAAAUABAAQAQ3kMlJq70DkctRoAGCcExAeJRADB/puuFQIvIrCd7a2nxvCzufaJLZ/BA4gY9xQtlCTl1wSeVEAAA7c5gMZuBjJwIAOw==</ImageData>
+    </EmbeddedImage>
+    <EmbeddedImage Name="notjudged">
+      <MIMEType>image/gif</MIMEType>
+      <ImageData>R0lGODlhSwAOAPcAAAAAAIAAAACAAICAAAAAgIAAgACAgICAgMDAwP8AAAD/AP//AAAA//8A/wD//////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMwAAZgAAmQAAzAAA/wAzAAAzMwAzZgAzmQAzzAAz/wBmAABmMwBmZgBmmQBmzABm/wCZAACZMwCZZgCZmQCZzACZ/wDMAADMMwDMZgDMmQDMzADM/wD/AAD/MwD/ZgD/mQD/zAD//zMAADMAMzMAZjMAmTMAzDMA/zMzADMzMzMzZjMzmTMzzDMz/zNmADNmMzNmZjNmmTNmzDNm/zOZADOZMzOZZjOZmTOZzDOZ/zPMADPMMzPMZjPMmTPMzDPM/zP/ADP/MzP/ZjP/mTP/zDP//2YAAGYAM2YAZmYAmWYAzGYA/2YzAGYzM2YzZmYzmWYzzGYz/2ZmAGZmM2ZmZmZmmWZmzGZm/2aZAGaZM2aZZmaZmWaZzGaZ/2bMAGbMM2bMZmbMmWbMzGbM/2b/AGb/M2b/Zmb/mWb/zGb//5kAAJkAM5kAZpkAmZkAzJkA/5kzAJkzM5kzZpkzmZkzzJkz/5lmAJlmM5lmZplmmZlmzJlm/5mZAJmZM5mZZpmZmZmZzJmZ/5nMAJnMM5nMZpnMmZnMzJnM/5n/AJn/M5n/Zpn/mZn/zJn//8wAAMwAM8wAZswAmcwAzMwA/8wzAMwzM8wzZswzmcwzzMwz/8xmAMxmM8xmZsxmmcxmzMxm/8yZAMyZM8yZZsyZmcyZzMyZ/8zMAMzMM8zMZszMmczMzMzM/8z/AMz/M8z/Zsz/mcz/zMz///8AAP8AM/8AZv8Amf8AzP8A//8zAP8zM/8zZv8zmf8zzP8z//9mAP9mM/9mZv9mmf9mzP9m//+ZAP+ZM/+ZZv+Zmf+ZzP+Z///MAP/M
+M//MZv/Mmf/MzP/M////AP//M///Zv//mf//zP///yH5BAEAABAALAAAAABLAA4AQAj/ACEIHEiwoMGDCBMqXKgQBQoIhBxCkDjxIcWBFyGoQoEKRSoIflBUk0jyYUWQKPyVFJjxpMuKsF4WbNlyYU2ENw3mZMizp8+fQIMKHVox1TaJzVBQo4ZClcyKDlEc9YNym59qE7WcpCjRj7+JfVymQpFPZSEIo1JquyhRpclXDqcJrNZHKcaoJqMKZDrW4kNqeFA4k8h04987dvuiEmgVBaydRCNLvpvv6UBto2bi5QmZILWPDNmioEqx78fNdwcybQYhKbXGWqhtzfswX8gpTPW2dgg6X8TBJiv6A+5yJcGMIUeKgjA8ot/iD7ep+mMcb/XgEomP1bb6acaRDmU7GHR7MktK8BXRl1a69uNYfLkny59Pv37kgAA7</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <Language>en-US</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>bc28dca7-312f-48c5-857e-138d05e46745</rd:ReportID>
+</Report>
