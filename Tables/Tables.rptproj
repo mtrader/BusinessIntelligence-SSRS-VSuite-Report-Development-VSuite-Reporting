@@ -18,20 +18,20 @@
   <DataSets />
   <Reports>
     <ProjectItem>
-      <Name>10 Threshold Compliance Table - Organizational Unit.rdl</Name>
-      <FullPath>10 Threshold Compliance Table - Organizational Unit.rdl</FullPath>
+      <Name>1.0 Threshold Compliance Table - Organizational Unit.rdl</Name>
+      <FullPath>1.0 Threshold Compliance Table - Organizational Unit.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>10 Threshold Compliance Table NO COMMENTS.rdl</Name>
-      <FullPath>10 Threshold Compliance Table NO COMMENTS.rdl</FullPath>
+      <Name>1.0 Threshold Compliance Table NO COMMENTS.rdl</Name>
+      <FullPath>1.0 Threshold Compliance Table NO COMMENTS.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>10 Threshold Compliance Table(Advanced).rdl</Name>
-      <FullPath>10 Threshold Compliance Table(Advanced).rdl</FullPath>
+      <Name>1.0 Threshold Compliance Table(Advanced).rdl</Name>
+      <FullPath>1.0 Threshold Compliance Table(Advanced).rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>10 Threshold Compliance Table.rdl</Name>
-      <FullPath>10 Threshold Compliance Table.rdl</FullPath>
+      <Name>1.0 Threshold Compliance Table.rdl</Name>
+      <FullPath>1.0 Threshold Compliance Table.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
       <Name>Adverse Answer Report.rdl</Name>
