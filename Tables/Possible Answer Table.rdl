@@ -8,6 +8,11 @@
       <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>560ea361-411b-48de-b05d-5dc74e4c36ef</rd:DataSourceID>
     </DataSource>
+    <DataSource Name="reports_reporting_server">
+      <DataSourceReference>reports_reporting_server</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>eaf739c9-0910-4887-b159-af3c7dd6d774</rd:DataSourceID>
+    </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="Question_Aggregate_Location">
@@ -438,7 +443,7 @@ FROM
           <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Evidence Entry].[Evidence Entry Id].[Evidence Entry Id]" /&gt;</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="Evidence_Entry_Count">
+        <Field Name="Presented">
           <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[Evidence Entry Count]" /&gt;</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
@@ -456,6 +461,196 @@ FROM
           </FilterValues>
         </Filter>
       </Filters>
+    </DataSet>
+    <DataSet Name="rpm_pat_grouping_column">
+      <Query>
+        <DataSourceName>reports_reporting_server</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@grouping_type">
+            <Value>column</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>reporting.rpm_pat_grouping</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="id">
+          <DataField>id</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="id_mdx">
+          <DataField>id_mdx</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="id_sort">
+          <DataField>id_sort</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="definition">
+          <DataField>definition</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="definition_label">
+          <DataField>definition_label</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="sort">
+          <DataField>sort</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="rpm_pat_grouping_parent_row">
+      <Query>
+        <DataSourceName>reports_reporting_server</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@grouping_type">
+            <Value>parent_row</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>reporting.rpm_pat_grouping</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="id">
+          <DataField>id</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="id_mdx">
+          <DataField>id_mdx</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="id_sort">
+          <DataField>id_sort</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="definition">
+          <DataField>definition</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="definition_label">
+          <DataField>definition_label</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="sort">
+          <DataField>sort</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="rpm_pat_grouping_child_row">
+      <Query>
+        <DataSourceName>reports_reporting_server</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@grouping_type">
+            <Value>child_row</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>reporting.rpm_pat_grouping</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="id">
+          <DataField>id</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="id_mdx">
+          <DataField>id_mdx</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="id_sort">
+          <DataField>id_sort</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="definition">
+          <DataField>definition</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="definition_label">
+          <DataField>definition_label</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="sort">
+          <DataField>sort</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="rpm_pat_grouping_grandchild_row">
+      <Query>
+        <DataSourceName>reports_reporting_server</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@grouping_type">
+            <Value>grandchild_row</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>reporting.rpm_pat_grouping</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="id">
+          <DataField>id</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="id_mdx">
+          <DataField>id_mdx</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="id_sort">
+          <DataField>id_sort</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="definition">
+          <DataField>definition</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="definition_label">
+          <DataField>definition_label</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="sort">
+          <DataField>sort</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="rpm_pat_grouping_page">
+      <Query>
+        <DataSourceName>reports_reporting_server</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@grouping_type">
+            <Value>page</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>reporting.rpm_pat_grouping</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="id">
+          <DataField>id</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="id_mdx">
+          <DataField>id_mdx</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="id_sort">
+          <DataField>id_sort</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="definition">
+          <DataField>definition</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="definition_label">
+          <DataField>definition_label</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="sort">
+          <DataField>sort</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
     </DataSet>
   </DataSets>
   <ReportSections>
@@ -6213,6 +6408,15 @@ FROM
         </ParameterValues>
       </ValidValues>
     </ReportParameter>
+    <ReportParameter Name="Format_ColumnSorting_6">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>month_sort</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Format_ColumnSorting_6</Prompt>
+    </ReportParameter>
     <ReportParameter Name="Format_ParentRowGrouping_10">
       <DataType>String</DataType>
       <DefaultValue>
@@ -6293,6 +6497,15 @@ FROM
           </ParameterValue>
         </ParameterValues>
       </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Format_ParentRowSorting_11">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>question_sort</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Format_ParentRowSorting_11</Prompt>
     </ReportParameter>
     <ReportParameter Name="Format_ChildRowGrouping_15">
       <DataType>String</DataType>
@@ -6378,6 +6591,15 @@ FROM
           </ParameterValue>
         </ParameterValues>
       </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Format_ChildRowSorting_16">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>answer_sort</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Format_ChildRowSorting_16</Prompt>
     </ReportParameter>
     <ReportParameter Name="Format_GrandChildRowGrouping_20">
       <DataType>String</DataType>
@@ -6484,6 +6706,15 @@ FROM
           </ParameterValue>
         </ParameterValues>
       </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Format_GrandChildRowSorting_22">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>none</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Format_GrandChildRowSorting_22</Prompt>
     </ReportParameter>
     <ReportParameter Name="Format_CalculationOptions_25">
       <DataType>String</DataType>
@@ -6948,7 +7179,7 @@ FROM
       <DataType>String</DataType>
       <DefaultValue>
         <Values>
-          <Value />
+          <Value>0</Value>
         </Values>
       </DefaultValue>
       <AllowBlank>true</AllowBlank>
@@ -6958,7 +7189,7 @@ FROM
       <DataType>String</DataType>
       <DefaultValue>
         <Values>
-          <Value />
+          <Value>0</Value>
         </Values>
       </DefaultValue>
       <AllowBlank>true</AllowBlank>
@@ -6966,11 +7197,23 @@ FROM
     </ReportParameter>
     <ReportParameter Name="ReportHeaderId">
       <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>-1</Value>
+          <Value>-1</Value>
+        </Values>
+      </DefaultValue>
       <Prompt>ReportHeaderId</Prompt>
       <MultiValue>true</MultiValue>
     </ReportParameter>
     <ReportParameter Name="ReportFooterId">
       <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>-1</Value>
+          <Value>-1</Value>
+        </Values>
+      </DefaultValue>
       <Prompt>ReportFooterId</Prompt>
       <MultiValue>true</MultiValue>
     </ReportParameter>
@@ -7036,40 +7279,58 @@ FROM
 
         If (Format_ColumnGrouping_5Param = "month") Then
             ColumnGroupSortOrder = "Month_Name_Year"
+
         ElseIf (Format_ColumnGrouping_5Param = "quarter") Then
             ColumnGroupSortOrder = "Month_Name_Year"
+
         ElseIf (Format_ColumnGrouping_5Param = "year") Then
             ColumnGroupSortOrder = "Month_Name_Year"
+
         ElseIf (Format_ColumnGrouping_5Param = "dotw") Then
             ColumnGroupSortOrder = "Day_Of_Week"
+
         ElseIf (Format_ColumnGrouping_5Param = "system") Then
             ColumnGroupSortOrder = "Health_System_Name"
+
         ElseIf (Format_ColumnGrouping_5Param = "org") Then
             ColumnGroupSortOrder = "Org_Name"
+
         ElseIf (Format_ColumnGrouping_5Param = "orgunit") Then
             ColumnGroupSortOrder = "Org_Unit_Name"
+
         ElseIf (Format_ColumnGrouping_5Param = "setting") Then
             ColumnGroupSortOrder = "Location_Name"
+
         ElseIf (Format_ColumnGrouping_5Param = "audit") Then
             ColumnGroupSortOrder = "Evidence_Name"
+
         ElseIf (Format_ColumnGrouping_5Param = "group") Then
             ColumnGroupSortOrder = "Evidence_Question_Group_Order"
+
         ElseIf (Format_ColumnGrouping_5Param = "department") Then
             ColumnGroupSortOrder = "Staff_Department"
+
         ElseIf (Format_ColumnGrouping_5Param = "uid") Then
             ColumnGroupSortOrder = "Evidence_Entry_Local_Code"
+
         ElseIf (Format_ColumnGrouping_5Param = "fullname") Then
             ColumnGroupSortOrder = "Staff_Full_Name"
+
         ElseIf (Format_ColumnGrouping_5Param = "lastfirst") Then
             ColumnGroupSortOrder = "Staff_Last_Name"
+
         ElseIf (Format_ColumnGrouping_5Param = "localid") Then
             ColumnGroupSortOrder = "Staff_Local_Code"
+
         ElseIf (Format_ColumnGrouping_5Param = "vergeid") Then
             ColumnGroupSortOrder = "Staff_Id"
+
         ElseIf (Format_ColumnGrouping_5Param = "title") Then
             ColumnGroupSortOrder = "Staff_Title"
+
         ElseIf (Format_ColumnGrouping_5Param = "answer") Then
             ColumnGroupSortOrder = "Possible_Answer_Order"
+
         ElseIf (Format_ColumnGrouping_5Param = "enteredby") Then
             ColumnGroupSortOrder = "Entered_By_Display_Name"
         Else
