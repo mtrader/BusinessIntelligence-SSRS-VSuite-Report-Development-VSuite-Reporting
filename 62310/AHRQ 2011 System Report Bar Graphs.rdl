@@ -1,0 +1,711 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="VSuiteCube">
+      <DataSourceReference>/Data Sources/VSuite_Cube</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>560ea361-411b-48de-b05d-5dc74e4c36ef</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="Question_Aggregate_Org">
+      <Query>
+        <DataSourceName>VSuiteCube</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="HealthSystemHealthSystemId">
+            <Value>=Parameters!HealthSystemId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="ObservationDateYQMD">
+            <Value>=Parameters!ObservationDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="QuestionQuestionTypeId">
+            <Value>=Parameters!QuestionTypeId.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText> SELECT NON EMPTY { [Measures].[Presented], [Measures].[Selected] } ON COLUMNS, NON EMPTY { ([Health System].[Health System - Org].[Org Name].ALLMEMBERS * [Question].[Health System - Question Group - Question Type - Question Name].[Question Name].ALLMEMBERS * [Question].[Question Order].[Question Order].ALLMEMBERS * [Evidence Question Group].[Evidence Question Group Order].[Evidence Question Group Order].ALLMEMBERS * [Possible Answer].[Health System - Possible Answer].[Possible Answer Name].ALLMEMBERS * [Possible Answer].[Possible Answer Order].[Possible Answer Order].ALLMEMBERS * [Observation Date].[Year - Quarter Year- Month Year - Date].[Year].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_UNIQUE_NAME ON ROWS FROM ( SELECT ( -{ [Question].[Question Id].&amp;[332491] } ) ON COLUMNS FROM ( SELECT ( { [Evidence Question].[Evidence Question Hidden].&amp;[Not Hidden] } ) ON COLUMNS FROM ( SELECT ( -{ [Question].[Question Name].&amp;[198963], [Question].[Question Name].&amp;[286860], [Question].[Question Name].&amp;[314613], [Question].[Question Name].&amp;[332490], [Question].[Question Name].&amp;[286861], [Question].[Question Name].&amp;[314614], [Question].[Question Name].&amp;[332491] } ) ON COLUMNS FROM ( SELECT ( { [Evidence].[Health System - Evidence].[Evidence Id].&amp;[663126], [Evidence].[Health System - Evidence].[Evidence Id].&amp;[663125], [Evidence].[Health System - Evidence].[Evidence Id].&amp;[663124], [Evidence].[Health System - Evidence].[Evidence Id].&amp;[663123], [Evidence].[Health System - Evidence].[Evidence Id].&amp;[663122], [Evidence].[Health System - Evidence].[Evidence Id].&amp;[663121], [Evidence].[Health System - Evidence].[Evidence Id].&amp;[663120], [Evidence].[Health System - Evidence].[Evidence Id].&amp;[663119], [Evidence].[Health System - Evidence].[Evidence Id].&amp;[663118], [Evidence].[Health System - Evidence].[Evidence Id].&amp;[663117], [Evidence].[Health System - Evidence].[Evidence Id].&amp;[663116], [Evidence].[Health System - Evidence].[Evidence Id].&amp;[663115], [Evidence].[Health System - Evidence].[Evidence Id].&amp;[663114], [Evidence].[Health System - Evidence].[Evidence Id].&amp;[663113] } ) ON COLUMNS FROM ( SELECT ( -{ [Possible Answer].[Possible Answer Id].&amp;[-1] } ) ON COLUMNS FROM ( SELECT ( { [Evidence Entry].[Evidence Entry Deleted].&amp;[Not Deleted] } ) ON COLUMNS FROM ( SELECT ( STRTOSET(@QuestionQuestionTypeId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@ObservationDateYQMD, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED) ) ON COLUMNS FROM [VSuite]))))))))) WHERE ( IIF( STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED).Count = 1, STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED), [Health System].[Health System Id].currentmember ), IIF( STRTOSET(@ObservationDateYQMD, CONSTRAINED).Count = 1, STRTOSET(@ObservationDateYQMD, CONSTRAINED), [Observation Date].[Y - Q - M - D].currentmember ), IIF( STRTOSET(@QuestionQuestionTypeId, CONSTRAINED).Count = 1, STRTOSET(@QuestionQuestionTypeId, CONSTRAINED), [Question].[Question Type Id].currentmember ), [Evidence Entry].[Evidence Entry Deleted].&amp;[Not Deleted], [Evidence].[Health System - Evidence].CurrentMember, [Evidence Question].[Evidence Question Hidden].&amp;[Not Hidden] ) CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</CommandText>
+        <rd:DesignerState><QueryDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/AnalysisServices/QueryDefinition"><CommandType>MDX</CommandType><QuerySpecification xsi:type="MDXQuerySpecification"><Select><Items><Item><ID xsi:type="Level"><DimensionName>Health System</DimensionName><HierarchyName>Health System - Org</HierarchyName><HierarchyUniqueName>[Health System].[Health System - Org]</HierarchyUniqueName><LevelName>Health System Name</LevelName><UniqueName>[Health System].[Health System - Org].[Health System Name]</UniqueName></ID><ItemCaption>Health System Name</ItemCaption><UniqueName>true</UniqueName></Item><Item><ID xsi:type="Level"><DimensionName>Health System</DimensionName><HierarchyName>Health System - Org</HierarchyName><HierarchyUniqueName>[Health System].[Health System - Org]</HierarchyUniqueName><LevelName>Org Name</LevelName><UniqueName>[Health System].[Health System - Org].[Org Name]</UniqueName></ID><ItemCaption>Org Name</ItemCaption><UniqueName>true</UniqueName></Item><Item><ID xsi:type="Level"><DimensionName>Question</DimensionName><HierarchyName>Health System - Question Group - Question Type - Question Name</HierarchyName><HierarchyUniqueName>[Question].[Health System - Question Group - Question Type - Question Name]</HierarchyUniqueName><LevelName>Question Group Name</LevelName><UniqueName>[Question].[Health System - Question Group - Question Type - Question Name].[Question Group Name]</UniqueName></ID><ItemCaption>Question Group Name</ItemCaption><UniqueName>true</UniqueName></Item><Item><ID xsi:type="Level"><DimensionName>Question</DimensionName><HierarchyName>Health System - Question Group - Question Type - Question Name</HierarchyName><HierarchyUniqueName>[Question].[Health System - Question Group - Question Type - Question Name]</HierarchyUniqueName><LevelName>Question Name</LevelName><UniqueName>[Question].[Health System - Question Group - Question Type - Question Name].[Question Name]</UniqueName></ID><ItemCaption>Question Name</ItemCaption><UniqueName>true</UniqueName></Item><Item><ID xsi:type="Level"><DimensionName>Question</DimensionName><HierarchyName>Question Order</HierarchyName><HierarchyUniqueName>[Question].[Question Order]</HierarchyUniqueName><LevelName>Question Order</LevelName><UniqueName>[Question].[Question Order].[Question Order]</UniqueName></ID><ItemCaption>Question Order</ItemCaption><UniqueName>true</UniqueName></Item><Item><ID xsi:type="Level"><DimensionName>Evidence Question Group</DimensionName><HierarchyName>Evidence Question Group Order</HierarchyName><HierarchyUniqueName>[Evidence Question Group].[Evidence Question Group Order]</HierarchyUniqueName><LevelName>Evidence Question Group Order</LevelName><UniqueName>[Evidence Question Group].[Evidence Question Group Order].[Evidence Question Group Order]</UniqueName></ID><ItemCaption>Evidence Question Group Order</ItemCaption><UniqueName>true</UniqueName></Item><Item><ID xsi:type="Level"><DimensionName>Possible Answer</DimensionName><HierarchyName>Health System - Possible Answer</HierarchyName><HierarchyUniqueName>[Possible Answer].[Health System - Possible Answer]</HierarchyUniqueName><LevelName>Possible Answer Name</LevelName><UniqueName>[Possible Answer].[Health System - Possible Answer].[Possible Answer Name]</UniqueName></ID><ItemCaption>Possible Answer Name</ItemCaption><UniqueName>true</UniqueName></Item><Item><ID xsi:type="Level"><DimensionName>Possible Answer</DimensionName><HierarchyName>Possible Answer Order</HierarchyName><HierarchyUniqueName>[Possible Answer].[Possible Answer Order]</HierarchyUniqueName><LevelName>Possible Answer Order</LevelName><UniqueName>[Possible Answer].[Possible Answer Order].[Possible Answer Order]</UniqueName></ID><ItemCaption>Possible Answer Order</ItemCaption><UniqueName>true</UniqueName></Item><Item><ID xsi:type="Level"><DimensionName>Observation Date</DimensionName><HierarchyName>Year - Quarter Year- Month Year - Date</HierarchyName><HierarchyUniqueName>[Observation Date].[Year - Quarter Year- Month Year - Date]</HierarchyUniqueName><LevelName>Year</LevelName><UniqueName>[Observation Date].[Year - Quarter Year- Month Year - Date].[Year]</UniqueName></ID><ItemCaption>Year</ItemCaption><UniqueName>true</UniqueName></Item><Item><ID xsi:type="Measure"><MeasureName>Presented</MeasureName><UniqueName>[Measures].[Presented]</UniqueName></ID><ItemCaption>Presented</ItemCaption><BackColor>true</BackColor><ForeColor>true</ForeColor><FontFamily>true</FontFamily><FontSize>true</FontSize><FontWeight>true</FontWeight><FontStyle>true</FontStyle><FontDecoration>true</FontDecoration><FormattedValue>true</FormattedValue><FormatString>true</FormatString></Item><Item><ID xsi:type="Measure"><MeasureName>Selected</MeasureName><UniqueName>[Measures].[Selected]</UniqueName></ID><ItemCaption>Selected</ItemCaption><BackColor>true</BackColor><ForeColor>true</ForeColor><FontFamily>true</FontFamily><FontSize>true</FontSize><FontWeight>true</FontWeight><FontStyle>true</FontStyle><FontDecoration>true</FontDecoration><FormattedValue>true</FormattedValue><FormatString>true</FormatString></Item></Items></Select><AutoExecute>false</AutoExecute><From>VSuite</From><Filter><FilterItems><FilterItem><HierarchyUniqueName>[Health System].[Health System Id]</HierarchyUniqueName><Condition xsi:type="EqualTo"><Members><Member><MemberUniqueName>[Health System].[Health System Id].&amp;[122]</MemberUniqueName></Member></Members><Parametrized>true</Parametrized></Condition></FilterItem><FilterItem><HierarchyUniqueName>[Observation Date].[Y - Q - M - D]</HierarchyUniqueName><Condition xsi:type="EqualTo"><Members><Member><MemberUniqueName>[Observation Date].[Y - Q - M - D].[Year].&amp;[2011]</MemberUniqueName></Member></Members><Parametrized>true</Parametrized></Condition></FilterItem><FilterItem><HierarchyUniqueName>[Question].[Question Type Id]</HierarchyUniqueName><Condition xsi:type="EqualTo"><Members><Member><MemberUniqueName>[Question].[Question Type Id].&amp;[2]</MemberUniqueName></Member><Member><MemberUniqueName>[Question].[Question Type Id].&amp;[3]</MemberUniqueName></Member><Member><MemberUniqueName>[Question].[Question Type Id].&amp;[7]</MemberUniqueName></Member><Member><MemberUniqueName>[Question].[Question Type Id].&amp;[8]</MemberUniqueName></Member></Members><Parametrized>true</Parametrized></Condition></FilterItem><FilterItem><HierarchyUniqueName>[Evidence Entry].[Evidence Entry Deleted]</HierarchyUniqueName><Condition xsi:type="EqualTo"><Members><Member><MemberUniqueName>[Evidence Entry].[Evidence Entry Deleted].&amp;[Not Deleted]</MemberUniqueName></Member></Members></Condition></FilterItem><FilterItem><HierarchyUniqueName>[Possible Answer].[Possible Answer Id]</HierarchyUniqueName><Condition xsi:type="NotEqualTo"><Members><Member><MemberUniqueName>[Possible Answer].[Possible Answer Id].&amp;[-1]</MemberUniqueName></Member></Members></Condition></FilterItem><FilterItem><HierarchyUniqueName>[Evidence].[Health System - Evidence]</HierarchyUniqueName><Condition xsi:type="EqualTo"><Members><Member><MemberUniqueName>[Evidence].[Health System - Evidence].[Evidence Id].&amp;[663126]</MemberUniqueName></Member><Member><MemberUniqueName>[Evidence].[Health System - Evidence].[Evidence Id].&amp;[663125]</MemberUniqueName></Member><Member><MemberUniqueName>[Evidence].[Health System - Evidence].[Evidence Id].&amp;[663124]</MemberUniqueName></Member><Member><MemberUniqueName>[Evidence].[Health System - Evidence].[Evidence Id].&amp;[663123]</MemberUniqueName></Member><Member><MemberUniqueName>[Evidence].[Health System - Evidence].[Evidence Id].&amp;[663122]</MemberUniqueName></Member><Member><MemberUniqueName>[Evidence].[Health System - Evidence].[Evidence Id].&amp;[663121]</MemberUniqueName></Member><Member><MemberUniqueName>[Evidence].[Health System - Evidence].[Evidence Id].&amp;[663120]</MemberUniqueName></Member><Member><MemberUniqueName>[Evidence].[Health System - Evidence].[Evidence Id].&amp;[663119]</MemberUniqueName></Member><Member><MemberUniqueName>[Evidence].[Health System - Evidence].[Evidence Id].&amp;[663118]</MemberUniqueName></Member><Member><MemberUniqueName>[Evidence].[Health System - Evidence].[Evidence Id].&amp;[663117]</MemberUniqueName></Member><Member><MemberUniqueName>[Evidence].[Health System - Evidence].[Evidence Id].&amp;[663116]</MemberUniqueName></Member><Member><MemberUniqueName>[Evidence].[Health System - Evidence].[Evidence Id].&amp;[663115]</MemberUniqueName></Member><Member><MemberUniqueName>[Evidence].[Health System - Evidence].[Evidence Id].&amp;[663114]</MemberUniqueName></Member><Member><MemberUniqueName>[Evidence].[Health System - Evidence].[Evidence Id].&amp;[663113]</MemberUniqueName></Member></Members></Condition></FilterItem><FilterItem><HierarchyUniqueName>[Question].[Question Name]</HierarchyUniqueName><Condition xsi:type="NotEqualTo"><Members><Member><MemberUniqueName>[Question].[Question Name].&amp;[198963]</MemberUniqueName></Member><Member><MemberUniqueName>[Question].[Question Name].&amp;[286860]</MemberUniqueName></Member><Member><MemberUniqueName>[Question].[Question Name].&amp;[314613]</MemberUniqueName></Member><Member><MemberUniqueName>[Question].[Question Name].&amp;[332490]</MemberUniqueName></Member><Member><MemberUniqueName>[Question].[Question Name].&amp;[286861]</MemberUniqueName></Member><Member><MemberUniqueName>[Question].[Question Name].&amp;[314614]</MemberUniqueName></Member><Member><MemberUniqueName>[Question].[Question Name].&amp;[332491]</MemberUniqueName></Member></Members></Condition></FilterItem><FilterItem><HierarchyUniqueName>[Evidence Question].[Evidence Question Hidden]</HierarchyUniqueName><Condition xsi:type="EqualTo"><Members><Member><MemberUniqueName>[Evidence Question].[Evidence Question Hidden].&amp;[Not Hidden]</MemberUniqueName></Member></Members></Condition></FilterItem><FilterItem><HierarchyUniqueName>[Question].[Question Id]</HierarchyUniqueName><Condition xsi:type="NotEqualTo"><Members><Member><MemberUniqueName>[Question].[Question Id].&amp;[332491]</MemberUniqueName></Member></Members></Condition></FilterItem></FilterItems></Filter><Calculations /><Aggregates /><QueryProperties /></QuerySpecification><Query><Statement> SELECT NON EMPTY { [Measures].[Presented], [Measures].[Selected] } ON COLUMNS, NON EMPTY { ([Health System].[Health System - Org].[Org Name].ALLMEMBERS * [Question].[Health System - Question Group - Question Type - Question Name].[Question Name].ALLMEMBERS * [Question].[Question Order].[Question Order].ALLMEMBERS * [Evidence Question Group].[Evidence Question Group Order].[Evidence Question Group Order].ALLMEMBERS * [Possible Answer].[Health System - Possible Answer].[Possible Answer Name].ALLMEMBERS * [Possible Answer].[Possible Answer Order].[Possible Answer Order].ALLMEMBERS * [Observation Date].[Year - Quarter Year- Month Year - Date].[Year].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_UNIQUE_NAME ON ROWS FROM ( SELECT ( -{ [Question].[Question Id].&amp;[332491] } ) ON COLUMNS FROM ( SELECT ( { [Evidence Question].[Evidence Question Hidden].&amp;[Not Hidden] } ) ON COLUMNS FROM ( SELECT ( -{ [Question].[Question Name].&amp;[198963], [Question].[Question Name].&amp;[286860], [Question].[Question Name].&amp;[314613], [Question].[Question Name].&amp;[332490], [Question].[Question Name].&amp;[286861], [Question].[Question Name].&amp;[314614], [Question].[Question Name].&amp;[332491] } ) ON COLUMNS FROM ( SELECT ( { [Evidence].[Health System - Evidence].[Evidence Id].&amp;[663126], [Evidence].[Health System - Evidence].[Evidence Id].&amp;[663125], [Evidence].[Health System - Evidence].[Evidence Id].&amp;[663124], [Evidence].[Health System - Evidence].[Evidence Id].&amp;[663123], [Evidence].[Health System - Evidence].[Evidence Id].&amp;[663122], [Evidence].[Health System - Evidence].[Evidence Id].&amp;[663121], [Evidence].[Health System - Evidence].[Evidence Id].&amp;[663120], [Evidence].[Health System - Evidence].[Evidence Id].&amp;[663119], [Evidence].[Health System - Evidence].[Evidence Id].&amp;[663118], [Evidence].[Health System - Evidence].[Evidence Id].&amp;[663117], [Evidence].[Health System - Evidence].[Evidence Id].&amp;[663116], [Evidence].[Health System - Evidence].[Evidence Id].&amp;[663115], [Evidence].[Health System - Evidence].[Evidence Id].&amp;[663114], [Evidence].[Health System - Evidence].[Evidence Id].&amp;[663113] } ) ON COLUMNS FROM ( SELECT ( -{ [Possible Answer].[Possible Answer Id].&amp;[-1] } ) ON COLUMNS FROM ( SELECT ( { [Evidence Entry].[Evidence Entry Deleted].&amp;[Not Deleted] } ) ON COLUMNS FROM ( SELECT ( STRTOSET(@QuestionQuestionTypeId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@ObservationDateYQMD, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED) ) ON COLUMNS FROM [VSuite]))))))))) WHERE ( IIF( STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED).Count = 1, STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED), [Health System].[Health System Id].currentmember ), IIF( STRTOSET(@ObservationDateYQMD, CONSTRAINED).Count = 1, STRTOSET(@ObservationDateYQMD, CONSTRAINED), [Observation Date].[Y - Q - M - D].currentmember ), IIF( STRTOSET(@QuestionQuestionTypeId, CONSTRAINED).Count = 1, STRTOSET(@QuestionQuestionTypeId, CONSTRAINED), [Question].[Question Type Id].currentmember ), [Evidence Entry].[Evidence Entry Deleted].&amp;[Not Deleted], [Evidence].[Health System - Evidence].CurrentMember, [Evidence Question].[Evidence Question Hidden].&amp;[Not Hidden] ) CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</Statement><ParameterDefinitions><ParameterDefinition><Name>HealthSystemHealthSystemId</Name><DefaultValues><DefaultValue>[Health System].[Health System Id].&amp;[122]</DefaultValue></DefaultValues><Caption>Health System Id</Caption><HierarchyUniqueName>[Health System].[Health System Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Health System].[Health System Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Health System].[Health System Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Health System].[Health System Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Health System].[Health System Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>ObservationDateYQMD</Name><DefaultValues><DefaultValue>[Observation Date].[Y - Q - M - D].[Year].&amp;[2011]</DefaultValue></DefaultValues><Caption>Observation Date.Y - Q - M - D</Caption><HierarchyUniqueName>[Observation Date].[Y - Q - M - D]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Observation Date].[Y - Q - M - D].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED) ) ON COLUMNS FROM [VSuite])</Statement><ParameterizedStatement><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Observation Date].[Y - Q - M - D].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED) ) ON COLUMNS FROM [VSuite])</Statement><ReferencedParameters><ReferencedParameter><Name>HealthSystemHealthSystemId</Name></ReferencedParameter></ReferencedParameters></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>QuestionQuestionTypeId</Name><DefaultValues><DefaultValue>[Question].[Question Type Id].&amp;[2]</DefaultValue><DefaultValue>[Question].[Question Type Id].&amp;[3]</DefaultValue><DefaultValue>[Question].[Question Type Id].&amp;[7]</DefaultValue><DefaultValue>[Question].[Question Type Id].&amp;[8]</DefaultValue></DefaultValues><Caption>Question Type Id</Caption><HierarchyUniqueName>[Question].[Question Type Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Question].[Question Type Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Question].[Question Type Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Question].[Question Type Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Question].[Question Type Id].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@ObservationDateYQMD, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED) ) ON COLUMNS FROM [VSuite]))</Statement><ParameterizedStatement><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Question].[Question Type Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Question].[Question Type Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Question].[Question Type Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Question].[Question Type Id].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@ObservationDateYQMD, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED) ) ON COLUMNS FROM [VSuite]))</Statement><ReferencedParameters><ReferencedParameter><Name>HealthSystemHealthSystemId</Name></ReferencedParameter><ReferencedParameter><Name>ObservationDateYQMD</Name></ReferencedParameter></ReferencedParameters></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition></ParameterDefinitions></Query></QueryDefinition></rd:DesignerState>
+      </Query>
+      <Fields>
+        <Field Name="Health_System_Name">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Health System].[Health System - Org].[Health System Name]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Org_Name">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Health System].[Health System - Org].[Org Name]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Question_Group_Name">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Question].[Health System - Question Group - Question Type - Question Name].[Question Group Name]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Evidence_Question_Group_Order">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Evidence Question Group].[Evidence Question Group Order].[Evidence Question Group Order]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Question_Name">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Question].[Health System - Question Group - Question Type - Question Name].[Question Name]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Possible_Answer_Name">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Possible Answer].[Health System - Possible Answer].[Possible Answer Name]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Year">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Observation Date].[Year - Quarter Year- Month Year - Date].[Year]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Possible_Answer_Order">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Possible Answer].[Possible Answer Order].[Possible Answer Order]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Question_Order_Default">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Question].[Question Order].[Question Order]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Presented">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[Presented]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Selected">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[Selected]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Tablix Name="OrgList">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>6.78125in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>2in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Rectangle Name="RectangleOrgList">
+                          <ReportItems>
+                            <Tablix Name="QuestionList">
+                              <TablixBody>
+                                <TablixColumns>
+                                  <TablixColumn>
+                                    <Width>6.78125in</Width>
+                                  </TablixColumn>
+                                </TablixColumns>
+                                <TablixRows>
+                                  <TablixRow>
+                                    <Height>2in</Height>
+                                    <TablixCells>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Rectangle Name="RectangleQuestionList">
+                                            <ReportItems>
+                                              <Chart Name="Chart1">
+                                                <ChartCategoryHierarchy>
+                                                  <ChartMembers>
+                                                    <ChartMember>
+                                                      <Group Name="Chart1_CategoryGroup">
+                                                        <GroupExpressions>
+                                                          <GroupExpression>=Fields!Health_System_Name.Value</GroupExpression>
+                                                        </GroupExpressions>
+                                                      </Group>
+                                                      <SortExpressions>
+                                                        <SortExpression>
+                                                          <Value>=Fields!Health_System_Name.Value</Value>
+                                                        </SortExpression>
+                                                      </SortExpressions>
+                                                      <Label>=Fields!Health_System_Name.Value</Label>
+                                                    </ChartMember>
+                                                  </ChartMembers>
+                                                </ChartCategoryHierarchy>
+                                                <ChartSeriesHierarchy>
+                                                  <ChartMembers>
+                                                    <ChartMember>
+                                                      <Group Name="Chart1_SeriesGroup">
+                                                        <GroupExpressions>
+                                                          <GroupExpression>=Fields!Possible_Answer_Name.Value</GroupExpression>
+                                                        </GroupExpressions>
+                                                      </Group>
+                                                      <SortExpressions>
+                                                        <SortExpression>
+                                                          <Value>=Fields!Possible_Answer_Order.Value</Value>
+                                                        </SortExpression>
+                                                      </SortExpressions>
+                                                      <Label>=Fields!Possible_Answer_Name.Value</Label>
+                                                    </ChartMember>
+                                                  </ChartMembers>
+                                                </ChartSeriesHierarchy>
+                                                <ChartData>
+                                                  <ChartSeriesCollection>
+                                                    <ChartSeries Name="Selected">
+                                                      <ChartDataPoints>
+                                                        <ChartDataPoint>
+                                                          <ChartDataPointValues>
+                                                            <Y>=Sum(Fields!Selected.Value)/Sum(Fields!Selected.Value, "Details")</Y>
+                                                          </ChartDataPointValues>
+                                                          <ChartDataLabel>
+                                                            <Style>
+                                                              <Format>0%</Format>
+                                                            </Style>
+                                                            <UseValueAsLabel>true</UseValueAsLabel>
+                                                            <Visible>true</Visible>
+                                                          </ChartDataLabel>
+                                                          <ToolTip>#VALY</ToolTip>
+                                                          <Style />
+                                                          <ChartMarker>
+                                                            <Style />
+                                                          </ChartMarker>
+                                                          <DataElementOutput>Output</DataElementOutput>
+                                                        </ChartDataPoint>
+                                                      </ChartDataPoints>
+                                                      <Type>Bar</Type>
+                                                      <Subtype>Stacked</Subtype>
+                                                      <Style />
+                                                      <ChartEmptyPoints>
+                                                        <Style />
+                                                        <ChartMarker>
+                                                          <Style />
+                                                        </ChartMarker>
+                                                        <ChartDataLabel>
+                                                          <Style />
+                                                        </ChartDataLabel>
+                                                      </ChartEmptyPoints>
+                                                      <ValueAxisName>Primary</ValueAxisName>
+                                                      <CategoryAxisName>Primary</CategoryAxisName>
+                                                      <ChartSmartLabel>
+                                                        <CalloutLineColor>Black</CalloutLineColor>
+                                                        <MinMovingDistance>0pt</MinMovingDistance>
+                                                      </ChartSmartLabel>
+                                                    </ChartSeries>
+                                                  </ChartSeriesCollection>
+                                                </ChartData>
+                                                <ChartAreas>
+                                                  <ChartArea Name="Default">
+                                                    <ChartCategoryAxes>
+                                                      <ChartAxis Name="Primary">
+                                                        <Style>
+                                                          <FontSize>8pt</FontSize>
+                                                        </Style>
+                                                        <ChartAxisTitle>
+                                                          <Caption />
+                                                          <Style>
+                                                            <FontSize>8pt</FontSize>
+                                                          </Style>
+                                                        </ChartAxisTitle>
+                                                        <ChartMajorGridLines>
+                                                          <Enabled>False</Enabled>
+                                                          <Style>
+                                                            <Border>
+                                                              <Color>Gainsboro</Color>
+                                                            </Border>
+                                                          </Style>
+                                                        </ChartMajorGridLines>
+                                                        <ChartMinorGridLines>
+                                                          <Style>
+                                                            <Border>
+                                                              <Color>Gainsboro</Color>
+                                                              <Style>Dotted</Style>
+                                                            </Border>
+                                                          </Style>
+                                                        </ChartMinorGridLines>
+                                                        <ChartMinorTickMarks>
+                                                          <Length>0.5</Length>
+                                                        </ChartMinorTickMarks>
+                                                        <CrossAt>NaN</CrossAt>
+                                                        <Minimum>NaN</Minimum>
+                                                        <Maximum>NaN</Maximum>
+                                                        <HideLabels>true</HideLabels>
+                                                        <ChartAxisScaleBreak>
+                                                          <Style />
+                                                        </ChartAxisScaleBreak>
+                                                      </ChartAxis>
+                                                      <ChartAxis Name="Secondary">
+                                                        <Style>
+                                                          <FontSize>8pt</FontSize>
+                                                        </Style>
+                                                        <ChartAxisTitle>
+                                                          <Caption>Axis Title</Caption>
+                                                          <Style>
+                                                            <FontSize>8pt</FontSize>
+                                                          </Style>
+                                                        </ChartAxisTitle>
+                                                        <ChartMajorGridLines>
+                                                          <Enabled>False</Enabled>
+                                                          <Style>
+                                                            <Border>
+                                                              <Color>Gainsboro</Color>
+                                                            </Border>
+                                                          </Style>
+                                                        </ChartMajorGridLines>
+                                                        <ChartMinorGridLines>
+                                                          <Style>
+                                                            <Border>
+                                                              <Color>Gainsboro</Color>
+                                                              <Style>Dotted</Style>
+                                                            </Border>
+                                                          </Style>
+                                                        </ChartMinorGridLines>
+                                                        <ChartMinorTickMarks>
+                                                          <Length>0.5</Length>
+                                                        </ChartMinorTickMarks>
+                                                        <CrossAt>NaN</CrossAt>
+                                                        <Location>Opposite</Location>
+                                                        <Minimum>NaN</Minimum>
+                                                        <Maximum>NaN</Maximum>
+                                                        <ChartAxisScaleBreak>
+                                                          <Style />
+                                                        </ChartAxisScaleBreak>
+                                                      </ChartAxis>
+                                                    </ChartCategoryAxes>
+                                                    <ChartValueAxes>
+                                                      <ChartAxis Name="Primary">
+                                                        <Style>
+                                                          <FontSize>8pt</FontSize>
+                                                          <Format>0%</Format>
+                                                        </Style>
+                                                        <ChartAxisTitle>
+                                                          <Caption />
+                                                          <Style>
+                                                            <FontSize>8pt</FontSize>
+                                                          </Style>
+                                                        </ChartAxisTitle>
+                                                        <ChartMajorGridLines>
+                                                          <Style>
+                                                            <Border>
+                                                              <Color>Gainsboro</Color>
+                                                            </Border>
+                                                          </Style>
+                                                        </ChartMajorGridLines>
+                                                        <ChartMinorGridLines>
+                                                          <Style>
+                                                            <Border>
+                                                              <Color>Gainsboro</Color>
+                                                              <Style>Dotted</Style>
+                                                            </Border>
+                                                          </Style>
+                                                        </ChartMinorGridLines>
+                                                        <ChartMinorTickMarks>
+                                                          <Length>0.5</Length>
+                                                        </ChartMinorTickMarks>
+                                                        <CrossAt>NaN</CrossAt>
+                                                        <Minimum>NaN</Minimum>
+                                                        <Maximum>1</Maximum>
+                                                        <ChartAxisScaleBreak>
+                                                          <Style />
+                                                        </ChartAxisScaleBreak>
+                                                      </ChartAxis>
+                                                      <ChartAxis Name="Secondary">
+                                                        <Style>
+                                                          <FontSize>8pt</FontSize>
+                                                        </Style>
+                                                        <ChartAxisTitle>
+                                                          <Caption>Axis Title</Caption>
+                                                          <Style>
+                                                            <FontSize>8pt</FontSize>
+                                                          </Style>
+                                                        </ChartAxisTitle>
+                                                        <ChartMajorGridLines>
+                                                          <Style>
+                                                            <Border>
+                                                              <Color>Gainsboro</Color>
+                                                            </Border>
+                                                          </Style>
+                                                        </ChartMajorGridLines>
+                                                        <ChartMinorGridLines>
+                                                          <Style>
+                                                            <Border>
+                                                              <Color>Gainsboro</Color>
+                                                              <Style>Dotted</Style>
+                                                            </Border>
+                                                          </Style>
+                                                        </ChartMinorGridLines>
+                                                        <ChartMinorTickMarks>
+                                                          <Length>0.5</Length>
+                                                        </ChartMinorTickMarks>
+                                                        <CrossAt>NaN</CrossAt>
+                                                        <Location>Opposite</Location>
+                                                        <Minimum>NaN</Minimum>
+                                                        <Maximum>NaN</Maximum>
+                                                        <ChartAxisScaleBreak>
+                                                          <Style />
+                                                        </ChartAxisScaleBreak>
+                                                      </ChartAxis>
+                                                    </ChartValueAxes>
+                                                    <Style>
+                                                      <BackgroundGradientType>None</BackgroundGradientType>
+                                                    </Style>
+                                                  </ChartArea>
+                                                </ChartAreas>
+                                                <ChartLegends>
+                                                  <ChartLegend Name="Default">
+                                                    <Style>
+                                                      <BackgroundGradientType>None</BackgroundGradientType>
+                                                      <FontSize>8pt</FontSize>
+                                                    </Style>
+                                                    <Position>TopCenter</Position>
+                                                    <ChartLegendTitle>
+                                                      <Caption />
+                                                      <Style>
+                                                        <FontSize>8pt</FontSize>
+                                                        <FontWeight>Bold</FontWeight>
+                                                        <TextAlign>Center</TextAlign>
+                                                      </Style>
+                                                    </ChartLegendTitle>
+                                                    <HeaderSeparatorColor>Black</HeaderSeparatorColor>
+                                                    <ColumnSeparatorColor>Black</ColumnSeparatorColor>
+                                                  </ChartLegend>
+                                                </ChartLegends>
+                                                <ChartTitles>
+                                                  <ChartTitle Name="Default">
+                                                    <Caption>=Fields!Question_Name.Value</Caption>
+                                                    <Style>
+                                                      <BackgroundGradientType>None</BackgroundGradientType>
+                                                      <FontWeight>Bold</FontWeight>
+                                                      <TextAlign>General</TextAlign>
+                                                      <VerticalAlign>Top</VerticalAlign>
+                                                    </Style>
+                                                    <Position>TopLeft</Position>
+                                                  </ChartTitle>
+                                                </ChartTitles>
+                                                <Palette>BrightPastel</Palette>
+                                                <ChartBorderSkin>
+                                                  <Style>
+                                                    <BackgroundColor>Gray</BackgroundColor>
+                                                    <BackgroundGradientType>None</BackgroundGradientType>
+                                                    <Color>White</Color>
+                                                  </Style>
+                                                </ChartBorderSkin>
+                                                <ChartNoDataMessage Name="NoDataMessage">
+                                                  <Caption>No Data Available</Caption>
+                                                  <Style>
+                                                    <BackgroundGradientType>None</BackgroundGradientType>
+                                                    <TextAlign>General</TextAlign>
+                                                    <VerticalAlign>Top</VerticalAlign>
+                                                  </Style>
+                                                </ChartNoDataMessage>
+                                                <DataSetName>Question_Aggregate_Org</DataSetName>
+                                                <Height>2in</Height>
+                                                <Width>6.78125in</Width>
+                                                <Style>
+                                                  <Border>
+                                                    <Color>LightGrey</Color>
+                                                    <Style>Solid</Style>
+                                                  </Border>
+                                                  <BackgroundColor>White</BackgroundColor>
+                                                  <BackgroundGradientType>None</BackgroundGradientType>
+                                                </Style>
+                                              </Chart>
+                                            </ReportItems>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Style>
+                                              <Border>
+                                                <Style>None</Style>
+                                              </Border>
+                                            </Style>
+                                          </Rectangle>
+                                        </CellContents>
+                                      </TablixCell>
+                                    </TablixCells>
+                                  </TablixRow>
+                                </TablixRows>
+                              </TablixBody>
+                              <TablixColumnHierarchy>
+                                <TablixMembers>
+                                  <TablixMember />
+                                </TablixMembers>
+                              </TablixColumnHierarchy>
+                              <TablixRowHierarchy>
+                                <TablixMembers>
+                                  <TablixMember>
+                                    <Group Name="Details">
+                                      <GroupExpressions>
+                                        <GroupExpression>=Fields!Question_Name.Value</GroupExpression>
+                                      </GroupExpressions>
+                                    </Group>
+                                    <SortExpressions>
+                                      <SortExpression>
+                                        <Value>=CINT(Fields!Evidence_Question_Group_Order.Value)</Value>
+                                      </SortExpression>
+                                      <SortExpression>
+                                        <Value>=CINT(Fields!Question_Order_Default.Value)</Value>
+                                      </SortExpression>
+                                    </SortExpressions>
+                                  </TablixMember>
+                                </TablixMembers>
+                              </TablixRowHierarchy>
+                              <DataSetName>Question_Aggregate_Org</DataSetName>
+                              <Height>2in</Height>
+                              <Width>6.78125in</Width>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                              </Style>
+                            </Tablix>
+                          </ReportItems>
+                          <PageName>=Fields!Org_Name.Value</PageName>
+                          <KeepTogether>true</KeepTogether>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                          </Style>
+                        </Rectangle>
+                        <rd:Selected>true</rd:Selected>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="Details1">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!Org_Name.Value</GroupExpression>
+                    </GroupExpressions>
+                    <PageBreak>
+                      <BreakLocation>Between</BreakLocation>
+                    </PageBreak>
+                  </Group>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>Question_Aggregate_Org</DataSetName>
+            <Height>2in</Height>
+            <Width>6.78125in</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+        </ReportItems>
+        <Height>2in</Height>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Body>
+      <Width>6.78125in</Width>
+      <Page>
+        <InteractiveHeight>8.5in</InteractiveHeight>
+        <InteractiveWidth>11in</InteractiveWidth>
+        <LeftMargin>1in</LeftMargin>
+        <RightMargin>1in</RightMargin>
+        <TopMargin>1in</TopMargin>
+        <BottomMargin>1in</BottomMargin>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="Format_TableListOptions_35">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>none</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Generate a Separate Table for each:</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>none</Value>
+            <Label>NA - One Table</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>dotw</Value>
+            <Label>Date: Day of the Week</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>month</Value>
+            <Label>Date: Month</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>quarter</Value>
+            <Label>Date: Quarter</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>year</Value>
+            <Label>Date: Year</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>system</Value>
+            <Label>Location: Health System</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>org</Value>
+            <Label>Location: Organization</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>department</Value>
+            <Label>Location: Staff Department</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>setting</Value>
+            <Label>Location: Setting</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>audit</Value>
+            <Label>Audit: Title</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>group</Value>
+            <Label>Audit: Question Group</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>question</Value>
+            <Label>Audit: Question</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>fullname</Value>
+            <Label>Staff: Full Name</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>lastfirst</Value>
+            <Label>Staff: Last, First</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>localid</Value>
+            <Label>Staff: Local ID</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>vergeid</Value>
+            <Label>Staff: Verge ID</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>title</Value>
+            <Label>Staff: Title</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Format_PercentageSelectedDecimalFormatting_55">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>0%</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>"% Selected" Decimal Format:</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>0%</Value>
+            <Label>0</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>0.0%</Value>
+            <Label>1</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>0.00%</Value>
+            <Label>2</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>0.000%</Value>
+            <Label>3</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>0.0000%</Value>
+            <Label>4</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Format_TitleAndDescriptionVisibility_60">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>show</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Title and Description:</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>show</Value>
+            <Label>Show</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>hide</Value>
+            <Label>Hide</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="HealthSystemId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Health System].[Health System Id].&amp;[122]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>HealthSystemId</Prompt>
+      <Hidden>true</Hidden>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="ObservationDate">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Observation Date].[Y - Q - M - D].[Year].&amp;[2011]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>ObservationDate</Prompt>
+      <Hidden>true</Hidden>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="ReportTitle">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>Title</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>ReportTitle</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ReportDescription">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>Description</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>ReportDescription</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="QuestionTypeId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Question].[Question Type Id].&amp;[2]</Value>
+          <Value>[Question].[Question Type Id].&amp;[3]</Value>
+          <Value>[Question].[Question Type Id].&amp;[7]</Value>
+          <Value>[Question].[Question Type Id].&amp;[8]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>QuestionTypeId</Prompt>
+      <Hidden>true</Hidden>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportServerUrl>http://ocashvrgrpt01p.verge-solutions.com/reportserver</rd:ReportServerUrl>
+  <rd:ReportID>040250d9-da9e-4b34-bff8-8cc60bd8e158</rd:ReportID>
+</Report>
