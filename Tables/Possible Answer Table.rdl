@@ -5195,7 +5195,25 @@ FROM
 SWITCH
 (
 	ISNUMERIC(Fields(Parameters!ColumnSorting.Value).Value),
-	CINT(Fields(Parameters!ColumnSorting.Value).Value),
+	CINT
+	(
+		IIF
+		(
+			ISNUMERIC(Fields(Parameters!ColumnSorting.Value).Value),
+			Fields(Parameters!ColumnSorting.Value).Value,
+			0
+		)
+	),
+	ISDATE(Fields(Parameters!ColumnSorting.Value).Value),
+	CDATE
+	(
+		IIF
+		(
+			ISDATE(Fields(Parameters!ColumnSorting.Value).Value),
+			Fields(Parameters!ColumnSorting.Value).Value,
+			"01/01/1900"
+		)
+	),
 	TRUE,
 	Fields(Parameters!ColumnSorting.Value).Value
 )</Value>
