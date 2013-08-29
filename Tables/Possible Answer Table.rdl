@@ -4562,7 +4562,7 @@ FROM
                                             <Paragraph>
                                               <TextRuns>
                                                 <TextRun>
-                                                  <Value>=ISNUMERIC(Fields(Parameters!ColumnSorting.Value).Value)</Value>
+                                                  <Value>=Parameters!ReportTitle.Value</Value>
                                                   <Style>
                                                     <FontWeight>Bold</FontWeight>
                                                   </Style>
@@ -4586,7 +4586,6 @@ FROM
                                             <PaddingBottom>2pt</PaddingBottom>
                                           </Style>
                                         </Textbox>
-                                        <rd:Selected>true</rd:Selected>
                                       </CellContents>
                                     </TablixHeader>
                                     <TablixMembers>
@@ -5192,7 +5191,14 @@ FROM
                                                             </Group>
                                                             <SortExpressions>
                                                               <SortExpression>
-                                                                <Value>=Fields(Parameters!ColumnSorting.Value).Value</Value>
+                                                                <Value>=
+SWITCH
+(
+	ISNUMERIC(Fields(Parameters!ColumnSorting.Value).Value),
+	CINT(Fields(Parameters!ColumnSorting.Value).Value),
+	TRUE,
+	Fields(Parameters!ColumnSorting.Value).Value
+)</Value>
                                                               </SortExpression>
                                                             </SortExpressions>
                                                             <TablixHeader>
@@ -5251,6 +5257,7 @@ FROM
                                                                     <PaddingBottom>2pt</PaddingBottom>
                                                                   </Style>
                                                                 </Textbox>
+                                                                <rd:Selected>true</rd:Selected>
                                                               </CellContents>
                                                             </TablixHeader>
                                                             <TablixMembers>
