@@ -303,6 +303,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "K2", "K2", "{74981BCA-02BD-
 EndProject
 Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "K2", "K2\K2.rptproj", "{3C2D05CF-D7B9-44A4-9841-570FF9ECF910}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "vsurveillance", "vsurveillance", "{A56E98BF-938F-4CD9-9C89-525239BD26FB}"
+EndProject
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "vsurveillance", "vsurveillance\vsurveillance.rptproj", "{20645701-BC28-4E8C-84D7-B9FCF7F28721}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Default = Debug|Default
@@ -957,6 +961,16 @@ Global
 		{3C2D05CF-D7B9-44A4-9841-570FF9ECF910}.Release|Default.ActiveCfg = Release
 		{3C2D05CF-D7B9-44A4-9841-570FF9ECF910}.Release|Default.Build.0 = Release
 		{3C2D05CF-D7B9-44A4-9841-570FF9ECF910}.Release|Default.Deploy.0 = Release
+		{20645701-BC28-4E8C-84D7-B9FCF7F28721}.Debug|Default.ActiveCfg = DebugLocal
+		{20645701-BC28-4E8C-84D7-B9FCF7F28721}.Debug|Default.Build.0 = DebugLocal
+		{20645701-BC28-4E8C-84D7-B9FCF7F28721}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{20645701-BC28-4E8C-84D7-B9FCF7F28721}.DebugLocal|Default.Build.0 = DebugLocal
+		{20645701-BC28-4E8C-84D7-B9FCF7F28721}.Production Support|Default.ActiveCfg = Release
+		{20645701-BC28-4E8C-84D7-B9FCF7F28721}.Production Support|Default.Build.0 = Release
+		{20645701-BC28-4E8C-84D7-B9FCF7F28721}.Production Support|Default.Deploy.0 = Release
+		{20645701-BC28-4E8C-84D7-B9FCF7F28721}.Release|Default.ActiveCfg = Release
+		{20645701-BC28-4E8C-84D7-B9FCF7F28721}.Release|Default.Build.0 = Release
+		{20645701-BC28-4E8C-84D7-B9FCF7F28721}.Release|Default.Deploy.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1103,5 +1117,6 @@ Global
 		{6E7C9E4E-AC69-4A1D-AD77-4DAEBBF366B4} = {5AB755ED-FB40-451E-90D9-ADCED3B546D4}
 		{74981BCA-02BD-4FE7-AEE6-10D2FDD8785D} = {647BD4EB-F3B0-485B-A073-0DDD49518288}
 		{3C2D05CF-D7B9-44A4-9841-570FF9ECF910} = {74981BCA-02BD-4FE7-AEE6-10D2FDD8785D}
+		{20645701-BC28-4E8C-84D7-B9FCF7F28721} = {A56E98BF-938F-4CD9-9C89-525239BD26FB}
 	EndGlobalSection
 EndGlobal
