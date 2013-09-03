@@ -45,10 +45,17 @@
       <Options>
         <OutputPath>bin\Release</OutputPath>
         <TargetServerVersion>SSRS2008R2</TargetServerVersion>
-        <TargetFolder>vsurveillance1</TargetFolder>
+        <TargetServerURL>http://ocashvrgwa01s.verge-solutions.com/reportserver_prodsupport</TargetServerURL>
+        <TargetFolder>vsurveillance</TargetFolder>
         <TargetDataSourceFolder>Data Sources</TargetDataSourceFolder>
         <TargetDatasetFolder>Datasets</TargetDatasetFolder>
         <TargetReportPartFolder>Report Parts</TargetReportPartFolder>
+      </Options>
+    </Configuration>
+    <Configuration>
+      <Name>Production Support</Name>
+      <Options>
+        <TargetServerVersion>SSRS2008</TargetServerVersion>
       </Options>
     </Configuration>
   </Configurations>
