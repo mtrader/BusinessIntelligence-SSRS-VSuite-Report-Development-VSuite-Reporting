@@ -1959,27 +1959,6 @@
         </DataSetReference>
       </ValidValues>
     </ReportParameter>
-    <ReportParameter Name="report_type">
-      <DataType>String</DataType>
-      <DefaultValue>
-        <Values>
-          <Value>template</Value>
-        </Values>
-      </DefaultValue>
-      <Prompt>report_type</Prompt>
-      <ValidValues>
-        <ParameterValues>
-          <ParameterValue>
-            <Value>rule</Value>
-            <Label>rule</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>template</Value>
-            <Label>template</Label>
-          </ParameterValue>
-        </ParameterValues>
-      </ValidValues>
-    </ReportParameter>
   </ReportParameters>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
   <rd:ReportID>e466fb3a-f192-47de-99f4-51300c7220a4</rd:ReportID>
