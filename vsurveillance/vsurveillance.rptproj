@@ -17,6 +17,10 @@
       <Name>temp_to_delete.rdl</Name>
       <FullPath>temp_to_delete.rdl</FullPath>
     </ProjectItem>
+    <ProjectItem>
+      <Name>rule_template_information.rdl</Name>
+      <FullPath>rule_template_information.rdl</FullPath>
+    </ProjectItem>
   </Reports>
   <Configurations>
     <Configuration>

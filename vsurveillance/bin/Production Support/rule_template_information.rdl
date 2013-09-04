@@ -1492,6 +1492,7 @@
                       </Style>
                     </Textbox>
                     <ColSpan>5</ColSpan>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
@@ -1515,7 +1516,6 @@
           <TablixMembers>
             <TablixMember>
               <Group Name="rule_template_id">
-                <DocumentMapLabel>=Fields!rule_template_title.Value</DocumentMapLabel>
                 <GroupExpressions>
                   <GroupExpression>=Fields!rule_template_id.Value</GroupExpression>
                 </GroupExpressions>
@@ -1575,7 +1575,6 @@
                     </TablixMember>
                     <TablixMember>
                       <Group Name="rule_template_rule_id">
-                        <DocumentMapLabel>=Fields!rule_template_rule_name.Value &amp; " (" &amp; Fields!rule_template_rule_health_system_name.Value &amp; ")"</DocumentMapLabel>
                         <GroupExpressions>
                           <GroupExpression>=Fields!rule_template_rule_id.Value</GroupExpression>
                         </GroupExpressions>

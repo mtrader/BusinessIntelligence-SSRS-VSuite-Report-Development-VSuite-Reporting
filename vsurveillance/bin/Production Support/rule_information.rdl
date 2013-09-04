@@ -23,6 +23,96 @@
           </TablixColumns>
           <TablixRows>
             <TablixRow>
+              <Height>0.3in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox75">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Template Information</Value>
+                              <Style>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontSize>14pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <TextDecoration>Underline</TextDecoration>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox75</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                    <ColSpan>5</ColSpan>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.25in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox70">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox70</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                    <ColSpan>5</ColSpan>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
               <Height>0.25in</Height>
               <TablixCells>
                 <TablixCell>
@@ -34,7 +124,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Template General Information</Value>
+                              <Value>General Information</Value>
                               <Style>
                                 <FontFamily>Calibri</FontFamily>
                                 <FontWeight>Bold</FontWeight>
@@ -490,7 +580,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Template Field Information</Value>
+                              <Value>Field Information</Value>
                               <Style>
                                 <FontFamily>Calibri</FontFamily>
                                 <FontWeight>Bold</FontWeight>
@@ -1079,7 +1169,7 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox76">
+                    <Textbox Name="Textbox17">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -1089,14 +1179,13 @@
                               <Value />
                               <Style>
                                 <FontFamily>Calibri</FontFamily>
-                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox76</rd:DefaultName>
+                      <rd:DefaultName>Textbox17</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -1128,7 +1217,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Template Effective Equation</Value>
+                              <Value EvaluationMode="Constant">Effective Equation (Beta)</Value>
                               <Style>
                                 <FontFamily>Calibri</FontFamily>
                                 <FontWeight>Bold</FontWeight>
@@ -1243,6 +1332,174 @@
                 <TablixCell />
               </TablixCells>
             </TablixRow>
+            <TablixRow>
+              <Height>0.25in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox49">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox49</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                    <ColSpan>5</ColSpan>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.25in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox59">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Rules Associated WIth Template</Value>
+                              <Style>
+                                <FontFamily>Calibri</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox59</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                        </Border>
+                        <TopBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </TopBorder>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </BottomBorder>
+                        <LeftBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </LeftBorder>
+                        <RightBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </RightBorder>
+                        <BackgroundColor>MidnightBlue</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                    <ColSpan>5</ColSpan>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.25in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox44">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!rule_template_rule_name.Value &amp; " (" &amp; Fields!rule_template_rule_health_system_name.Value &amp; ")"</Value>
+                              <Style>
+                                <FontFamily>Calibri</FontFamily>
+                                <TextDecoration>None</TextDecoration>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox44</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                        </Border>
+                        <TopBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </TopBorder>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </BottomBorder>
+                        <LeftBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </LeftBorder>
+                        <RightBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </RightBorder>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                    <ColSpan>5</ColSpan>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+              </TablixCells>
+            </TablixRow>
           </TablixRows>
         </TablixBody>
         <TablixColumnHierarchy>
@@ -1258,6 +1515,7 @@
           <TablixMembers>
             <TablixMember>
               <Group Name="rule_template_id">
+                <DocumentMapLabel>=Fields!rule_template_title.Value</DocumentMapLabel>
                 <GroupExpressions>
                   <GroupExpression>=Fields!rule_template_id.Value</GroupExpression>
                 </GroupExpressions>
@@ -1268,6 +1526,8 @@
                 </SortExpression>
               </SortExpressions>
               <TablixMembers>
+                <TablixMember />
+                <TablixMember />
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
@@ -1289,31 +1549,54 @@
                         </SortExpression>
                       </SortExpressions>
                     </TablixMember>
+                    <TablixMember>
+                      <KeepWithGroup>After</KeepWithGroup>
+                    </TablixMember>
+                    <TablixMember>
+                      <KeepWithGroup>After</KeepWithGroup>
+                    </TablixMember>
+                    <TablixMember>
+                      <Group Name="rule_template_effective_equation">
+                        <GroupExpressions>
+                          <GroupExpression>=Fields!rule_template_effective_equation.Value</GroupExpression>
+                        </GroupExpressions>
+                      </Group>
+                      <SortExpressions>
+                        <SortExpression>
+                          <Value>=Fields!rule_template_effective_equation.Value</Value>
+                        </SortExpression>
+                      </SortExpressions>
+                    </TablixMember>
+                    <TablixMember>
+                      <KeepWithGroup>After</KeepWithGroup>
+                    </TablixMember>
+                    <TablixMember>
+                      <KeepWithGroup>After</KeepWithGroup>
+                    </TablixMember>
+                    <TablixMember>
+                      <Group Name="rule_template_rule_id">
+                        <DocumentMapLabel>=Fields!rule_template_rule_name.Value &amp; " (" &amp; Fields!rule_template_rule_health_system_name.Value &amp; ")"</DocumentMapLabel>
+                        <GroupExpressions>
+                          <GroupExpression>=Fields!rule_template_rule_id.Value</GroupExpression>
+                        </GroupExpressions>
+                      </Group>
+                      <SortExpressions>
+                        <SortExpression>
+                          <Value>=Fields!rule_template_rule_id.Value</Value>
+                        </SortExpression>
+                      </SortExpressions>
+                      <TablixMembers>
+                        <TablixMember />
+                      </TablixMembers>
+                    </TablixMember>
                   </TablixMembers>
                 </TablixMember>
-                <TablixMember />
-              </TablixMembers>
-            </TablixMember>
-            <TablixMember>
-              <Group Name="rule_template_effective_equation">
-                <GroupExpressions>
-                  <GroupExpression>=Fields!rule_template_effective_equation.Value</GroupExpression>
-                </GroupExpressions>
-              </Group>
-              <SortExpressions>
-                <SortExpression>
-                  <Value>=Fields!rule_template_effective_equation.Value</Value>
-                </SortExpression>
-              </SortExpressions>
-              <TablixMembers>
-                <TablixMember />
-                <TablixMember />
               </TablixMembers>
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>rpt_rui_main</DataSetName>
-        <Height>2.75in</Height>
+        <Height>4.05in</Height>
         <Width>8.69791in</Width>
         <Style>
           <Border>
@@ -1322,10 +1605,10 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>5.14583in</Height>
+    <Height>4.05in</Height>
     <Style />
   </Body>
-  <Width>12in</Width>
+  <Width>8.69791in</Width>
   <Page>
     <PageHeight>8.5in</PageHeight>
     <PageWidth>11in</PageWidth>
@@ -1557,6 +1840,26 @@
           <DataField>rule_template_effective_equation</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="rule_template_rule_health_system_id">
+          <DataField>rule_template_rule_health_system_id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="rule_template_rule_id">
+          <DataField>rule_template_rule_id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="rule_template_rule_name">
+          <DataField>rule_template_rule_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="rule_template_rule_health_system_name">
+          <DataField>rule_template_rule_health_system_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="rule_template_rule_effective_equation">
+          <DataField>rule_template_rule_effective_equation</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
     </DataSet>
   </DataSets>
@@ -1655,6 +1958,27 @@
           <ValueField>id</ValueField>
           <LabelField>definition</LabelField>
         </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="report_type">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>template</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>report_type</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>rule</Value>
+            <Label>rule</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>template</Value>
+            <Label>template</Label>
+          </ParameterValue>
+        </ParameterValues>
       </ValidValues>
     </ReportParameter>
   </ReportParameters>
