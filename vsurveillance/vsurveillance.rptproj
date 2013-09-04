@@ -13,6 +13,10 @@
       <Name>rule_information.rdl</Name>
       <FullPath>rule_information.rdl</FullPath>
     </ProjectItem>
+    <ProjectItem>
+      <Name>temp_to_delete.rdl</Name>
+      <FullPath>temp_to_delete.rdl</FullPath>
+    </ProjectItem>
   </Reports>
   <Configurations>
     <Configuration>

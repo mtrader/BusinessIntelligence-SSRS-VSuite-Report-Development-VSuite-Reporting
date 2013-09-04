@@ -3529,6 +3529,7 @@ FROM
                                               <PaddingBottom>2pt</PaddingBottom>
                                             </Style>
                                           </Textbox>
+                                          <rd:Selected>true</rd:Selected>
                                         </CellContents>
                                       </TablixCell>
                                       <TablixCell>
@@ -3855,6 +3856,7 @@ FROM
                                               <PaddingBottom>2pt</PaddingBottom>
                                             </Style>
                                           </Textbox>
+                                          <rd:Selected>true</rd:Selected>
                                         </CellContents>
                                       </TablixCell>
                                       <TablixCell>
@@ -5275,7 +5277,6 @@ SWITCH
                                                                     <PaddingBottom>2pt</PaddingBottom>
                                                                   </Style>
                                                                 </Textbox>
-                                                                <rd:Selected>true</rd:Selected>
                                                               </CellContents>
                                                             </TablixHeader>
                                                             <TablixMembers>
@@ -6310,10 +6311,32 @@ SWITCH
                                         </Group>
                                         <SortExpressions>
                                           <SortExpression>
-                                            <Value>=IIF(Parameters!Format_ParentRowGrouping_10.Value = "question" OR Parameters!Format_ParentRowGrouping_10.Value = "group", CINT(Fields!Evidence_Question_Group_Order.Value), IIF(Parameters!Format_ParentRowGrouping_10.Value = "month" OR Parameters!Format_ParentRowGrouping_10.Value = "quarter" OR Parameters!Format_ParentRowGrouping_10.Value = "year", CDATE(Fields!Month_Name_Year.Value), Fields(Code.GetParentRowGroupSortOrder(Parameters!Format_ParentRowGrouping_10.Value)).Value))</Value>
-                                          </SortExpression>
-                                          <SortExpression>
-                                            <Value>=IIF(Parameters!Format_ParentRowGrouping_10.Value = "question", CINT(Fields!Question_Order.Value), Fields(Code.GetParentRowGroupSortOrder(Parameters!Format_ParentRowGrouping_10.Value)).Value)</Value>
+                                            <Value>=
+SWITCH
+(
+	ISNUMERIC(Fields(Parameters!ParentRowSorting.Value).Value),
+	CINT
+	(
+		IIF
+		(
+			ISNUMERIC(Fields(Parameters!ParentRowSorting.Value).Value),
+			Fields(Parameters!ParentRowSorting.Value).Value,
+			0
+		)
+	),
+	ISDATE(Fields(Parameters!ParentRowSorting.Value).Value),
+	CDATE
+	(
+		IIF
+		(
+			ISDATE(Fields(Parameters!ParentRowSorting.Value).Value),
+			Fields(Parameters!ParentRowSorting.Value).Value,
+			"01/01/1900"
+		)
+	),
+	TRUE,
+	Fields(Parameters!ParentRowSorting.Value).Value
+)</Value>
                                           </SortExpression>
                                         </SortExpressions>
                                         <TablixMembers>
@@ -6331,10 +6354,32 @@ SWITCH
                                             </Group>
                                             <SortExpressions>
                                               <SortExpression>
-                                                <Value>=IIF(Parameters!Format_ChildRowGrouping_15.Value = "question" OR Parameters!Format_ChildRowGrouping_15.Value = "group", CINT(Fields!Evidence_Question_Group_Order.Value), IIF(Parameters!Format_ChildRowGrouping_15.Value = "month" OR Parameters!Format_ChildRowGrouping_15.Value = "quarter" OR Parameters!Format_ChildRowGrouping_15.Value = "year", CDATE(Fields!Month_Name_Year.Value), Fields(Code.GetChildRowGroupSortOrder(Parameters!Format_ChildRowGrouping_15.Value)).Value))</Value>
-                                              </SortExpression>
-                                              <SortExpression>
-                                                <Value>=IIF(Parameters!Format_ChildRowGrouping_15.Value = "question", CINT(Fields!Question_Order.Value), Fields(Code.GetChildRowGroupSortOrder(Parameters!Format_ChildRowGrouping_15.Value)).Value)</Value>
+                                                <Value>=
+SWITCH
+(
+	ISNUMERIC(Fields(Parameters!ChildRowSorting.Value).Value),
+	CINT
+	(
+		IIF
+		(
+			ISNUMERIC(Fields(Parameters!ChildRowSorting.Value).Value),
+			Fields(Parameters!ChildRowSorting.Value).Value,
+			0
+		)
+	),
+	ISDATE(Fields(Parameters!ChildRowSorting.Value).Value),
+	CDATE
+	(
+		IIF
+		(
+			ISDATE(Fields(Parameters!ChildRowSorting.Value).Value),
+			Fields(Parameters!ChildRowSorting.Value).Value,
+			"01/01/1900"
+		)
+	),
+	TRUE,
+	Fields(Parameters!ChildRowSorting.Value).Value
+)</Value>
                                               </SortExpression>
                                             </SortExpressions>
                                             <TablixMembers>
@@ -6358,10 +6403,32 @@ SWITCH
                                                 </Group>
                                                 <SortExpressions>
                                                   <SortExpression>
-                                                    <Value>=IIF(Parameters!Format_GrandChildRowGrouping_20.Value = "question" OR Parameters!Format_GrandChildRowGrouping_20.Value = "group", CINT(Fields!Evidence_Question_Group_Order.Value), IIF(Parameters!Format_GrandChildRowGrouping_20.Value = "month" OR Parameters!Format_GrandChildRowGrouping_20.Value = "quarter" OR Parameters!Format_GrandChildRowGrouping_20.Value = "year", CDATE(Fields!Month_Name_Year.Value), Fields(Code.GetGrandChildRowGroupingSortOrder(Parameters!Format_GrandChildRowGrouping_20.Value)).Value))</Value>
-                                                  </SortExpression>
-                                                  <SortExpression>
-                                                    <Value>=IIF(Parameters!Format_GrandChildRowGrouping_20.Value = "question", CINT(Fields!Question_Order.Value), Fields(Code.GetGrandChildRowGroupingSortOrder(Parameters!Format_GrandChildRowGrouping_20.Value)).Value)</Value>
+                                                    <Value>=
+SWITCH
+(
+	ISNUMERIC(Fields(Parameters!GrandChildRowSorting.Value).Value),
+	CINT
+	(
+		IIF
+		(
+			ISNUMERIC(Fields(Parameters!GrandChildRowSorting.Value).Value),
+			Fields(Parameters!GrandChildRowSorting.Value).Value,
+			0
+		)
+	),
+	ISDATE(Fields(Parameters!GrandChildRowSorting.Value).Value),
+	CDATE
+	(
+		IIF
+		(
+			ISDATE(Fields(Parameters!GrandChildRowSorting.Value).Value),
+			Fields(Parameters!GrandChildRowSorting.Value).Value,
+			"01/01/1900"
+		)
+	),
+	TRUE,
+	Fields(Parameters!GrandChildRowSorting.Value).Value
+)</Value>
                                                   </SortExpression>
                                                 </SortExpressions>
                                                 <TablixMembers>
