@@ -138,6 +138,9 @@
 
  MEMBER [Measures].[Health System - Org Name] AS
 	[Health System].[Org Name - Hidden].CURRENTMEMBER.NAME
+	
+ MEMBER [Measures].[Org Unit - Org Unit Name] AS
+	[Org Unit].[Org Unit Name].CURRENTMEMBER.NAME
 
  MEMBER [Measures].[Health System - Org Zip Code] AS
 	[Health System].[Org Zip Code  - Hidden].CURRENTMEMBER.NAME
@@ -220,6 +223,7 @@
 	[Measures].[Observation Date - Year],
 	[Measures].[Health System - Health System Name],
 	[Measures].[Health System - Org Name],
+	[Measures].[Org Unit - Org Unit Name],
 	[Measures].[Health System - Org Zip Code],
 	[Measures].[Location - Location Name],
 	[Measures].[Staff - Staff Department],
@@ -299,6 +303,10 @@
         <Field Name="Org_Name">
           <DataField>[Measures].[Health System - Org Name]</DataField>
           <rd:TypeName>System.Object</rd:TypeName>
+        </Field>
+        <Field Name="Org_Unit_Name">
+          <DataField>[Measures].[Org Unit - Org Unit Name]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
         </Field>
         <Field Name="Org_Zip_Code">
           <DataField>[Measures].[Health System - Org Zip Code]</DataField>
