@@ -8,16 +8,16 @@
       <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>560ea361-411b-48de-b05d-5dc74e4c36ef</rd:DataSourceID>
     </DataSource>
-    <DataSource Name="VSuite_DB">
-      <DataSourceReference>VSuite_DB</DataSourceReference>
+    <DataSource Name="reports_reporting_server">
+      <DataSourceReference>reports_reporting_server</DataSourceReference>
       <rd:SecurityType>None</rd:SecurityType>
-      <rd:DataSourceID>3bc10bf4-1fbf-4e8e-a072-c5437b770e2c</rd:DataSourceID>
+      <rd:DataSourceID>ff03ac75-de18-4fcd-9cad-c17806131bd5</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="rpt_tbl_comments">
       <Query>
-        <DataSourceName>VSuite_DB</DataSourceName>
+        <DataSourceName>reports_reporting_server</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@steventevidence_ids">
             <Value>=Parameters!SelectedEvidenceEntryIDsForComments.Value</Value>
@@ -27,7 +27,7 @@
           </QueryParameter>
         </QueryParameters>
         <CommandType>StoredProcedure</CommandType>
-        <CommandText>reports.rpt_tbl_comments</CommandText>
+        <CommandText>reporting.rpt_tbl_comments</CommandText>
       </Query>
       <Fields>
         <Field Name="health_system_id">
@@ -112,7 +112,7 @@
     </DataSet>
     <DataSet Name="rpm_tct_grouping_comment">
       <Query>
-        <DataSourceName>VSuite_DB</DataSourceName>
+        <DataSourceName>reports_reporting_server</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@grouping_type">
             <Value>comment_grouping</Value>
@@ -122,7 +122,7 @@
           </QueryParameter>
         </QueryParameters>
         <CommandType>StoredProcedure</CommandType>
-        <CommandText>reports.rpm_tct_grouping</CommandText>
+        <CommandText>reporting.rpm_tct_grouping</CommandText>
       </Query>
       <Fields>
         <Field Name="id">

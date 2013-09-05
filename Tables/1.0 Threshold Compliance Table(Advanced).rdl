@@ -8,15 +8,15 @@
       <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>560ea361-411b-48de-b05d-5dc74e4c36ef</rd:DataSourceID>
     </DataSource>
-    <DataSource Name="VSuite_DB">
-      <DataSourceReference>VSuite_DB</DataSourceReference>
-      <rd:SecurityType>None</rd:SecurityType>
-      <rd:DataSourceID>1bf274ff-bce8-425e-93b5-180ec820e561</rd:DataSourceID>
-    </DataSource>
     <DataSource Name="bi_olap_server">
       <DataSourceReference>bi_olap_server</DataSourceReference>
       <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>3afe964a-51e1-408c-a13f-07dc599bcbf4</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="reports_reporting_server">
+      <DataSourceReference>reports_reporting_server</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>7cdab7f0-e0a1-44a2-bd20-e81744137c7e</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -1414,14 +1414,14 @@
     </DataSet>
     <DataSet Name="rpm_tct_grouping_column">
       <Query>
-        <DataSourceName>VSuite_DB</DataSourceName>
+        <DataSourceName>reports_reporting_server</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@grouping_type">
             <Value>column</Value>
           </QueryParameter>
         </QueryParameters>
         <CommandType>StoredProcedure</CommandType>
-        <CommandText>reports.rpm_tct_grouping</CommandText>
+        <CommandText>reporting.rpm_tct_grouping</CommandText>
       </Query>
       <Fields>
         <Field Name="id">
@@ -1440,14 +1440,14 @@
     </DataSet>
     <DataSet Name="rpm_tct_grouping_parent_row">
       <Query>
-        <DataSourceName>VSuite_DB</DataSourceName>
+        <DataSourceName>reports_reporting_server</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@grouping_type">
             <Value>parent_row</Value>
           </QueryParameter>
         </QueryParameters>
         <CommandType>StoredProcedure</CommandType>
-        <CommandText>reports.rpm_tct_grouping</CommandText>
+        <CommandText>reporting.rpm_tct_grouping</CommandText>
       </Query>
       <Fields>
         <Field Name="id">
@@ -1466,14 +1466,14 @@
     </DataSet>
     <DataSet Name="rpm_tct_grouping_page">
       <Query>
-        <DataSourceName>VSuite_DB</DataSourceName>
+        <DataSourceName>reports_reporting_server</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@grouping_type">
             <Value>page</Value>
           </QueryParameter>
         </QueryParameters>
         <CommandType>StoredProcedure</CommandType>
-        <CommandText>reports.rpm_tct_grouping</CommandText>
+        <CommandText>reporting.rpm_tct_grouping</CommandText>
       </Query>
       <Fields>
         <Field Name="id">
@@ -1488,18 +1488,26 @@
           <DataField>definition</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="definition_label">
+          <DataField>definition_label</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="sort">
+          <DataField>sort</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
       </Fields>
     </DataSet>
     <DataSet Name="rpm_tct_grouping_report">
       <Query>
-        <DataSourceName>VSuite_DB</DataSourceName>
+        <DataSourceName>reports_reporting_server</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@grouping_type">
             <Value>report</Value>
           </QueryParameter>
         </QueryParameters>
         <CommandType>StoredProcedure</CommandType>
-        <CommandText>reports.rpm_tct_grouping</CommandText>
+        <CommandText>reproting.rpm_tct_grouping</CommandText>
       </Query>
       <Fields>
         <Field Name="id">
@@ -1518,7 +1526,7 @@
     </DataSet>
     <DataSet Name="rpm_tct_grouping_mdx">
       <Query>
-        <DataSourceName>VSuite_DB</DataSourceName>
+        <DataSourceName>reports_reporting_server</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@grouping_type">
             <Value>mdx</Value>
@@ -1539,7 +1547,7 @@
           </QueryParameter>
         </QueryParameters>
         <CommandType>StoredProcedure</CommandType>
-        <CommandText>reports.rpm_tct_grouping</CommandText>
+        <CommandText>reporting.rpm_tct_grouping</CommandText>
       </Query>
       <Fields>
         <Field Name="id">
@@ -1558,14 +1566,14 @@
     </DataSet>
     <DataSet Name="rpm_tct_grouping_child_row">
       <Query>
-        <DataSourceName>VSuite_DB</DataSourceName>
+        <DataSourceName>reports_reporting_server</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@grouping_type">
             <Value>child_row</Value>
           </QueryParameter>
         </QueryParameters>
         <CommandType>StoredProcedure</CommandType>
-        <CommandText>reports.rpm_tct_grouping</CommandText>
+        <CommandText>reporting.rpm_tct_grouping</CommandText>
       </Query>
       <Fields>
         <Field Name="id">
@@ -1580,11 +1588,19 @@
           <DataField>definition</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="definition_label">
+          <DataField>definition_label</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="sort">
+          <DataField>sort</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
       </Fields>
     </DataSet>
     <DataSet Name="rpm_tct_grouping_comment_sort">
       <Query>
-        <DataSourceName>VSuite_DB</DataSourceName>
+        <DataSourceName>reports_reporting_server</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@grouping_type">
             <Value>comment_sorting</Value>
@@ -1594,7 +1610,7 @@
           </QueryParameter>
         </QueryParameters>
         <CommandType>StoredProcedure</CommandType>
-        <CommandText>reports.rpm_tct_grouping</CommandText>
+        <CommandText>reporting.rpm_tct_grouping</CommandText>
       </Query>
       <Fields>
         <Field Name="id">
@@ -1621,7 +1637,7 @@
     </DataSet>
     <DataSet Name="rpm_tct_grouping_comment_group">
       <Query>
-        <DataSourceName>VSuite_DB</DataSourceName>
+        <DataSourceName>reports_reporting_server</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@grouping_type">
             <Value>comment_grouping</Value>
@@ -1631,7 +1647,7 @@
           </QueryParameter>
         </QueryParameters>
         <CommandType>StoredProcedure</CommandType>
-        <CommandText>reports.rpm_tct_grouping</CommandText>
+        <CommandText>reporting.rpm_tct_grouping</CommandText>
       </Query>
       <Fields>
         <Field Name="id">
