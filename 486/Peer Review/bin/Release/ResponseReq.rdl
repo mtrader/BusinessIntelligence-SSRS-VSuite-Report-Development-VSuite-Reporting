@@ -144,6 +144,10 @@
           <DataField>patient_address_1</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="patient_birth_date">
+          <DataField>patient_birth_date</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
         <Field Name="patient_last_name">
           <DataField>patient_last_name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -151,6 +155,10 @@
         <Field Name="patient_address_2">
           <DataField>patient_address_2</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="patient_age">
+          <DataField>patient_age</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="patient_city">
           <DataField>patient_city</DataField>
@@ -170,6 +178,50 @@
         </Field>
         <Field Name="closed_date">
           <Value>=IIF(Fields!question_id.Value = 2526857, Fields!combined_answer.Value, nothing)</Value>
+        </Field>
+        <Field Name="patient_admit_date">
+          <DataField>patient_admit_date</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="patient_discharge_date">
+          <DataField>patient_discharge_date</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="patient_room">
+          <DataField>patient_room</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="patient_bed">
+          <DataField>patient_bed</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="patient_floor">
+          <DataField>patient_floor</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="patient_building">
+          <DataField>patient_building</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="patient_diagnosis">
+          <DataField>patient_diagnosis</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="patient_doctor_id">
+          <DataField>patient_doctor_id</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="patient_doctor_name">
+          <DataField>patient_doctor_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="attending_doc_first_name">
+          <DataField>attending_doc_first_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="attending_doc_last_name">
+          <DataField>attending_doc_last_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -1559,7 +1611,7 @@
       <DataType>String</DataType>
       <DefaultValue>
         <Values>
-          <Value>7587589</Value>
+          <Value>9411100</Value>
         </Values>
       </DefaultValue>
       <Prompt>EntryID</Prompt>
@@ -1569,12 +1621,10 @@
       <DataType>String</DataType>
       <DefaultValue>
         <Values>
-          <Value>3230541</Value>
-          <Value>3230550</Value>
-          <Value>3230551</Value>
-          <Value>3296884</Value>
-          <Value>3340859</Value>
-          <Value>3396957</Value>
+          <Value>4075880</Value>
+          <Value>4075903</Value>
+          <Value>4075834</Value>
+          <Value>4075946</Value>
         </Values>
       </DefaultValue>
       <Hidden>true</Hidden>
