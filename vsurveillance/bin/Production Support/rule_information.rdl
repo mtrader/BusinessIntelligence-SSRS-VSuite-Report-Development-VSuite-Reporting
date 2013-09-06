@@ -355,6 +355,7 @@
         </Values>
       </DefaultValue>
       <Prompt>filter_type_1</Prompt>
+      <Hidden>true</Hidden>
       <ValidValues>
         <DataSetReference>
           <DataSetName>rpm_rui_filter_type_1</DataSetName>
@@ -370,7 +371,7 @@
           <Value>2</Value>
         </Values>
       </DefaultValue>
-      <Prompt>filter_1</Prompt>
+      <Prompt>Rule Template</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>rpm_rui_filter_1</DataSetName>
@@ -387,6 +388,7 @@
         </Values>
       </DefaultValue>
       <Prompt>filter type 2</Prompt>
+      <Hidden>true</Hidden>
       <ValidValues>
         <DataSetReference>
           <DataSetName>rpm_rui_filter_type_2</DataSetName>
@@ -402,7 +404,7 @@
           <Value>421</Value>
         </Values>
       </DefaultValue>
-      <Prompt>filter 2</Prompt>
+      <Prompt>Health System</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>rpm_rui_filter_2</DataSetName>
@@ -419,6 +421,7 @@
         </Values>
       </DefaultValue>
       <Prompt>filter_type_3</Prompt>
+      <Hidden>true</Hidden>
       <ValidValues>
         <DataSetReference>
           <DataSetName>rpm_rui_filter_type_3</DataSetName>
@@ -434,7 +437,7 @@
           <Value>1</Value>
         </Values>
       </DefaultValue>
-      <Prompt>filter 3</Prompt>
+      <Prompt>Rule</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>rpm_rui_filter_3</DataSetName>

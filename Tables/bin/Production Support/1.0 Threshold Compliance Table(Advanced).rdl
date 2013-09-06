@@ -1515,7 +1515,7 @@
           </QueryParameter>
         </QueryParameters>
         <CommandType>StoredProcedure</CommandType>
-        <CommandText>reproting.rpm_tct_grouping</CommandText>
+        <CommandText>reporting.rpm_tct_grouping</CommandText>
       </Query>
       <Fields>
         <Field Name="id">
@@ -1529,6 +1529,14 @@
         <Field Name="definition">
           <DataField>definition</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="definition_label">
+          <DataField>definition_label</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="sort">
+          <DataField>sort</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -28672,6 +28680,15 @@ SWITCH
       </DefaultValue>
       <Prompt>Org Id</Prompt>
       <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="OrgUnitId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Org Unit].[Org Unit Id].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>OrgUnitOrgUnitId</Prompt>
     </ReportParameter>
     <ReportParameter Name="EvidenceId">
       <DataType>String</DataType>
