@@ -10,8 +10,8 @@
   <DataSets />
   <Reports>
     <ProjectItem>
-      <Name>application_performance.rdl</Name>
-      <FullPath>application_performance.rdl</FullPath>
+      <Name>application_performance_comprehensive.rdl</Name>
+      <FullPath>application_performance_comprehensive.rdl</FullPath>
     </ProjectItem>
   </Reports>
   <Configurations>
