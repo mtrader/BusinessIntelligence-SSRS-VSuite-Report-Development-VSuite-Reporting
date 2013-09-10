@@ -51,5 +51,11 @@
         <TargetReportPartFolder>Report Parts</TargetReportPartFolder>
       </Options>
     </Configuration>
+    <Configuration>
+      <Name>Production Support</Name>
+      <Options>
+        <TargetServerVersion>SSRS2008</TargetServerVersion>
+      </Options>
+    </Configuration>
   </Configurations>
 </Project>

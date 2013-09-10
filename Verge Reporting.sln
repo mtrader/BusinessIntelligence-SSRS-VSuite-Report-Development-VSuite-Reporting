@@ -979,9 +979,9 @@ Global
 		{DB25B87A-180A-4250-A4A3-3F0623C91DE2}.Debug|Default.Build.0 = DebugLocal
 		{DB25B87A-180A-4250-A4A3-3F0623C91DE2}.DebugLocal|Default.ActiveCfg = DebugLocal
 		{DB25B87A-180A-4250-A4A3-3F0623C91DE2}.DebugLocal|Default.Build.0 = DebugLocal
-		{DB25B87A-180A-4250-A4A3-3F0623C91DE2}.Production Support|Default.ActiveCfg = Release
-		{DB25B87A-180A-4250-A4A3-3F0623C91DE2}.Production Support|Default.Build.0 = Release
-		{DB25B87A-180A-4250-A4A3-3F0623C91DE2}.Production Support|Default.Deploy.0 = Release
+		{DB25B87A-180A-4250-A4A3-3F0623C91DE2}.Production Support|Default.ActiveCfg = Production Support
+		{DB25B87A-180A-4250-A4A3-3F0623C91DE2}.Production Support|Default.Build.0 = Production Support
+		{DB25B87A-180A-4250-A4A3-3F0623C91DE2}.Production Support|Default.Deploy.0 = Production Support
 		{DB25B87A-180A-4250-A4A3-3F0623C91DE2}.Release|Default.ActiveCfg = Release
 		{DB25B87A-180A-4250-A4A3-3F0623C91DE2}.Release|Default.Build.0 = Release
 		{DB25B87A-180A-4250-A4A3-3F0623C91DE2}.Release|Default.Deploy.0 = Release
