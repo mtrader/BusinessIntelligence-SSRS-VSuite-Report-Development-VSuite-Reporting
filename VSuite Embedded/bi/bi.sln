@@ -1,0 +1,17 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{D183A3D8-5FD8-494B-B014-37F57B35E655}") = "bi", "bi\bi.dtproj", "{70C5C78C-7EB1-485F-8A56-3BB2D67C2AFE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{70C5C78C-7EB1-485F-8A56-3BB2D67C2AFE}.Development|Default.ActiveCfg = Development
+		{70C5C78C-7EB1-485F-8A56-3BB2D67C2AFE}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
