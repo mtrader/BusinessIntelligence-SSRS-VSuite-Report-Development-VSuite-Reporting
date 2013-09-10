@@ -54,7 +54,10 @@
     <Configuration>
       <Name>Production Support</Name>
       <Options>
-        <TargetServerVersion>SSRS2008</TargetServerVersion>
+        <OutputPath>bin\Production Support</OutputPath>
+        <TargetServerVersion>SSRS2008R2</TargetServerVersion>
+        <TargetServerURL>http://ocashvrgwa01s.verge-solutions.com/reportserver_prodsupport</TargetServerURL>
+        <TargetDataSourceFolder>Data Sources</TargetDataSourceFolder>
       </Options>
     </Configuration>
   </Configurations>
