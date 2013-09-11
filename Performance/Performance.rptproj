@@ -6,12 +6,20 @@
       <Name>bi_olap_server.rds</Name>
       <FullPath>bi_olap_server.rds</FullPath>
     </ProjectItem>
+    <ProjectItem>
+      <Name>reports_reporting_server.rds</Name>
+      <FullPath>reports_reporting_server.rds</FullPath>
+    </ProjectItem>
   </DataSources>
   <DataSets />
   <Reports>
     <ProjectItem>
       <Name>application_performance_comprehensive.rdl</Name>
       <FullPath>application_performance_comprehensive.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>application_performance.rdl</Name>
+      <FullPath>application_performance.rdl</FullPath>
     </ProjectItem>
   </Reports>
   <Configurations>

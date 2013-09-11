@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="VSuite_DB">
+      <DataSourceReference>/Data Sources/VSuite_DB</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>e82ee115-a378-4229-aa04-50a852599e2a</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet1">
+      <Query>
+        <DataSourceName>VSuite_DB</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@OrgElementId">
+            <Value>=Parameters!OrgElementId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@BodyIDs">
+            <Value>=Parameters!BodyIDs.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Run">
+            <Value>=Parameters!Run.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>
+          IF @Run = 1
+         
+          IF @BodyIDs &lt;&gt; ''
+          BEGIN
+          SELECT    Linkedorgelementid, AffectedElementCode,AffectedElementTitle,AffectedOrgElementDescription,
+          AffectedEvaluationComments,AffectedStandardCode,AffectedStandardText, AffectedOrgElementOrg
+          FROM            dbo.vwOrgElement_EffectiveCrosswalk
+          WHERE        linkedorgelementid = @OrgElementId and affectedorgelementorg in (select value from dbo.fn_split(@BodyIDs,','))
+          end
+          ELSE
+          Begin
+          SELECT    Linkedorgelementid, AffectedElementCode,AffectedElementTitle,AffectedOrgElementDescription,
+          AffectedEvaluationComments,AffectedStandardCode,AffectedStandardText, AffectedOrgElementOrg
+          FROM            dbo.vwOrgElement_EffectiveCrosswalk
+          WHERE        linkedorgelementid = @OrgElementId
+          END
+
+        </CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="LinkedOrgElementID">
+          <DataField>LinkedOrgElementID</DataField>
+          <rd:TypeName>System.Integer</rd:TypeName>
+        </Field>
+        <Field Name="AffectedElementCode">
+          <DataField>AffectedElementCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AffectedElementTitle">
+          <DataField>AffectedElementTitle</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AffectedOrgElementDescription">
+          <DataField>AffectedOrgElementDescription</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AffectedOrgElementOrg">
+          <DataField>AffectedOrgElementOrg</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AffectedEvaluationComments">
+          <DataField>AffectedEvaluationComments</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AffectedStandardCode">
+          <DataField>AffectedStandardCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AffectedStandardText">
+          <DataField>AffectedStandardText</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Tablix Name="table1">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>2.51666in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>4.78959in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="textbox8">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!AffectedOrgElementOrg.Value &amp; " "&amp; Fields!AffectedStandardCode.Value &amp; "-" &amp; Fields!AffectedStandardText.Value</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>textbox7</rd:DefaultName>
+                          <ZIndex>15</ZIndex>
+                          <Style>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox1">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!AffectedElementTitle.Value &amp; "-" &amp;Fields!AffectedOrgElementDescription.Value</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox1</rd:DefaultName>
+                          <Style>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="Group1">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!AffectedStandardCode.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!AffectedStandardCode.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixMembers>
+                    <TablixMember />
+                  </TablixMembers>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>DataSet1</DataSetName>
+            <Top>0.12042in</Top>
+            <Height>0.25in</Height>
+            <Width>7.30625in</Width>
+            <Style />
+          </Tablix>
+        </ReportItems>
+        <Height>0.39458in</Height>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Body>
+      <Width>7.30625in</Width>
+      <Page>
+        <LeftMargin>1in</LeftMargin>
+        <RightMargin>1in</RightMargin>
+        <TopMargin>1in</TopMargin>
+        <BottomMargin>1in</BottomMargin>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="Run">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>0</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Run</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>0</Value>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>1</Value>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="OrgElementId">
+      <DataType>Integer</DataType>
+      <Prompt>OrgElementId</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="BodyIDs">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>BodyIDs</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <Language>en-US</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportServerUrl>http://sjcvrgrpt01p.verge-solutions.com/reportserver</rd:ReportServerUrl>
+  <rd:ReportID>dc5fa1ef-0588-44b8-9e21-5406f10ad4a4</rd:ReportID>
+</Report>

@@ -63,198 +63,290 @@
           </QueryParameter>
         </QueryParameters>
         <CommandText>WITH 
-  SET [Base Set Restricted] AS 
-    NonEmpty
+ 
+SET [Base Set Restricted] AS 
+    NONEMPTY
     (
-      [Evidence Entry].[Evidence Entry Id].[Evidence Entry Id]
-     ,[Measures].[Evidence Entry Count]
-    ) 
-  MEMBER [Measures].[id] AS 
-    Generate
+		[Evidence Entry].[Evidence Entry Id].[Evidence Entry Id],
+		[Measures].[Evidence Entry Count]
+    )
+
+MEMBER [Measures].[id] AS 
+    GENERATE
+	(
+		[Base Set Restricted],
+		[Evidence Entry].[Evidence Entry Id].CURRENTMEMBER.UNIQUENAME,
+		","
+    )
+
+MEMBER [Measures].[definition] AS 
+    GENERATE
     (
-      [Base Set Restricted]
-     ,[Evidence Entry].[Evidence Entry Id].CurrentMember.UniqueName
-     ,","
-    ) 
-  MEMBER [Measures].[definition] AS 
-    Generate
-    (
-      [Base Set Restricted]
-     ,[Evidence Entry].[Evidence Entry Id].CurrentMember.Name
-     ,","
-    ) 
+		[Base Set Restricted],
+		[Evidence Entry].[Evidence Entry Id].CurrentMember.Name,
+		","
+    )
+
 SELECT 
-  {
-    [Measures].[id]
-   ,[Measures].[definition]
-  } ON 0
+{
+	[Measures].[id],
+	[Measures].[definition]
+} ON 0
 FROM 
 (
-  SELECT 
-    StrToSet(@QuestionQuestionTypeId) ON COLUMNS
-  FROM 
-  (
-    SELECT 
-      StrToSet(@QuestionQuestionGroupId) ON COLUMNS
-    FROM 
-    (
-      SELECT 
-        StrToSet(@EvidenceEntrySeverityId) ON COLUMNS
-      FROM 
-      (
-        SELECT 
-          StrToSet(@EvidenceEntryStatusId) ON COLUMNS
-        FROM 
-        (
-          SELECT 
-            StrToSet(@EvidenceEntryEvidenceEntryId) ON COLUMNS
-          FROM 
-          (
-            SELECT 
-              StrToSet(@UserUserId) ON COLUMNS
-            FROM 
-            (
-              SELECT 
-                StrToSet(@ObservationDateYQMD) ON COLUMNS
-              FROM 
-                        (
-              SELECT 
-                StrToSet(@EnteredDateYQMD) ON COLUMNS
-              FROM 
-              (
-                SELECT 
-                  StrToSet(@StaffStaffId) ON COLUMNS
-                FROM 
-                (
-                  SELECT 
-                    StrToSet(@QuestionQuestionId) ON COLUMNS
-                  FROM 
-                  (
-                    SELECT 
-                      StrToSet(@LocationLocationId) ON COLUMNS
-                    FROM 
-                    (
-                      SELECT 
-                        StrToSet(@EvidenceEvidenceId) ON COLUMNS
-                      FROM 
-                      (
-                        SELECT 
-                          StrToSet(@HealthSystemOrgId) ON COLUMNS
-                        FROM 
-                        (
-                          SELECT 
-                            StrToSet(@HealthSystemHealthSystemId) ON COLUMNS
-                          FROM [VSuite]
-                         )
-                        )
-                      )
-                    )
-                  )
-                )
-              )
-            )
-          )
-        )
-      )
-    )
-  )
+	SELECT 
+		STRTOSET
+		(
+			@QuestionQuestionTypeId
+		) ON COLUMNS
+	FROM
+	(
+		SELECT 
+			StrToSet
+			(
+				@QuestionQuestionGroupId
+			) ON COLUMNS
+		FROM 
+		(
+			SELECT 
+				StrToSet
+				(
+					@EvidenceEntrySeverityId
+				) ON COLUMNS
+			FROM 
+			(
+				SELECT 
+					StrToSet
+					(
+						@EvidenceEntryStatusId
+					) ON COLUMNS
+				FROM 
+				(
+					SELECT 
+						StrToSet
+						(
+							@EvidenceEntryEvidenceEntryId
+						) ON COLUMNS
+					FROM 
+					(
+						SELECT 
+							StrToSet
+							(
+								@UserUserId
+							) ON COLUMNS
+						FROM 
+						(
+							SELECT 
+								StrToSet
+								(
+									@ObservationDateYQMD
+								) ON COLUMNS
+							FROM 
+							(
+								SELECT 
+									StrToSet
+									(
+										@EnteredDateYQMD
+									) ON COLUMNS
+								FROM 
+								(
+									SELECT 
+										StrToSet
+										(
+											@StaffStaffId
+										) ON COLUMNS
+									FROM 
+									(
+										SELECT 
+											StrToSet
+											(
+												@QuestionQuestionId
+											) ON COLUMNS
+										FROM 
+										(
+											SELECT 
+												StrToSet
+												(
+													@LocationLocationId
+												) ON COLUMNS
+											FROM 
+											(
+												SELECT 
+													StrToSet
+													(
+														@EvidenceEvidenceId
+													) ON COLUMNS
+												FROM 
+												(
+													SELECT 
+														StrToSet
+														(
+															@HealthSystemOrgId
+														) ON COLUMNS
+													FROM 
+													(
+														SELECT 
+															StrToSet
+															(
+																@HealthSystemHealthSystemId
+															) ON COLUMNS
+														FROM [VSuite]
+													)
+												)
+											)
+										)
+									)
+								)
+							)
+						)
+					)
+				)
+			)
+		)
+	)
 );</CommandText>
         <rd:DesignerState><QueryDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/AnalysisServices/QueryDefinition"><CommandType>MDX</CommandType><Type>Query</Type><QuerySpecification xsi:type="MDXQuerySpecification"><Select><Items><Item><ID xsi:type="Measure"><MeasureName>id</MeasureName><UniqueName>[Measures].[id]</UniqueName></ID><ItemCaption>id</ItemCaption><FormattedValue>true</FormattedValue></Item><Item><ID xsi:type="Measure"><MeasureName>definition</MeasureName><UniqueName>[Measures].[definition]</UniqueName></ID><ItemCaption>definition</ItemCaption><FormattedValue>true</FormattedValue></Item></Items></Select><From>VSuite</From><Filter><FilterItems /></Filter><Calculations /><Aggregates /><QueryProperties /></QuerySpecification><Query><Statement>WITH 
-  SET [Base Set Restricted] AS 
-    NonEmpty
+ 
+SET [Base Set Restricted] AS 
+    NONEMPTY
     (
-      [Evidence Entry].[Evidence Entry Id].[Evidence Entry Id]
-     ,[Measures].[Evidence Entry Count]
-    ) 
-  MEMBER [Measures].[id] AS 
-    Generate
+		[Evidence Entry].[Evidence Entry Id].[Evidence Entry Id],
+		[Measures].[Evidence Entry Count]
+    )
+
+MEMBER [Measures].[id] AS 
+    GENERATE
+	(
+		[Base Set Restricted],
+		[Evidence Entry].[Evidence Entry Id].CURRENTMEMBER.UNIQUENAME,
+		","
+    )
+
+MEMBER [Measures].[definition] AS 
+    GENERATE
     (
-      [Base Set Restricted]
-     ,[Evidence Entry].[Evidence Entry Id].CurrentMember.UniqueName
-     ,","
-    ) 
-  MEMBER [Measures].[definition] AS 
-    Generate
-    (
-      [Base Set Restricted]
-     ,[Evidence Entry].[Evidence Entry Id].CurrentMember.Name
-     ,","
-    ) 
+		[Base Set Restricted],
+		[Evidence Entry].[Evidence Entry Id].CurrentMember.Name,
+		","
+    )
+
 SELECT 
-  {
-    [Measures].[id]
-   ,[Measures].[definition]
-  } ON 0
+{
+	[Measures].[id],
+	[Measures].[definition]
+} ON 0
 FROM 
 (
-  SELECT 
-    StrToSet(@QuestionQuestionTypeId) ON COLUMNS
-  FROM 
-  (
-    SELECT 
-      StrToSet(@QuestionQuestionGroupId) ON COLUMNS
-    FROM 
-    (
-      SELECT 
-        StrToSet(@EvidenceEntrySeverityId) ON COLUMNS
-      FROM 
-      (
-        SELECT 
-          StrToSet(@EvidenceEntryStatusId) ON COLUMNS
-        FROM 
-        (
-          SELECT 
-            StrToSet(@EvidenceEntryEvidenceEntryId) ON COLUMNS
-          FROM 
-          (
-            SELECT 
-              StrToSet(@UserUserId) ON COLUMNS
-            FROM 
-            (
-              SELECT 
-                StrToSet(@ObservationDateYQMD) ON COLUMNS
-              FROM 
-                        (
-              SELECT 
-                StrToSet(@EnteredDateYQMD) ON COLUMNS
-              FROM 
-              (
-                SELECT 
-                  StrToSet(@StaffStaffId) ON COLUMNS
-                FROM 
-                (
-                  SELECT 
-                    StrToSet(@QuestionQuestionId) ON COLUMNS
-                  FROM 
-                  (
-                    SELECT 
-                      StrToSet(@LocationLocationId) ON COLUMNS
-                    FROM 
-                    (
-                      SELECT 
-                        StrToSet(@EvidenceEvidenceId) ON COLUMNS
-                      FROM 
-                      (
-                        SELECT 
-                          StrToSet(@HealthSystemOrgId) ON COLUMNS
-                        FROM 
-                        (
-                          SELECT 
-                            StrToSet(@HealthSystemHealthSystemId) ON COLUMNS
-                          FROM [VSuite]
-                         )
-                        )
-                      )
-                    )
-                  )
-                )
-              )
-            )
-          )
-        )
-      )
-    )
-  )
+	SELECT 
+		STRTOSET
+		(
+			@QuestionQuestionTypeId
+		) ON COLUMNS
+	FROM
+	(
+		SELECT 
+			StrToSet
+			(
+				@QuestionQuestionGroupId
+			) ON COLUMNS
+		FROM 
+		(
+			SELECT 
+				StrToSet
+				(
+					@EvidenceEntrySeverityId
+				) ON COLUMNS
+			FROM 
+			(
+				SELECT 
+					StrToSet
+					(
+						@EvidenceEntryStatusId
+					) ON COLUMNS
+				FROM 
+				(
+					SELECT 
+						StrToSet
+						(
+							@EvidenceEntryEvidenceEntryId
+						) ON COLUMNS
+					FROM 
+					(
+						SELECT 
+							StrToSet
+							(
+								@UserUserId
+							) ON COLUMNS
+						FROM 
+						(
+							SELECT 
+								StrToSet
+								(
+									@ObservationDateYQMD
+								) ON COLUMNS
+							FROM 
+							(
+								SELECT 
+									StrToSet
+									(
+										@EnteredDateYQMD
+									) ON COLUMNS
+								FROM 
+								(
+									SELECT 
+										StrToSet
+										(
+											@StaffStaffId
+										) ON COLUMNS
+									FROM 
+									(
+										SELECT 
+											StrToSet
+											(
+												@QuestionQuestionId
+											) ON COLUMNS
+										FROM 
+										(
+											SELECT 
+												StrToSet
+												(
+													@LocationLocationId
+												) ON COLUMNS
+											FROM 
+											(
+												SELECT 
+													StrToSet
+													(
+														@EvidenceEvidenceId
+													) ON COLUMNS
+												FROM 
+												(
+													SELECT 
+														StrToSet
+														(
+															@HealthSystemOrgId
+														) ON COLUMNS
+													FROM 
+													(
+														SELECT 
+															StrToSet
+															(
+																@HealthSystemHealthSystemId
+															) ON COLUMNS
+														FROM [VSuite]
+													)
+												)
+											)
+										)
+									)
+								)
+							)
+						)
+					)
+				)
+			)
+		)
+	)
 );</Statement><ParameterDefinitions><ParameterDefinition><Name>HealthSystemHealthSystemId</Name><DefaultValues><DefaultValue>[Health System].[Health System Id].&amp;[183]</DefaultValue></DefaultValues><Caption>Health System Id</Caption><HierarchyUniqueName>[Health System].[Health System Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Health System].[Health System Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Health System].[Health System Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Health System].[Health System Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Health System].[Health System Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>HealthSystemOrgId</Name><DefaultValues><DefaultValue>[Health System].[Org Id].[All]</DefaultValue></DefaultValues><Caption>Org Id</Caption><HierarchyUniqueName>[Health System].[Org Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Health System].[Org Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Health System].[Org Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Health System].[Org Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Health System].[Org Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>EvidenceEvidenceId</Name><DefaultValues><DefaultValue>[Evidence].[Evidence Id].[All]</DefaultValue></DefaultValues><Caption>Evidence Id</Caption><HierarchyUniqueName>[Evidence].[Evidence Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Evidence].[Evidence Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Evidence].[Evidence Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Evidence].[Evidence Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Evidence].[Evidence Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>LocationLocationId</Name><DefaultValues><DefaultValue>[Location].[Location Id].[All]</DefaultValue></DefaultValues><Caption>Location.Location Id</Caption><HierarchyUniqueName>[Location].[Location Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Location].[Location Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Location].[Location Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Location].[Location Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Location].[Location Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>QuestionQuestionId</Name><DefaultValues><DefaultValue>[Question].[Question Id].[All]</DefaultValue></DefaultValues><Caption>Question Id</Caption><HierarchyUniqueName>[Question].[Question Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Question].[Question Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Question].[Question Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Question].[Question Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Question].[Question Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>StaffStaffId</Name><DefaultValues><DefaultValue>[Staff].[Staff Id].[All]</DefaultValue></DefaultValues><Caption>Staff Id</Caption><HierarchyUniqueName>[Staff].[Staff Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Staff].[Staff Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Staff].[Staff Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Staff].[Staff Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Staff].[Staff Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>EnteredDateYQMD</Name><DefaultValues><DefaultValue>[Entered Date].[Y - Q - M - D].[All]</DefaultValue></DefaultValues><Caption>EnteredDateYQMD</Caption><HierarchyUniqueName>[Entered Date].[Y - Q - M - D]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Entered Date].[Y - Q - M - D].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Entered Date].[Y - Q - M - D].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Entered Date].[Y - Q - M - D].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Entered Date].[Y - Q - M - D].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>ObservationDateYQMD</Name><DefaultValues><DefaultValue>[Observation Date].[Y - Q - M - D].[Year].&amp;[2012]</DefaultValue></DefaultValues><Caption>Observation Date.Y - Q - M - D</Caption><HierarchyUniqueName>[Observation Date].[Y - Q - M - D]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Observation Date].[Y - Q - M - D].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>UserUserId</Name><DefaultValues><DefaultValue>[User].[User Id].[All]</DefaultValue></DefaultValues><Caption>User Id</Caption><HierarchyUniqueName>[User].[User Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [User].[User Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [User].[User Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [User].[User Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [User].[User Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>EvidenceEntryEvidenceEntryId</Name><DefaultValues><DefaultValue>[Evidence Entry].[Evidence Entry Id].[All]</DefaultValue></DefaultValues><Caption>Evidence Entry Id</Caption><HierarchyUniqueName>[Evidence Entry].[Evidence Entry Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Evidence Entry].[Evidence Entry Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Evidence Entry].[Evidence Entry Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Evidence Entry].[Evidence Entry Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Evidence Entry].[Evidence Entry Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>QuestionQuestionGroupId</Name><DefaultValues><DefaultValue>[Question].[Question Group Id].[All]</DefaultValue></DefaultValues><Caption>Question Group Id</Caption><HierarchyUniqueName>[Question].[Question Group Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Question].[Question Group Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Question].[Question Group Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Question].[Question Group Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Question].[Question Group Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>QuestionQuestionTypeId</Name><DefaultValues><DefaultValue>[Question].[Question Type Id].[All]</DefaultValue></DefaultValues><Caption>Question Type Id</Caption><HierarchyUniqueName>[Question].[Question Type Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Question].[Question Type Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Question].[Question Type Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Question].[Question Type Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Question].[Question Type Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>EvidenceEntrySeverityId</Name><DefaultValues><DefaultValue>[Evidence Entry].[Evidence Entry Severity Name].[All]</DefaultValue></DefaultValues><Caption>EvidenceEntrySeverityId</Caption><HierarchyUniqueName>[Evidence Entry].[Evidence Entry Severity Name]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Evidence Entry].[Evidence Entry Severity Name].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Evidence Entry].[Evidence Entry Severity Name].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Evidence Entry].[Evidence Entry Severity Name].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Evidence Entry].[Evidence Entry Severity Name].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>EvidenceEntryStatusId</Name><DefaultValues><DefaultValue>[Evidence Entry].[Evidence Entry Status Name].[All]</DefaultValue></DefaultValues><Caption>EvidenceEntryStatusId</Caption><HierarchyUniqueName>[Evidence Entry].[Evidence Entry Status Name]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Evidence Entry].[Evidence Entry Status Name].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Evidence Entry].[Evidence Entry Status Name].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Evidence Entry].[Evidence Entry Status Name].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Evidence Entry].[Evidence Entry Status Name].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition></ParameterDefinitions></Query></QueryDefinition></rd:DesignerState>
       </Query>
       <Fields>
@@ -315,200 +407,292 @@ FROM
             <Value>=Parameters!EvidenceEntryStatusId.Value</Value>
           </QueryParameter>
         </QueryParameters>
-        <CommandText>WITH 
-  SET [Base Set Restricted] AS 
-    NonEmpty
+        <CommandText>WITH
+
+SET [Base Set Restricted] AS 
+    NONEMPTY
     (
-      [Question].[Question Id].[Question Id]
-     ,[Measures].[Evidence Entry Count]
-    ) 
-  MEMBER [Measures].[id] AS 
-    Generate
-    (
-      [Base Set Restricted]
-     ,[Question].[Question Id].CurrentMember.UniqueName
-     ,","
-    ) 
-  MEMBER [Measures].[definition] AS 
-    Generate
-    (
-      [Base Set Restricted]
-     ,[Question].[Question Id].CurrentMember.Name
-     ,","
-    ) 
-SELECT 
-  {
-    [Measures].[id]
-   ,[Measures].[definition]
-  } ON 0
-FROM 
-(
-  SELECT 
-    StrToSet(@QuestionQuestionTypeId) ON COLUMNS
-  FROM 
-  (
-    SELECT 
-      StrToSet(@QuestionQuestionGroupId) ON COLUMNS
-    FROM 
-    (
-      SELECT 
-        StrToSet(@EvidenceEntryEvidenceEntryId) ON COLUMNS
-      FROM 
-      (
-        SELECT 
-          StrToSet(@EvidenceEntrySeverityId) ON COLUMNS
-        FROM 
-        (
-          SELECT 
-            StrToSet(@EvidenceEntryStatusId) ON COLUMNS
-          FROM 
-          (
-            SELECT 
-              StrToSet(@UserUserId) ON COLUMNS
-            FROM 
-            (
-              SELECT 
-                StrToSet(@ObservationDateYQMD) ON COLUMNS
-              FROM 
-                        (
-              SELECT 
-                StrToSet(@EnteredDateYQMD) ON COLUMNS
-              FROM 
-              (
-                SELECT 
-                  StrToSet(@StaffStaffId) ON COLUMNS
-                FROM 
-                (
-                  SELECT 
-                    StrToSet(@QuestionQuestionId) ON COLUMNS
-                  FROM 
-                  (
-                    SELECT 
-                      StrToSet(@LocationLocationId) ON COLUMNS
-                    FROM 
-                    (
-                      SELECT 
-                        StrToSet(@EvidenceEvidenceId) ON COLUMNS
-                      FROM 
-                      (
-                        SELECT 
-                          StrToSet(@HealthSystemOrgId) ON COLUMNS
-                        FROM 
-                        (
-                          SELECT 
-                            StrToSet(@HealthSystemHealthSystemId) ON COLUMNS
-                          FROM [VSuite]
-                         )
-                        )
-                      )
-                    )
-                  )
-                )
-              )
-            )
-          )
-        )
-      )
+		[Question].[Question Id].[Question Id],
+		[Measures].[Evidence Entry Count]
     )
-  )
-);				  </CommandText>
-        <rd:DesignerState><QueryDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/AnalysisServices/QueryDefinition"><CommandType>MDX</CommandType><Type>Query</Type><QuerySpecification xsi:type="MDXQuerySpecification"><Select><Items><Item><ID xsi:type="Measure"><MeasureName>id</MeasureName><UniqueName>[Measures].[id]</UniqueName></ID><ItemCaption>id</ItemCaption><FormattedValue>true</FormattedValue></Item><Item><ID xsi:type="Measure"><MeasureName>definition</MeasureName><UniqueName>[Measures].[definition]</UniqueName></ID><ItemCaption>definition</ItemCaption><FormattedValue>true</FormattedValue></Item></Items></Select><From>VSuite</From><Filter><FilterItems /></Filter><Calculations /><Aggregates /><QueryProperties /></QuerySpecification><Query><Statement>WITH 
-  SET [Base Set Restricted] AS 
-    NonEmpty
+    
+MEMBER [Measures].[id] AS 
+    GENERATE
     (
-      [Question].[Question Id].[Question Id]
-     ,[Measures].[Evidence Entry Count]
+		[Base Set Restricted],
+		[Question].[Question Id].CURRENTMEMBER.UNIQUENAME,
+		","
     ) 
-  MEMBER [Measures].[id] AS 
-    Generate
+
+MEMBER [Measures].[definition] AS 
+    GENERATE
     (
-      [Base Set Restricted]
-     ,[Question].[Question Id].CurrentMember.UniqueName
-     ,","
-    ) 
-  MEMBER [Measures].[definition] AS 
-    Generate
-    (
-      [Base Set Restricted]
-     ,[Question].[Question Id].CurrentMember.Name
-     ,","
-    ) 
-SELECT 
-  {
-    [Measures].[id]
-   ,[Measures].[definition]
-  } ON 0
-FROM 
-(
-  SELECT 
-    StrToSet(@QuestionQuestionTypeId) ON COLUMNS
-  FROM 
-  (
-    SELECT 
-      StrToSet(@QuestionQuestionGroupId) ON COLUMNS
-    FROM 
-    (
-      SELECT 
-        StrToSet(@EvidenceEntryEvidenceEntryId) ON COLUMNS
-      FROM 
-      (
-        SELECT 
-          StrToSet(@EvidenceEntrySeverityId) ON COLUMNS
-        FROM 
-        (
-          SELECT 
-            StrToSet(@EvidenceEntryStatusId) ON COLUMNS
-          FROM 
-          (
-            SELECT 
-              StrToSet(@UserUserId) ON COLUMNS
-            FROM 
-            (
-              SELECT 
-                StrToSet(@ObservationDateYQMD) ON COLUMNS
-              FROM 
-                        (
-              SELECT 
-                StrToSet(@EnteredDateYQMD) ON COLUMNS
-              FROM 
-              (
-                SELECT 
-                  StrToSet(@StaffStaffId) ON COLUMNS
-                FROM 
-                (
-                  SELECT 
-                    StrToSet(@QuestionQuestionId) ON COLUMNS
-                  FROM 
-                  (
-                    SELECT 
-                      StrToSet(@LocationLocationId) ON COLUMNS
-                    FROM 
-                    (
-                      SELECT 
-                        StrToSet(@EvidenceEvidenceId) ON COLUMNS
-                      FROM 
-                      (
-                        SELECT 
-                          StrToSet(@HealthSystemOrgId) ON COLUMNS
-                        FROM 
-                        (
-                          SELECT 
-                            StrToSet(@HealthSystemHealthSystemId) ON COLUMNS
-                          FROM [VSuite]
-                         )
-                        )
-                      )
-                    )
-                  )
-                )
-              )
-            )
-          )
-        )
-      )
+      [Base Set Restricted],
+      [Question].[Question Id].CURRENTMEMBER.NAME,
+      ","
     )
-  )
-);				  </Statement><ParameterDefinitions><ParameterDefinition><Name>HealthSystemHealthSystemId</Name><DefaultValues><DefaultValue>[Health System].[Health System Id].&amp;[183]</DefaultValue></DefaultValues><Caption>Health System Id</Caption><HierarchyUniqueName>[Health System].[Health System Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Health System].[Health System Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Health System].[Health System Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Health System].[Health System Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Health System].[Health System Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>HealthSystemOrgId</Name><DefaultValues><DefaultValue>[Health System].[Org Id].[All]</DefaultValue></DefaultValues><Caption>Org Id</Caption><HierarchyUniqueName>[Health System].[Org Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Health System].[Org Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Health System].[Org Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Health System].[Org Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Health System].[Org Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>EvidenceEvidenceId</Name><DefaultValues><DefaultValue>[Evidence].[Evidence Id].[All]</DefaultValue></DefaultValues><Caption>Evidence Id</Caption><HierarchyUniqueName>[Evidence].[Evidence Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Evidence].[Evidence Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Evidence].[Evidence Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Evidence].[Evidence Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Evidence].[Evidence Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>LocationLocationId</Name><DefaultValues><DefaultValue>[Location].[Location Id].[All]</DefaultValue></DefaultValues><Caption>Location.Location Id</Caption><HierarchyUniqueName>[Location].[Location Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Location].[Location Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Location].[Location Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Location].[Location Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Location].[Location Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>QuestionQuestionId</Name><DefaultValues><DefaultValue>[Question].[Question Id].[All]</DefaultValue></DefaultValues><Caption>Question Id</Caption><HierarchyUniqueName>[Question].[Question Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Question].[Question Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Question].[Question Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Question].[Question Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Question].[Question Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>StaffStaffId</Name><DefaultValues><DefaultValue>[Staff].[Staff Id].[All]</DefaultValue></DefaultValues><Caption>Staff Id</Caption><HierarchyUniqueName>[Staff].[Staff Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Staff].[Staff Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Staff].[Staff Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Staff].[Staff Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Staff].[Staff Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>EnteredDateYQMD</Name><DefaultValues><DefaultValue>[Entered Date].[Y - Q - M - D].[All]</DefaultValue></DefaultValues><Caption>EnteredDateYQMD</Caption><HierarchyUniqueName>[Entered Date].[Y - Q - M - D]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Entered Date].[Y - Q - M - D].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Entered Date].[Y - Q - M - D].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Entered Date].[Y - Q - M - D].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Entered Date].[Y - Q - M - D].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>ObservationDateYQMD</Name><DefaultValues><DefaultValue>[Observation Date].[Y - Q - M - D].[Year].&amp;[2010]</DefaultValue></DefaultValues><Caption>Observation Date.Y - Q - M - D</Caption><HierarchyUniqueName>[Observation Date].[Y - Q - M - D]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Observation Date].[Y - Q - M - D].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>UserUserId</Name><DefaultValues><DefaultValue>[User].[User Id].[All]</DefaultValue></DefaultValues><Caption>User Id</Caption><HierarchyUniqueName>[User].[User Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [User].[User Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [User].[User Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [User].[User Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [User].[User Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>EvidenceEntryEvidenceEntryId</Name><DefaultValues><DefaultValue>[Evidence Entry].[Evidence Entry Id].[All]</DefaultValue></DefaultValues><Caption>Evidence Entry Id</Caption><HierarchyUniqueName>[Evidence Entry].[Evidence Entry Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Evidence Entry].[Evidence Entry Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Evidence Entry].[Evidence Entry Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Evidence Entry].[Evidence Entry Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Evidence Entry].[Evidence Entry Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>QuestionQuestionGroupId</Name><DefaultValues><DefaultValue>[Question].[Question Group Id].[All]</DefaultValue></DefaultValues><Caption>Question Group Id</Caption><HierarchyUniqueName>[Question].[Question Group Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Question].[Question Group Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Question].[Question Group Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Question].[Question Group Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Question].[Question Group Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>QuestionQuestionTypeId</Name><DefaultValues><DefaultValue>[Question].[Question Type Id].[All]</DefaultValue></DefaultValues><Caption>Question Type Id</Caption><HierarchyUniqueName>[Question].[Question Type Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Question].[Question Type Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Question].[Question Type Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Question].[Question Type Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Question].[Question Type Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>EvidenceEntrySeverityId</Name><DefaultValues><DefaultValue>[Evidence Entry].[Evidence Entry Severity Name].[All]</DefaultValue></DefaultValues><Caption>EvidenceEntrySeverityId</Caption><HierarchyUniqueName>[Evidence Entry].[Evidence Entry Severity Name]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Evidence Entry].[Evidence Entry Severity Name].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Evidence Entry].[Evidence Entry Severity Name].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Evidence Entry].[Evidence Entry Severity Name].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Evidence Entry].[Evidence Entry Severity Name].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>EvidenceEntryStatusId</Name><DefaultValues><DefaultValue>[Evidence Entry].[Evidence Entry Status Name].[All]</DefaultValue></DefaultValues><Caption>EvidenceEntryStatusId</Caption><HierarchyUniqueName>[Evidence Entry].[Evidence Entry Status Name]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Evidence Entry].[Evidence Entry Status Name].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Evidence Entry].[Evidence Entry Status Name].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Evidence Entry].[Evidence Entry Status Name].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Evidence Entry].[Evidence Entry Status Name].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition></ParameterDefinitions></Query></QueryDefinition></rd:DesignerState>
+    
+SELECT 
+{
+	[Measures].[id],
+	[Measures].[definition]
+} ON 0
+FROM
+(
+	SELECT 
+		STRTOSET
+		(
+			@QuestionQuestionTypeId
+		) ON COLUMNS
+	FROM
+	(
+		SELECT 
+			StrToSet
+			(
+				@QuestionQuestionGroupId
+			) ON COLUMNS
+		FROM 
+		(
+			SELECT 
+				StrToSet
+				(
+					@EvidenceEntrySeverityId
+				) ON COLUMNS
+			FROM 
+			(
+				SELECT 
+					StrToSet
+					(
+						@EvidenceEntryStatusId
+					) ON COLUMNS
+				FROM 
+				(
+					SELECT 
+						StrToSet
+						(
+							@EvidenceEntryEvidenceEntryId
+						) ON COLUMNS
+					FROM 
+					(
+						SELECT 
+							StrToSet
+							(
+								@UserUserId
+							) ON COLUMNS
+						FROM 
+						(
+							SELECT 
+								StrToSet
+								(
+									@ObservationDateYQMD
+								) ON COLUMNS
+							FROM 
+							(
+								SELECT 
+									StrToSet
+									(
+										@EnteredDateYQMD
+									) ON COLUMNS
+								FROM 
+								(
+									SELECT 
+										StrToSet
+										(
+											@StaffStaffId
+										) ON COLUMNS
+									FROM 
+									(
+										SELECT 
+											StrToSet
+											(
+												@QuestionQuestionId
+											) ON COLUMNS
+										FROM 
+										(
+											SELECT 
+												StrToSet
+												(
+													@LocationLocationId
+												) ON COLUMNS
+											FROM 
+											(
+												SELECT 
+													StrToSet
+													(
+														@EvidenceEvidenceId
+													) ON COLUMNS
+												FROM 
+												(
+													SELECT 
+														StrToSet
+														(
+															@HealthSystemOrgId
+														) ON COLUMNS
+													FROM 
+													(
+														SELECT 
+															StrToSet
+															(
+																@HealthSystemHealthSystemId
+															) ON COLUMNS
+														FROM [VSuite]
+													)
+												)
+											)
+										)
+									)
+								)
+							)
+						)
+					)
+				)
+			)
+		)
+	)
+);</CommandText>
+        <rd:DesignerState><QueryDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/AnalysisServices/QueryDefinition"><CommandType>MDX</CommandType><Type>Query</Type><QuerySpecification xsi:type="MDXQuerySpecification"><Select><Items><Item><ID xsi:type="Measure"><MeasureName>id</MeasureName><UniqueName>[Measures].[id]</UniqueName></ID><ItemCaption>id</ItemCaption><FormattedValue>true</FormattedValue></Item><Item><ID xsi:type="Measure"><MeasureName>definition</MeasureName><UniqueName>[Measures].[definition]</UniqueName></ID><ItemCaption>definition</ItemCaption><FormattedValue>true</FormattedValue></Item></Items></Select><From>VSuite</From><Filter><FilterItems /></Filter><Calculations /><Aggregates /><QueryProperties /></QuerySpecification><Query><Statement>WITH
+
+SET [Base Set Restricted] AS 
+    NONEMPTY
+    (
+		[Question].[Question Id].[Question Id],
+		[Measures].[Evidence Entry Count]
+    )
+    
+MEMBER [Measures].[id] AS 
+    GENERATE
+    (
+		[Base Set Restricted],
+		[Question].[Question Id].CURRENTMEMBER.UNIQUENAME,
+		","
+    ) 
+
+MEMBER [Measures].[definition] AS 
+    GENERATE
+    (
+      [Base Set Restricted],
+      [Question].[Question Id].CURRENTMEMBER.NAME,
+      ","
+    )
+    
+SELECT 
+{
+	[Measures].[id],
+	[Measures].[definition]
+} ON 0
+FROM
+(
+	SELECT 
+		STRTOSET
+		(
+			@QuestionQuestionTypeId
+		) ON COLUMNS
+	FROM
+	(
+		SELECT 
+			StrToSet
+			(
+				@QuestionQuestionGroupId
+			) ON COLUMNS
+		FROM 
+		(
+			SELECT 
+				StrToSet
+				(
+					@EvidenceEntrySeverityId
+				) ON COLUMNS
+			FROM 
+			(
+				SELECT 
+					StrToSet
+					(
+						@EvidenceEntryStatusId
+					) ON COLUMNS
+				FROM 
+				(
+					SELECT 
+						StrToSet
+						(
+							@EvidenceEntryEvidenceEntryId
+						) ON COLUMNS
+					FROM 
+					(
+						SELECT 
+							StrToSet
+							(
+								@UserUserId
+							) ON COLUMNS
+						FROM 
+						(
+							SELECT 
+								StrToSet
+								(
+									@ObservationDateYQMD
+								) ON COLUMNS
+							FROM 
+							(
+								SELECT 
+									StrToSet
+									(
+										@EnteredDateYQMD
+									) ON COLUMNS
+								FROM 
+								(
+									SELECT 
+										StrToSet
+										(
+											@StaffStaffId
+										) ON COLUMNS
+									FROM 
+									(
+										SELECT 
+											StrToSet
+											(
+												@QuestionQuestionId
+											) ON COLUMNS
+										FROM 
+										(
+											SELECT 
+												StrToSet
+												(
+													@LocationLocationId
+												) ON COLUMNS
+											FROM 
+											(
+												SELECT 
+													StrToSet
+													(
+														@EvidenceEvidenceId
+													) ON COLUMNS
+												FROM 
+												(
+													SELECT 
+														StrToSet
+														(
+															@HealthSystemOrgId
+														) ON COLUMNS
+													FROM 
+													(
+														SELECT 
+															StrToSet
+															(
+																@HealthSystemHealthSystemId
+															) ON COLUMNS
+														FROM [VSuite]
+													)
+												)
+											)
+										)
+									)
+								)
+							)
+						)
+					)
+				)
+			)
+		)
+	)
+);</Statement><ParameterDefinitions><ParameterDefinition><Name>HealthSystemHealthSystemId</Name><DefaultValues><DefaultValue>[Health System].[Health System Id].&amp;[183]</DefaultValue></DefaultValues><Caption>Health System Id</Caption><HierarchyUniqueName>[Health System].[Health System Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Health System].[Health System Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Health System].[Health System Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Health System].[Health System Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Health System].[Health System Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>HealthSystemOrgId</Name><DefaultValues><DefaultValue>[Health System].[Org Id].[All]</DefaultValue></DefaultValues><Caption>Org Id</Caption><HierarchyUniqueName>[Health System].[Org Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Health System].[Org Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Health System].[Org Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Health System].[Org Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Health System].[Org Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>EvidenceEvidenceId</Name><DefaultValues><DefaultValue>[Evidence].[Evidence Id].[All]</DefaultValue></DefaultValues><Caption>Evidence Id</Caption><HierarchyUniqueName>[Evidence].[Evidence Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Evidence].[Evidence Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Evidence].[Evidence Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Evidence].[Evidence Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Evidence].[Evidence Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>LocationLocationId</Name><DefaultValues><DefaultValue>[Location].[Location Id].[All]</DefaultValue></DefaultValues><Caption>Location.Location Id</Caption><HierarchyUniqueName>[Location].[Location Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Location].[Location Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Location].[Location Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Location].[Location Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Location].[Location Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>QuestionQuestionId</Name><DefaultValues><DefaultValue>[Question].[Question Id].[All]</DefaultValue></DefaultValues><Caption>Question Id</Caption><HierarchyUniqueName>[Question].[Question Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Question].[Question Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Question].[Question Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Question].[Question Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Question].[Question Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>StaffStaffId</Name><DefaultValues><DefaultValue>[Staff].[Staff Id].[All]</DefaultValue></DefaultValues><Caption>Staff Id</Caption><HierarchyUniqueName>[Staff].[Staff Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Staff].[Staff Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Staff].[Staff Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Staff].[Staff Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Staff].[Staff Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>EnteredDateYQMD</Name><DefaultValues><DefaultValue>[Entered Date].[Y - Q - M - D].[All]</DefaultValue></DefaultValues><Caption>EnteredDateYQMD</Caption><HierarchyUniqueName>[Entered Date].[Y - Q - M - D]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Entered Date].[Y - Q - M - D].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Entered Date].[Y - Q - M - D].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Entered Date].[Y - Q - M - D].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Entered Date].[Y - Q - M - D].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>ObservationDateYQMD</Name><DefaultValues><DefaultValue>[Observation Date].[Y - Q - M - D].[Year].&amp;[2010]</DefaultValue></DefaultValues><Caption>Observation Date.Y - Q - M - D</Caption><HierarchyUniqueName>[Observation Date].[Y - Q - M - D]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Observation Date].[Y - Q - M - D].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>UserUserId</Name><DefaultValues><DefaultValue>[User].[User Id].[All]</DefaultValue></DefaultValues><Caption>User Id</Caption><HierarchyUniqueName>[User].[User Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [User].[User Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [User].[User Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [User].[User Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [User].[User Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>EvidenceEntryEvidenceEntryId</Name><DefaultValues><DefaultValue>[Evidence Entry].[Evidence Entry Id].[All]</DefaultValue></DefaultValues><Caption>Evidence Entry Id</Caption><HierarchyUniqueName>[Evidence Entry].[Evidence Entry Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Evidence Entry].[Evidence Entry Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Evidence Entry].[Evidence Entry Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Evidence Entry].[Evidence Entry Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Evidence Entry].[Evidence Entry Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>QuestionQuestionGroupId</Name><DefaultValues><DefaultValue>[Question].[Question Group Id].[All]</DefaultValue></DefaultValues><Caption>Question Group Id</Caption><HierarchyUniqueName>[Question].[Question Group Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Question].[Question Group Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Question].[Question Group Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Question].[Question Group Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Question].[Question Group Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>QuestionQuestionTypeId</Name><DefaultValues><DefaultValue>[Question].[Question Type Id].[All]</DefaultValue></DefaultValues><Caption>Question Type Id</Caption><HierarchyUniqueName>[Question].[Question Type Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Question].[Question Type Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Question].[Question Type Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Question].[Question Type Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Question].[Question Type Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>EvidenceEntrySeverityId</Name><DefaultValues><DefaultValue>[Evidence Entry].[Evidence Entry Severity Name].[All]</DefaultValue></DefaultValues><Caption>EvidenceEntrySeverityId</Caption><HierarchyUniqueName>[Evidence Entry].[Evidence Entry Severity Name]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Evidence Entry].[Evidence Entry Severity Name].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Evidence Entry].[Evidence Entry Severity Name].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Evidence Entry].[Evidence Entry Severity Name].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Evidence Entry].[Evidence Entry Severity Name].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>EvidenceEntryStatusId</Name><DefaultValues><DefaultValue>[Evidence Entry].[Evidence Entry Status Name].[All]</DefaultValue></DefaultValues><Caption>EvidenceEntryStatusId</Caption><HierarchyUniqueName>[Evidence Entry].[Evidence Entry Status Name]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Evidence Entry].[Evidence Entry Status Name].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Evidence Entry].[Evidence Entry Status Name].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Evidence Entry].[Evidence Entry Status Name].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Evidence Entry].[Evidence Entry Status Name].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition></ParameterDefinitions></Query></QueryDefinition></rd:DesignerState>
       </Query>
       <Fields>
         <Field Name="id">
@@ -1380,7 +1564,7 @@ FROM
       <DataType>String</DataType>
       <DefaultValue>
         <Values>
-          <Value>[Observation Date].[Y - Q - M - D].[Year].&amp;[2012]</Value>
+          <Value>[Observation Date].[Y - Q - M - D].[Year].&amp;[2010]</Value>
         </Values>
       </DefaultValue>
       <Prompt>Observation Date</Prompt>

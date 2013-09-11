@@ -1,0 +1,1240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="VSuiteCube">
+      <DataSourceReference>/Data Sources/VSuite_Cube</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>560ea361-411b-48de-b05d-5dc74e4c36ef</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="Severity_Analysis">
+      <Query>
+        <DataSourceName>VSuiteCube</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="HealthSystemHealthSystemId">
+            <Value>=Parameters!HealthSystemId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="HealthSystemOrgId">
+            <Value>=Parameters!OrgId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="EvidenceEvidenceId">
+            <Value>=Parameters!EvidenceId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="LocationLocationId">
+            <Value>=Parameters!LocationId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="QuestionQuestionId">
+            <Value>=Parameters!QuestionId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="StaffStaffId">
+            <Value>=Parameters!StaffId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="ObservationDateYQMD">
+            <Value>=Parameters!ObservationDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="QuestionQuestionGroupId">
+            <Value>=Parameters!QuestionGroupId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="UserUserId">
+            <Value>=Parameters!UserId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="QuestionQuestionTypeId">
+            <Value>=Parameters!QuestionTypeId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="EvidenceEntryEvidenceEntryId">
+            <Value>=Parameters!EvidenceEntryId.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText> SELECT NON EMPTY { [Measures].[Selected] } ON COLUMNS, NON EMPTY { ([Health System].[Health System Name].[Health System Name].ALLMEMBERS * [Health System].[Org Name].[Org Name].ALLMEMBERS * [Observation Date].[Year - Quarter Year- Month Year - Date].[Year].ALLMEMBERS * [Evidence Entry].[Evidence Entry Severity Name].[Evidence Entry Severity Name].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_UNIQUE_NAME ON ROWS FROM ( SELECT ( STRTOSET(@QuestionQuestionTypeId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@QuestionQuestionGroupId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@EvidenceEntryEvidenceEntryId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@UserUserId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@ObservationDateYQMD, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@StaffStaffId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@QuestionQuestionId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@LocationLocationId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@EvidenceEvidenceId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemOrgId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED) ) ON COLUMNS FROM [VSuite]))))))))))) WHERE ( IIF( STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED).Count = 1, STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED), [Health System].[Health System Id].currentmember ), IIF( STRTOSET(@HealthSystemOrgId, CONSTRAINED).Count = 1, STRTOSET(@HealthSystemOrgId, CONSTRAINED), [Health System].[Org Id].currentmember ), IIF( STRTOSET(@EvidenceEvidenceId, CONSTRAINED).Count = 1, STRTOSET(@EvidenceEvidenceId, CONSTRAINED), [Evidence].[Evidence Id].currentmember ), IIF( STRTOSET(@LocationLocationId, CONSTRAINED).Count = 1, STRTOSET(@LocationLocationId, CONSTRAINED), [Location].[Location Id].currentmember ), IIF( STRTOSET(@QuestionQuestionId, CONSTRAINED).Count = 1, STRTOSET(@QuestionQuestionId, CONSTRAINED), [Question].[Question Id].currentmember ), IIF( STRTOSET(@StaffStaffId, CONSTRAINED).Count = 1, STRTOSET(@StaffStaffId, CONSTRAINED), [Staff].[Staff Id].currentmember ), IIF( STRTOSET(@ObservationDateYQMD, CONSTRAINED).Count = 1, STRTOSET(@ObservationDateYQMD, CONSTRAINED), [Observation Date].[Y - Q - M - D].currentmember ), IIF( STRTOSET(@UserUserId, CONSTRAINED).Count = 1, STRTOSET(@UserUserId, CONSTRAINED), [User].[User Id].currentmember ), IIF( STRTOSET(@EvidenceEntryEvidenceEntryId, CONSTRAINED).Count = 1, STRTOSET(@EvidenceEntryEvidenceEntryId, CONSTRAINED), [Evidence Entry].[Evidence Entry Id].currentmember ), IIF( STRTOSET(@QuestionQuestionGroupId, CONSTRAINED).Count = 1, STRTOSET(@QuestionQuestionGroupId, CONSTRAINED), [Question].[Question Group Id].currentmember ), IIF( STRTOSET(@QuestionQuestionTypeId, CONSTRAINED).Count = 1, STRTOSET(@QuestionQuestionTypeId, CONSTRAINED), [Question].[Question Type Id].currentmember ) ) CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</CommandText>
+        <rd:DesignerState><QueryDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/AnalysisServices/QueryDefinition"><CommandType>MDX</CommandType><QuerySpecification xsi:type="MDXQuerySpecification"><Select><Items><Item><ID xsi:type="Level"><DimensionName>Health System</DimensionName><HierarchyName>Health System Name</HierarchyName><HierarchyUniqueName>[Health System].[Health System Name]</HierarchyUniqueName><LevelName>Health System Name</LevelName><UniqueName>[Health System].[Health System Name].[Health System Name]</UniqueName></ID><ItemCaption>Health System Name</ItemCaption><UniqueName>true</UniqueName></Item><Item><ID xsi:type="Level"><DimensionName>Health System</DimensionName><HierarchyName>Org Name</HierarchyName><HierarchyUniqueName>[Health System].[Org Name]</HierarchyUniqueName><LevelName>Org Name</LevelName><UniqueName>[Health System].[Org Name].[Org Name]</UniqueName></ID><ItemCaption>Org Name</ItemCaption><UniqueName>true</UniqueName></Item><Item><ID xsi:type="Level"><DimensionName>Observation Date</DimensionName><HierarchyName>Year - Quarter Year- Month Year - Date</HierarchyName><HierarchyUniqueName>[Observation Date].[Year - Quarter Year- Month Year - Date]</HierarchyUniqueName><LevelName>Year</LevelName><UniqueName>[Observation Date].[Year - Quarter Year- Month Year - Date].[Year]</UniqueName></ID><ItemCaption>Year</ItemCaption><UniqueName>true</UniqueName></Item><Item><ID xsi:type="Level"><DimensionName>Evidence Entry</DimensionName><HierarchyName>Evidence Entry Severity Name</HierarchyName><HierarchyUniqueName>[Evidence Entry].[Evidence Entry Severity Name]</HierarchyUniqueName><LevelName>Evidence Entry Severity Name</LevelName><UniqueName>[Evidence Entry].[Evidence Entry Severity Name].[Evidence Entry Severity Name]</UniqueName></ID><ItemCaption>Evidence Entry Severity Name</ItemCaption><UniqueName>true</UniqueName></Item><Item><ID xsi:type="Measure"><MeasureName>Selected</MeasureName><UniqueName>[Measures].[Selected]</UniqueName></ID><ItemCaption>Selected</ItemCaption><BackColor>true</BackColor><ForeColor>true</ForeColor><FontFamily>true</FontFamily><FontSize>true</FontSize><FontWeight>true</FontWeight><FontStyle>true</FontStyle><FontDecoration>true</FontDecoration><FormattedValue>true</FormattedValue><FormatString>true</FormatString></Item></Items></Select><AutoExecute>false</AutoExecute><From>VSuite</From><Filter><FilterItems><FilterItem><HierarchyUniqueName>[Health System].[Health System Id]</HierarchyUniqueName><Condition xsi:type="EqualTo"><Members><Member><MemberUniqueName>[Health System].[Health System Id].&amp;[100]</MemberUniqueName></Member></Members><Parametrized>true</Parametrized></Condition></FilterItem><FilterItem><HierarchyUniqueName>[Health System].[Org Id]</HierarchyUniqueName><Condition xsi:type="EqualTo"><Members><Member><MemberUniqueName>[Health System].[Org Id].[All]</MemberUniqueName></Member></Members><Parametrized>true</Parametrized></Condition></FilterItem><FilterItem><HierarchyUniqueName>[Evidence].[Evidence Id]</HierarchyUniqueName><Condition xsi:type="EqualTo"><Members><Member><MemberUniqueName>[Evidence].[Evidence Id].[All]</MemberUniqueName></Member></Members><Parametrized>true</Parametrized></Condition></FilterItem><FilterItem><HierarchyUniqueName>[Location].[Location Id]</HierarchyUniqueName><Condition xsi:type="EqualTo"><Members><Member><MemberUniqueName>[Location].[Location Id].[All]</MemberUniqueName></Member></Members><Parametrized>true</Parametrized></Condition></FilterItem><FilterItem><HierarchyUniqueName>[Question].[Question Id]</HierarchyUniqueName><Condition xsi:type="EqualTo"><Members><Member><MemberUniqueName>[Question].[Question Id].[All]</MemberUniqueName></Member></Members><Parametrized>true</Parametrized></Condition></FilterItem><FilterItem><HierarchyUniqueName>[Staff].[Staff Id]</HierarchyUniqueName><Condition xsi:type="EqualTo"><Members><Member><MemberUniqueName>[Staff].[Staff Id].[All]</MemberUniqueName></Member></Members><Parametrized>true</Parametrized></Condition></FilterItem><FilterItem><HierarchyUniqueName>[Observation Date].[Y - Q - M - D]</HierarchyUniqueName><Condition xsi:type="EqualTo"><Members><Member><MemberUniqueName>[Observation Date].[Y - Q - M - D].[Year].&amp;[2011]</MemberUniqueName></Member></Members><Parametrized>true</Parametrized></Condition></FilterItem><FilterItem><HierarchyUniqueName>[User].[User Id]</HierarchyUniqueName><Condition xsi:type="EqualTo"><Members><Member><MemberUniqueName>[User].[User Id].[All]</MemberUniqueName></Member></Members><Parametrized>true</Parametrized></Condition></FilterItem><FilterItem><HierarchyUniqueName>[Evidence Entry].[Evidence Entry Id]</HierarchyUniqueName><Condition xsi:type="EqualTo"><Members><Member><MemberUniqueName>[Evidence Entry].[Evidence Entry Id].[All]</MemberUniqueName></Member></Members><Parametrized>true</Parametrized></Condition></FilterItem><FilterItem><HierarchyUniqueName>[Question].[Question Group Id]</HierarchyUniqueName><Condition xsi:type="EqualTo"><Members><Member><MemberUniqueName>[Question].[Question Group Id].[All]</MemberUniqueName></Member></Members><Parametrized>true</Parametrized></Condition></FilterItem><FilterItem><HierarchyUniqueName>[Question].[Question Type Id]</HierarchyUniqueName><Condition xsi:type="EqualTo"><Members><Member><MemberUniqueName>[Question].[Question Type Id].[All]</MemberUniqueName></Member></Members><Parametrized>true</Parametrized></Condition></FilterItem></FilterItems></Filter><Calculations /><Aggregates /><QueryProperties /></QuerySpecification><Query><Statement> SELECT NON EMPTY { [Measures].[Selected] } ON COLUMNS, NON EMPTY { ([Health System].[Health System Name].[Health System Name].ALLMEMBERS * [Health System].[Org Name].[Org Name].ALLMEMBERS * [Observation Date].[Year - Quarter Year- Month Year - Date].[Year].ALLMEMBERS * [Evidence Entry].[Evidence Entry Severity Name].[Evidence Entry Severity Name].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_UNIQUE_NAME ON ROWS FROM ( SELECT ( STRTOSET(@QuestionQuestionTypeId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@QuestionQuestionGroupId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@EvidenceEntryEvidenceEntryId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@UserUserId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@ObservationDateYQMD, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@StaffStaffId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@QuestionQuestionId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@LocationLocationId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@EvidenceEvidenceId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemOrgId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED) ) ON COLUMNS FROM [VSuite]))))))))))) WHERE ( IIF( STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED).Count = 1, STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED), [Health System].[Health System Id].currentmember ), IIF( STRTOSET(@HealthSystemOrgId, CONSTRAINED).Count = 1, STRTOSET(@HealthSystemOrgId, CONSTRAINED), [Health System].[Org Id].currentmember ), IIF( STRTOSET(@EvidenceEvidenceId, CONSTRAINED).Count = 1, STRTOSET(@EvidenceEvidenceId, CONSTRAINED), [Evidence].[Evidence Id].currentmember ), IIF( STRTOSET(@LocationLocationId, CONSTRAINED).Count = 1, STRTOSET(@LocationLocationId, CONSTRAINED), [Location].[Location Id].currentmember ), IIF( STRTOSET(@QuestionQuestionId, CONSTRAINED).Count = 1, STRTOSET(@QuestionQuestionId, CONSTRAINED), [Question].[Question Id].currentmember ), IIF( STRTOSET(@StaffStaffId, CONSTRAINED).Count = 1, STRTOSET(@StaffStaffId, CONSTRAINED), [Staff].[Staff Id].currentmember ), IIF( STRTOSET(@ObservationDateYQMD, CONSTRAINED).Count = 1, STRTOSET(@ObservationDateYQMD, CONSTRAINED), [Observation Date].[Y - Q - M - D].currentmember ), IIF( STRTOSET(@UserUserId, CONSTRAINED).Count = 1, STRTOSET(@UserUserId, CONSTRAINED), [User].[User Id].currentmember ), IIF( STRTOSET(@EvidenceEntryEvidenceEntryId, CONSTRAINED).Count = 1, STRTOSET(@EvidenceEntryEvidenceEntryId, CONSTRAINED), [Evidence Entry].[Evidence Entry Id].currentmember ), IIF( STRTOSET(@QuestionQuestionGroupId, CONSTRAINED).Count = 1, STRTOSET(@QuestionQuestionGroupId, CONSTRAINED), [Question].[Question Group Id].currentmember ), IIF( STRTOSET(@QuestionQuestionTypeId, CONSTRAINED).Count = 1, STRTOSET(@QuestionQuestionTypeId, CONSTRAINED), [Question].[Question Type Id].currentmember ) ) CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</Statement><ParameterDefinitions><ParameterDefinition><Name>HealthSystemHealthSystemId</Name><DefaultValues><DefaultValue>[Health System].[Health System Id].&amp;[100]</DefaultValue></DefaultValues><Caption>Health System Id</Caption><HierarchyUniqueName>[Health System].[Health System Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Health System].[Health System Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Health System].[Health System Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Health System].[Health System Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Health System].[Health System Id].ALLMEMBERS ON ROWS FROM [VSuite]</Statement><ParameterizedStatement><ReferencedParameters /></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>HealthSystemOrgId</Name><DefaultValues><DefaultValue>[Health System].[Org Id].[All]</DefaultValue></DefaultValues><Caption>Org Id</Caption><HierarchyUniqueName>[Health System].[Org Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Health System].[Org Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Health System].[Org Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Health System].[Org Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Health System].[Org Id].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED) ) ON COLUMNS FROM [VSuite])</Statement><ParameterizedStatement><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Health System].[Org Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Health System].[Org Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Health System].[Org Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Health System].[Org Id].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED) ) ON COLUMNS FROM [VSuite])</Statement><ReferencedParameters><ReferencedParameter><Name>HealthSystemHealthSystemId</Name></ReferencedParameter></ReferencedParameters></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>EvidenceEvidenceId</Name><DefaultValues><DefaultValue>[Evidence].[Evidence Id].[All]</DefaultValue></DefaultValues><Caption>Evidence Id</Caption><HierarchyUniqueName>[Evidence].[Evidence Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Evidence].[Evidence Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Evidence].[Evidence Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Evidence].[Evidence Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Evidence].[Evidence Id].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@HealthSystemOrgId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED) ) ON COLUMNS FROM [VSuite]))</Statement><ParameterizedStatement><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Evidence].[Evidence Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Evidence].[Evidence Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Evidence].[Evidence Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Evidence].[Evidence Id].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@HealthSystemOrgId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED) ) ON COLUMNS FROM [VSuite]))</Statement><ReferencedParameters><ReferencedParameter><Name>HealthSystemHealthSystemId</Name></ReferencedParameter><ReferencedParameter><Name>HealthSystemOrgId</Name></ReferencedParameter></ReferencedParameters></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>LocationLocationId</Name><DefaultValues><DefaultValue>[Location].[Location Id].[All]</DefaultValue></DefaultValues><Caption>Location.Location Id</Caption><HierarchyUniqueName>[Location].[Location Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Location].[Location Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Location].[Location Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Location].[Location Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Location].[Location Id].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@EvidenceEvidenceId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemOrgId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED) ) ON COLUMNS FROM [VSuite])))</Statement><ParameterizedStatement><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Location].[Location Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Location].[Location Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Location].[Location Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Location].[Location Id].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@EvidenceEvidenceId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemOrgId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED) ) ON COLUMNS FROM [VSuite])))</Statement><ReferencedParameters><ReferencedParameter><Name>HealthSystemHealthSystemId</Name></ReferencedParameter><ReferencedParameter><Name>HealthSystemOrgId</Name></ReferencedParameter><ReferencedParameter><Name>EvidenceEvidenceId</Name></ReferencedParameter></ReferencedParameters></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>QuestionQuestionId</Name><DefaultValues><DefaultValue>[Question].[Question Id].[All]</DefaultValue></DefaultValues><Caption>Question Id</Caption><HierarchyUniqueName>[Question].[Question Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Question].[Question Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Question].[Question Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Question].[Question Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Question].[Question Id].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@LocationLocationId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@EvidenceEvidenceId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemOrgId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED) ) ON COLUMNS FROM [VSuite]))))</Statement><ParameterizedStatement><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Question].[Question Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Question].[Question Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Question].[Question Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Question].[Question Id].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@LocationLocationId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@EvidenceEvidenceId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemOrgId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED) ) ON COLUMNS FROM [VSuite]))))</Statement><ReferencedParameters><ReferencedParameter><Name>HealthSystemHealthSystemId</Name></ReferencedParameter><ReferencedParameter><Name>HealthSystemOrgId</Name></ReferencedParameter><ReferencedParameter><Name>EvidenceEvidenceId</Name></ReferencedParameter><ReferencedParameter><Name>LocationLocationId</Name></ReferencedParameter></ReferencedParameters></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>StaffStaffId</Name><DefaultValues><DefaultValue>[Staff].[Staff Id].[All]</DefaultValue></DefaultValues><Caption>Staff Id</Caption><HierarchyUniqueName>[Staff].[Staff Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Staff].[Staff Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Staff].[Staff Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Staff].[Staff Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Staff].[Staff Id].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@QuestionQuestionId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@LocationLocationId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@EvidenceEvidenceId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemOrgId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED) ) ON COLUMNS FROM [VSuite])))))</Statement><ParameterizedStatement><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Staff].[Staff Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Staff].[Staff Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Staff].[Staff Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Staff].[Staff Id].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@QuestionQuestionId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@LocationLocationId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@EvidenceEvidenceId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemOrgId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED) ) ON COLUMNS FROM [VSuite])))))</Statement><ReferencedParameters><ReferencedParameter><Name>HealthSystemHealthSystemId</Name></ReferencedParameter><ReferencedParameter><Name>HealthSystemOrgId</Name></ReferencedParameter><ReferencedParameter><Name>EvidenceEvidenceId</Name></ReferencedParameter><ReferencedParameter><Name>LocationLocationId</Name></ReferencedParameter><ReferencedParameter><Name>QuestionQuestionId</Name></ReferencedParameter></ReferencedParameters></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>ObservationDateYQMD</Name><DefaultValues><DefaultValue>[Observation Date].[Y - Q - M - D].[Year].&amp;[2011]</DefaultValue></DefaultValues><Caption>Observation Date.Y - Q - M - D</Caption><HierarchyUniqueName>[Observation Date].[Y - Q - M - D]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Observation Date].[Y - Q - M - D].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@StaffStaffId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@QuestionQuestionId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@LocationLocationId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@EvidenceEvidenceId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemOrgId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED) ) ON COLUMNS FROM [VSuite]))))))</Statement><ParameterizedStatement><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Observation Date].[Y - Q - M - D].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Observation Date].[Y - Q - M - D].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@StaffStaffId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@QuestionQuestionId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@LocationLocationId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@EvidenceEvidenceId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemOrgId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED) ) ON COLUMNS FROM [VSuite]))))))</Statement><ReferencedParameters><ReferencedParameter><Name>HealthSystemHealthSystemId</Name></ReferencedParameter><ReferencedParameter><Name>HealthSystemOrgId</Name></ReferencedParameter><ReferencedParameter><Name>EvidenceEvidenceId</Name></ReferencedParameter><ReferencedParameter><Name>LocationLocationId</Name></ReferencedParameter><ReferencedParameter><Name>QuestionQuestionId</Name></ReferencedParameter><ReferencedParameter><Name>StaffStaffId</Name></ReferencedParameter></ReferencedParameters></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>UserUserId</Name><DefaultValues><DefaultValue>[User].[User Id].[All]</DefaultValue></DefaultValues><Caption>User Id</Caption><HierarchyUniqueName>[User].[User Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [User].[User Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [User].[User Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [User].[User Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [User].[User Id].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@ObservationDateYQMD, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@StaffStaffId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@QuestionQuestionId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@LocationLocationId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@EvidenceEvidenceId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemOrgId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED) ) ON COLUMNS FROM [VSuite])))))))</Statement><ParameterizedStatement><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [User].[User Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [User].[User Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [User].[User Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [User].[User Id].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@ObservationDateYQMD, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@StaffStaffId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@QuestionQuestionId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@LocationLocationId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@EvidenceEvidenceId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemOrgId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED) ) ON COLUMNS FROM [VSuite])))))))</Statement><ReferencedParameters><ReferencedParameter><Name>HealthSystemHealthSystemId</Name></ReferencedParameter><ReferencedParameter><Name>HealthSystemOrgId</Name></ReferencedParameter><ReferencedParameter><Name>EvidenceEvidenceId</Name></ReferencedParameter><ReferencedParameter><Name>LocationLocationId</Name></ReferencedParameter><ReferencedParameter><Name>QuestionQuestionId</Name></ReferencedParameter><ReferencedParameter><Name>StaffStaffId</Name></ReferencedParameter><ReferencedParameter><Name>ObservationDateYQMD</Name></ReferencedParameter></ReferencedParameters></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>EvidenceEntryEvidenceEntryId</Name><DefaultValues><DefaultValue>[Evidence Entry].[Evidence Entry Id].[All]</DefaultValue></DefaultValues><Caption>Evidence Entry Id</Caption><HierarchyUniqueName>[Evidence Entry].[Evidence Entry Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Evidence Entry].[Evidence Entry Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Evidence Entry].[Evidence Entry Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Evidence Entry].[Evidence Entry Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Evidence Entry].[Evidence Entry Id].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@UserUserId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@ObservationDateYQMD, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@StaffStaffId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@QuestionQuestionId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@LocationLocationId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@EvidenceEvidenceId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemOrgId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED) ) ON COLUMNS FROM [VSuite]))))))))</Statement><ParameterizedStatement><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Evidence Entry].[Evidence Entry Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Evidence Entry].[Evidence Entry Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Evidence Entry].[Evidence Entry Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Evidence Entry].[Evidence Entry Id].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@UserUserId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@ObservationDateYQMD, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@StaffStaffId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@QuestionQuestionId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@LocationLocationId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@EvidenceEvidenceId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemOrgId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED) ) ON COLUMNS FROM [VSuite]))))))))</Statement><ReferencedParameters><ReferencedParameter><Name>HealthSystemHealthSystemId</Name></ReferencedParameter><ReferencedParameter><Name>HealthSystemOrgId</Name></ReferencedParameter><ReferencedParameter><Name>EvidenceEvidenceId</Name></ReferencedParameter><ReferencedParameter><Name>LocationLocationId</Name></ReferencedParameter><ReferencedParameter><Name>QuestionQuestionId</Name></ReferencedParameter><ReferencedParameter><Name>StaffStaffId</Name></ReferencedParameter><ReferencedParameter><Name>ObservationDateYQMD</Name></ReferencedParameter><ReferencedParameter><Name>UserUserId</Name></ReferencedParameter></ReferencedParameters></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>QuestionQuestionGroupId</Name><DefaultValues><DefaultValue>[Question].[Question Group Id].[All]</DefaultValue></DefaultValues><Caption>Question Group Id</Caption><HierarchyUniqueName>[Question].[Question Group Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Question].[Question Group Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Question].[Question Group Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Question].[Question Group Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Question].[Question Group Id].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@EvidenceEntryEvidenceEntryId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@UserUserId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@ObservationDateYQMD, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@StaffStaffId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@QuestionQuestionId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@LocationLocationId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@EvidenceEvidenceId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemOrgId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED) ) ON COLUMNS FROM [VSuite])))))))))</Statement><ParameterizedStatement><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Question].[Question Group Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Question].[Question Group Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Question].[Question Group Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Question].[Question Group Id].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@EvidenceEntryEvidenceEntryId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@UserUserId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@ObservationDateYQMD, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@StaffStaffId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@QuestionQuestionId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@LocationLocationId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@EvidenceEvidenceId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemOrgId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED) ) ON COLUMNS FROM [VSuite])))))))))</Statement><ReferencedParameters><ReferencedParameter><Name>HealthSystemHealthSystemId</Name></ReferencedParameter><ReferencedParameter><Name>HealthSystemOrgId</Name></ReferencedParameter><ReferencedParameter><Name>EvidenceEvidenceId</Name></ReferencedParameter><ReferencedParameter><Name>LocationLocationId</Name></ReferencedParameter><ReferencedParameter><Name>QuestionQuestionId</Name></ReferencedParameter><ReferencedParameter><Name>StaffStaffId</Name></ReferencedParameter><ReferencedParameter><Name>ObservationDateYQMD</Name></ReferencedParameter><ReferencedParameter><Name>UserUserId</Name></ReferencedParameter><ReferencedParameter><Name>EvidenceEntryEvidenceEntryId</Name></ReferencedParameter></ReferencedParameters></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition><ParameterDefinition><Name>QuestionQuestionTypeId</Name><DefaultValues><DefaultValue>[Question].[Question Type Id].[All]</DefaultValue></DefaultValues><Caption>Question Type Id</Caption><HierarchyUniqueName>[Question].[Question Type Id]</HierarchyUniqueName><ParameterValuesQuery><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Question].[Question Type Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Question].[Question Type Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Question].[Question Type Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Question].[Question Type Id].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@QuestionQuestionGroupId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@EvidenceEntryEvidenceEntryId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@UserUserId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@ObservationDateYQMD, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@StaffStaffId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@QuestionQuestionId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@LocationLocationId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@EvidenceEvidenceId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemOrgId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED) ) ON COLUMNS FROM [VSuite]))))))))))</Statement><ParameterizedStatement><Statement>WITH MEMBER [Measures].[ParameterCaption] AS [Question].[Question Type Id].CURRENTMEMBER.MEMBER_CAPTION MEMBER [Measures].[ParameterValue] AS [Question].[Question Type Id].CURRENTMEMBER.UNIQUENAME MEMBER [Measures].[ParameterLevel] AS [Question].[Question Type Id].CURRENTMEMBER.LEVEL.ORDINAL SELECT {[Measures].[ParameterCaption], [Measures].[ParameterValue], [Measures].[ParameterLevel]} ON COLUMNS , [Question].[Question Type Id].ALLMEMBERS ON ROWS FROM ( SELECT ( STRTOSET(@QuestionQuestionGroupId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@EvidenceEntryEvidenceEntryId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@UserUserId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@ObservationDateYQMD, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@StaffStaffId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@QuestionQuestionId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@LocationLocationId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@EvidenceEvidenceId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemOrgId, CONSTRAINED) ) ON COLUMNS FROM ( SELECT ( STRTOSET(@HealthSystemHealthSystemId, CONSTRAINED) ) ON COLUMNS FROM [VSuite]))))))))))</Statement><ReferencedParameters><ReferencedParameter><Name>HealthSystemHealthSystemId</Name></ReferencedParameter><ReferencedParameter><Name>HealthSystemOrgId</Name></ReferencedParameter><ReferencedParameter><Name>EvidenceEvidenceId</Name></ReferencedParameter><ReferencedParameter><Name>LocationLocationId</Name></ReferencedParameter><ReferencedParameter><Name>QuestionQuestionId</Name></ReferencedParameter><ReferencedParameter><Name>StaffStaffId</Name></ReferencedParameter><ReferencedParameter><Name>ObservationDateYQMD</Name></ReferencedParameter><ReferencedParameter><Name>UserUserId</Name></ReferencedParameter><ReferencedParameter><Name>EvidenceEntryEvidenceEntryId</Name></ReferencedParameter><ReferencedParameter><Name>QuestionQuestionGroupId</Name></ReferencedParameter></ReferencedParameters></ParameterizedStatement></ParameterValuesQuery><MultipleValues>true</MultipleValues></ParameterDefinition></ParameterDefinitions></Query></QueryDefinition></rd:DesignerState>
+      </Query>
+      <Fields>
+        <Field Name="Health_System_Name">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Health System].[Health System Name].[Health System Name]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Org_Name">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Health System].[Org Name].[Org Name]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Year">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Observation Date].[Year - Quarter Year- Month Year - Date].[Year]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Evidence_Entry_Severity_Name">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Evidence Entry].[Evidence Entry Severity Name].[Evidence Entry Severity Name]" /&gt;</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Selected">
+          <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Measure" UniqueName="[Measures].[Selected]" /&gt;</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Chart Name="Chart1">
+            <ChartCategoryHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Group Name="Severity_Group">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!Evidence_Entry_Severity_Name.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!Evidence_Entry_Severity_Name.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <Label>=Fields!Evidence_Entry_Severity_Name.Value</Label>
+                </ChartMember>
+              </ChartMembers>
+            </ChartCategoryHierarchy>
+            <ChartSeriesHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Group Name="Org_Group">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!Org_Name.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!Org_Name.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <Label>=Fields!Org_Name.Value</Label>
+                </ChartMember>
+              </ChartMembers>
+            </ChartSeriesHierarchy>
+            <ChartData>
+              <ChartSeriesCollection>
+                <ChartSeries Name="Selected">
+                  <ChartDataPoints>
+                    <ChartDataPoint>
+                      <ChartDataPointValues>
+                        <Y>=Fields!Selected.Value / SUM(Fields!Selected.Value, "Org_Group")</Y>
+                      </ChartDataPointValues>
+                      <ChartDataLabel>
+                        <Style />
+                      </ChartDataLabel>
+                      <Style />
+                      <ChartMarker>
+                        <Style />
+                      </ChartMarker>
+                      <DataElementOutput>Output</DataElementOutput>
+                    </ChartDataPoint>
+                  </ChartDataPoints>
+                  <Type>Bar</Type>
+                  <Style />
+                  <ChartEmptyPoints>
+                    <Style />
+                    <ChartMarker>
+                      <Style />
+                    </ChartMarker>
+                    <ChartDataLabel>
+                      <Style />
+                    </ChartDataLabel>
+                  </ChartEmptyPoints>
+                  <ValueAxisName>Primary</ValueAxisName>
+                  <CategoryAxisName>Primary</CategoryAxisName>
+                  <ChartSmartLabel>
+                    <CalloutLineColor>Black</CalloutLineColor>
+                    <MinMovingDistance>0pt</MinMovingDistance>
+                  </ChartSmartLabel>
+                </ChartSeries>
+              </ChartSeriesCollection>
+            </ChartData>
+            <ChartAreas>
+              <ChartArea Name="Default">
+                <ChartCategoryAxes>
+                  <ChartAxis Name="Primary">
+                    <Style>
+                      <Border>
+                        <Color>DimGray</Color>
+                        <Width>1.5pt</Width>
+                      </Border>
+                      <FontFamily>Calibri</FontFamily>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </ChartAxisTitle>
+                    <Interval>1</Interval>
+                    <ChartMajorGridLines>
+                      <Enabled>False</Enabled>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMajorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gray</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorTickMarks>
+                    <ChartMinorTickMarks>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <LabelsAutoFitDisabled>true</LabelsAutoFitDisabled>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                  <ChartAxis Name="Secondary">
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption>Axis Title</Caption>
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </ChartAxisTitle>
+                    <ChartMajorGridLines>
+                      <Enabled>False</Enabled>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMinorTickMarks>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Location>Opposite</Location>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                </ChartCategoryAxes>
+                <ChartValueAxes>
+                  <ChartAxis Name="Primary">
+                    <Style>
+                      <Border>
+                        <Color>DimGray</Color>
+                      </Border>
+                      <FontFamily>Calibri</FontFamily>
+                      <Format>0%</Format>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </ChartAxisTitle>
+                    <Interval>0.1</Interval>
+                    <ChartMajorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Silver</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMajorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gray</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorTickMarks>
+                    <ChartMinorTickMarks>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Minimum>0</Minimum>
+                    <Maximum>1</Maximum>
+                    <LabelsAutoFitDisabled>true</LabelsAutoFitDisabled>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                  <ChartAxis Name="Secondary">
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption>Axis Title</Caption>
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </ChartAxisTitle>
+                    <ChartMajorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMinorTickMarks>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Location>Opposite</Location>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                </ChartValueAxes>
+                <Style>
+                  <BackgroundGradientType>None</BackgroundGradientType>
+                </Style>
+              </ChartArea>
+            </ChartAreas>
+            <ChartLegends>
+              <ChartLegend Name="Default">
+                <Style>
+                  <BackgroundGradientType>None</BackgroundGradientType>
+                  <FontFamily>Calibri</FontFamily>
+                </Style>
+                <Position>BottomLeft</Position>
+                <Layout>Column</Layout>
+                <DockOutsideChartArea>true</DockOutsideChartArea>
+                <ChartLegendTitle>
+                  <Caption />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </ChartLegendTitle>
+                <AutoFitTextDisabled>true</AutoFitTextDisabled>
+                <HeaderSeparatorColor>Black</HeaderSeparatorColor>
+                <ColumnSeparatorColor>Black</ColumnSeparatorColor>
+              </ChartLegend>
+            </ChartLegends>
+            <Palette>=Parameters!Format_SeriesColorPalette_31.Value</Palette>
+            <ChartCustomPaletteColors>
+              <ChartCustomPaletteColor>#dc7821</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#7b57a8</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#799936</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#608fd1</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#e3c726</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#2f3100</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#2889a3</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#21236b</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#388060</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#d81212</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#5a5c7a</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#18bcc4</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#20c457</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#2229f8</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#d33c09</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#ac30bf</ChartCustomPaletteColor>
+            </ChartCustomPaletteColors>
+            <PaletteHatchBehavior>=Parameters!Format_SeriesColorPattern_35.Value</PaletteHatchBehavior>
+            <ChartBorderSkin>
+              <Style>
+                <BackgroundColor>Gray</BackgroundColor>
+                <BackgroundGradientType>None</BackgroundGradientType>
+                <Color>White</Color>
+              </Style>
+            </ChartBorderSkin>
+            <ChartNoDataMessage Name="NoDataMessage">
+              <Caption>No Data Available</Caption>
+              <Style>
+                <BackgroundGradientType>None</BackgroundGradientType>
+                <TextAlign>General</TextAlign>
+                <VerticalAlign>Top</VerticalAlign>
+              </Style>
+            </ChartNoDataMessage>
+            <DataSetName>Severity_Analysis</DataSetName>
+            <Top>0.06944in</Top>
+            <Height>3.57987in</Height>
+            <Width>7.34773in</Width>
+            <Style>
+              <Border>
+                <Color>LightGrey</Color>
+                <Style>Solid</Style>
+              </Border>
+              <BackgroundColor>White</BackgroundColor>
+              <BackgroundGradientType>None</BackgroundGradientType>
+            </Style>
+          </Chart>
+          <Chart Name="Chart2">
+            <ChartCategoryHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Label />
+                </ChartMember>
+              </ChartMembers>
+            </ChartCategoryHierarchy>
+            <ChartSeriesHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Group Name="Chart2_SeriesGroup">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!Org_Name.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!Org_Name.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <Label>=Fields!Org_Name.Value</Label>
+                </ChartMember>
+              </ChartMembers>
+            </ChartSeriesHierarchy>
+            <ChartData>
+              <ChartSeriesCollection>
+                <ChartSeries Name="Selected">
+                  <ChartDataPoints>
+                    <ChartDataPoint>
+                      <ChartDataPointValues>
+                        <Y>=Sum(Fields!Selected.Value) / Parameters!Format_Patient_Days_5.Value</Y>
+                      </ChartDataPointValues>
+                      <ChartDataLabel>
+                        <Style />
+                      </ChartDataLabel>
+                      <Style />
+                      <ChartMarker>
+                        <Style />
+                      </ChartMarker>
+                      <DataElementOutput>Output</DataElementOutput>
+                    </ChartDataPoint>
+                  </ChartDataPoints>
+                  <Style />
+                  <ChartEmptyPoints>
+                    <Style />
+                    <ChartMarker>
+                      <Style />
+                    </ChartMarker>
+                    <ChartDataLabel>
+                      <Style />
+                    </ChartDataLabel>
+                  </ChartEmptyPoints>
+                  <ValueAxisName>Primary</ValueAxisName>
+                  <CategoryAxisName>Primary</CategoryAxisName>
+                  <ChartSmartLabel>
+                    <CalloutLineColor>Black</CalloutLineColor>
+                    <MinMovingDistance>0pt</MinMovingDistance>
+                  </ChartSmartLabel>
+                </ChartSeries>
+              </ChartSeriesCollection>
+            </ChartData>
+            <ChartAreas>
+              <ChartArea Name="Default">
+                <ChartCategoryAxes>
+                  <ChartAxis Name="Primary">
+                    <Style>
+                      <Border>
+                        <Color>DimGray</Color>
+                        <Width>1.5pt</Width>
+                      </Border>
+                      <FontFamily>Calibri</FontFamily>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </ChartAxisTitle>
+                    <Interval>1</Interval>
+                    <ChartMajorGridLines>
+                      <Enabled>False</Enabled>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMajorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gray</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorTickMarks>
+                    <ChartMinorTickMarks>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <LabelsAutoFitDisabled>true</LabelsAutoFitDisabled>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                  <ChartAxis Name="Secondary">
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption>Axis Title</Caption>
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </ChartAxisTitle>
+                    <ChartMajorGridLines>
+                      <Enabled>False</Enabled>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMinorTickMarks>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Location>Opposite</Location>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                </ChartCategoryAxes>
+                <ChartValueAxes>
+                  <ChartAxis Name="Primary">
+                    <Style>
+                      <Border>
+                        <Color>DimGray</Color>
+                      </Border>
+                      <FontFamily>Calibri</FontFamily>
+                      <Format>0.00;(0.00)</Format>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </ChartAxisTitle>
+                    <IntervalType>Default</IntervalType>
+                    <ChartMajorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Silver</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMajorTickMarks>
+                      <Style>
+                        <Border>
+                          <Color>Gray</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorTickMarks>
+                    <ChartMinorTickMarks>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Minimum>=0</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <LabelsAutoFitDisabled>true</LabelsAutoFitDisabled>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                  <ChartAxis Name="Secondary">
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption>Axis Title</Caption>
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </ChartAxisTitle>
+                    <ChartMajorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMinorTickMarks>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Location>Opposite</Location>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                </ChartValueAxes>
+                <Style>
+                  <BackgroundGradientType>None</BackgroundGradientType>
+                </Style>
+              </ChartArea>
+            </ChartAreas>
+            <ChartLegends>
+              <ChartLegend Name="Default">
+                <Style>
+                  <BackgroundGradientType>None</BackgroundGradientType>
+                  <FontFamily>Calibri</FontFamily>
+                </Style>
+                <Position>BottomLeft</Position>
+                <Layout>Column</Layout>
+                <DockOutsideChartArea>true</DockOutsideChartArea>
+                <ChartLegendTitle>
+                  <Caption />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </ChartLegendTitle>
+                <AutoFitTextDisabled>true</AutoFitTextDisabled>
+                <HeaderSeparatorColor>Black</HeaderSeparatorColor>
+                <ColumnSeparatorColor>Black</ColumnSeparatorColor>
+                <MaxAutoSize>100</MaxAutoSize>
+              </ChartLegend>
+            </ChartLegends>
+            <ChartTitles>
+              <ChartTitle Name="Default">
+                <Caption>="Harm Per " + CStr(Parameters!Format_Patient_Days_5.Value) + " Patient Days"</Caption>
+                <Style>
+                  <BackgroundGradientType>None</BackgroundGradientType>
+                  <FontWeight>Bold</FontWeight>
+                  <TextAlign>General</TextAlign>
+                  <VerticalAlign>Top</VerticalAlign>
+                </Style>
+              </ChartTitle>
+            </ChartTitles>
+            <Palette>=Parameters!Format_SeriesColorPalette_31.Value</Palette>
+            <ChartCustomPaletteColors>
+              <ChartCustomPaletteColor>#dc7821</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#7b57a8</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#799936</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#608fd1</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#e3c726</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#2f3100</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#2889a3</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#21236b</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#388060</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#d81212</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#5a5c7a</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#18bcc4</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#20c457</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#2229f8</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#d33c09</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#ac30bf</ChartCustomPaletteColor>
+            </ChartCustomPaletteColors>
+            <PaletteHatchBehavior>=Parameters!Format_SeriesColorPattern_35.Value</PaletteHatchBehavior>
+            <ChartBorderSkin>
+              <Style>
+                <BackgroundColor>Gray</BackgroundColor>
+                <BackgroundGradientType>None</BackgroundGradientType>
+                <Color>White</Color>
+              </Style>
+            </ChartBorderSkin>
+            <ChartNoDataMessage Name="NoDataMessage">
+              <Caption>No Data Available</Caption>
+              <Style>
+                <BackgroundGradientType>None</BackgroundGradientType>
+                <TextAlign>General</TextAlign>
+                <VerticalAlign>Top</VerticalAlign>
+              </Style>
+            </ChartNoDataMessage>
+            <DataSetName>Severity_Analysis</DataSetName>
+            <Top>0.06944in</Top>
+            <Left>7.34773in</Left>
+            <Height>3.57987in</Height>
+            <Width>3.18005in</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Color>LightGrey</Color>
+                <Style>Solid</Style>
+              </Border>
+              <BackgroundColor>White</BackgroundColor>
+              <BackgroundGradientType>None</BackgroundGradientType>
+            </Style>
+          </Chart>
+        </ReportItems>
+        <Height>3.64931in</Height>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Body>
+      <Width>10.52778in</Width>
+      <Page>
+        <PageHeader>
+          <Height>0.47569in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <ReportItems>
+            <Textbox Name="Textbox2">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Parameters!ReportTitle.Value</Value>
+                      <Style>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value xml:space="preserve"> </Value>
+                      <Style>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Parameters!ReportDescription.Value</Value>
+                      <Style>
+                        <FontWeight>Normal</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox2</rd:DefaultName>
+              <Left>0.02778in</Left>
+              <Height>0.44444in</Height>
+              <Width>9.7738in</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+          </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageHeader>
+        <PageHeight>8.5in</PageHeight>
+        <PageWidth>11in</PageWidth>
+        <InteractiveHeight>8.5in</InteractiveHeight>
+        <InteractiveWidth>11in</InteractiveWidth>
+        <LeftMargin>0.2in</LeftMargin>
+        <RightMargin>0.2in</RightMargin>
+        <TopMargin>0.2in</TopMargin>
+        <BottomMargin>0.2in</BottomMargin>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="Format_Patient_Days_5">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>1000</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Patient Days:</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Format_SeriesColorPalette_31">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>Custom</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Series Color Palette:</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>Custom</Value>
+            <Label>Professional</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>BrightPastel</Value>
+            <Label>Classic</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>Excel</Value>
+            <Label>Excel</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Format_SeriesColorPattern_35">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>None</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Series Color Pattern:</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>None</Value>
+            <Label>Solid</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>Always</Value>
+            <Label>Patterned (Use for many bars/lines in a graph)</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Format_TitleAndDescriptionVisibility_60">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>show</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Title and Description:</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>show</Value>
+            <Label>Show</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>hide</Value>
+            <Label>Hide</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="HealthSystemId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Health System].[Health System Id].&amp;[100]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Health System Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="OrgId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Health System].[Org Id].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Org Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="EvidenceId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Evidence].[Evidence Id].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Evidence Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="LocationId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Location].[Location Id].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Location Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="QuestionId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Question].[Question Id].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Question Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="StaffId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Staff].[Staff Id].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Staff Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="ObservationDate">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Observation Date].[Y - Q - M - D].[Year].&amp;[2011]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Observation Date</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="UserId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[User].[User Id].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>User Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="EvidenceEntryId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Evidence Entry].[Evidence Entry Id].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Evidence Entry Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="ReportTitle">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>Title</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>ReportTitle</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ReportDescription">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>Description</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>ReportDescription</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="QuestionGroupId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Question].[Question Group Id].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Question Group Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="QuestionTypeId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Question].[Question Type Id].[All]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Question Type Id</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+  </ReportParameters>
+  <Code>PUBLIC FUNCTION GetCategoryGroupingFieldName(Format_CategoryGrouping_5Param AS STRING) AS STRING
+
+DIM CategoryGroupingField AS STRING
+CategoryGroupingField = "Month_Name_Year"
+
+IF (Format_CategoryGrouping_5Param = "month") THEN 
+     CategoryGroupingField  = "Month_Name_Year"
+ELSE IF  (Format_CategoryGrouping_5Param = "quarter") THEN
+     CategoryGroupingField = "Quarter_Name_Year"
+ELSE IF  (Format_CategoryGrouping_5Param = "year") THEN
+     CategoryGroupingField = "Year"
+ELSE IF  (Format_CategoryGrouping_5Param = "dotw") THEN
+     CategoryGroupingField = "Day_Of_Week_Name"
+ELSE IF  (Format_CategoryGrouping_5Param = "system") THEN
+     CategoryGroupingField = "Health_System_Name"
+ELSE IF  (Format_CategoryGrouping_5Param = "org") THEN
+     CategoryGroupingField = "Org_Name"
+ELSE IF  (Format_CategoryGrouping_5Param = "orgunit") THEN
+     CategoryGroupingField = "Org_Unit_Name"
+ELSE IF  (Format_CategoryGrouping_5Param = "setting") THEN
+     CategoryGroupingField = "Location_Name"
+ELSE IF  (Format_CategoryGrouping_5Param = "audit") THEN
+     CategoryGroupingField = "Evidence_Name"
+ELSE IF  (Format_CategoryGrouping_5Param = "group") THEN
+     CategoryGroupingField = "Question_Group_Name"
+ELSE
+     CategoryGroupingField = "Question_Name"
+END IF
+
+RETURN CategoryGroupingField
+
+END FUNCTION
+
+PUBLIC FUNCTION GetCategoryGroupingSortOrder(Format_CategoryGrouping_5Param AS STRING) AS STRING
+
+DIM CategoryGroupingSortOrder AS STRING
+CategoryGroupingSortOrder = "Month_Name_Year"
+
+IF (Format_CategoryGrouping_5Param = "month") THEN 
+     CategoryGroupingSortOrder= "Month_Name_Year"
+ELSE IF  (Format_CategoryGrouping_5Param = "quarter") THEN
+     CategoryGroupingSortOrder= "Month_Name_Year"
+ELSE IF  (Format_CategoryGrouping_5Param = "year") THEN
+     CategoryGroupingSortOrder= "Month_Name_Year"
+ELSE IF  (Format_CategoryGrouping_5Param = "dotw") THEN
+     CategoryGroupingSortOrder= "Day_Of_Week"
+ELSE IF  (Format_CategoryGrouping_5Param = "system") THEN
+     CategoryGroupingSortOrder= "Health_System_Name"
+ELSE IF  (Format_CategoryGrouping_5Param = "org") THEN
+     CategoryGroupingSortOrder= "Org_Name"
+ELSE IF  (Format_CategoryGrouping_5Param = "orgunit") THEN
+     CategoryGroupingSortOrder= "Org_Unit_Name"
+ELSE IF  (Format_CategoryGrouping_5Param = "setting") THEN
+     CategoryGroupingSortOrder= "Location_Name"
+ELSE IF  (Format_CategoryGrouping_5Param = "audit") THEN
+     CategoryGroupingSortOrder= "Evidence_Name"
+ELSE IF  (Format_CategoryGrouping_5Param = "group") THEN
+     CategoryGroupingSortOrder= "Evidence_Question_Group_Order"
+ELSE
+     CategoryGroupingSortOrder= "Question_Order"
+END IF
+
+RETURN CategoryGroupingSortOrder
+
+END FUNCTION
+
+
+
+
+PUBLIC FUNCTION GetSeriesGroupingFieldName(Format_SeriesGrouping_10Param AS STRING) AS STRING
+
+DIM SeriesGroupingField AS STRING
+SeriesGroupingField = "Month_Name_Year"
+
+IF (Format_SeriesGrouping_10Param = "month") THEN 
+     SeriesGroupingField  = "Month_Name_Year"
+ELSE IF  (Format_SeriesGrouping_10Param = "quarter") THEN
+     SeriesGroupingField = "Quarter_Name_Year"
+ELSE IF  (Format_SeriesGrouping_10Param = "year") THEN
+     SeriesGroupingField = "Year"
+ELSE IF  (Format_SeriesGrouping_10Param = "dotw") THEN
+     SeriesGroupingField = "Day_Of_Week_Name"
+ELSE IF  (Format_SeriesGrouping_10Param = "system") THEN
+     SeriesGroupingField = "Health_System_Name"
+ELSE IF  (Format_SeriesGrouping_10Param = "org") THEN
+     SeriesGroupingField = "Org_Name"
+ELSE IF  (Format_SeriesGrouping_10Param = "orgunit") THEN
+     SeriesGroupingField = "Org_Unit_Name"
+ELSE IF  (Format_SeriesGrouping_10Param = "setting") THEN
+     SeriesGroupingField = "Location_Name"
+ELSE IF  (Format_SeriesGrouping_10Param = "audit") THEN
+     SeriesGroupingField = "Evidence_Name"
+ELSE IF  (Format_SeriesGrouping_10Param = "group") THEN
+     SeriesGroupingField = "Question_Group_Name"
+ELSE IF  (Format_SeriesGrouping_10Param = "question") THEN
+     SeriesGroupingField = "Question_Name"
+ELSE
+     SeriesGroupingField = "Year"
+END IF
+
+RETURN SeriesGroupingField
+
+END FUNCTION
+
+PUBLIC FUNCTION GetSeriesGroupingSortOrder(Format_SeriesGrouping_10Param AS STRING) AS STRING
+
+DIM SeriesGroupingSortOrder AS STRING
+SeriesGroupingSortOrder = "Month_Name_Year"
+
+IF (Format_SeriesGrouping_10Param = "month") THEN 
+     SeriesGroupingSortOrder = "Month_Name_Year"
+ELSE IF  (Format_SeriesGrouping_10Param = "quarter") THEN
+     SeriesGroupingSortOrder = "Month_Name_Year"
+ELSE IF  (Format_SeriesGrouping_10Param = "year") THEN
+     SeriesGroupingSortOrder = "Year"
+ELSE IF  (Format_SeriesGrouping_10Param = "dotw") THEN
+     SeriesGroupingSortOrder = "Day_Of_Week"
+ELSE IF  (Format_SeriesGrouping_10Param = "system") THEN
+     SeriesGroupingSortOrder = "Health_System_Name"
+ELSE IF  (Format_SeriesGrouping_10Param = "org") THEN
+     SeriesGroupingSortOrder = "Org_Name"
+ELSE IF  (Format_SeriesGrouping_10Param = "orgunit") THEN
+     SeriesGroupingSortOrder = "Org_Unit_Name"
+ELSE IF  (Format_SeriesGrouping_10Param = "setting") THEN
+     SeriesGroupingSortOrder = "Location_Name"
+ELSE IF  (Format_SeriesGrouping_10Param = "audit") THEN
+     SeriesGroupingSortOrder = "Evidence_Name"
+ELSE IF  (Format_SeriesGrouping_10Param = "group") THEN
+     SeriesGroupingSortOrder = "Evidence_Question_Group_Order"
+ELSE IF  (Format_SeriesGrouping_10Param = "question") THEN
+     SeriesGroupingSortOrder = "Question_Order"
+ELSE
+     SeriesGroupingSortOrder = "Year"
+END IF
+
+RETURN SeriesGroupingSortOrder 
+
+END FUNCTION
+
+
+
+
+
+PUBLIC FUNCTION GetGraphListFieldName(Format_GraphListOptions_15Param AS STRING) AS STRING
+
+DIM GraphListField AS STRING
+GraphListField = "Month_Name_Year"
+
+IF (Format_GraphListOptions_15Param = "month") THEN 
+     GraphListField  = "Month_Name_Year"
+ELSE IF  (Format_GraphListOptions_15Param = "quarter") THEN
+     GraphListField = "Quarter_Name_Year"
+ELSE IF  (Format_GraphListOptions_15Param = "year") THEN
+     GraphListField = "Year"
+ELSE IF  (Format_GraphListOptions_15Param = "dotw") THEN
+     GraphListField = "Day_Of_Week_Name"
+ELSE IF  (Format_GraphListOptions_15Param = "system") THEN
+     GraphListField = "Health_System_Name"
+ELSE IF  (Format_GraphListOptions_15Param = "org") THEN
+     GraphListField = "Org_Name"
+ELSE IF  (Format_GraphListOptions_15Param = "orgunit") THEN
+     GraphListField = "Org_Unit_Name"
+ELSE IF  (Format_GraphListOptions_15Param = "setting") THEN
+     GraphListField = "Location_Name"
+ELSE IF  (Format_GraphListOptions_15Param = "audit") THEN
+     GraphListField = "Evidence_Name"
+ELSE IF  (Format_GraphListOptions_15Param = "group") THEN
+     GraphListField = "Question_Group_Name"
+ELSE IF  (Format_GraphListOptions_15Param = "question") THEN
+     GraphListField = "Question_Name"
+ELSE
+     GraphListField = "Health_System_Name"
+END IF
+
+RETURN GraphListField
+
+END FUNCTION
+
+
+PUBLIC FUNCTION GetGraphListSortOrder(Format_GraphListOptions_15Param AS STRING) AS STRING
+
+DIM GraphListSortOrder AS STRING
+GraphListSortOrder = "Month_Name_Year"
+
+IF (Format_GraphListOptions_15Param = "month") THEN 
+     GraphListSortOrder  = "Month_Name_Year"
+ELSE IF  (Format_GraphListOptions_15Param = "quarter") THEN
+     GraphListSortOrder = "Month_Name_Year"
+ELSE IF  (Format_GraphListOptions_15Param = "year") THEN
+     GraphListSortOrder = "Year"
+ELSE IF  (Format_GraphListOptions_15Param = "dotw") THEN
+     GraphListSortOrder = "Day_Of_Week_Name"
+ELSE IF  (Format_GraphListOptions_15Param = "system") THEN
+     GraphListSortOrder = "Health_System_Name"
+ELSE IF  (Format_GraphListOptions_15Param = "org") THEN
+     GraphListSortOrder = "Org_Name"
+ELSE IF  (Format_GraphListOptions_15Param = "orgunit") THEN
+     GraphListSortOrder = "Org_Unit_Name"
+ELSE IF  (Format_GraphListOptions_15Param = "setting") THEN
+     GraphListSortOrder = "Location_Name"
+ELSE IF  (Format_GraphListOptions_15Param = "audit") THEN
+     GraphListSortOrder = "Evidence_Name"
+ELSE IF  (Format_GraphListOptions_15Param = "group") THEN
+     GraphListSortOrder = "Evidence_Question_Group_Order"
+ELSE
+     GraphListSortOrder = "Health_System_Name"
+END IF
+
+RETURN GraphListSortOrder
+
+END FUNCTION
+
+Function stripHTML (ByVal value As String) AS String
+
+RETURN System.Text.RegularExpressions.Regex.Replace(value, "&lt;(.|\n)*?&gt;", "")
+
+END FUNCTION
+
+</Code>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportServerUrl>http://ocashvrgrpt01p.verge-solutions.com/reportserver</rd:ReportServerUrl>
+  <rd:ReportID>040250d9-da9e-4b34-bff8-8cc60bd8e158</rd:ReportID>
+</Report>

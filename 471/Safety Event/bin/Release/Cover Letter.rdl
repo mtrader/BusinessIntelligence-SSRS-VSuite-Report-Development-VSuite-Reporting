@@ -1,0 +1,1244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Textbox Name="Textbox2">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Dear NuHealth Employee</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>:    </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Thank you for reporting your injury/illness. Completing this report, even if you do not require medical attention at this time, is necessary and important. Please read the following carefully in order to understand what to do next.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>1.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>9pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">        </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>All employees must contact , Personnel Officer, </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>within 48 hours</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>Underline</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> of sustaining a work-related injury. Ms. Bowen can be reached via telephone at 572-6301 or in NUMC’s Human Resources between 9am – 5pm. In her absence please contact Dr. Lea Dann in Human Resources at 296-2719. </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>0.375in</LeftIndent>
+            <HangingIndent>-0.25in</HangingIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>0.125in</LeftIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>2.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">      </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>If your injury requires you to be </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>out of work</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>, you </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>must</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>Underline</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> submit updated medical documentation to Ms. Bowen no less than </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>every thirty days</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> (fax number: 572-0089). Failure to do so may result in you being placed on an unauthorized absence.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>0.375in</LeftIndent>
+            <HangingIndent>-0.25in</HangingIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>3.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">      </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>If you need to seek medical treatment inform the provider that your injury is work-related and that your Workers’ Compensation carrier is: </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>TRIAD GROUP</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>, . </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Their</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve"> </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>telephone number is: 1-800-337-7419, ext. 103.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>0.375in</LeftIndent>
+            <HangingIndent>-0.25in</HangingIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>4.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">      </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>7pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Do NOT use your own medical insurance (Empire, HIP, etc.) for work-related injuries or medications prescribed for this injury/illness.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>0.375in</LeftIndent>
+            <HangingIndent>-0.25in</HangingIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>0.42014in</Top>
+        <Height>3.51042in</Height>
+        <Width>8in</Width>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox4">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Phone: 572-6301</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Fax:     572-0089</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox4</rd:DefaultName>
+        <Left>5.65625in</Left>
+        <Height>0.40625in</Height>
+        <Width>1.33333in</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox5">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>DIAGNOSTIC TESTING (e.g. MRI, EMG):</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Tell your physician to schedule such testing with </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>MEDFOCUS</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> at</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve"> </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>800-398-8999.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>PRESCRIPTION MEDICATIONS:</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Obtain a </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Tmesys</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> pharmacy card from Human Resources (Mon-Fri from 8am-5pm).</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value> Have your pharmacy call Tmesys directly at 866-599-5426 if Human Resources closed.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox5</rd:DefaultName>
+        <Top>3.94444in</Top>
+        <Left>1.08854in</Left>
+        <Height>1.65625in</Height>
+        <Width>5.82292in</Width>
+        <ZIndex>2</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+          <TopBorder>
+            <Color>Black</Color>
+            <Style>Solid</Style>
+            <Width>1pt</Width>
+          </TopBorder>
+          <BottomBorder>
+            <Color>Black</Color>
+            <Style>Solid</Style>
+            <Width>1pt</Width>
+          </BottomBorder>
+          <LeftBorder>
+            <Color>Black</Color>
+            <Style>Solid</Style>
+            <Width>1pt</Width>
+          </LeftBorder>
+          <RightBorder>
+            <Color>Black</Color>
+            <Style>Solid</Style>
+            <Width>1pt</Width>
+          </RightBorder>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox6">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Thank you for your cooperation. If you have any questions please call Ms. Bowen at the above phone number.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value xml:space="preserve">               </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>9pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Maureen Roarty,</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Senior Vice President of Human Resources</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Globals!ExecutionTime</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <Format>y</Format>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox6</rd:DefaultName>
+        <Top>5.58681in</Top>
+        <Height>2.69792in</Height>
+        <Width>8in</Width>
+        <ZIndex>3</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+    </ReportItems>
+    <Height>8.28472in</Height>
+    <Style />
+  </Body>
+  <Width>8in</Width>
+  <Page>
+    <PageHeader>
+      <Height>1.56944in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Image Name="Image1">
+          <Source>Embedded</Source>
+          <Value>Nassaulogo</Value>
+          <Top>0.50694in</Top>
+          <Left>1.57292in</Left>
+          <Height>0.8125in</Height>
+          <Width>4.85417in</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </Image>
+        <Textbox Name="Textbox1">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value />
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox1</rd:DefaultName>
+          <Left>2.70708in</Left>
+          <Height>0.5in</Height>
+          <Width>1in</Width>
+          <ZIndex>1</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox3">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>DEPARTMENT OF HUMAN RESOURCES</Value>
+                  <Style>
+                    <FontStyle>Normal</FontStyle>
+                    <FontFamily>Times New Roman</FontFamily>
+                    <FontSize>11pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <TextDecoration>None</TextDecoration>
+                    <Color>#000000</Color>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox3</rd:DefaultName>
+          <Top>1.31944in</Top>
+          <Left>1.01042in</Left>
+          <Height>0.25in</Height>
+          <Width>5.97917in</Width>
+          <ZIndex>2</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageHeader>
+    <LeftMargin>0.5in</LeftMargin>
+    <RightMargin>0.5in</RightMargin>
+    <TopMargin>0.25in</TopMargin>
+    <BottomMargin>0.25in</BottomMargin>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <ReportParameters>
+    <ReportParameter Name="EntryID">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>-1</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>EntryID</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <EmbeddedImages>
+    <EmbeddedImage Name="Nassaulogo">
+      <MIMEType>image/png</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>fb5a2bed-f2dc-4d1d-8e7c-caca1faa721c</rd:ReportID>
+</Report>

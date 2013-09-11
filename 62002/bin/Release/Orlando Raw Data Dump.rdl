@@ -1,0 +1,1329 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="RunReportModel">
+      <DataSourceReference>/Models/RunReporting</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>7e9967e2-4cd9-4e77-9934-e77e90877e49</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="Comments">
+      <Query>
+        <DataSourceName>RunReportModel</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="Edate">
+            <Value>=Parameters!Edate.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>&lt;SemanticQuery xmlns="http://schemas.microsoft.com/sqlserver/2004/10/semanticmodeling" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:qd="http://schemas.microsoft.com/sqlserver/2004/11/semanticquerydesign" xmlns:rb="http://schemas.microsoft.com/sqlserver/2004/11/reportbuilder"&gt;
+  &lt;Hierarchies&gt;
+    &lt;Hierarchy&gt;
+      &lt;BaseEntity&gt;
+        &lt;!--AnswerRunSummary--&gt;
+        &lt;EntityID&gt;G17fdda0e-0b69-43f0-9ffb-6c6e86981bdc&lt;/EntityID&gt;
+      &lt;/BaseEntity&gt;
+      &lt;Groupings&gt;
+        &lt;Grouping Name="Run"&gt;
+          &lt;Expression Name="Run"&gt;
+            &lt;Path&gt;
+              &lt;RolePathItem&gt;
+                &lt;!--Run--&gt;
+                &lt;RoleID&gt;G43081114-69cc-48ef-bda5-368b860d2987&lt;/RoleID&gt;
+              &lt;/RolePathItem&gt;
+            &lt;/Path&gt;
+            &lt;EntityRef&gt;
+              &lt;!--Run--&gt;
+              &lt;EntityID&gt;G0cd2c098-4adf-42d5-a117-2bfd719e12e0&lt;/EntityID&gt;
+            &lt;/EntityRef&gt;
+          &lt;/Expression&gt;
+          &lt;Details&gt;
+            &lt;Expression Name="Run Run Id"&gt;
+              &lt;AttributeRef&gt;
+                &lt;!--Run Id--&gt;
+                &lt;AttributeID&gt;Gb27c5701-c403-42d2-921f-7b403dd6f838&lt;/AttributeID&gt;
+              &lt;/AttributeRef&gt;
+            &lt;/Expression&gt;
+          &lt;/Details&gt;
+        &lt;/Grouping&gt;
+        &lt;Grouping Name="Edate"&gt;
+          &lt;Expression Name="Edate"&gt;
+            &lt;AttributeRef&gt;
+              &lt;!--Edate--&gt;
+              &lt;AttributeID&gt;G306e99e3-8fcf-4058-8485-2a31c43357ea&lt;/AttributeID&gt;
+            &lt;/AttributeRef&gt;
+          &lt;/Expression&gt;
+        &lt;/Grouping&gt;
+        &lt;Grouping Name="Ondate"&gt;
+          &lt;Expression Name="Ondate"&gt;
+            &lt;AttributeRef&gt;
+              &lt;!--Ondate--&gt;
+              &lt;AttributeID&gt;G19b6f0f3-e0dd-4ddb-a88f-92a4017b8b10&lt;/AttributeID&gt;
+            &lt;/AttributeRef&gt;
+          &lt;/Expression&gt;
+        &lt;/Grouping&gt;
+        &lt;Grouping Name="Unique Id"&gt;
+          &lt;Expression Name="Unique Id"&gt;
+            &lt;AttributeRef&gt;
+              &lt;!--Unique Id--&gt;
+              &lt;AttributeID&gt;G20dac10d-9b25-4242-80b3-aa858318d5de&lt;/AttributeID&gt;
+            &lt;/AttributeRef&gt;
+          &lt;/Expression&gt;
+        &lt;/Grouping&gt;
+        &lt;Grouping Name="Enteredby User"&gt;
+          &lt;Expression Name="Enteredby User"&gt;
+            &lt;Path&gt;
+              &lt;RolePathItem&gt;
+                &lt;!--Run--&gt;
+                &lt;RoleID&gt;G43081114-69cc-48ef-bda5-368b860d2987&lt;/RoleID&gt;
+              &lt;/RolePathItem&gt;
+            &lt;/Path&gt;
+            &lt;AttributeRef&gt;
+              &lt;!--Enteredby User--&gt;
+              &lt;AttributeID&gt;G24bda487-1cde-4c80-898a-5050ffbed363&lt;/AttributeID&gt;
+            &lt;/AttributeRef&gt;
+          &lt;/Expression&gt;
+        &lt;/Grouping&gt;
+        &lt;Grouping Name="Settingname"&gt;
+          &lt;Expression Name="Settingname"&gt;
+            &lt;Path&gt;
+              &lt;RolePathItem&gt;
+                &lt;!--Setting--&gt;
+                &lt;RoleID&gt;G1ac4649b-7511-4936-b55e-bd7d73569a66&lt;/RoleID&gt;
+              &lt;/RolePathItem&gt;
+            &lt;/Path&gt;
+            &lt;AttributeRef&gt;
+              &lt;!--Settingname--&gt;
+              &lt;AttributeID&gt;G07948daa-5ed2-46fe-acf2-9127e3914174&lt;/AttributeID&gt;
+            &lt;/AttributeRef&gt;
+          &lt;/Expression&gt;
+        &lt;/Grouping&gt;
+        &lt;Grouping Name="Vhco"&gt;
+          &lt;Expression Name="Vhco"&gt;
+            &lt;Path&gt;
+              &lt;RolePathItem&gt;
+                &lt;!--Setting--&gt;
+                &lt;RoleID&gt;G1ac4649b-7511-4936-b55e-bd7d73569a66&lt;/RoleID&gt;
+              &lt;/RolePathItem&gt;
+              &lt;RolePathItem&gt;
+                &lt;!--Vhco--&gt;
+                &lt;RoleID&gt;G9e7f3cee-d884-4767-82b2-4443eea1d68f&lt;/RoleID&gt;
+              &lt;/RolePathItem&gt;
+            &lt;/Path&gt;
+            &lt;EntityRef&gt;
+              &lt;!--Organization--&gt;
+              &lt;EntityID&gt;G9854edb2-99cd-4bad-8858-6a267d309878&lt;/EntityID&gt;
+            &lt;/EntityRef&gt;
+          &lt;/Expression&gt;
+          &lt;Details&gt;
+            &lt;Expression Name="HCO"&gt;
+              &lt;AttributeRef&gt;
+                &lt;!--HCO--&gt;
+                &lt;AttributeID&gt;G78883bb9-0201-4f3c-8633-49f023983603&lt;/AttributeID&gt;
+              &lt;/AttributeRef&gt;
+            &lt;/Expression&gt;
+          &lt;/Details&gt;
+        &lt;/Grouping&gt;
+        &lt;Grouping Name="Question Group Name"&gt;
+          &lt;Expression Name="Question Group Name"&gt;
+            &lt;Path&gt;
+              &lt;RolePathItem&gt;
+                &lt;!--EvidenceQuestion--&gt;
+                &lt;RoleID&gt;G33a3daae-7167-4f9f-9df8-3284eb9506d8&lt;/RoleID&gt;
+              &lt;/RolePathItem&gt;
+              &lt;RolePathItem&gt;
+                &lt;!--Question--&gt;
+                &lt;RoleID&gt;G86067e86-3997-4d8c-b7e7-17c8f22b8a30&lt;/RoleID&gt;
+              &lt;/RolePathItem&gt;
+              &lt;RolePathItem&gt;
+                &lt;!--Question Group--&gt;
+                &lt;RoleID&gt;G8e61715f-5a72-41ab-8574-58f026ed5911&lt;/RoleID&gt;
+              &lt;/RolePathItem&gt;
+            &lt;/Path&gt;
+            &lt;AttributeRef&gt;
+              &lt;!--Question Group Name--&gt;
+              &lt;AttributeID&gt;Gf0b2fe93-b927-40ad-8237-1184537620f2&lt;/AttributeID&gt;
+            &lt;/AttributeRef&gt;
+          &lt;/Expression&gt;
+        &lt;/Grouping&gt;
+        &lt;Grouping Name="Question"&gt;
+          &lt;Expression Name="Question"&gt;
+            &lt;Path&gt;
+              &lt;RolePathItem&gt;
+                &lt;!--Question--&gt;
+                &lt;RoleID&gt;G278a31fe-29bf-4955-9cab-c4c38394b954&lt;/RoleID&gt;
+              &lt;/RolePathItem&gt;
+            &lt;/Path&gt;
+            &lt;EntityRef&gt;
+              &lt;!--Question--&gt;
+              &lt;EntityID&gt;Gd7e37029-74a7-4bb8-b071-26f26e6be2d1&lt;/EntityID&gt;
+            &lt;/EntityRef&gt;
+          &lt;/Expression&gt;
+          &lt;Details&gt;
+            &lt;Expression Name="QuestionSortOrder"&gt;
+              &lt;AttributeRef&gt;
+                &lt;!--QuestionSortOrder--&gt;
+                &lt;AttributeID&gt;G2e79f656-46e8-45c6-8af3-ad333fd9d191&lt;/AttributeID&gt;
+              &lt;/AttributeRef&gt;
+            &lt;/Expression&gt;
+            &lt;Expression Name="Question Question Id"&gt;
+              &lt;AttributeRef&gt;
+                &lt;!--Question Id--&gt;
+                &lt;AttributeID&gt;G01d30254-2ae3-482f-887e-6c36e4bd4031&lt;/AttributeID&gt;
+              &lt;/AttributeRef&gt;
+            &lt;/Expression&gt;
+          &lt;/Details&gt;
+        &lt;/Grouping&gt;
+        &lt;Grouping Name="Question Question Description"&gt;
+          &lt;Expression Name="Question Question Description"&gt;
+            &lt;Path&gt;
+              &lt;RolePathItem&gt;
+                &lt;!--Question--&gt;
+                &lt;RoleID&gt;G278a31fe-29bf-4955-9cab-c4c38394b954&lt;/RoleID&gt;
+              &lt;/RolePathItem&gt;
+            &lt;/Path&gt;
+            &lt;AttributeRef&gt;
+              &lt;!--Question Description--&gt;
+              &lt;AttributeID&gt;Ga70ea924-ff22-422d-a441-4c0610f8c811&lt;/AttributeID&gt;
+            &lt;/AttributeRef&gt;
+          &lt;/Expression&gt;
+        &lt;/Grouping&gt;
+        &lt;Grouping Name="Summarized Answer"&gt;
+          &lt;Expression Name="Summarized Answer"&gt;
+            &lt;AttributeRef&gt;
+              &lt;!--Summarized Answer--&gt;
+              &lt;AttributeID&gt;G9e8ccdba-b9b1-4744-9227-f5a6153a5194&lt;/AttributeID&gt;
+            &lt;/AttributeRef&gt;
+          &lt;/Expression&gt;
+        &lt;/Grouping&gt;
+      &lt;/Groupings&gt;
+      &lt;Filter&gt;
+        &lt;Expression Name="expr1"&gt;
+          &lt;Function&gt;
+            &lt;FunctionName&gt;And&lt;/FunctionName&gt;
+            &lt;Arguments&gt;
+              &lt;Expression&gt;
+                &lt;Function&gt;
+                  &lt;FunctionName&gt;In&lt;/FunctionName&gt;
+                  &lt;Arguments&gt;
+                    &lt;Expression&gt;
+                      &lt;Path&gt;
+                        &lt;RolePathItem&gt;
+                          &lt;!--Evidence--&gt;
+                          &lt;RoleID&gt;G4d27be92-93e8-482a-9f1f-3c8219bdc6dd&lt;/RoleID&gt;
+                        &lt;/RolePathItem&gt;
+                      &lt;/Path&gt;
+                      &lt;AttributeRef&gt;
+                        &lt;!--Healthsystem Id--&gt;
+                        &lt;AttributeID&gt;Ga4c5b178-e0bb-4ab5-a830-19375a42d11d&lt;/AttributeID&gt;
+                      &lt;/AttributeRef&gt;
+                    &lt;/Expression&gt;
+                    &lt;Expression&gt;
+                      &lt;Literal&gt;
+                        &lt;DataType&gt;Integer&lt;/DataType&gt;
+                        &lt;Values&gt;
+                          &lt;Value&gt;273&lt;/Value&gt;
+                        &lt;/Values&gt;
+                      &lt;/Literal&gt;
+                    &lt;/Expression&gt;
+                  &lt;/Arguments&gt;
+                &lt;/Function&gt;
+                &lt;CustomProperties&gt;
+                  &lt;CustomProperty Name="qd:FilterCondition" /&gt;
+                &lt;/CustomProperties&gt;
+              &lt;/Expression&gt;
+              &lt;Expression&gt;
+                &lt;Function&gt;
+                  &lt;FunctionName&gt;And&lt;/FunctionName&gt;
+                  &lt;Arguments&gt;
+                    &lt;Expression&gt;
+                      &lt;Function&gt;
+                        &lt;FunctionName&gt;In&lt;/FunctionName&gt;
+                        &lt;Arguments&gt;
+                          &lt;Expression&gt;
+                            &lt;Path&gt;
+                              &lt;RolePathItem&gt;
+                                &lt;!--Evidence--&gt;
+                                &lt;RoleID&gt;G4d27be92-93e8-482a-9f1f-3c8219bdc6dd&lt;/RoleID&gt;
+                              &lt;/RolePathItem&gt;
+                            &lt;/Path&gt;
+                            &lt;AttributeRef&gt;
+                              &lt;!--Evidence Record Id--&gt;
+                              &lt;AttributeID&gt;G83488c27-53d8-478e-96a3-91a789faa963&lt;/AttributeID&gt;
+                            &lt;/AttributeRef&gt;
+                          &lt;/Expression&gt;
+                          &lt;Expression&gt;
+                            &lt;Literal&gt;
+                              &lt;DataType&gt;Integer&lt;/DataType&gt;
+                              &lt;Values&gt;
+                                &lt;Value&gt;665281&lt;/Value&gt;
+                                &lt;Value&gt;665282&lt;/Value&gt;
+                                &lt;Value&gt;665283&lt;/Value&gt;
+                                &lt;Value&gt;665286&lt;/Value&gt;
+                                &lt;Value&gt;665290&lt;/Value&gt;
+                                &lt;Value&gt;665288&lt;/Value&gt;
+                                &lt;Value&gt;665278&lt;/Value&gt;
+                                &lt;Value&gt;665292&lt;/Value&gt;
+                                &lt;Value&gt;665293&lt;/Value&gt;
+                                &lt;Value&gt;665297&lt;/Value&gt;
+                                &lt;Value&gt;665295&lt;/Value&gt;
+                                &lt;Value&gt;665300&lt;/Value&gt;
+                                &lt;Value&gt;665303&lt;/Value&gt;
+                                &lt;Value&gt;665304&lt;/Value&gt;
+                                &lt;Value&gt;665306&lt;/Value&gt;
+                                &lt;Value&gt;665308&lt;/Value&gt;
+                                &lt;Value&gt;665311&lt;/Value&gt;
+                                &lt;Value&gt;665556&lt;/Value&gt;
+                                &lt;Value&gt;665313&lt;/Value&gt;
+                                &lt;Value&gt;665314&lt;/Value&gt;
+                                &lt;Value&gt;665315&lt;/Value&gt;
+                                &lt;Value&gt;665316&lt;/Value&gt;
+                                &lt;Value&gt;665317&lt;/Value&gt;
+                                &lt;Value&gt;665319&lt;/Value&gt;
+                                &lt;Value&gt;665320&lt;/Value&gt;
+                              &lt;/Values&gt;
+                            &lt;/Literal&gt;
+                          &lt;/Expression&gt;
+                        &lt;/Arguments&gt;
+                      &lt;/Function&gt;
+                      &lt;CustomProperties&gt;
+                        &lt;CustomProperty Name="qd:FilterCondition" /&gt;
+                      &lt;/CustomProperties&gt;
+                    &lt;/Expression&gt;
+                    &lt;Expression&gt;
+                      &lt;Function&gt;
+                        &lt;FunctionName&gt;And&lt;/FunctionName&gt;
+                        &lt;Arguments&gt;
+                          &lt;Expression&gt;
+                            &lt;Function&gt;
+                              &lt;FunctionName&gt;NotEquals&lt;/FunctionName&gt;
+                              &lt;Arguments&gt;
+                                &lt;Expression&gt;
+                                  &lt;Path&gt;
+                                    &lt;RolePathItem&gt;
+                                      &lt;!--Run--&gt;
+                                      &lt;RoleID&gt;G43081114-69cc-48ef-bda5-368b860d2987&lt;/RoleID&gt;
+                                    &lt;/RolePathItem&gt;
+                                  &lt;/Path&gt;
+                                  &lt;AttributeRef&gt;
+                                    &lt;!--Deleted--&gt;
+                                    &lt;AttributeID&gt;G1637395e-85f8-4820-9972-609d2f79f514&lt;/AttributeID&gt;
+                                  &lt;/AttributeRef&gt;
+                                &lt;/Expression&gt;
+                                &lt;Expression&gt;
+                                  &lt;Literal&gt;
+                                    &lt;DataType&gt;Integer&lt;/DataType&gt;
+                                    &lt;Value&gt;1&lt;/Value&gt;
+                                  &lt;/Literal&gt;
+                                &lt;/Expression&gt;
+                              &lt;/Arguments&gt;
+                            &lt;/Function&gt;
+                            &lt;CustomProperties&gt;
+                              &lt;CustomProperty Name="qd:FilterCondition" /&gt;
+                            &lt;/CustomProperties&gt;
+                          &lt;/Expression&gt;
+                          &lt;Expression&gt;
+                            &lt;Function&gt;
+                              &lt;FunctionName&gt;And&lt;/FunctionName&gt;
+                              &lt;Arguments&gt;
+                                &lt;Expression&gt;
+                                  &lt;Function&gt;
+                                    &lt;FunctionName&gt;Not&lt;/FunctionName&gt;
+                                    &lt;Arguments&gt;
+                                      &lt;Expression&gt;
+                                        &lt;Function&gt;
+                                          &lt;FunctionName&gt;Or&lt;/FunctionName&gt;
+                                          &lt;Arguments&gt;
+                                            &lt;Expression&gt;
+                                              &lt;Function&gt;
+                                                &lt;FunctionName&gt;Equals&lt;/FunctionName&gt;
+                                                &lt;Arguments&gt;
+                                                  &lt;Expression&gt;
+                                                    &lt;AttributeRef&gt;
+                                                      &lt;!--Summarized Answer--&gt;
+                                                      &lt;AttributeID&gt;G9e8ccdba-b9b1-4744-9227-f5a6153a5194&lt;/AttributeID&gt;
+                                                    &lt;/AttributeRef&gt;
+                                                  &lt;/Expression&gt;
+                                                  &lt;Expression&gt;
+                                                    &lt;Literal&gt;
+                                                      &lt;DataType&gt;String&lt;/DataType&gt;
+                                                      &lt;Value&gt;&lt;/Value&gt;
+                                                    &lt;/Literal&gt;
+                                                  &lt;/Expression&gt;
+                                                &lt;/Arguments&gt;
+                                              &lt;/Function&gt;
+                                            &lt;/Expression&gt;
+                                            &lt;Expression&gt;
+                                              &lt;Function&gt;
+                                                &lt;FunctionName&gt;Equals&lt;/FunctionName&gt;
+                                                &lt;Arguments&gt;
+                                                  &lt;Expression&gt;
+                                                    &lt;AttributeRef&gt;
+                                                      &lt;!--Summarized Answer--&gt;
+                                                      &lt;AttributeID&gt;G9e8ccdba-b9b1-4744-9227-f5a6153a5194&lt;/AttributeID&gt;
+                                                    &lt;/AttributeRef&gt;
+                                                  &lt;/Expression&gt;
+                                                  &lt;Expression&gt;
+                                                    &lt;Null /&gt;
+                                                  &lt;/Expression&gt;
+                                                &lt;/Arguments&gt;
+                                              &lt;/Function&gt;
+                                            &lt;/Expression&gt;
+                                          &lt;/Arguments&gt;
+                                        &lt;/Function&gt;
+                                      &lt;/Expression&gt;
+                                    &lt;/Arguments&gt;
+                                  &lt;/Function&gt;
+                                  &lt;CustomProperties&gt;
+                                    &lt;CustomProperty Name="qd:FilterCondition" /&gt;
+                                  &lt;/CustomProperties&gt;
+                                &lt;/Expression&gt;
+                                &lt;Expression&gt;
+                                  &lt;Function&gt;
+                                    &lt;FunctionName&gt;And&lt;/FunctionName&gt;
+                                    &lt;Arguments&gt;
+                                      &lt;Expression&gt;
+                                        &lt;Function&gt;
+                                          &lt;FunctionName&gt;GreaterThanOrEquals&lt;/FunctionName&gt;
+                                          &lt;Arguments&gt;
+                                            &lt;Expression&gt;
+                                              &lt;AttributeRef&gt;
+                                                &lt;!--Edate--&gt;
+                                                &lt;AttributeID&gt;G306e99e3-8fcf-4058-8485-2a31c43357ea&lt;/AttributeID&gt;
+                                              &lt;/AttributeRef&gt;
+                                            &lt;/Expression&gt;
+                                            &lt;Expression&gt;
+                                              &lt;Function&gt;
+                                                &lt;FunctionName&gt;Date&lt;/FunctionName&gt;
+                                                &lt;Arguments&gt;
+                                                  &lt;Expression&gt;
+                                                    &lt;ParameterRef&gt;
+                                                      &lt;ParameterName&gt;Edate&lt;/ParameterName&gt;
+                                                    &lt;/ParameterRef&gt;
+                                                  &lt;/Expression&gt;
+                                                &lt;/Arguments&gt;
+                                              &lt;/Function&gt;
+                                            &lt;/Expression&gt;
+                                          &lt;/Arguments&gt;
+                                        &lt;/Function&gt;
+                                      &lt;/Expression&gt;
+                                      &lt;Expression&gt;
+                                        &lt;Function&gt;
+                                          &lt;FunctionName&gt;LessThan&lt;/FunctionName&gt;
+                                          &lt;Arguments&gt;
+                                            &lt;Expression&gt;
+                                              &lt;AttributeRef&gt;
+                                                &lt;!--Edate--&gt;
+                                                &lt;AttributeID&gt;G306e99e3-8fcf-4058-8485-2a31c43357ea&lt;/AttributeID&gt;
+                                              &lt;/AttributeRef&gt;
+                                            &lt;/Expression&gt;
+                                            &lt;Expression&gt;
+                                              &lt;Function&gt;
+                                                &lt;FunctionName&gt;DateAdd&lt;/FunctionName&gt;
+                                                &lt;Arguments&gt;
+                                                  &lt;Expression&gt;
+                                                    &lt;Literal&gt;
+                                                      &lt;DataType&gt;String&lt;/DataType&gt;
+                                                      &lt;Value&gt;Day&lt;/Value&gt;
+                                                    &lt;/Literal&gt;
+                                                  &lt;/Expression&gt;
+                                                  &lt;Expression&gt;
+                                                    &lt;Literal&gt;
+                                                      &lt;DataType&gt;Integer&lt;/DataType&gt;
+                                                      &lt;Value&gt;1&lt;/Value&gt;
+                                                    &lt;/Literal&gt;
+                                                  &lt;/Expression&gt;
+                                                  &lt;Expression&gt;
+                                                    &lt;Function&gt;
+                                                      &lt;FunctionName&gt;Date&lt;/FunctionName&gt;
+                                                      &lt;Arguments&gt;
+                                                        &lt;Expression&gt;
+                                                          &lt;ParameterRef&gt;
+                                                            &lt;ParameterName&gt;Edate&lt;/ParameterName&gt;
+                                                          &lt;/ParameterRef&gt;
+                                                        &lt;/Expression&gt;
+                                                      &lt;/Arguments&gt;
+                                                    &lt;/Function&gt;
+                                                  &lt;/Expression&gt;
+                                                &lt;/Arguments&gt;
+                                              &lt;/Function&gt;
+                                            &lt;/Expression&gt;
+                                          &lt;/Arguments&gt;
+                                        &lt;/Function&gt;
+                                      &lt;/Expression&gt;
+                                    &lt;/Arguments&gt;
+                                  &lt;/Function&gt;
+                                  &lt;CustomProperties&gt;
+                                    &lt;CustomProperty Name="qd:FilterCondition" /&gt;
+                                  &lt;/CustomProperties&gt;
+                                &lt;/Expression&gt;
+                              &lt;/Arguments&gt;
+                            &lt;/Function&gt;
+                          &lt;/Expression&gt;
+                        &lt;/Arguments&gt;
+                      &lt;/Function&gt;
+                    &lt;/Expression&gt;
+                  &lt;/Arguments&gt;
+                &lt;/Function&gt;
+              &lt;/Expression&gt;
+            &lt;/Arguments&gt;
+          &lt;/Function&gt;
+          &lt;CustomProperties&gt;
+            &lt;CustomProperty Name="qd:Filter" /&gt;
+            &lt;CustomProperty Name="qd:ContextEntityID"&gt;
+              &lt;Value xsi:type="xsd:string"&gt;G17fdda0e-0b69-43f0-9ffb-6c6e86981bdc&lt;/Value&gt;
+            &lt;/CustomProperty&gt;
+            &lt;CustomProperty Name="qd:AutoChangeBaseEntity" /&gt;
+            &lt;CustomProperty Name="qd:Design"&gt;
+              &lt;Value xsi:type="xsd:string"&gt;expr2&lt;/Value&gt;
+            &lt;/CustomProperty&gt;
+          &lt;/CustomProperties&gt;
+        &lt;/Expression&gt;
+      &lt;/Filter&gt;
+    &lt;/Hierarchy&gt;
+  &lt;/Hierarchies&gt;
+  &lt;Parameters&gt;
+    &lt;Parameter Name="Edate"&gt;
+      &lt;DataType&gt;DateTime&lt;/DataType&gt;
+      &lt;Nullable&gt;true&lt;/Nullable&gt;
+      &lt;Expression&gt;
+        &lt;Literal&gt;
+          &lt;DataType&gt;DateTime&lt;/DataType&gt;
+          &lt;Value&gt;2011-12-09T00:00:00&lt;/Value&gt;
+        &lt;/Literal&gt;
+      &lt;/Expression&gt;
+    &lt;/Parameter&gt;
+  &lt;/Parameters&gt;
+&lt;/SemanticQuery&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Question_Question_Description">
+          <DataField>Question Question Description</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Enteredby_User">
+          <DataField>Enteredby User</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Summarized_Answer">
+          <DataField>Summarized Answer</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Run">
+          <DataField>Run</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Edate">
+          <DataField>Edate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Run_Run_Id">
+          <DataField>Run Run Id</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="Ondate">
+          <DataField>Ondate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Vhco">
+          <DataField>Vhco</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Unique_Id">
+          <DataField>Unique Id</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Question">
+          <DataField>Question</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="HCO">
+          <DataField>HCO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Question_Group_Name">
+          <DataField>Question Group Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="QuestionSortOrder">
+          <DataField>QuestionSortOrder</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="Question_Question_Id">
+          <DataField>Question Question Id</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="Settingname">
+          <DataField>Settingname</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Tablix Name="Tablix1">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>0.78472in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.96181in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>2.48264in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>7.38542in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.23438in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox1">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Run Run Id</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox1</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>LightSteelBlue</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox3">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Unique Id</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox3</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>LightSteelBlue</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox9">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Observation Date</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox9</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>LightSteelBlue</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox11">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Entered On Date</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox11</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>LightSteelBlue</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox13">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Enteredby User</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox13</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>LightSteelBlue</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox15">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>HCO</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox15</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>LightSteelBlue</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox17">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Settingname</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox17</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>LightSteelBlue</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox5">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Question Question Description</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox5</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>LightSteelBlue</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox7">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Summarized Answer</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox7</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>LightSteelBlue</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.26563in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Run_Run_Id">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Run_Run_Id.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Run_Run_Id</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Unique_Id">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Unique_Id.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Unique_Id</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Ondate">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Ondate.Value</Value>
+                                  <Style>
+                                    <Format>d</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Ondate</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Edate">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Edate.Value</Value>
+                                  <Style>
+                                    <Format>d</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Edate</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Enteredby_User">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Enteredby_User.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Enteredby_User</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="HCO">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!HCO.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>HCO</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Settingname">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Settingname.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Settingname</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Question_Question_Description">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Question_Question_Description.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Question_Question_Description</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Summarized_Answer">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Summarized_Answer.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Summarized_Answer</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="Details" />
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!Run_Run_Id.Value</Value>
+                    </SortExpression>
+                    <SortExpression>
+                      <Value>=Fields!Unique_Id.Value</Value>
+                    </SortExpression>
+                    <SortExpression>
+                      <Value>=Fields!QuestionSortOrder.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <RepeatColumnHeaders>true</RepeatColumnHeaders>
+            <FixedColumnHeaders>true</FixedColumnHeaders>
+            <DataSetName>Comments</DataSetName>
+            <Height>0.50001in</Height>
+            <Width>16.61459in</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+        </ReportItems>
+        <Height>0.50001in</Height>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Body>
+      <Width>16.61459in</Width>
+      <Page>
+        <PageHeight>8.5in</PageHeight>
+        <PageWidth>11in</PageWidth>
+        <InteractiveHeight>8.5in</InteractiveHeight>
+        <InteractiveWidth>11in</InteractiveWidth>
+        <LeftMargin>0.2in</LeftMargin>
+        <RightMargin>0.2in</RightMargin>
+        <TopMargin>0.2in</TopMargin>
+        <BottomMargin>0.2in</BottomMargin>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="Edate">
+      <DataType>DateTime</DataType>
+      <Prompt>Entered On:</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <Code>PUBLIC FUNCTION GetTableListFieldName(Format_TableListOptions_10Param AS STRING) AS STRING
+
+DIM TableListField AS STRING
+TableListField = "HCO"
+
+IF (Format_TableListOptions_10Param = "system") THEN
+     TableListField = "Healthsystem_Id"
+ELSE IF  (Format_TableListOptions_10Param = "org") THEN
+     TableListField = "HCO"
+ELSE IF  (Format_TableListOptions_10Param = "setting") THEN
+     TableListField = "Settingname"
+ELSE IF  (Format_TableListOptions_10Param = "audit") THEN
+     TableListField = "Title"
+ELSE IF  (Format_TableListOptions_10Param = "group") THEN
+     TableListField = "Question_Group_Name"
+ELSE IF  (Format_TableListOptions_10Param = "department") THEN
+     TableListField = "Department"
+ELSE IF  (Format_TableListOptions_10Param = "uid") THEN
+     TableListField = "Unique_Id"
+ELSE IF  (Format_TableListOptions_10Param = "fullname") THEN
+     TableListField = "Vpractitioner_Practitioner_Name"
+ELSE IF  (Format_TableListOptions_10Param = "title") THEN
+     TableListField = "StaffTitle"
+ELSE
+     TableListField = "HCO"
+END IF
+
+RETURN TableListField
+
+END FUNCTION
+
+
+
+
+
+
+PUBLIC FUNCTION GetTableListSortOrder(Format_TableListOptions_10Param AS STRING) AS STRING
+
+DIM TableListSortOrder AS STRING
+TableListSortOrder = "HCO"
+
+IF (Format_TableListOptions_10Param = "system") THEN
+     TableListSortOrder= "Healthsystem_ID"
+ELSE IF  (Format_TableListOptions_10Param = "org") THEN
+     TableListSortOrder= "HCO"
+ELSE IF  (Format_TableListOptions_10Param = "setting") THEN
+     TableListSortOrder= "Settingname"
+ELSE IF  (Format_TableListOptions_10Param = "audit") THEN
+     TableListSortOrder= "Title"
+ELSE IF  (Format_TableListOptions_10Param = "group") THEN
+     TableListSortOrder= "Question_Group_Name"
+ELSE IF  (Format_TableListOptions_10Param = "department") THEN
+     TableListSortOrder = "Department"
+ELSE IF  (Format_TableListOptions_10Param = "uid") THEN
+     TableListSortOrder = "Unique_ID"
+ELSE IF  (Format_TableListOptions_10Param = "fullname") THEN
+     TableListSortOrder = "Vpractitioner_Practitioner_Name"
+ELSE IF  (Format_TableListOptions_10Param = "title") THEN
+     TableListSortOrder = "StaffTitle"
+ELSE
+     TableListSortOrder= "HCO"
+
+END IF
+
+RETURN TableListSortOrder
+
+END FUNCTION
+
+
+</Code>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportServerUrl>http://ocashvrgrpt01p.verge-solutions.com/reportserver</rd:ReportServerUrl>
+  <rd:ReportID>040250d9-da9e-4b34-bff8-8cc60bd8e158</rd:ReportID>
+</Report>

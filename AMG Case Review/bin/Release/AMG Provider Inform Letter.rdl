@@ -1,0 +1,979 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="VSuiteDB">
+      <DataSourceReference>VSuite_DB</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>f90cb3dd-3954-4910-a9a0-adefd6f26e12</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="rpt_aurora_cr_reports">
+      <Query>
+        <DataSourceName>VSuiteDB</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@steventevidence_ids">
+            <Value>=Parameters!EntryID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@stchartitem_ids">
+            <Value>=Parameters!stchartitem_ids.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>reports.rpt_aurora_cr_reports</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="evidence_id">
+          <DataField>evidence_id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="stevent_id">
+          <DataField>stevent_id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="audit_title_event_type">
+          <DataField>audit_title_event_type</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="entry_date">
+          <DataField>entry_date</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="observation_date">
+          <DataField>observation_date</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="run_id">
+          <DataField>run_id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="UniqueID">
+          <DataField>UniqueID</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="entered_by_user_id">
+          <DataField>entered_by_user_id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="entered_by_user">
+          <DataField>entered_by_user</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="has_k2proc">
+          <DataField>has_k2proc</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="k2ProcID">
+          <DataField>k2ProcID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="deleted_run">
+          <DataField>deleted_run</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="isFeedbackServer">
+          <DataField>isFeedbackServer</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="question_group_id">
+          <DataField>question_group_id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="groupname">
+          <DataField>groupname</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="q_group_sort_order">
+          <DataField>q_group_sort_order</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="question_name">
+          <DataField>question_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="question_id">
+          <DataField>question_id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="question_type_id">
+          <DataField>question_type_id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="question_sort_order">
+          <DataField>question_sort_order</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="required">
+          <DataField>required</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="adverse_question">
+          <DataField>adverse_question</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="instructions">
+          <DataField>instructions</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="q_type">
+          <DataField>q_type</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="combined_answer">
+          <DataField>combined_answer</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="comments">
+          <DataField>comments</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="provider">
+          <DataField>provider</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="reviewer">
+          <DataField>reviewer</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="deleted_answer">
+          <DataField>deleted_answer</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="answer_id">
+          <DataField>answer_id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="setting_id">
+          <DataField>setting_id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="primary_setting">
+          <DataField>primary_setting</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EnteredInSystemId">
+          <DataField>EnteredInSystemId</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="health_system">
+          <DataField>health_system</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="organization">
+          <DataField>organization</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="medication_id">
+          <DataField>medication_id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="product_ndc">
+          <DataField>product_ndc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="product_type">
+          <DataField>product_type</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="brand_name">
+          <DataField>brand_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="brand_name_suffix">
+          <DataField>brand_name_suffix</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="generic_name">
+          <DataField>generic_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="dosage_form">
+          <DataField>dosage_form</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="route_types">
+          <DataField>route_types</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="active_date">
+          <DataField>active_date</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="inactive_date">
+          <DataField>inactive_date</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="market_category">
+          <DataField>market_category</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="manufacturer">
+          <DataField>manufacturer</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="substance_list">
+          <DataField>substance_list</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="substance_count">
+          <DataField>substance_count</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="pharm_classes">
+          <DataField>pharm_classes</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="dea_schedule">
+          <DataField>dea_schedule</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="import_id">
+          <DataField>import_id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="all_content">
+          <DataField>all_content</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ndc_route_id">
+          <DataField>ndc_route_id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="severity_name">
+          <DataField>severity_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="severity_desc">
+          <DataField>severity_desc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="severity_deleted">
+          <DataField>severity_deleted</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="severity_date">
+          <DataField>severity_date</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="patient_name">
+          <DataField>patient_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="staff_id">
+          <DataField>staff_id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="staff_first_name">
+          <DataField>staff_first_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="staff_last_name">
+          <DataField>staff_last_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="staff_display_name">
+          <DataField>staff_display_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="staff_full_name">
+          <DataField>staff_full_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="staff_title">
+          <DataField>staff_title</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="staff_dept">
+          <DataField>staff_dept</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="patient_doc_id">
+          <DataField>patient_doc_id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="patient_doc_name">
+          <DataField>patient_doc_name</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="patient_doc_last_name">
+          <DataField>patient_doc_last_name</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="patient_doc_first_name">
+          <DataField>patient_doc_first_name</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="score">
+          <DataField>score</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="question_answer_id">
+          <DataField>question_answer_id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="answer">
+          <DataField>answer</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Tablix Name="Tablix1">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>6.5in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>5.24701in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox2">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Date:  </Value>
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Stone Sans ITC TT</FontFamily>
+                                    <FontWeight>Normal</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value>=Globals!ExecutionTime</Value>
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Stone Sans ITC TT</FontFamily>
+                                    <FontWeight>Normal</FontWeight>
+                                    <Format>MMMM dd, yyyy</Format>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontWeight>Normal</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!staff_display_name.Value</Value>
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Stone Sans ITC TT</FontFamily>
+                                    <FontWeight>Normal</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Stone Sans ITC TT</FontFamily>
+                                    <FontWeight>Normal</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Stone Sans ITC TT</FontFamily>
+                                    <FontWeight>Normal</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Dear Dr. </Value>
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Stone Sans ITC TT</FontFamily>
+                                    <FontWeight>Normal</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value>=Fields!staff_last_name.Value</Value>
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Stone Sans ITC TT</FontFamily>
+                                    <FontWeight>Normal</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value>,</Value>
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Stone Sans ITC TT</FontFamily>
+                                    <FontWeight>Normal</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Stone Sans ITC TT</FontFamily>
+                                    <FontWeight>Normal</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>On behalf of the Case Review Committee, I am writing to inform you that an issue has come to our attention.  The details surrounding the situation include:</Value>
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Stone Sans ITC TT</FontFamily>
+                                    <FontWeight>Normal</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Stone Sans ITC TT</FontFamily>
+                                    <FontWeight>Normal</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>                  Please see attached patient complaint</Value>
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Stone Sans ITC TT</FontFamily>
+                                    <FontWeight>Normal</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value xml:space="preserve">                 </Value>
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Stone Sans ITC TT</FontFamily>
+                                    <FontWeight>Normal</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>The committee will address this issue through our Case Review process.  If you wish to provide a response, your input is welcome at this time; however, the committee may have additional questions at a later date.</Value>
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Stone Sans ITC TT</FontFamily>
+                                    <FontWeight>Normal</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Stone Sans ITC TT</FontFamily>
+                                    <FontWeight>Normal</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>It is our goal to ensure that systems and processes are in place to support physicians in providing high quality care.  This process is not punitive and is legally protected for confidentiality by State of Wisconsin Statutes. Through Case Review, we hope to ensure good clinical outcomes through ongoing physician education.</Value>
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Stone Sans ITC TT</FontFamily>
+                                    <FontWeight>Normal</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Stone Sans ITC TT</FontFamily>
+                                    <FontWeight>Normal</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>We will follow up with you as we proceed with our review.</Value>
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Stone Sans ITC TT</FontFamily>
+                                    <FontWeight>Normal</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Stone Sans ITC TT</FontFamily>
+                                    <FontWeight>Normal</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Stone Sans ITC TT</FontFamily>
+                                    <FontWeight>Normal</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Sincerely,</Value>
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Stone Sans ITC TT</FontFamily>
+                                    <FontWeight>Normal</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Stone Sans ITC TT</FontFamily>
+                                    <FontWeight>Normal</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Stone Sans ITC TT</FontFamily>
+                                    <FontWeight>Normal</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Stone Sans ITC TT</FontFamily>
+                                    <FontWeight>Normal</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Stone Sans ITC TT</FontFamily>
+                                    <FontWeight>Normal</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Name</Value>
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Stone Sans ITC TT</FontFamily>
+                                    <FontWeight>Normal</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Title</Value>
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Stone Sans ITC TT</FontFamily>
+                                    <FontWeight>Normal</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox2</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>White</Color>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>rpt_aurora_cr_reports</DataSetName>
+            <Top>0.76736in</Top>
+            <Height>5.24701in</Height>
+            <Width>6.5in</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Image Name="Image1">
+            <Source>Embedded</Source>
+            <Value>AuroraLogo</Value>
+            <Height>0.69792in</Height>
+            <Width>3.19792in</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Image>
+        </ReportItems>
+        <Height>6.01437in</Height>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <InteractiveHeight>11in</InteractiveHeight>
+        <InteractiveWidth>8.5in</InteractiveWidth>
+        <LeftMargin>1in</LeftMargin>
+        <RightMargin>1in</RightMargin>
+        <TopMargin>1in</TopMargin>
+        <BottomMargin>1in</BottomMargin>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="EntryID">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>5883677</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>EntryID</Prompt>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="stchartitem_ids">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>548026</Value>
+          <Value>555286</Value>
+          <Value>555288</Value>
+        </Values>
+      </DefaultValue>
+      <Hidden>true</Hidden>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+  </ReportParameters>
+  <Code>PUBLIC FUNCTION GetTableListFieldName(Format_TableListOptions_10Param AS STRING) AS STRING
+
+DIM TableListField AS STRING
+TableListField = "HCO"
+
+IF (Format_TableListOptions_10Param = "system") THEN
+     TableListField = "Healthsystem_Id"
+ELSE IF  (Format_TableListOptions_10Param = "org") THEN
+     TableListField = "HCO"
+ELSE IF  (Format_TableListOptions_10Param = "setting") THEN
+     TableListField = "Settingname"
+ELSE IF  (Format_TableListOptions_10Param = "audit") THEN
+     TableListField = "Title"
+ELSE IF  (Format_TableListOptions_10Param = "group") THEN
+     TableListField = "Question_Group_Name"
+ELSE IF  (Format_TableListOptions_10Param = "department") THEN
+     TableListField = "Department"
+ELSE IF  (Format_TableListOptions_10Param = "uid") THEN
+     TableListField = "Unique_Id"
+ELSE IF  (Format_TableListOptions_10Param = "fullname") THEN
+     TableListField = "Vpractitioner_Practitioner_Name"
+ELSE IF  (Format_TableListOptions_10Param = "title") THEN
+     TableListField = "StaffTitle"
+ELSE
+     TableListField = "HCO"
+END IF
+
+RETURN TableListField
+
+END FUNCTION
+
+
+
+
+
+
+PUBLIC FUNCTION GetTableListSortOrder(Format_TableListOptions_10Param AS STRING) AS STRING
+
+DIM TableListSortOrder AS STRING
+TableListSortOrder = "HCO"
+
+IF (Format_TableListOptions_10Param = "system") THEN
+     TableListSortOrder= "Healthsystem_ID"
+ELSE IF  (Format_TableListOptions_10Param = "org") THEN
+     TableListSortOrder= "HCO"
+ELSE IF  (Format_TableListOptions_10Param = "setting") THEN
+     TableListSortOrder= "Settingname"
+ELSE IF  (Format_TableListOptions_10Param = "audit") THEN
+     TableListSortOrder= "Title"
+ELSE IF  (Format_TableListOptions_10Param = "group") THEN
+     TableListSortOrder= "Question_Group_Name"
+ELSE IF  (Format_TableListOptions_10Param = "department") THEN
+     TableListSortOrder = "Department"
+ELSE IF  (Format_TableListOptions_10Param = "uid") THEN
+     TableListSortOrder = "Unique_ID"
+ELSE IF  (Format_TableListOptions_10Param = "fullname") THEN
+     TableListSortOrder = "Vpractitioner_Practitioner_Name"
+ELSE IF  (Format_TableListOptions_10Param = "title") THEN
+     TableListSortOrder = "StaffTitle"
+ELSE
+     TableListSortOrder= "HCO"
+
+END IF
+
+RETURN TableListSortOrder
+
+END FUNCTION
+
+
+</Code>
+  <EmbeddedImages>
+    <EmbeddedImage Name="AuroraLogo">
+      <MIMEType>image/jpeg</MIMEType>
+      <ImageData>/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwMDAwYEBAMFBwYHBwcGBwcICQsJCAgKCAcHCg0KCgsMDAwMBwkODw0MDgsMDAz/2wBDAQICAgMDAwYDAwYMCAcIDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAz/wAARCABDATMDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9+KD0opCeDyKAIkKuMA7vYinECMdlrwr9ob/got8Hf2Ubv+z/ABv4+0jTNWIwNNt83d8eOvkxb3T6uAK87+Gv/Bbv9m74n+IE0228ejSrqcfuZtZsZbGBvYTSJs/Wtfq1TfkPMnnGBp1PZTrw5z68YHGe4qN18wfMgOO9U49e
+tJdLGoC6tjaGHzhMJv3Pl9d+/GMYr5b+Lv8AwWm/Z1+EmuNp1z8Q7XVb22H75dGs5tRhH/bWJDH/AOP0UqNSf8NF4rMMLhV7TEVFA+sUBB+4BUhOK+fP2a/+CkvwV/a01L+zfBXj3S7rViMf2bdiSzvCf9iOUIZP+2eRXv7AMoGeaVSnybm2FxdHEU/aYafOiSiiiszqCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAI2HnR9cbq+BP+C5H/BRvUf2OfhbpXgnwNcra+PPGUErfbAf32jWKfJ5qD/nq7nbH/uOewr76kXbHgZ6ivxz/AOCp/wAJ9D+J/wDwVdvtS+JNzqlj8OPAfga08Rav9jGZ7iwSYxiBB/00upNn/fdduBpwnUvM+T4vxWIoZfbD/HP3PvPg79nf4QD48+NPtOpan9qurq4/1M9xazT6lK//AF0vYJ5P+2TvJJX3n8G/2GvC9jprW1x4ftmKnGJ7eUZlgxLLE5KRzRyoh3/6iDUIE+fZqMHmV+ivwD+B/wABPiL8GNN/4Qjwh8OtV8DalAGhFrpNvLBc8Dlw6bi/PO/589aq6l+yzpfw+1K0n0MfZtKIjt4LGe4k/wBF8v54okfO/wCzocvHj57SQF4/3e+Ou6rmLnofLZZwTGhD20n7Rny/4/8A2RtU8bfsta78MtL17VfD/hfXeDBDcH7Pp9yn7zzNkf7v7O//AC92sf8Ao7xyJdQeXmSCvx4134D+L/DPxQ1TwXceGNVbxRodxJBPpttbyTzmRO+yPr/v1/SraWtv4F03sLkf9c4j/rP++E+eT/rmjyf3Jq4/Rvjp4X+FvjTVbnW7PSNJ/tMxm/1qC3EQEcP7vzrh/wDWfZ48lN8h/wBFclJNieW7zhsdUp7HRnnCFDGez9pU9mfzm+IvCHif4N+JbU6lpfiHwpqlqftNv9ut5bK4tpU/5aR+
+Zsev34/4JY/t8/8ADVPwV8A2viMiPxjqXh65uJpQONQlsb37FdSD8TbP/wBtn/uV7n8aPh58Of2hPhDd2/je28Oa/wCD7q2+0Ga8nj+zLGRnz1mBHl8dHRx161+WH7Dfj/whpn/BWn4W/Dr4Sajda74D8A6drthbalK//IS+0me5uZM4HmRp/oyI/wDH5G/nfmtK2J+tU9VaxyZflVTh7HU/ZVPaQqe4fs5RRRmvCP1dBRRmigYUUZooAKKKKACiiigAoozQDmgAooziigAooooAKKM5oBB6c0CuFFFAORQMKKKKACijIx1FAOaBJoKKKKBhRRmigAooooAKKKKAEIyRXyX/AMFLf2Ef+Gn/AIeeLdT8PbU8VXfgy68PwRdtR8u5g1C1jJ9prZ0+lw9fWgb5c0Nyvsa0pVfZv2iODH4Gni6Tw9Q/ld+GPx0+Iv7N3iC8Xw14o8V+C9UM/wBm1GCynls8yp/z0T/npWx4g/bO+LHir4gaD4q1b4i+KtX1zwzcR3+ny31/JOLCVOsiR/cr97f2qv8Agk18FP2wdcfW/EnhY2XiG5H77WNGuPsdxccdJMfJL/20Q15X8Of+DeT9njwLr66hqNp4r8VNAOLTVdWP2f8A74t0h3/jmvoVm+HavY/IKnAmdU6vs8NV/d+pxXwa/b8Hx0/Zp0rx5eWtzpWgXdx/Z9/Nn9xo1/HGPNs5Hk/ceW6yjyJ5f3bxyPaz+X+7krhPix+19omj6YbhtWHFz/oxE8uTLH+7+R96XUcqJ+7/AOfyD/UTwXtv5b1+m+lfCvwxofw/j8L2mgaPb+GI7b7MNMjtYxZLD3j8nGzy/bFfIfxe/wCCAfwE+KPiK71G2s/FPg03ZHnxaJq+23YY6iOdJUj/AO2eK8+lisPd3R9fjsmzVUoKnU5z8df2p/jNoHxC1H7Noel6Sf8ASPtFxNb6faw/+P2/kQXEn+39kgr9If8Ag34/4J3678Kre6+M/jbTLnSr7XNP
+Fh4fsJwfO+yOfMlvJExwZP3aR9/LDnkOlfTH7N3/AARg+An7OfiK31rTfDE+u65Z/wDHvfa/dG9aD/aSPAhB9wma+tAixRY6AVpisyU6fsqZycPcG1MPi/r2Yv3zwj9vj9o3UPgB8HPs3hnbc/EbxzfR+HvB9kWH76/nxGJCP+eUCbp39o/euP8A+CP3xt1347/sOaBqPi7VbrX/ABXpWoalo+pXtz/rriWG6kA3++zZ+lfMdl+3Rpvxa/4KK6t8TdQ8GfFbxp4A+HdtN4c8CzeFvDN1rFhc3Ukhj1DUDJHlP+WexD/zz2V2f/BEv4x6Zp3gP9oW2ng1XR9M8NeOb/xF5GqWv2O60+xuoxIqSQf8s3H2ebI9655YbkoHqUc39tmcKnP7nvwt6fa/rofdng74meGfH+oarbaLr2karc6Dcf2fqMNlexznT7gf8spQhPlyf7JwfajRPib4a8QeNtW8Pafr2k3uv6AIv7Q02C9jkuNPEn+r82MHfHvHTIr5W/4IiaLcL+xReeNdUUW958TfFGr+LJwexnm2D/x2IV53+wD8abS60T9rn9oy0K3emal4gvm06Tp9ptNKsmeI/wDA/NNZLDL3z0453anRqT+3/wCkH1v4g/bQ+E3hrTtLubr4m+CIYtSv5NNtpm122C3FzG2yWIfPjMbff/ud8VpfGX9qr4dfs7NaN468deFvC0l3xBFqeoRwSz/7iE7m/AGviv8A4Jafsc+A/hN/wTy0r4seOfDWm+JvFNxYXHio3Gp24vJ9PiiL3EMVuZAfL/1fncf8tJXrsf8Agkr8DNJ+OHwKufjn8QdN0rxT4/8AivqFzqVzd3sEd2NOtEleKGzty4/dxRpH0onCnHQzw+bYytyU1CHPP3j7N8EfEHQPiT4etdb8Oarpmu6VqAzb31jcRzwTj/ZkQkGuF139tP4S+HLDTJ7r4meCbe21LUJNOt5m122C3NzG3lyxA78fu2+//cxzivjj9jv4hr+y
+18ZP24NL0XFt4D+Hdx/wkenWMQ/cafdPazyzJGO294/uf7FW/wDglT+xT8P/AIZfsDeH/if498PaV4l1+5tZvFRvdUthe3GnWySPcwpB5v8Aq8eX52Bj95I9JYenAypZ5iK7hCnD+fn/AO3Jcp9rfGr9pz4e/s52NvdeOfGfhzwrHd8W41S/jha4/wCuaZ3v+AqXwP8AtB+A/ihrv9neHPGPhbXNSmsI9RFvYatDPO1q5wLjy0fPlns4r5N/4JafBTT/ANpj4aXv7QHxF0ux8TeOvideXU9s1/El3FommJK8cNnbrID5cY8sn1JIrn/+CU/wv8MW37fn7UXirwnp1nZaFper23h6xitCPIMo3yXmwdI/30cfyDgULDQSnfc2p5viJ1aFoe5UPvTxPrkHhfQL3UrhttppltJPO3oiIXJ/KvmD/gjT8S/GPxt/Y0/4TPxxrep67qHi/X9S1G1+2jH2S087yorePt5Q8pyP9811v/BV74mN8KP+Cevxa1JCBPc+H5tOhHrJdD7MP1lrxD9j7/gmbr2kfsteBRb/AB++NvhUT6NbXK6ZpOoWENjYSTReYY0SS1dhgyHv2p04L2F2XicTUeaQpUtoQOx+IPxq8WeL/wDgsd4A+HWh+INUs/CnhjwZdeIfEGnW+PIvpZJZIoRMfYmNxX0h8Wv2gfBfwD0AX/jTxVoHheym+WKbUtQitxMcdE3kbzz0FfCH/BM3wf8A8Ij+35+1L4y1nxTr3jC28CW1r4cGta5PFNfXEMe+SXzGjSNP3f2cfwCuI/Y+/aEb49at4l+L/iP4LfEr4tfEPxfqEtv4Yt/+EazomgaWshENtBfXH+jRc5Mkmckj65ueH6HlYbOKkad/t1Jz/wDJPdP04+GHxW8L/GXwXa+I/CWvaX4i0O6Um3vbC5jnt2+jIa5CP9tH4TL8U/8AhCx8RfBn/CUFvI/sv+1oftPmp/yzxv8A9Z/sda/P/wAWfCb4g/sLfsaWvw6t
+9Vs/DHj39pv4p+R5Gh82/hO1vvLSW3t39Y0iCb/+mn+xXt37fH7Mvwd/Za/4Jc+PtNtvB2h2dpoOhiHT5vs0YvPt52x2k/n43+b5xjcvnPDVH1eB2f2zi1TnPk+CHNM+gvjj+0hoWh/sbeNPiR4Y1zSte0vSvD19qGnX1ldR3EFzLHE/lbJE+Q/vQE+tfMHwk/aetv8AgnT/AMEcPBvibXtStNU8aXHh8ajpmm63rH+ka3czyeZ8nmPvkEa3KO/l/wAFcZ+1hod18C/+CBvgLwDaoDqfjHTtD0Ty/wDpteyx3Eo/MtXbf8FePhdpM/wI+AvwetrW0nn8T+MdH8L285h/fW1pDsMxT0+SNKunThf2Zx4zH4h8+IpfHCH/AJPM948GfttaF4r/AGK9S+Itr4l8J6/qnhnwt/bOvw6JqMU8On3QsmuDbnZI/lncCoWQ54ryr/gnV8ffB/7KP/BPX4Wr8VPiHpOg694nt5NZZtd1cfaJ/tVxJKCvmvvMe0j24q5/wWFTS/gb/wAE1vHmn+G9M03S7zxbNa6LbRWVvHALma4uUBGE6/IJFrMh/Yl8D/sj/wDBPrxlrfjnQdK8aeMoPB8s+v6pqlvFPOZILDZFZwO+fKiQKkMax4HRupoSp8hvUrYyGLv/AM+6f9f+kn2j4a8T6Z418N22p6Xd2upaXqUIntryym82G5jbnejp1z6ivC/+Cgn7b9n+xP8ACzSJ7XSpPE/jTxjfjRvC3h+B8PqV0/r/ANM0yufd0Tq4NU/+CSXguf4bf8E4fhHpt3n7TNow1Bh/18Svcf8AtWvB/wBtKXd/wXH/AGZ4Nd3Hw+dGv204Tf6n+0MXXT3/AOPf/wAcrOlTXOd2OzKo8vhVh7k6nJ/27znc+GP2FfjV8aNGTWvi1+0B4+8P65eMJ10TwCbbS9P0bP8Ayz8ySOR7jZn75/8AH699/Zz+FGvfs9fC6707xb8TdY8fm1uJbi31TXILe3msLUHIjd0H
+7zYMkySf+O16iHCqVAw5/hzxXxH+3lfn9qT9uj4W/s53V3dWvg6702bxr4xht5fLGsWsMjx2tk+OTEZ4syf9s6lzczSpQoYKn7WnrP4fiPetC/b2+Cfiv+0xpvxX+H9yNCXz7+Qa/albWLzPL8wvvx5e87N/T5hzXda98YfC/hF9B/tLxLodqfE9x9n0cz30cf8AaUjDeI4P+eh2+nPHvXwZ/wAFqP2cvh6fg/8ACTwZo3hzw/oPibxR43sPD2jiy0+KCX7NJmOZAUA/dYeLI90rU/b9+Fdt+1H/AMFLv2fPg/ck23hnQtG1LxVrUEEvleda4FvFFgdQ5tzF/wBc5JKv2FPc4qmcYunOdLk99cn/AJOfZ/wh/aL8B/Hw6p/whXjDw/4qbQrj7NqH9l38VwLaX0fYT/law/Cf7Zvwl8d/ENvBui/ETwXqviZR/wAgyx1iGa4JXqqgN85H90e9fGv/AAUf1bwz8GfiH8O/gH4J8JapoPhXxyZfEXjiz8B6BJNqt/pdqBHFbRw2yb8TunlyP1jjjPrWjY/sxXf7W/7QHwZ1Hwn8H7n4J/Dn4O6vHrR1LU9Oi03VNa8sIYrKK1j+eOPcn7x5Tz/6G/q9P+IUs6rup9Wpr34H3X4u+J3hfwBf2ttrWu6Tplxd8wQ3NxHEW/2+T0/2uldQWO7GOK8A/aI/ZV1L4q/EC11rTruzLKLY4vBxbSwSviTYUcXEeyWT9yfL7/vPn49l8F+GR4S8IaTpEFzc3MGl20dqsszZlYImzL+/ArmPco1arnP2kDcooorM7gooooAKKKKACiiigBrLyMV47+3B8NfHvxh/Zv13wn8NtV0vQPE2v2/2AanezyQjTrd+JXTYjkybPlHH8WfSvYxz+FKRmim7GeJpe0hyHnn7N/wH0T9mj4H+F/AOgpt0vwzp0dnAxHNwRgvI/wDtu5Ln3c187eCv+CenifQvjp+0xqU+t6Ta+Fvj9o4tYBbiX7dptz9lkt/M
+dSNhH+kSHh+cCvsplBYZzmlHU1oqs0cFXK8PU5P7h+f3wK/Yp/aIg/Zm0z4M+Ltd+H+hfD/Qrd9Nubzw9NdS6v4itMv/AKIHlG23jfOx3H7zZ75roPB//BN7xh4E/wCCR+rfAvTNV8ODxnrguftN+TL9gPn33mS/8s9+PJ+T7lfcBQEe3pR5QH5YrT6zM5YcP4eDv/c5Dhfhj8IrPwD8C/D3gG48i90zTNAt9DnJ4FxGlulv/wCPYNfJnwa/Zf8A2kv2LfCd18NPhZc/DjxH4EFxcyaBrHiO4uYb/QIZ5S4jkhjQpceWWOMEevT93X3ZEcjg5FDg+uKinVOrEZZTqKnb3OQ+KdU/4Jna54U/4J7eP/hr4b8Q2up/Eb4nTtf+IPE+q/uBqN3PLGZpSEDkIEBREr6X8F/A/TvD37OWl/Dm6UXOlWnh6Pw9ceWcfaIhb/Z5PpkflXemQj5ecgUeacY5+7mipUqSDD5dh6H8P/CfAv7OP7G/7TfwN+Fy/BjS/GPgDSvhtpVxLbWHi2CC5k8S2+nySGQJDD/qUuP3hw8mQnX95wR61/wS4/Yi1T9hX9n3VPDmt3lnd6rqfiC71iaaznlnUpJsjiTfIoc4jiSvqReVFIwAU8cVc8TOfQxw+S4ehUhUX2D5p/4Kbfsl+Jv22P2eLXwH4c1XSdI+1azZXOoz35k5tYW3yJH5an94eMV9F2FgthYi2hVRDEm2ID6VaLgKpA604Y3e9Zuq/gO6nhacKk6/858s/sGfsO6j+zx8IPiTonjq60nVtW+JfijU9c1GWw80wGG7jSPytzoh+6H7fx15h+zB+zd+1L+xh8PP+FZeET8IPE3hjS5pRoOv63c30NzbxPIZMXFtEh3kbj92T8a+9FBz1yKRkJJOcCtPrE9UzgeSYf8Adun7nIfKP7dH7Gfjr9qL4H/D+fTPEfh60+L3w21ix8R2Gpm2kh0q5v7cfvYynzukUjfU/KK8d/au/wCCf37RH7f/
+AMKrXTfiD4r8BeGTbahbXNv4f0T7UbAAE+bPPM+9p5dnEaY8tN3Oa/RFiAQKCDzg80U8TOA8RkWHrc/P9s+av2wv2RNY/aO8afBAabcaZZ+Fvh34ph8R6tbzCTzriO1H+ixxqPfOc1l/t/8A7LPjr4tfGD4MfEX4fL4f1LW/hNfX9ydG1y5kt7a/F1DHF5geNHIkj8s44/jr6leQouB2I/WnLJudSOASQaj2j3NZ5Th5c6t8dv8AyU+V/wBpb9lj4iftZ+C/gzbeIbrwppd14Y8YWHiPxhZWU801rdRWshPkW5dNzg/9NAK67/goz+zt4k/ar/ZG8UfD/wAIXelabqniP7NB9ovzLHAkaXMckn3FJzhDXvuR+dIxABpe1LqZbTnCcP5zC8BeD7T4f+CdJ0K1yLXRLCKxt+x8qGNEH8q8T/b/AP2DdM/bb+H+lQjU7zwv4w8I3P8AaPhfxDYj9/pd3lPblCUjz7xo/wDAK+imbYKbneM8gUU6rh+8NsTgKdeh9XqfAfF3hmy/bi0KyttDuJPgBqgth5B8S3pv/PuR/wA9HtY9iCT2Bx+tR/tF/sd/GOT47fDr42/D/UvBmpfFHwz4ePhvxLZ6qZbXSdahf5zJH5eXiIkeU4OeDH/zzIf7UZg/HBpPJXP3f1rT6weeskp+z9nOc2fCU3/BO/4r/Fn9s34SfFz4leMdB1eXwZcXV1qGjadbywafpf7ofZYLBX+eT9/88k0r5fEfGIxXrvgH9kzX9L/4KReMvjDrF5pVzoOo+GLXw9oNtD5n2m3VNskvmfwYLiTH+/X0nsGMd6PLG3H60niJs0pZJQh/4HznyL+29+x38QPFv7SXw5+NHwjufD3/AAmfgS2udIutM1wyx2OsWMwbEe9OUKGSQjg53/7Fem/s5RfHXU/Ft3ffE9fhtpGhG2KW2jeHvtd5cCUSf62S6l8tMbP4BHXtyrgYpDhBwKh1nyWNqeXU4Yj2sB1FFFZnohRRRQAU
+UUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAH//2Q==</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportServerUrl>http://ocashvrgrpt01p.verge-solutions.com/reportserver</rd:ReportServerUrl>
+  <rd:ReportID>040250d9-da9e-4b34-bff8-8cc60bd8e158</rd:ReportID>
+</Report>
