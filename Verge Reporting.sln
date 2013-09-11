@@ -353,9 +353,9 @@ Global
 		{1573CB40-3E4D-4DDC-919E-8C367C3DA7CB}.Debug|Default.Build.0 = DebugLocal
 		{1573CB40-3E4D-4DDC-919E-8C367C3DA7CB}.DebugLocal|Default.ActiveCfg = DebugLocal
 		{1573CB40-3E4D-4DDC-919E-8C367C3DA7CB}.DebugLocal|Default.Build.0 = DebugLocal
-		{1573CB40-3E4D-4DDC-919E-8C367C3DA7CB}.Production Support|Default.ActiveCfg = Release
-		{1573CB40-3E4D-4DDC-919E-8C367C3DA7CB}.Production Support|Default.Build.0 = Release
-		{1573CB40-3E4D-4DDC-919E-8C367C3DA7CB}.Production Support|Default.Deploy.0 = Release
+		{1573CB40-3E4D-4DDC-919E-8C367C3DA7CB}.Production Support|Default.ActiveCfg = Production Support
+		{1573CB40-3E4D-4DDC-919E-8C367C3DA7CB}.Production Support|Default.Build.0 = Production Support
+		{1573CB40-3E4D-4DDC-919E-8C367C3DA7CB}.Production Support|Default.Deploy.0 = Production Support
 		{1573CB40-3E4D-4DDC-919E-8C367C3DA7CB}.Release|Default.ActiveCfg = Release
 		{1573CB40-3E4D-4DDC-919E-8C367C3DA7CB}.Release|Default.Build.0 = Release
 		{1573CB40-3E4D-4DDC-919E-8C367C3DA7CB}.Release|Default.Deploy.0 = Release
