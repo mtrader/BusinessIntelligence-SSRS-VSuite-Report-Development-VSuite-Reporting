@@ -53,6 +53,10 @@
       <Name>temp_to_delete_conditional.rdl</Name>
       <FullPath>temp_to_delete_conditional.rdl</FullPath>
     </ProjectItem>
+    <ProjectItem>
+      <Name>mmsea_claim_detail.rdl</Name>
+      <FullPath>mmsea_claim_detail.rdl</FullPath>
+    </ProjectItem>
   </Reports>
   <Configurations>
     <Configuration>
