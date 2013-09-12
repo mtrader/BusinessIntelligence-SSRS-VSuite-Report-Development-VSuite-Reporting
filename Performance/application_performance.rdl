@@ -11,7 +11,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>="Application Performance Report for " &amp; FORMAT(Globals!ExecutionTime,"D")</Value>
+                    <Value>="Application Performance for " &amp; FORMAT(Globals!ExecutionTime,"D")</Value>
                     <MarkupType>HTML</MarkupType>
                     <Style>
                       <FontFamily>Tahoma</FontFamily>
@@ -27,7 +27,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox469</rd:DefaultName>
             <Height>0.32in</Height>
-            <Width>10.5in</Width>
+            <Width>8in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -65,9 +65,9 @@ IIF
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox41</rd:DefaultName>
-            <Top>0.4075in</Top>
+            <Top>0.3825in</Top>
             <Height>0.25in</Height>
-            <Width>10.5in</Width>
+            <Width>8in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -88,7 +88,7 @@ IIF
                       <GroupExpression>=Fields!Measures_Column_Grouping_1_Id.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
-                  <Label>=Fields!Measures_Column_Grouping_1.Value</Label>
+                  <Label>=LEFT(Fields!Measures_Column_Grouping_1.Value,1)</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartCategoryHierarchy>
@@ -213,7 +213,7 @@ IIF
                       <FontSize>8pt</FontSize>
                     </Style>
                     <ChartAxisTitle>
-                      <Caption>=Parameters!column_grouping_type_1.Label</Caption>
+                      <Caption />
                       <Style>
                         <FontFamily>Calibri</FontFamily>
                         <FontWeight>Bold</FontWeight>
@@ -221,10 +221,10 @@ IIF
                     </ChartAxisTitle>
                     <Interval>1</Interval>
                     <ChartMajorGridLines>
-                      <Enabled>True</Enabled>
                       <Style>
                         <Border>
                           <Color>Gainsboro</Color>
+                          <Width>1.5pt</Width>
                         </Border>
                       </Style>
                     </ChartMajorGridLines>
@@ -243,6 +243,7 @@ IIF
                     <CrossAt>NaN</CrossAt>
                     <Minimum>NaN</Minimum>
                     <Maximum>NaN</Maximum>
+                    <HideLabels>true</HideLabels>
                     <Angle>45</Angle>
                     <LabelsAutoFitDisabled>true</LabelsAutoFitDisabled>
                     <ChartAxisScaleBreak>
@@ -289,13 +290,14 @@ IIF
                 </ChartCategoryAxes>
                 <ChartValueAxes>
                   <ChartAxis Name="Primary">
+                    <Visible>True</Visible>
                     <Style>
                       <FontFamily>Calibri</FontFamily>
                       <FontSize>8pt</FontSize>
                       <Format>#,0;(#,0)</Format>
                     </Style>
                     <ChartAxisTitle>
-                      <Caption>Count</Caption>
+                      <Caption>Traffic (hits/day)</Caption>
                       <Style>
                         <FontFamily>Calibri</FontFamily>
                         <FontWeight>Bold</FontWeight>
@@ -322,6 +324,7 @@ IIF
                     <CrossAt>NaN</CrossAt>
                     <Minimum>NaN</Minimum>
                     <Maximum>NaN</Maximum>
+                    <LabelsAutoFitDisabled>true</LabelsAutoFitDisabled>
                     <ChartAxisScaleBreak>
                       <Style />
                     </ChartAxisScaleBreak>
@@ -368,39 +371,19 @@ IIF
                 </Style>
               </ChartArea>
             </ChartAreas>
-            <ChartLegends>
-              <ChartLegend Name="Default">
-                <Style>
-                  <BackgroundGradientType>None</BackgroundGradientType>
-                  <FontFamily>Calibri</FontFamily>
-                  <FontSize>8pt</FontSize>
-                </Style>
-                <Position>BottomCenter</Position>
-                <ChartLegendTitle>
-                  <Caption />
-                  <Style>
-                    <FontSize>8pt</FontSize>
-                    <FontWeight>Bold</FontWeight>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </ChartLegendTitle>
-                <HeaderSeparatorColor>Black</HeaderSeparatorColor>
-                <ColumnSeparatorColor>Black</ColumnSeparatorColor>
-              </ChartLegend>
-            </ChartLegends>
             <ChartTitles>
-              <ChartTitle Name="Default">
-                <Caption>Average Traffic Per Day</Caption>
+              <ChartTitle Name="Title1">
+                <Caption>Spacer 2pt</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
-                  <FontStyle>Italic</FontStyle>
                   <FontFamily>Calibri</FontFamily>
-                  <FontSize>14pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>Underline</TextDecoration>
+                  <FontSize>2pt</FontSize>
                   <TextAlign>General</TextAlign>
                   <VerticalAlign>Top</VerticalAlign>
+                  <Color>White</Color>
                 </Style>
+                <Position>LeftCenter</Position>
+                <DockOutsideChartArea>true</DockOutsideChartArea>
               </ChartTitle>
             </ChartTitles>
             <Palette>BrightPastel</Palette>
@@ -420,9 +403,9 @@ IIF
               </Style>
             </ChartNoDataMessage>
             <DataSetName>rpt_apr_main</DataSetName>
-            <Top>0.8425in</Top>
-            <Height>4in</Height>
-            <Width>10.5in</Width>
+            <Top>0.68in</Top>
+            <Height>2.15in</Height>
+            <Width>8in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -432,7 +415,7 @@ IIF
               <BackgroundGradientType>None</BackgroundGradientType>
             </Style>
           </Chart>
-          <Chart Name="chr_traffic2">
+          <Chart Name="chr_response_time">
             <ChartCategoryHierarchy>
               <ChartMembers>
                 <ChartMember>
@@ -441,7 +424,7 @@ IIF
                       <GroupExpression>=Fields!Measures_Column_Grouping_1_Id.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
-                  <Label>=Fields!Measures_Column_Grouping_1.Value</Label>
+                  <Label>=LEFT(Fields!Measures_Column_Grouping_1.Value,1)</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartCategoryHierarchy>
@@ -566,7 +549,7 @@ IIF
                       <FontSize>8pt</FontSize>
                     </Style>
                     <ChartAxisTitle>
-                      <Caption>=Parameters!column_grouping_type_1.Label</Caption>
+                      <Caption />
                       <Style>
                         <FontFamily>Calibri</FontFamily>
                         <FontWeight>Bold</FontWeight>
@@ -574,10 +557,10 @@ IIF
                     </ChartAxisTitle>
                     <Interval>1</Interval>
                     <ChartMajorGridLines>
-                      <Enabled>True</Enabled>
                       <Style>
                         <Border>
                           <Color>Gainsboro</Color>
+                          <Width>1.25pt</Width>
                         </Border>
                       </Style>
                     </ChartMajorGridLines>
@@ -596,6 +579,7 @@ IIF
                     <CrossAt>NaN</CrossAt>
                     <Minimum>NaN</Minimum>
                     <Maximum>NaN</Maximum>
+                    <HideLabels>true</HideLabels>
                     <Angle>45</Angle>
                     <LabelsAutoFitDisabled>true</LabelsAutoFitDisabled>
                     <ChartAxisScaleBreak>
@@ -648,7 +632,7 @@ IIF
                       <Format>#,0;(#,0)</Format>
                     </Style>
                     <ChartAxisTitle>
-                      <Caption>Milliseconds</Caption>
+                      <Caption>Avg Response Time (ms)</Caption>
                       <Style>
                         <FontFamily>Calibri</FontFamily>
                         <FontWeight>Bold</FontWeight>
@@ -675,6 +659,7 @@ IIF
                     <CrossAt>NaN</CrossAt>
                     <Minimum>NaN</Minimum>
                     <Maximum>NaN</Maximum>
+                    <LabelsAutoFitDisabled>true</LabelsAutoFitDisabled>
                     <ChartAxisScaleBreak>
                       <Style />
                     </ChartAxisScaleBreak>
@@ -721,39 +706,18 @@ IIF
                 </Style>
               </ChartArea>
             </ChartAreas>
-            <ChartLegends>
-              <ChartLegend Name="Default">
-                <Style>
-                  <BackgroundGradientType>None</BackgroundGradientType>
-                  <FontFamily>Calibri</FontFamily>
-                  <FontSize>8pt</FontSize>
-                </Style>
-                <Position>BottomCenter</Position>
-                <ChartLegendTitle>
-                  <Caption />
-                  <Style>
-                    <FontSize>8pt</FontSize>
-                    <FontWeight>Bold</FontWeight>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </ChartLegendTitle>
-                <HeaderSeparatorColor>Black</HeaderSeparatorColor>
-                <ColumnSeparatorColor>Black</ColumnSeparatorColor>
-              </ChartLegend>
-            </ChartLegends>
             <ChartTitles>
-              <ChartTitle Name="Default">
-                <Caption>Average Response Time</Caption>
+              <ChartTitle Name="Title1">
+                <Caption>Spacer 10pt</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
-                  <FontStyle>Italic</FontStyle>
                   <FontFamily>Calibri</FontFamily>
-                  <FontSize>14pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>Underline</TextDecoration>
                   <TextAlign>General</TextAlign>
                   <VerticalAlign>Top</VerticalAlign>
+                  <Color>White</Color>
                 </Style>
+                <Position>LeftCenter</Position>
+                <DockOutsideChartArea>true</DockOutsideChartArea>
               </ChartTitle>
             </ChartTitles>
             <Palette>BrightPastel</Palette>
@@ -773,9 +737,9 @@ IIF
               </Style>
             </ChartNoDataMessage>
             <DataSetName>rpt_apr_main</DataSetName>
-            <Top>5.04625in</Top>
-            <Height>4in</Height>
-            <Width>10.5in</Width>
+            <Top>2.88694in</Top>
+            <Height>2.15in</Height>
+            <Width>8in</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -785,7 +749,7 @@ IIF
               <BackgroundGradientType>None</BackgroundGradientType>
             </Style>
           </Chart>
-          <Chart Name="chr_traffic3">
+          <Chart Name="chr_greater_than_3">
             <ChartCategoryHierarchy>
               <ChartMembers>
                 <ChartMember>
@@ -920,7 +884,7 @@ IIF
                       <FontSize>8pt</FontSize>
                     </Style>
                     <ChartAxisTitle>
-                      <Caption>=Parameters!column_grouping_type_1.Label</Caption>
+                      <Caption />
                       <Style>
                         <FontFamily>Calibri</FontFamily>
                         <FontWeight>Bold</FontWeight>
@@ -928,10 +892,10 @@ IIF
                     </ChartAxisTitle>
                     <Interval>1</Interval>
                     <ChartMajorGridLines>
-                      <Enabled>True</Enabled>
                       <Style>
                         <Border>
                           <Color>Gainsboro</Color>
+                          <Width>1.25pt</Width>
                         </Border>
                       </Style>
                     </ChartMajorGridLines>
@@ -950,6 +914,7 @@ IIF
                     <CrossAt>NaN</CrossAt>
                     <Minimum>NaN</Minimum>
                     <Maximum>NaN</Maximum>
+                    <HideLabels>true</HideLabels>
                     <Angle>45</Angle>
                     <LabelsAutoFitDisabled>true</LabelsAutoFitDisabled>
                     <ChartAxisScaleBreak>
@@ -1002,7 +967,7 @@ IIF
                       <Format>#,0%</Format>
                     </Style>
                     <ChartAxisTitle>
-                      <Caption>Percent</Caption>
+                      <Caption>% of Pages &gt;3s</Caption>
                       <Style>
                         <FontFamily>Calibri</FontFamily>
                         <FontWeight>Bold</FontWeight>
@@ -1029,6 +994,7 @@ IIF
                     <CrossAt>NaN</CrossAt>
                     <Minimum>NaN</Minimum>
                     <Maximum>NaN</Maximum>
+                    <LabelsAutoFitDisabled>true</LabelsAutoFitDisabled>
                     <ChartAxisScaleBreak>
                       <Style />
                     </ChartAxisScaleBreak>
@@ -1075,39 +1041,19 @@ IIF
                 </Style>
               </ChartArea>
             </ChartAreas>
-            <ChartLegends>
-              <ChartLegend Name="Default">
-                <Style>
-                  <BackgroundGradientType>None</BackgroundGradientType>
-                  <FontFamily>Calibri</FontFamily>
-                  <FontSize>8pt</FontSize>
-                </Style>
-                <Position>BottomCenter</Position>
-                <ChartLegendTitle>
-                  <Caption />
-                  <Style>
-                    <FontSize>8pt</FontSize>
-                    <FontWeight>Bold</FontWeight>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </ChartLegendTitle>
-                <HeaderSeparatorColor>Black</HeaderSeparatorColor>
-                <ColumnSeparatorColor>Black</ColumnSeparatorColor>
-              </ChartLegend>
-            </ChartLegends>
             <ChartTitles>
-              <ChartTitle Name="Default">
-                <Caption>Percent of Traffic With Response Times Above 3 Seconds</Caption>
+              <ChartTitle Name="Title1">
+                <Caption>Spacer 14pt</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
-                  <FontStyle>Italic</FontStyle>
                   <FontFamily>Calibri</FontFamily>
                   <FontSize>14pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>Underline</TextDecoration>
                   <TextAlign>General</TextAlign>
                   <VerticalAlign>Top</VerticalAlign>
+                  <Color>White</Color>
                 </Style>
+                <Position>LeftCenter</Position>
+                <DockOutsideChartArea>true</DockOutsideChartArea>
               </ChartTitle>
             </ChartTitles>
             <Palette>BrightPastel</Palette>
@@ -1127,9 +1073,9 @@ IIF
               </Style>
             </ChartNoDataMessage>
             <DataSetName>rpt_apr_main</DataSetName>
-            <Top>9.27542in</Top>
-            <Height>4in</Height>
-            <Width>10.5in</Width>
+            <Top>5.08792in</Top>
+            <Height>2.15in</Height>
+            <Width>8in</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -1139,7 +1085,7 @@ IIF
               <BackgroundGradientType>None</BackgroundGradientType>
             </Style>
           </Chart>
-          <Chart Name="chr_traffic4">
+          <Chart Name="chr_greater_then_10">
             <ChartCategoryHierarchy>
               <ChartMembers>
                 <ChartMember>
@@ -1274,7 +1220,7 @@ IIF
                       <FontSize>8pt</FontSize>
                     </Style>
                     <ChartAxisTitle>
-                      <Caption>=Parameters!column_grouping_type_1.Label</Caption>
+                      <Caption />
                       <Style>
                         <FontFamily>Calibri</FontFamily>
                         <FontWeight>Bold</FontWeight>
@@ -1282,10 +1228,10 @@ IIF
                     </ChartAxisTitle>
                     <Interval>1</Interval>
                     <ChartMajorGridLines>
-                      <Enabled>True</Enabled>
                       <Style>
                         <Border>
                           <Color>Gainsboro</Color>
+                          <Width>1.25pt</Width>
                         </Border>
                       </Style>
                     </ChartMajorGridLines>
@@ -1304,7 +1250,7 @@ IIF
                     <CrossAt>NaN</CrossAt>
                     <Minimum>NaN</Minimum>
                     <Maximum>NaN</Maximum>
-                    <Angle>45</Angle>
+                    <Angle>90</Angle>
                     <LabelsAutoFitDisabled>true</LabelsAutoFitDisabled>
                     <ChartAxisScaleBreak>
                       <Style />
@@ -1356,7 +1302,7 @@ IIF
                       <Format>#,0%</Format>
                     </Style>
                     <ChartAxisTitle>
-                      <Caption>Percent</Caption>
+                      <Caption>% of Pages &gt;10s</Caption>
                       <Style>
                         <FontFamily>Calibri</FontFamily>
                         <FontWeight>Bold</FontWeight>
@@ -1383,6 +1329,7 @@ IIF
                     <CrossAt>NaN</CrossAt>
                     <Minimum>NaN</Minimum>
                     <Maximum>NaN</Maximum>
+                    <LabelsAutoFitDisabled>true</LabelsAutoFitDisabled>
                     <ChartAxisScaleBreak>
                       <Style />
                     </ChartAxisScaleBreak>
@@ -1429,39 +1376,19 @@ IIF
                 </Style>
               </ChartArea>
             </ChartAreas>
-            <ChartLegends>
-              <ChartLegend Name="Default">
-                <Style>
-                  <BackgroundGradientType>None</BackgroundGradientType>
-                  <FontFamily>Calibri</FontFamily>
-                  <FontSize>8pt</FontSize>
-                </Style>
-                <Position>BottomCenter</Position>
-                <ChartLegendTitle>
-                  <Caption />
-                  <Style>
-                    <FontSize>8pt</FontSize>
-                    <FontWeight>Bold</FontWeight>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </ChartLegendTitle>
-                <HeaderSeparatorColor>Black</HeaderSeparatorColor>
-                <ColumnSeparatorColor>Black</ColumnSeparatorColor>
-              </ChartLegend>
-            </ChartLegends>
             <ChartTitles>
-              <ChartTitle Name="Default">
-                <Caption>Percent of Traffic With Response Times Above 10 Seconds</Caption>
+              <ChartTitle Name="Title1">
+                <Caption>Spacer 14pt</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
-                  <FontStyle>Italic</FontStyle>
                   <FontFamily>Calibri</FontFamily>
                   <FontSize>14pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>Underline</TextDecoration>
                   <TextAlign>General</TextAlign>
                   <VerticalAlign>Top</VerticalAlign>
+                  <Color>White</Color>
                 </Style>
+                <Position>LeftCenter</Position>
+                <DockOutsideChartArea>true</DockOutsideChartArea>
               </ChartTitle>
             </ChartTitles>
             <Palette>BrightPastel</Palette>
@@ -1481,9 +1408,9 @@ IIF
               </Style>
             </ChartNoDataMessage>
             <DataSetName>rpt_apr_main</DataSetName>
-            <Top>13.48375in</Top>
-            <Height>4in</Height>
-            <Width>10.5in</Width>
+            <Top>7.28375in</Top>
+            <Height>3.25in</Height>
+            <Width>8in</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
@@ -1495,8 +1422,8 @@ IIF
           </Chart>
         </ReportItems>
         <KeepTogether>true</KeepTogether>
-        <Height>17.48375in</Height>
-        <Width>10.5in</Width>
+        <Height>10.53375in</Height>
+        <Width>8in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1504,19 +1431,17 @@ IIF
         </Style>
       </Rectangle>
     </ReportItems>
-    <Height>17.48375in</Height>
+    <Height>10.53375in</Height>
     <Style />
   </Body>
-  <Width>10.5in</Width>
+  <Width>8in</Width>
   <Page>
-    <PageHeight>8.5in</PageHeight>
-    <PageWidth>11in</PageWidth>
     <InteractiveHeight>0in</InteractiveHeight>
     <InteractiveWidth>0in</InteractiveWidth>
     <LeftMargin>0.25in</LeftMargin>
     <RightMargin>0.25in</RightMargin>
     <TopMargin>0.25in</TopMargin>
-    <BottomMargin>0.25in</BottomMargin>
+    <BottomMargin>0.1in</BottomMargin>
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
@@ -1827,6 +1752,7 @@ IIF
           <rd:TypeName>System.Object</rd:TypeName>
         </Field>
       </Fields>
+      <WidthSensitivity>True</WidthSensitivity>
     </DataSet>
     <DataSet Name="rpm_apr_filter_type_1">
       <Query>
