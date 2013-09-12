@@ -404,6 +404,142 @@
           <DataField>[Measures].[Question Answer Staff - Staff Last Name]</DataField>
           <rd:TypeName>System.Object</rd:TypeName>
         </Field>
+        <Field Name="month">
+          <DataField>[Measures].[Observation Date - Month Name Year]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="month_sort">
+          <DataField>[Measures].[Observation Date - Month Name Year]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="quarter">
+          <DataField>[Measures].[Observation Date - Quarter Name Year]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="quarter_sort">
+          <DataField>[Measures].[Observation Date - Quarter Name Year]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="year">
+          <DataField>[Measures].[Observation Date - Year]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="year_sort">
+          <DataField>[Measures].[Observation Date - Year]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="dotw">
+          <DataField>[Measures].[Observation Date - Day Of Week Name]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="dotw_sort">
+          <DataField>[Measures].[Observation Date - Day Of Week Name]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="system">
+          <DataField>[Measures].[Health System - Health System Name]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="system_sort">
+          <DataField>[Measures].[Health System - Health System Name]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="org">
+          <DataField>[Measures].[Health System - Org Name]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="org_sort">
+          <DataField>[Measures].[Health System - Org Name]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="orgunit">
+          <DataField>[Measures].[Org Unit - Org Unit Name]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="orgunit_sort">
+          <DataField>[Measures].[Org Unit - Org Unit Name]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="setting">
+          <DataField>[Measures].[Location - Location Name]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="setting_sort">
+          <DataField>[Measures].[Location - Location Name]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="audit">
+          <DataField>[Measures].[Evidence - Evidence Name]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="audit_sort">
+          <DataField>[Measures].[Evidence - Evidence Name]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="group">
+          <DataField>[Measures].[Question - Question Group Name]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="group_sort">
+          <DataField>[Measures].[Question - Question Group Name]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="department">
+          <DataField>[Measures].[Staff - Staff Department]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="department_sort">
+          <DataField>[Measures].[Staff - Staff Department]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="uid">
+          <DataField>[Measures].[Evidence Entry - Evidence Entry Local Code]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="fullname">
+          <DataField>[Measures].[Staff - Staff Full Name]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="lastfirst">
+          <DataField>[Measures].[Staff - Staff Last Name First Name]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="localid">
+          <DataField>[Measures].[Staff - Staff Local Code]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="vergeid">
+          <DataField>[Measures].[Staff - Staff Id]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="title">
+          <DataField>[Measures].[Staff - Staff Title]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="mas_fullname">
+          <DataField>[Measures].[Question Answer Staff - Staff Full Name]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="mas_firstname">
+          <DataField>[Measures].[Question Answer Staff - Staff First Name]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="mas_lastname">
+          <DataField>[Measures].[Question Answer Staff - Staff Last Name]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="mas_vergeid">
+          <DataField>[Measures].[Question Answer Staff - Staff Local Code]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="fullnameid">
+          <DataField>[Measures].[Staff - Staff Full Name]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="question">
+          <DataField>[Measures].[Question - Question Name]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
       </Fields>
       <Filters>
         <Filter>
@@ -11070,7 +11206,7 @@
                                                           <TablixMember>
                                                             <Group Name="Column">
                                                               <GroupExpressions>
-                                                                <GroupExpression>=Fields(Code.GetColumnGroupFieldName(Parameters!Format_ColumnGrouping_5.Value)).Value</GroupExpression>
+                                                                <GroupExpression>=Fields(Parameters!Format_ColumnGrouping_5.Value).Value</GroupExpression>
                                                               </GroupExpressions>
                                                             </Group>
                                                             <SortExpressions>
@@ -11093,7 +11229,7 @@
                                                                         <Paragraph>
                                                                           <TextRuns>
                                                                             <TextRun>
-                                                                              <Value>=Replace(Fields(Code.GetColumnGroupFieldName(Parameters!Format_ColumnGrouping_5.Value)).Value, ( Chr(13) + Chr(10) ), "&lt;br&gt;")</Value>
+                                                                              <Value>=Replace(Fields(Parameters!Format_ColumnGrouping_5.Value).Value, ( Chr(13) + Chr(10) ), "&lt;br&gt;")</Value>
                                                                               <MarkupType>HTML</MarkupType>
                                                                               <Style>
                                                                                 <FontSize>9pt</FontSize>
@@ -25165,7 +25301,7 @@
                                             <TablixMember>
                                               <Group Name="Column3">
                                                 <GroupExpressions>
-                                                  <GroupExpression>=Fields(Code.GetColumnGroupFieldName(Parameters!Format_ColumnGrouping_5.Value)).Value</GroupExpression>
+                                                  <GroupExpression>=Fields(Parameters!Format_ColumnGrouping_5.Value).Value</GroupExpression>
                                                 </GroupExpressions>
                                               </Group>
                                               <SortExpressions>
@@ -25188,7 +25324,7 @@
                                                           <Paragraph>
                                                             <TextRuns>
                                                               <TextRun>
-                                                                <Value>=Replace(Fields(Code.GetColumnGroupFieldName(Parameters!Format_ColumnGrouping_5.Value)).Value, (Chr(13) + Chr(10)), "&lt;br&gt;")</Value>
+                                                                <Value>=Replace(Fields(Parameters!Format_ColumnGrouping_5.Value).Value, (Chr(13) + Chr(10)), "&lt;br&gt;")</Value>
                                                                 <MarkupType>HTML</MarkupType>
                                                                 <Style>
                                                                   <FontSize>9pt</FontSize>
@@ -28886,64 +29022,7 @@ SWITCH
     </ReportParameter>
   </ReportParameters>
   <Code>
-		Public Function GetColumnGroupFieldName(Format_ColumnGrouping_5Param As String) As String
-
-		Dim ColumnGroupField As String
-		ColumnGroupField = "Month_Name_Year"
-
-		If (Format_ColumnGrouping_5Param = "month") Then
-		ColumnGroupField = "Month_Name_Year"
-		ElseIf (Format_ColumnGrouping_5Param = "quarter") Then
-		ColumnGroupField = "Quarter_Name_Year"
-		ElseIf (Format_ColumnGrouping_5Param = "year") Then
-		ColumnGroupField = "Year"
-		ElseIf (Format_ColumnGrouping_5Param = "dotw") Then
-		ColumnGroupField = "Day_Of_Week_Name"
-		ElseIf (Format_ColumnGrouping_5Param = "system") Then
-		ColumnGroupField = "Health_System_Name"
-		ElseIf (Format_ColumnGrouping_5Param = "org") Then
-		ColumnGroupField = "Org_Name"
-		ElseIf (Format_ColumnGrouping_5Param = "orgunit") Then
-		ColumnGroupField = "Org_Unit_Name"
-		ElseIf (Format_ColumnGrouping_5Param = "setting") Then
-		ColumnGroupField = "Location_Name"
-		ElseIf (Format_ColumnGrouping_5Param = "audit") Then
-		ColumnGroupField = "Evidence_Name"
-		ElseIf (Format_ColumnGrouping_5Param = "group") Then
-		ColumnGroupField = "Question_Group_Name"
-		ElseIf (Format_ColumnGrouping_5Param = "department") Then
-		ColumnGroupField = "Staff_Department"
-		ElseIf (Format_ColumnGrouping_5Param = "uid") Then
-		ColumnGroupField = "Evidence_Entry_Local_Code"
-		ElseIf (Format_ColumnGrouping_5Param = "fullname") Then
-		ColumnGroupField = "Staff_Full_Name"
-		ElseIf (Format_ColumnGrouping_5Param = "lastfirst") Then
-		ColumnGroupField = "Staff_Last_Name_First_Name"
-		ElseIf (Format_ColumnGrouping_5Param = "localid") Then
-		ColumnGroupField = "Staff_Local_Code"
-		ElseIf (Format_ColumnGrouping_5Param = "vergeid") Then
-		ColumnGroupField = "Staff_Id"
-		ElseIf (Format_ColumnGrouping_5Param = "title") Then
-		ColumnGroupField = "Staff_Title"
-		ElseIf (Format_ColumnGrouping_5Param = "mas_fullname") Then
-		ColumnGroupField = "MAS_Staff_Full_Name"
-		ElseIf (Format_ColumnGrouping_5Param = "mas_firstname") Then
-		ColumnGroupField = "MAS_Staff_First_Name"
-		ElseIf (Format_ColumnGrouping_5Param = "mas_lastname") Then
-		ColumnGroupField = "MAS_Staff_Last_Name"
-		ElseIf (Format_ColumnGrouping_5Param = "mas_vergeid") Then
-		ColumnGroupField = "MAS_Staff_Local_Code"
-		ElseIf (Format_ColumnGrouping_5Param = "fullnameid") Then
-		ColumnGroupField = "Staff_Full_Name"
-		Else
-		ColumnGroupField = "Question_Name"
-		End If
-
-		Return ColumnGroupField
-
-		End Function
-
-		Public Function GetColumnGroupSortOrder(Format_ColumnGrouping_5Param As String) As String
+Public Function GetColumnGroupSortOrder(Format_ColumnGrouping_5Param As String) As String
 
 		Dim ColumnGroupSortOrder As String
 		ColumnGroupSortOrder = "Month_Name_Year"
