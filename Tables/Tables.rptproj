@@ -18,10 +18,6 @@
   <DataSets />
   <Reports>
     <ProjectItem>
-      <Name>1.0 Threshold Compliance Table - Organizational Unit.rdl</Name>
-      <FullPath>1.0 Threshold Compliance Table - Organizational Unit.rdl</FullPath>
-    </ProjectItem>
-    <ProjectItem>
       <Name>1.0 Threshold Compliance Table NO COMMENTS.rdl</Name>
       <FullPath>1.0 Threshold Compliance Table NO COMMENTS.rdl</FullPath>
     </ProjectItem>

@@ -2002,6 +2002,44 @@
         </Field>
       </Fields>
     </DataSet>
+    <DataSet Name="rpm_tct_grouping_page_sort">
+      <Query>
+        <DataSourceName>reports_reporting_server</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@grouping_type">
+            <Value>page_sort</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>reporting.rpm_tct_grouping</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="id">
+          <DataField>id</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="id_mdx">
+          <DataField>id_mdx</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="id_sort">
+          <DataField>id_sort</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="definition">
+          <DataField>definition</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="definition_label">
+          <DataField>definition_label</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="sort">
+          <DataField>sort</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
   </DataSets>
   <ReportSections>
     <ReportSection>
@@ -4961,7 +4999,13 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Replace(Fields(Code.GetParentRowGroupFieldName(Parameters!Format_ParentRowGrouping_10.Value)).Value, ( Chr(13) + Chr(10) ), "&lt;br&gt;")</Value>
+                                                    <Value>=
+Replace
+(
+	Fields(Parameters!Format_ParentRowGrouping_10.Value).Value,
+	(Chr(13) + Chr(10)), 
+	"&lt;br&gt;"
+)</Value>
                                                     <MarkupType>HTML</MarkupType>
                                                     <Style>
                                                       <FontSize>8pt</FontSize>
@@ -6877,7 +6921,13 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Replace(Fields(Code.GetChildRowGroupFieldName(Parameters!Format_ChildRowGrouping_15.Value)).Value, ( Chr(13) + Chr(10) ), "&lt;br&gt;")</Value>
+                                                    <Value>=
+Replace
+(
+	Fields(Parameters!Format_ChildRowGrouping_15.Value).Value, 
+	(Chr(13) + Chr(10)), 
+	"&lt;br&gt;"
+)</Value>
                                                     <MarkupType>HTML</MarkupType>
                                                     <Style>
                                                       <FontSize>8pt</FontSize>
@@ -11389,10 +11439,32 @@
                                                             </Group>
                                                             <SortExpressions>
                                                               <SortExpression>
-                                                                <Value>=IIF(Parameters!Format_ColumnGrouping_5.Value = "question" OR Parameters!Format_ColumnGrouping_5.Value = "group", CINT(Fields!Evidence_Question_Group_Order.Value), IIF(Parameters!Format_ColumnGrouping_5.Value = "month" OR Parameters!Format_ColumnGrouping_5.Value = "quarter" OR Parameters!Format_ColumnGrouping_5.Value = "year", CDATE(Fields!Month_Name_Year.Value), Fields(Code.GetColumnGroupSortOrder(Parameters!Format_ColumnGrouping_5.Value)).Value))</Value>
-                                                              </SortExpression>
-                                                              <SortExpression>
-                                                                <Value>=IIF(Parameters!Format_ColumnGrouping_5.Value = "question", CINT(Fields!Question_Sort.Value), Fields(Code.GetColumnGroupSortOrder(Parameters!Format_ColumnGrouping_5.Value)).Value)</Value>
+                                                                <Value>=
+SWITCH
+(
+	ISNUMERIC(Fields(Parameters!ColumnSorting.Value).Value),
+	CINT
+	(
+		IIF
+		(
+			ISNUMERIC(Fields(Parameters!ColumnSorting.Value).Value),
+			Fields(Parameters!ColumnSorting.Value).Value,
+			0
+		)
+	),
+	ISDATE(Fields(Parameters!ColumnSorting.Value).Value),
+	CDATE
+	(
+		IIF
+		(
+			ISDATE(Fields(Parameters!ColumnSorting.Value).Value),
+			Fields(Parameters!ColumnSorting.Value).Value,
+			"01/01/1900"
+		)
+	),
+	TRUE,
+	Fields(Parameters!ColumnSorting.Value).Value
+)</Value>
                                                               </SortExpression>
                                                             </SortExpressions>
                                                             <TablixMembers>
@@ -11452,6 +11524,7 @@
                                                                         <PaddingBottom>2pt</PaddingBottom>
                                                                       </Style>
                                                                     </Textbox>
+                                                                    <rd:Selected>true</rd:Selected>
                                                                   </CellContents>
                                                                 </TablixHeader>
                                                                 <TablixMembers>
@@ -13992,15 +14065,37 @@
                                       <TablixMember>
                                         <Group Name="ParentRow">
                                           <GroupExpressions>
-                                            <GroupExpression>=Fields(Code.GetParentRowGroupFieldName(Parameters!Format_ParentRowGrouping_10.Value)).Value</GroupExpression>
+                                            <GroupExpression>=Fields(Parameters!Format_ParentRowGrouping_10.Value).Value</GroupExpression>
                                           </GroupExpressions>
                                         </Group>
                                         <SortExpressions>
                                           <SortExpression>
-                                            <Value>=IIF(Parameters!Format_ParentRowGrouping_10.Value = "question" OR Parameters!Format_ParentRowGrouping_10.Value = "group", CINT(Fields!Evidence_Question_Group_Order.Value), IIF(Parameters!Format_ParentRowGrouping_10.Value = "month" OR Parameters!Format_ParentRowGrouping_10.Value = "quarter" OR Parameters!Format_ParentRowGrouping_10.Value = "year", CDATE(Fields!Month_Name_Year.Value), Fields(Code.GetParentRowGroupSortOrder(Parameters!Format_ParentRowGrouping_10.Value)).Value))</Value>
-                                          </SortExpression>
-                                          <SortExpression>
-                                            <Value>=IIF(Parameters!Format_ParentRowGrouping_10.Value = "question", CINT(Fields!Question_Sort.Value), Fields(Code.GetParentRowGroupSortOrder(Parameters!Format_ParentRowGrouping_10.Value)).Value)</Value>
+                                            <Value>=
+SWITCH
+(
+	ISNUMERIC(Fields(Parameters!ParentRowSorting.Value).Value),
+	CINT
+	(
+		IIF
+		(
+			ISNUMERIC(Fields(Parameters!ParentRowSorting.Value).Value),
+			Fields(Parameters!ParentRowSorting.Value).Value,
+			0
+		)
+	),
+	ISDATE(Fields(Parameters!ParentRowSorting.Value).Value),
+	CDATE
+	(
+		IIF
+		(
+			ISDATE(Fields(Parameters!ParentRowSorting.Value).Value),
+			Fields(Parameters!ParentRowSorting.Value).Value,
+			"01/01/1900"
+		)
+	),
+	TRUE,
+	Fields(Parameters!ParentRowSorting.Value).Value
+)</Value>
                                           </SortExpression>
                                         </SortExpressions>
                                         <TablixMembers>
@@ -14016,24 +14111,37 @@
                                           <TablixMember>
                                             <Group Name="ChildRow">
                                               <GroupExpressions>
-                                                <GroupExpression>=Fields(Code.GetChildRowGroupFieldName(Parameters!Format_ChildRowGrouping_15.Value)).Value</GroupExpression>
+                                                <GroupExpression>=Fields(Parameters!Format_ChildRowGrouping_15.Value).Value</GroupExpression>
                                               </GroupExpressions>
                                             </Group>
                                             <SortExpressions>
                                               <SortExpression>
-                                                <Value>
-																									=IIF(Parameters!Format_ChildRowGrouping_15.Value = "question"
-																									OR Parameters!Format_ChildRowGrouping_15.Value = "group", CINT(Fields!Evidence_Question_Group_Order.Value),
-
-																									IIF(Parameters!Format_ChildRowGrouping_15.Value = "month"
-																									OR Parameters!Format_ChildRowGrouping_15.Value = "quarter"
-																									OR Parameters!Format_ChildRowGrouping_15.Value = "year", CDATE(Fields!Month_Name_Year.Value),
-
-																									Fields(Code.GetChildRowGroupSortOrder(Parameters!Format_ChildRowGrouping_15.Value)).Value))
-																								</Value>
-                                              </SortExpression>
-                                              <SortExpression>
-                                                <Value>=IIF(Parameters!Format_ChildRowGrouping_15.Value = "question", CINT(Fields!Question_Sort.Value), Fields(Code.GetChildRowGroupSortOrder(Parameters!Format_ChildRowGrouping_15.Value)).Value)</Value>
+                                                <Value>=
+SWITCH
+(
+	ISNUMERIC(Fields(Parameters!ChildRowSorting.Value).Value),
+	CINT
+	(
+		IIF
+		(
+			ISNUMERIC(Fields(Parameters!ChildRowSorting.Value).Value),
+			Fields(Parameters!ChildRowSorting.Value).Value,
+			0
+		)
+	),
+	ISDATE(Fields(Parameters!ChildRowSorting.Value).Value),
+	CDATE
+	(
+		IIF
+		(
+			ISDATE(Fields(Parameters!ChildRowSorting.Value).Value),
+			Fields(Parameters!ChildRowSorting.Value).Value,
+			"01/01/1900"
+		)
+	),
+	TRUE,
+	Fields(Parameters!ChildRowSorting.Value).Value
+)</Value>
                                               </SortExpression>
                                             </SortExpressions>
                                             <TablixMembers>
@@ -17114,7 +17222,24 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=SWITCH(Parameters!Format_SummaryTableGrouping_37.Value = "default", Replace(Fields(Code.GetParentRowGroupFieldName(Parameters!Format_ParentRowGrouping_10.Value)).Value, (Chr(13) + Chr(10)), "&lt;br&gt;"), Parameters!Format_SummaryTableGrouping_37.Value = "match", Replace(Fields(Code.GetTableListFieldName(Parameters!Format_TableListOptions_35.Value)).Value, (Chr(13) + Chr(10)), "&lt;br&gt;"))</Value>
+                                      <Value>=
+SWITCH
+(
+	Parameters!Format_SummaryTableGrouping_37.Value = "default", 
+	Replace
+	(
+		Fields(Parameters!Format_ParentRowGrouping_10.Value).Value, 
+		(Chr(13) + Chr(10)), 
+		"&lt;br&gt;"
+	), 
+	Parameters!Format_SummaryTableGrouping_37.Value = "match", 
+	Replace
+	(
+		Fields(Code.GetTableListFieldName(Parameters!Format_TableListOptions_35.Value)).Value, 
+		(Chr(13) + Chr(10)), 
+		"&lt;br&gt;"
+	)
+)</Value>
                                       <MarkupType>HTML</MarkupType>
                                       <Style>
                                         <FontSize>8pt</FontSize>
@@ -19045,7 +19170,19 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=SWITCH(Parameters!Format_SummaryTableGrouping_37.Value = "default", Fields(Code.GetTableListFieldName(Parameters!Format_TableListOptions_35.Value)).Value, Parameters!Format_SummaryTableGrouping_37.Value = "match", Replace(Fields(Code.GetParentRowGroupFieldName(Parameters!Format_ParentRowGrouping_10.Value)).Value, (Chr(13) + Chr(10)), "&lt;br&gt;"))</Value>
+                                      <Value>=
+SWITCH
+(
+	Parameters!Format_SummaryTableGrouping_37.Value = "default", 
+	Fields(Code.GetTableListFieldName(Parameters!Format_TableListOptions_35.Value)).Value, 
+	Parameters!Format_SummaryTableGrouping_37.Value = "match", 
+	Replace
+	(
+		Fields(Parameters!Format_ParentRowGrouping_10.Value).Value,
+		(Chr(13) + Chr(10)), 
+		"&lt;br&gt;"
+	)
+)</Value>
                                       <MarkupType>HTML</MarkupType>
                                       <Style>
                                         <FontSize>8pt</FontSize>
@@ -20997,7 +21134,13 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Replace(Fields(Code.GetChildRowGroupFieldName(Parameters!Format_ChildRowGrouping_15.Value)).Value, (Chr(13) + Chr(10)), "&lt;br&gt;")</Value>
+                                      <Value>=
+Replace
+(
+	Fields(Parameters!Format_ChildRowGrouping_15.Value).Value, 
+	(Chr(13) + Chr(10)), 
+	"&lt;br&gt;"
+)</Value>
                                       <MarkupType>HTML</MarkupType>
                                       <Style>
                                         <FontSize>8pt</FontSize>
@@ -25484,10 +25627,32 @@
                                               </Group>
                                               <SortExpressions>
                                                 <SortExpression>
-                                                  <Value>=IIF(Parameters!Format_ColumnGrouping_5.Value = "question" Or Parameters!Format_ColumnGrouping_5.Value = "group", CINT(Fields!Evidence_Question_Group_Order.Value), IIF(Parameters!Format_ColumnGrouping_5.Value = "month" Or Parameters!Format_ColumnGrouping_5.Value = "quarter" Or Parameters!Format_ColumnGrouping_5.Value = "year", CDATE(Fields!Month_Name_Year.Value), Fields(Code.GetColumnGroupSortOrder(Parameters!Format_ColumnGrouping_5.Value)).Value))</Value>
-                                                </SortExpression>
-                                                <SortExpression>
-                                                  <Value>=IIF(Parameters!Format_ColumnGrouping_5.Value = "question", CINT(Fields!Question_Sort.Value), Fields(Code.GetColumnGroupSortOrder(Parameters!Format_ColumnGrouping_5.Value)).Value)</Value>
+                                                  <Value>=
+SWITCH
+(
+	ISNUMERIC(Fields(Parameters!ColumnSorting.Value).Value),
+	CINT
+	(
+		IIF
+		(
+			ISNUMERIC(Fields(Parameters!ColumnSorting.Value).Value),
+			Fields(Parameters!ColumnSorting.Value).Value,
+			0
+		)
+	),
+	ISDATE(Fields(Parameters!ColumnSorting.Value).Value),
+	CDATE
+	(
+		IIF
+		(
+			ISDATE(Fields(Parameters!ColumnSorting.Value).Value),
+			Fields(Parameters!ColumnSorting.Value).Value,
+			"01/01/1900"
+		)
+	),
+	TRUE,
+	Fields(Parameters!ColumnSorting.Value).Value
+)</Value>
                                                 </SortExpression>
                                               </SortExpressions>
                                               <TablixMembers>
@@ -28063,7 +28228,13 @@
                     <TablixMember>
                       <Group Name="Question_Group_Name3">
                         <GroupExpressions>
-                          <GroupExpression>=IIF(Parameters!Format_QuestionGroupRowVisibility_65.Value &lt;&gt; "hide", Fields!Question_Group_Name.Value, Fields!Health_System_Name.Value)</GroupExpression>
+                          <GroupExpression>=
+IIF
+(
+	Parameters!Format_QuestionGroupRowVisibility_65.Value &lt;&gt; "hide", 
+	Fields!Question_Group_Name.Value, 
+	Fields!Health_System_Name.Value
+)</GroupExpression>
                         </GroupExpressions>
                       </Group>
                       <SortExpressions>
@@ -28085,12 +28256,14 @@
                         <TablixMember>
                           <Group Name="Summary_Group_1">
                             <GroupExpressions>
-                              <GroupExpression>
-																=SWITCH(
-																Parameters!Format_SummaryTableGrouping_37.Value = "default", Fields(Code.GetParentRowGroupFieldName(Parameters!Format_ParentRowGrouping_10.Value)).Value,
-																Parameters!Format_SummaryTableGrouping_37.Value = "match", Fields(Code.GetTableListFieldName(Parameters!Format_TableListOptions_35.Value)).Value
-																)
-															</GroupExpression>
+                              <GroupExpression>=
+SWITCH
+(
+	Parameters!Format_SummaryTableGrouping_37.Value = "default", 
+	Fields(Parameters!Format_ParentRowGrouping_10.Value).Value,
+	Parameters!Format_SummaryTableGrouping_37.Value = "match", 
+	Fields(Code.GetTableListFieldName(Parameters!Format_TableListOptions_35.Value)).Value
+)</GroupExpression>
                             </GroupExpressions>
                           </Group>
                           <SortExpressions>
@@ -28099,17 +28272,31 @@
 SWITCH
 (
 	Parameters!Format_SummaryTableGrouping_37.Value = "default", 
-	IIF
+	SWITCH
 	(
-		Parameters!Format_ParentRowGrouping_10.Value = "question" Or Parameters!Format_ParentRowGrouping_10.Value = "group", 
-		CINT(Fields!Evidence_Question_Group_Order.Value), 
-		IIF
+		ISNUMERIC(Fields(Parameters!ParentRowSorting.Value).Value),
+		CINT
 		(
-			Parameters!Format_ParentRowGrouping_10.Value = "month" Or Parameters!Format_ParentRowGrouping_10.Value = "quarter" Or Parameters!Format_ParentRowGrouping_10.Value = "year", 
-			CDATE(Fields!Month_Name_Year.Value), 
-			Fields(Code.GetParentRowGroupSortOrder(Parameters!Format_ParentRowGrouping_10.Value)).Value
-		)
-	), 
+			IIF
+			(
+				ISNUMERIC(Fields(Parameters!ParentRowSorting.Value).Value),
+				Fields(Parameters!ParentRowSorting.Value).Value,
+				0
+			)
+		),
+		ISDATE(Fields(Parameters!ParentRowSorting.Value).Value),
+		CDATE
+		(
+			IIF
+			(
+				ISDATE(Fields(Parameters!ParentRowSorting.Value).Value),
+				Fields(Parameters!ParentRowSorting.Value).Value,
+				"01/01/1900"
+			)
+		),
+		TRUE,
+		Fields(Parameters!ParentRowSorting.Value).Value
+	),
 	Parameters!Format_SummaryTableGrouping_37.Value = "match", 
 	IIF
 	(
@@ -28128,12 +28315,31 @@ SWITCH
                               <Value>=SWITCH
 (
 	Parameters!Format_SummaryTableGrouping_37.Value = "default", 
-	IIF
+	SWITCH
 	(
-		Parameters!Format_ParentRowGrouping_10.Value = "question", 
-		CINT(Fields!Question_Sort.Value), 
-		Fields(Code.GetParentRowGroupSortOrder(Parameters!Format_ParentRowGrouping_10.Value)).Value
-	), 
+		ISNUMERIC(Fields(Parameters!ParentRowSorting.Value).Value),
+		CINT
+		(
+			IIF
+			(
+				ISNUMERIC(Fields(Parameters!ParentRowSorting.Value).Value),
+				Fields(Parameters!ParentRowSorting.Value).Value,
+				0
+			)
+		),
+		ISDATE(Fields(Parameters!ParentRowSorting.Value).Value),
+		CDATE
+		(
+			IIF
+			(
+				ISDATE(Fields(Parameters!ParentRowSorting.Value).Value),
+				Fields(Parameters!ParentRowSorting.Value).Value,
+				"01/01/1900"
+			)
+		),
+		TRUE,
+		Fields(Parameters!ParentRowSorting.Value).Value
+	),
 	Parameters!Format_SummaryTableGrouping_37.Value = "match", 
 	IIF
 	(
@@ -28154,20 +28360,99 @@ SWITCH
                             <TablixMember>
                               <Group Name="Summary_Group_2">
                                 <GroupExpressions>
-                                  <GroupExpression>
-																		=SWITCH(
-																		Parameters!Format_SummaryTableGrouping_37.Value = "default", Fields(Code.GetTableListFieldName(Parameters!Format_TableListOptions_35.Value)).Value,
-																		Parameters!Format_SummaryTableGrouping_37.Value = "match", Fields(Code.GetParentRowGroupFieldName(Parameters!Format_ParentRowGrouping_10.Value)).Value
-																		)
-																	</GroupExpression>
+                                  <GroupExpression>=
+SWITCH
+(
+	Parameters!Format_SummaryTableGrouping_37.Value = "default", 
+	Fields(Code.GetTableListFieldName(Parameters!Format_TableListOptions_35.Value)).Value,
+	Parameters!Format_SummaryTableGrouping_37.Value = "match", 
+	Fields(Parameters!Format_ParentRowGrouping_10.Value).Value
+)</GroupExpression>
                                 </GroupExpressions>
                               </Group>
                               <SortExpressions>
                                 <SortExpression>
-                                  <Value>=SWITCH(Parameters!Format_SummaryTableGrouping_37.Value = "default", IIF(Parameters!Format_TableListOptions_35.Value = "question" Or Parameters!Format_TableListOptions_35.Value = "group", CINT(Fields!Evidence_Question_Group_Order.Value), IIF(Parameters!Format_TableListOptions_35.Value = "month" Or Parameters!Format_TableListOptions_35.Value = "quarter" Or Parameters!Format_TableListOptions_35.Value = "year", CDATE(Fields!Month_Name_Year.Value), Fields(Code.GetTableListSortOrder(Parameters!Format_TableListOptions_35.Value)).Value)), Parameters!Format_SummaryTableGrouping_37.Value = "match", IIF(Parameters!Format_ParentRowGrouping_10.Value = "question" Or Parameters!Format_ParentRowGrouping_10.Value = "group", CINT(Fields!Evidence_Question_Group_Order.Value), IIF(Parameters!Format_ParentRowGrouping_10.Value = "month" Or Parameters!Format_ParentRowGrouping_10.Value = "quarter" Or Parameters!Format_ParentRowGrouping_10.Value = "year", CDATE(Fields!Month_Name_Year.Value), Fields(Code.GetParentRowGroupSortOrder(Parameters!Format_ParentRowGrouping_10.Value)).Value)))</Value>
+                                  <Value>=
+SWITCH
+(
+	Parameters!Format_SummaryTableGrouping_37.Value = "default", 
+	IIF
+	(
+		Parameters!Format_TableListOptions_35.Value = "question" Or Parameters!Format_TableListOptions_35.Value = "group", 
+		CINT(Fields!Evidence_Question_Group_Order.Value), 
+		IIF
+		(
+			Parameters!Format_TableListOptions_35.Value = "month" Or Parameters!Format_TableListOptions_35.Value = "quarter" Or Parameters!Format_TableListOptions_35.Value = "year", 
+			CDATE(Fields!Month_Name_Year.Value), 
+			Fields(Code.GetTableListSortOrder(Parameters!Format_TableListOptions_35.Value)).Value
+		)
+	), 
+	Parameters!Format_SummaryTableGrouping_37.Value = "match", 
+	SWITCH
+	(
+		ISNUMERIC(Fields(Parameters!ParentRowSorting.Value).Value),
+		CINT
+		(
+			IIF
+			(
+				ISNUMERIC(Fields(Parameters!ParentRowSorting.Value).Value),
+				Fields(Parameters!ParentRowSorting.Value).Value,
+				0
+			)
+		),
+		ISDATE(Fields(Parameters!ParentRowSorting.Value).Value),
+		CDATE
+		(
+			IIF
+			(
+				ISDATE(Fields(Parameters!ParentRowSorting.Value).Value),
+				Fields(Parameters!ParentRowSorting.Value).Value,
+				"01/01/1900"
+			)
+		),
+		TRUE,
+		Fields(Parameters!ParentRowSorting.Value).Value
+	)
+)</Value>
                                 </SortExpression>
                                 <SortExpression>
-                                  <Value>=SWITCH(Parameters!Format_SummaryTableGrouping_37.Value = "default", IIF(Parameters!Format_TableListOptions_35.Value = "question", CINT(Fields!Question_Sort.Value), Fields(Code.GetTableListFieldName(Parameters!Format_TableListOptions_35.Value)).Value), Parameters!Format_SummaryTableGrouping_37.Value = "match", IIF(Parameters!Format_ParentRowGrouping_10.Value = "question", CINT(Fields!Question_Sort.Value), Fields(Code.GetParentRowGroupSortOrder(Parameters!Format_ParentRowGrouping_10.Value)).Value))</Value>
+                                  <Value>=
+SWITCH
+(
+	Parameters!Format_SummaryTableGrouping_37.Value = "default", 
+	IIF
+	(
+		Parameters!Format_TableListOptions_35.Value = "question", 
+		CINT(Fields!Question_Sort.Value), 
+		Fields(Code.GetTableListFieldName(Parameters!Format_TableListOptions_35.Value)).Value
+	), 
+	Parameters!Format_SummaryTableGrouping_37.Value = "match", 
+	SWITCH
+	(
+		ISNUMERIC(Fields(Parameters!ParentRowSorting.Value).Value),
+		CINT
+		(
+			IIF
+			(
+				ISNUMERIC(Fields(Parameters!ParentRowSorting.Value).Value),
+				Fields(Parameters!ParentRowSorting.Value).Value,
+				0
+			)
+		),
+		ISDATE(Fields(Parameters!ParentRowSorting.Value).Value),
+		CDATE
+		(
+			IIF
+			(
+				ISDATE(Fields(Parameters!ParentRowSorting.Value).Value),
+				Fields(Parameters!ParentRowSorting.Value).Value,
+				"01/01/1900"
+			)
+		),
+		TRUE,
+		Fields(Parameters!ParentRowSorting.Value).Value
+	)
+)</Value>
                                 </SortExpression>
                               </SortExpressions>
                               <TablixMembers>
@@ -28183,15 +28468,70 @@ SWITCH
                                 <TablixMember>
                                   <Group Name="Summary_Group_3">
                                     <GroupExpressions>
-                                      <GroupExpression>=Fields(Code.GetChildRowGroupFieldName(Parameters!Format_ChildRowGrouping_15.Value)).Value</GroupExpression>
+                                      <GroupExpression>=Fields(Parameters!Format_ChildRowGrouping_15.Value).Value</GroupExpression>
                                     </GroupExpressions>
                                   </Group>
                                   <SortExpressions>
                                     <SortExpression>
-                                      <Value>=IIF(Parameters!Format_ChildRowGrouping_15.Value = "question" Or Parameters!Format_ChildRowGrouping_15.Value = "group", CINT(Fields!Evidence_Question_Group_Order.Value), IIF(Parameters!Format_ChildRowGrouping_15.Value = "month" Or Parameters!Format_ChildRowGrouping_15.Value = "quarter" Or Parameters!Format_ChildRowGrouping_15.Value = "year", CDATE(Fields!Month_Name_Year.Value), Fields(Code.GetChildRowGroupSortOrder(Parameters!Format_ChildRowGrouping_15.Value)).Value))</Value>
+                                      <Value>=
+IIF
+(
+	Parameters!Format_ChildRowGrouping_15.Value = "question" Or Parameters!Format_ChildRowGrouping_15.Value = "group", 
+	CINT(Fields!Evidence_Question_Group_Order.Value), 
+	SWITCH
+	(
+		ISNUMERIC(Fields(Parameters!ChildRowSorting.Value).Value),
+		CINT
+		(
+			IIF
+			(
+				ISNUMERIC(Fields(Parameters!ChildRowSorting.Value).Value),
+				Fields(Parameters!ChildRowSorting.Value).Value,
+				0
+			)
+		),
+		ISDATE(Fields(Parameters!ChildRowSorting.Value).Value),
+		CDATE
+		(
+			IIF
+			(
+				ISDATE(Fields(Parameters!ChildRowSorting.Value).Value),
+				Fields(Parameters!ChildRowSorting.Value).Value,
+				"01/01/1900"
+			)
+		),
+		TRUE,
+		Fields(Parameters!ChildRowSorting.Value).Value
+	)
+)</Value>
                                     </SortExpression>
                                     <SortExpression>
-                                      <Value>=IIF(Parameters!Format_ChildRowGrouping_15.Value = "question", CINT(Fields!Question_Sort.Value), Fields(Code.GetChildRowGroupSortOrder(Parameters!Format_ChildRowGrouping_15.Value)).Value)</Value>
+                                      <Value>=
+SWITCH
+(
+	ISNUMERIC(Fields(Parameters!ChildRowSorting.Value).Value),
+	CINT
+	(
+		IIF
+		(
+			ISNUMERIC(Fields(Parameters!ChildRowSorting.Value).Value),
+			Fields(Parameters!ChildRowSorting.Value).Value,
+			0
+		)
+	),
+	ISDATE(Fields(Parameters!ChildRowSorting.Value).Value),
+	CDATE
+	(
+		IIF
+		(
+			ISDATE(Fields(Parameters!ChildRowSorting.Value).Value),
+			Fields(Parameters!ChildRowSorting.Value).Value,
+			"01/01/1900"
+		)
+	),
+	TRUE,
+	Fields(Parameters!ChildRowSorting.Value).Value
+)</Value>
                                     </SortExpression>
                                   </SortExpressions>
                                   <TablixMembers>
@@ -28724,20 +29064,11 @@ SWITCH
       </DefaultValue>
       <Prompt>Sort Seperate Tables By:</Prompt>
       <ValidValues>
-        <ParameterValues>
-          <ParameterValue>
-            <Value>none</Value>
-            <Label>Default</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>department</Value>
-            <Label>Location: Staff Department</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>setting</Value>
-            <Label>Location: Setting</Label>
-          </ParameterValue>
-        </ParameterValues>
+        <DataSetReference>
+          <DataSetName>rpm_tct_grouping_page_sort</DataSetName>
+          <ValueField>id_sort</ValueField>
+          <LabelField>definition</LabelField>
+        </DataSetReference>
       </ValidValues>
     </ReportParameter>
     <ReportParameter Name="Format_SummaryTableGrouping_37">
@@ -29250,306 +29581,7 @@ SWITCH
       <MultiValue>true</MultiValue>
     </ReportParameter>
   </ReportParameters>
-  <Code>
-Public Function GetColumnGroupSortOrder(Format_ColumnGrouping_5Param As String) As String
-
-		Dim ColumnGroupSortOrder As String
-		ColumnGroupSortOrder = "Month_Name_Year"
-
-		If (Format_ColumnGrouping_5Param = "month") Then
-		ColumnGroupSortOrder = "Month_Name_Year"
-		ElseIf (Format_ColumnGrouping_5Param = "quarter") Then
-		ColumnGroupSortOrder = "Month_Name_Year"
-		ElseIf (Format_ColumnGrouping_5Param = "year") Then
-		ColumnGroupSortOrder = "Month_Name_Year"
-		ElseIf (Format_ColumnGrouping_5Param = "dotw") Then
-		ColumnGroupSortOrder = "Day_Of_Week"
-		ElseIf (Format_ColumnGrouping_5Param = "system") Then
-		ColumnGroupSortOrder = "Health_System_Name"
-		ElseIf (Format_ColumnGrouping_5Param = "org") Then
-		ColumnGroupSortOrder = "Org_Name"
-		ElseIf (Format_ColumnGrouping_5Param = "orgunit") Then
-		ColumnGroupSortOrder = "Org_Unit_Name"
-		ElseIf (Format_ColumnGrouping_5Param = "setting") Then
-		ColumnGroupSortOrder = "Location_Name"
-		ElseIf (Format_ColumnGrouping_5Param = "audit") Then
-		ColumnGroupSortOrder = "Evidence_Name"
-		ElseIf (Format_ColumnGrouping_5Param = "group") Then
-		ColumnGroupSortOrder = "Evidence_Question_Group_Order"
-		ElseIf (Format_ColumnGrouping_5Param = "department") Then
-		ColumnGroupSortOrder = "Staff_Department"
-		ElseIf (Format_ColumnGrouping_5Param = "uid") Then
-		ColumnGroupSortOrder = "Evidence_Entry_Local_Code"
-		ElseIf (Format_ColumnGrouping_5Param = "fullname") Then
-		ColumnGroupSortOrder = "Staff_Full_Name"
-		ElseIf (Format_ColumnGrouping_5Param = "lastfirst") Then
-		ColumnGroupSortOrder = "Staff_Last_Name_First_Name"
-		ElseIf (Format_ColumnGrouping_5Param = "localid") Then
-		ColumnGroupSortOrder = "Staff_Local_Code"
-		ElseIf (Format_ColumnGrouping_5Param = "vergeid") Then
-		ColumnGroupSortOrder = "Staff_Id"
-		ElseIf (Format_ColumnGrouping_5Param = "title") Then
-		ColumnGroupSortOrder = "Staff_Title"
-		ElseIf (Format_ColumnGrouping_5Param = "mas_fullname") Then
-		ColumnGroupSortOrder = "MAS_Staff_Full_Name"
-		ElseIf (Format_ColumnGrouping_5Param = "mas_firstname") Then
-		ColumnGroupSortOrder = "MAS_Staff_First_Name"
-		ElseIf (Format_ColumnGrouping_5Param = "mas_lastname") Then
-		ColumnGroupSortOrder = "MAS_Staff_Last_Name"
-		ElseIf (Format_ColumnGrouping_5Param = "mas_vergeid") Then
-		ColumnGroupSortOrder = "MAS_Staff_Local_Code"
-		ElseIf (Format_ColumnGrouping_5Param = "fullnameid") Then
-		ColumnGroupSortOrder = "Staff_Full_Name"
-		Else
-		ColumnGroupSortOrder = "Question_Order"
-
-		End If
-
-		Return ColumnGroupSortOrder
-
-		End Function
-
-
-
-		Public Function GetParentRowGroupFieldName(Format_ParentRowGrouping_10Param As String) As String
-
-		Dim ParentRowGroupField As String
-		ParentRowGroupField = "Month_Name_Year"
-
-		If (Format_ParentRowGrouping_10Param = "month") Then
-		ParentRowGroupField = "Month_Name_Year"
-		ElseIf (Format_ParentRowGrouping_10Param = "quarter") Then
-		ParentRowGroupField = "Quarter_Name_Year"
-		ElseIf (Format_ParentRowGrouping_10Param = "year") Then
-		ParentRowGroupField = "Year"
-		ElseIf (Format_ParentRowGrouping_10Param = "dotw") Then
-		ParentRowGroupField = "Day_Of_Week_Name"
-		ElseIf (Format_ParentRowGrouping_10Param = "system") Then
-		ParentRowGroupField = "Health_System_Name"
-		ElseIf (Format_ParentRowGrouping_10Param = "org") Then
-		ParentRowGroupField = "Org_Name"
-		ElseIf (Format_ParentRowGrouping_10Param = "orgunit") Then
-		ParentRowGroupField = "Org_Unit_Name"
-		ElseIf (Format_ParentRowGrouping_10Param = "setting") Then
-		ParentRowGroupField = "Location_Name"
-		ElseIf (Format_ParentRowGrouping_10Param = "audit") Then
-		ParentRowGroupField = "Evidence_Name"
-		ElseIf (Format_ParentRowGrouping_10Param = "group") Then
-		ParentRowGroupField = "Question_Group_Name"
-		ElseIf (Format_ParentRowGrouping_10Param = "department") Then
-		ParentRowGroupField = "Staff_Department"
-		ElseIf (Format_ParentRowGrouping_10Param = "uid") Then
-		ParentRowGroupField = "Evidence_Entry_Local_Code"
-		ElseIf (Format_ParentRowGrouping_10Param = "fullname") Then
-		ParentRowGroupField = "Staff_Full_Name"
-		ElseIf (Format_ParentRowGrouping_10Param = "lastfirst") Then
-		ParentRowGroupField = "Staff_Last_Name_First_Name"
-		ElseIf (Format_ParentRowGrouping_10Param = "localid") Then
-		ParentRowGroupField = "Staff_Local_Code"
-		ElseIf (Format_ParentRowGrouping_10Param = "vergeid") Then
-		ParentRowGroupField = "Staff_Id"
-		ElseIf (Format_ParentRowGrouping_10Param = "title") Then
-		ParentRowGroupField = "Staff_Title"
-		ElseIf (Format_ParentRowGrouping_10Param = "mas_fullname") Then
-		ParentRowGroupField = "MAS_Staff_Full_Name"
-		ElseIf (Format_ParentRowGrouping_10Param = "mas_firstname") Then
-		ParentRowGroupField = "MAS_Staff_First_Name"
-		ElseIf (Format_ParentRowGrouping_10Param = "mas_lastname") Then
-		ParentRowGroupField = "MAS_Staff_Last_Name"
-		ElseIf (Format_ParentRowGrouping_10Param = "mas_vergeid") Then
-		ParentRowGroupField = "MAS_Staff_Local_Code"
-		ElseIf (Format_ParentRowGrouping_10Param = "fullnameid") Then
-		ParentRowGroupField = "Staff_Full_Name"
-		Else
-		ParentRowGroupField = "Question_Name"
-		End If
-
-		Return ParentRowGroupField
-
-		End Function
-
-
-		Public Function GetParentRowGroupSortOrder(Format_ParentRowGrouping_10Param As String) As String
-
-		Dim ParentRowGroupSortOrder As String
-		ParentRowGroupSortOrder = "Month_Name_Year"
-
-		If (Format_ParentRowGrouping_10Param = "month") Then
-		ParentRowGroupSortOrder = "Month_Name_Year"
-		ElseIf (Format_ParentRowGrouping_10Param = "quarter") Then
-		ParentRowGroupSortOrder = "Month_Name_Year"
-		ElseIf (Format_ParentRowGrouping_10Param = "year") Then
-		ParentRowGroupSortOrder = "Month_Name_Year"
-		ElseIf (Format_ParentRowGrouping_10Param = "dotw") Then
-		ParentRowGroupSortOrder = "Day_Of_Week"
-		ElseIf (Format_ParentRowGrouping_10Param = "system") Then
-		ParentRowGroupSortOrder = "Health_System_Name"
-		ElseIf (Format_ParentRowGrouping_10Param = "org") Then
-		ParentRowGroupSortOrder = "Org_Name"
-		ElseIf (Format_ParentRowGrouping_10Param = "orgunit") Then
-		ParentRowGroupSortOrder = "Org_Unit_Name"
-		ElseIf (Format_ParentRowGrouping_10Param = "setting") Then
-		ParentRowGroupSortOrder = "Location_Name"
-		ElseIf (Format_ParentRowGrouping_10Param = "audit") Then
-		ParentRowGroupSortOrder = "Evidence_Name"
-		ElseIf (Format_ParentRowGrouping_10Param = "group") Then
-		ParentRowGroupSortOrder = "Evidence_Question_Group_Order"
-		ElseIf (Format_ParentRowGrouping_10Param = "department") Then
-		ParentRowGroupSortOrder = "Staff_Department"
-		ElseIf (Format_ParentRowGrouping_10Param = "uid") Then
-		ParentRowGroupSortOrder = "Evidence_Entry_Local_Code"
-		ElseIf (Format_ParentRowGrouping_10Param = "fullname") Then
-		ParentRowGroupSortOrder = "Staff_Full_Name"
-		ElseIf (Format_ParentRowGrouping_10Param = "lastfirst") Then
-		ParentRowGroupSortOrder = "Staff_Last_Name_First_Name"
-		ElseIf (Format_ParentRowGrouping_10Param = "localid") Then
-		ParentRowGroupSortOrder = "Staff_Local_Code"
-		ElseIf (Format_ParentRowGrouping_10Param = "vergeid") Then
-		ParentRowGroupSortOrder = "Staff_Id"
-		ElseIf (Format_ParentRowGrouping_10Param = "title") Then
-		ParentRowGroupSortOrder = "Staff_Title"
-		ElseIf (Format_ParentRowGrouping_10Param = "mas_fullname") Then
-		ParentRowGroupSortOrder = "MAS_Staff_Full_Name"
-		ElseIf (Format_ParentRowGrouping_10Param = "mas_firstname") Then
-		ParentRowGroupSortOrder = "MAS_Staff_First_Name"
-		ElseIf (Format_ParentRowGrouping_10Param = "mas_lastname") Then
-		ParentRowGroupSortOrder = "MAS_Staff_Last_Name"
-		ElseIf (Format_ParentRowGrouping_10Param = "mas_vergeid") Then
-		ParentRowGroupSortOrder = "MAS_Staff_Local_Code"
-		ElseIf (Format_ParentRowGrouping_10Param = "fullnameid") Then
-		ParentRowGroupSortOrder = "Staff_Full_Name"
-		Else
-		ParentRowGroupSortOrder = "Question_Order"
-
-		End If
-
-		Return ParentRowGroupSortOrder
-
-		End Function
-
-
-
-		Public Function GetChildRowGroupFieldName(Format_ChildRowGrouping_15Param As String) As String
-
-		Dim ChildRowGroupField As String
-		ChildRowGroupField = "Month_Name_Year"
-
-		If (Format_ChildRowGrouping_15Param = "month") Then
-		ChildRowGroupField = "Month_Name_Year"
-		ElseIf (Format_ChildRowGrouping_15Param = "quarter") Then
-		ChildRowGroupField = "Quarter_Name_Year"
-		ElseIf (Format_ChildRowGrouping_15Param = "year") Then
-		ChildRowGroupField = "Year"
-		ElseIf (Format_ChildRowGrouping_15Param = "dotw") Then
-		ChildRowGroupField = "Day_Of_Week_Name"
-		ElseIf (Format_ChildRowGrouping_15Param = "system") Then
-		ChildRowGroupField = "Health_System_Name"
-		ElseIf (Format_ChildRowGrouping_15Param = "org") Then
-		ChildRowGroupField = "Org_Name"
-		ElseIf (Format_ChildRowGrouping_15Param = "orgunit") Then
-		ChildRowGroupField = "Org_Unit_Name"
-		ElseIf (Format_ChildRowGrouping_15Param = "setting") Then
-		ChildRowGroupField = "Location_Name"
-		ElseIf (Format_ChildRowGrouping_15Param = "audit") Then
-		ChildRowGroupField = "Evidence_Name"
-		ElseIf (Format_ChildRowGrouping_15Param = "group") Then
-		ChildRowGroupField = "Question_Group_Name"
-		ElseIf (Format_ChildRowGrouping_15Param = "department") Then
-		ChildRowGroupField = "Staff_Department"
-		ElseIf (Format_ChildRowGrouping_15Param = "uid") Then
-		ChildRowGroupField = "Evidence_Entry_Local_Code"
-		ElseIf (Format_ChildRowGrouping_15Param = "fullname") Then
-		ChildRowGroupField = "Staff_Full_Name"
-		ElseIf (Format_ChildRowGrouping_15Param = "lastfirst") Then
-		ChildRowGroupField = "Staff_Last_Name_First_Name"
-		ElseIf (Format_ChildRowGrouping_15Param = "localid") Then
-		ChildRowGroupField = "Staff_Local_Code"
-		ElseIf (Format_ChildRowGrouping_15Param = "vergeid") Then
-		ChildRowGroupField = "Staff_Id"
-		ElseIf (Format_ChildRowGrouping_15Param = "title") Then
-		ChildRowGroupField = "Staff_Title"
-		ElseIf (Format_ChildRowGrouping_15Param = "mas_fullname") Then
-		ChildRowGroupField = "MAS_Staff_Full_Name"
-		ElseIf (Format_ChildRowGrouping_15Param = "mas_firstname") Then
-		ChildRowGroupField = "MAS_Staff_First_Name"
-		ElseIf (Format_ChildRowGrouping_15Param = "mas_lastname") Then
-		ChildRowGroupField = "MAS_Staff_Last_Name"
-		ElseIf (Format_ChildRowGrouping_15Param = "mas_vergeid") Then
-		ChildRowGroupField = "MAS_Staff_Local_Code"
-		ElseIf (Format_ChildRowGrouping_15Param = "fullnameid") Then
-		ChildRowGroupField = "Staff_Full_Name"
-		Else
-		ChildRowGroupField = "Question_Name"
-		End If
-
-		Return ChildRowGroupField
-
-		End Function
-
-
-
-		Public Function GetChildRowGroupSortOrder(Format_ChildRowGrouping_15Param As String) As String
-
-		Dim ChildRowGroupSortOrder As String
-		ChildRowGroupSortOrder = "Month_Name_Year"
-
-		If (Format_ChildRowGrouping_15Param = "month") Then
-		ChildRowGroupSortOrder = "Month_Name_Year"
-		ElseIf (Format_ChildRowGrouping_15Param = "quarter") Then
-		ChildRowGroupSortOrder = "Month_Name_Year"
-		ElseIf (Format_ChildRowGrouping_15Param = "year") Then
-		ChildRowGroupSortOrder = "Month_Name_Year"
-		ElseIf (Format_ChildRowGrouping_15Param = "dotw") Then
-		ChildRowGroupSortOrder = "Day_Of_Week"
-		ElseIf (Format_ChildRowGrouping_15Param = "system") Then
-		ChildRowGroupSortOrder = "Health_System_Name"
-		ElseIf (Format_ChildRowGrouping_15Param = "org") Then
-		ChildRowGroupSortOrder = "Org_Name"
-		ElseIf (Format_ChildRowGrouping_15Param = "orgunit") Then
-		ChildRowGroupSortOrder = "Org_Unit_Name"
-		ElseIf (Format_ChildRowGrouping_15Param = "setting") Then
-		ChildRowGroupSortOrder = "Location_Name"
-		ElseIf (Format_ChildRowGrouping_15Param = "audit") Then
-		ChildRowGroupSortOrder = "Evidence_Name"
-		ElseIf (Format_ChildRowGrouping_15Param = "group") Then
-		ChildRowGroupSortOrder = "Evidence_Question_Group_Order"
-		ElseIf (Format_ChildRowGrouping_15Param = "department") Then
-		ChildRowGroupSortOrder = "Staff_Department"
-		ElseIf (Format_ChildRowGrouping_15Param = "uid") Then
-		ChildRowGroupSortOrder = "Evidence_Entry_Local_Code"
-		ElseIf (Format_ChildRowGrouping_15Param = "fullname") Then
-		ChildRowGroupSortOrder = "Staff_Full_Name"
-		ElseIf (Format_ChildRowGrouping_15Param = "lastfirst") Then
-		ChildRowGroupSortOrder = "Staff_Last_Name_First_Name"
-		ElseIf (Format_ChildRowGrouping_15Param = "localid") Then
-		ChildRowGroupSortOrder = "Staff_Local_Code"
-		ElseIf (Format_ChildRowGrouping_15Param = "vergeid") Then
-		ChildRowGroupSortOrder = "Staff_Id"
-		ElseIf (Format_ChildRowGrouping_15Param = "title") Then
-		ChildRowGroupSortOrder = "Staff_Title"
-		ElseIf (Format_ChildRowGrouping_15Param = "mas_fullname") Then
-		ChildRowGroupSortOrder = "MAS_Staff_Full_Name"
-		ElseIf (Format_ChildRowGrouping_15Param = "mas_firstname") Then
-		ChildRowGroupSortOrder = "MAS_Staff_First_Name"
-		ElseIf (Format_ChildRowGrouping_15Param = "mas_lastname") Then
-		ChildRowGroupSortOrder = "MAS_Staff_Last_Name"
-		ElseIf (Format_ChildRowGrouping_15Param = "mas_vergeid") Then
-		ChildRowGroupSortOrder = "MAS_Staff_Local_Code"
-		ElseIf (Format_ChildRowGrouping_15Param = "fullnameid") Then
-		ChildRowGroupSortOrder = "Staff_Full_Name"
-		Else
-		ChildRowGroupSortOrder = "Question_Order"
-
-		End If
-
-		Return ChildRowGroupSortOrder
-
-		End Function
-
-
-
-
-		Public Function GetTableListFieldName(Format_TableListOptions_35Param As String) As String
+  <Code>Public Function GetTableListFieldName(Format_TableListOptions_35Param As String) As String
 
 		Dim TableListField As String
 		TableListField = "Month_Name_Year"
