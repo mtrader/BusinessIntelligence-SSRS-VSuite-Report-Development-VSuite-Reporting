@@ -2128,14 +2128,33 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>
-																											=SWITCH(
-																											Parameters!Format_TableListOptions_35.Value &lt;&gt; "none" AND Parameters!Format_TableListSortOptions_36.Value = "department", Replace(Fields(Code.GetTableListFieldName(Parameters!Format_TableListOptions_35.Value)).Value, ( Chr(13) + Chr(10) ), "&lt;br&gt;") + " (" + Fields!Staff_Department.Value + ")",
-																											Parameters!Format_TableListOptions_35.Value &lt;&gt; "none" AND Parameters!Format_TableListSortOptions_36.Value = "setting", Replace(Fields(Code.GetTableListFieldName(Parameters!Format_TableListOptions_35.Value)).Value, ( Chr(13) + Chr(10) ), "&lt;br&gt;") + " (" + Fields!Location_Name.Value + ")",
-																											Parameters!Format_TableListOptions_35.Value &lt;&gt; "none", Replace(Fields(Code.GetTableListFieldName(Parameters!Format_TableListOptions_35.Value)).Value, ( Chr(13) + Chr(10) ), "&lt;br&gt;"),
-																											True, ""
-																											)
-																										</Value>
+                                                    <Value>=
+SWITCH
+(
+	Parameters!Format_TableListOptions_35.Value &lt;&gt; "none" AND Parameters!Format_TableListSortOptions_36.Value = "department", 
+	Replace
+	(
+		Fields(Parameters!Format_TableListOptions_35.Value).Value, 
+		(Chr(13) + Chr(10)), 
+		"&lt;br&gt;"
+	) + " (" + Fields!Staff_Department.Value + ")",
+	Parameters!Format_TableListOptions_35.Value &lt;&gt; "none" AND Parameters!Format_TableListSortOptions_36.Value = "setting", 
+	Replace
+	(
+		Fields(Parameters!Format_TableListOptions_35.Value).Value, 
+		(Chr(13) + Chr(10)), 
+		"&lt;br&gt;"
+	) + " (" + Fields!Location_Name.Value + ")",
+	Parameters!Format_TableListOptions_35.Value &lt;&gt; "none", 
+	Replace
+	(
+		Fields(Parameters!Format_TableListOptions_35.Value).Value, 
+		(Chr(13) + Chr(10)), 
+		"&lt;br&gt;"
+	),
+	True, 
+	""
+)</Value>
                                                     <MarkupType>HTML</MarkupType>
                                                     <Style>
                                                       <FontWeight>Bold</FontWeight>
@@ -11524,7 +11543,6 @@ SWITCH
                                                                         <PaddingBottom>2pt</PaddingBottom>
                                                                       </Style>
                                                                     </Textbox>
-                                                                    <rd:Selected>true</rd:Selected>
                                                                   </CellContents>
                                                                 </TablixHeader>
                                                                 <TablixMembers>
@@ -14043,7 +14061,13 @@ SWITCH
                                   <TablixMember>
                                     <Group Name="Question_Group_Name">
                                       <GroupExpressions>
-                                        <GroupExpression>=IIF(Parameters!Format_QuestionGroupRowVisibility_65.Value &lt;&gt; "hide", Fields!Question_Group_Name.Value, Fields!Health_System_Name.Value)</GroupExpression>
+                                        <GroupExpression>=
+IIF
+(
+	Parameters!Format_QuestionGroupRowVisibility_65.Value &lt;&gt; "hide", 
+	Fields!Question_Group_Name.Value, 
+	Fields!Health_System_Name.Value
+)</GroupExpression>
                                       </GroupExpressions>
                                     </Group>
                                     <SortExpressions>
@@ -14179,7 +14203,13 @@ SWITCH
                               </TablixRowHierarchy>
                               <NoRowsMessage>DOH! The report criteria that was selected did not return any results. Please check the filters on the report and try again. </NoRowsMessage>
                               <DataSetName>rpt_tct_main</DataSetName>
-                              <PageName>=IIF(Parameters!Format_TableListOptions_35.Value &lt;&gt; "none", Fields(Code.GetTableListFieldName(Parameters!Format_TableListOptions_35.Value)).Value, Parameters!ReportTitle.Value)</PageName>
+                              <PageName>=
+IIF
+(
+	Parameters!Format_TableListOptions_35.Value &lt;&gt; "none", 
+	Fields(Parameters!Format_TableListOptions_35.Value).Value, 
+	Parameters!ReportTitle.Value
+)</PageName>
                               <Height>3.86667in</Height>
                               <Width>13.29026in</Width>
                               <Style>
@@ -14212,7 +14242,13 @@ SWITCH
                 <TablixMember>
                   <Group Name="Details">
                     <GroupExpressions>
-                      <GroupExpression>=IIF(Parameters!Format_TableListOptions_35.Value &lt;&gt; "none", Fields(Code.GetTableListFieldName(Parameters!Format_TableListOptions_35.Value)).Value, "")</GroupExpression>
+                      <GroupExpression>=
+IIF
+(
+	Parameters!Format_TableListOptions_35.Value &lt;&gt; "none", 
+	Fields(Parameters!Format_TableListOptions_35.Value).Value, 
+	""
+)</GroupExpression>
                     </GroupExpressions>
                     <PageBreak>
                       <BreakLocation>Between</BreakLocation>
@@ -14220,24 +14256,32 @@ SWITCH
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>
-												=SWITCH(
-												Parameters!Format_TableListSortOptions_36.Value = "department", Fields!Staff_Department.Value,
-												Parameters!Format_TableListSortOptions_36.Value = "setting", Fields!Location_Name.Value,
-												True, nothing
-												)
-											</Value>
-                    </SortExpression>
-                    <SortExpression>
-                      <Value>
-												=SWITCH(
-												Parameters!Format_TableListOptions_35.Value = "month"
-												OR Parameters!Format_TableListOptions_35.Value = "quarter"
-												OR Parameters!Format_TableListOptions_35.Value = "year", CDATE(Fields!Month_Name_Year.Value),
-
-												True, Fields(Code.GetTableListSortOrder(Parameters!Format_TableListOptions_35.Value)).Value
-												)
-											</Value>
+                      <Value>=
+SWITCH
+(
+	ISNUMERIC(Fields(Parameters!Format_TableListSortOptions_36.Value).Value),
+	CINT
+	(
+		IIF
+		(
+			ISNUMERIC(Fields(Parameters!Format_TableListSortOptions_36.Value).Value),
+			Fields(Parameters!Format_TableListSortOptions_36.Value).Value,
+			0
+		)
+	),
+	ISDATE(Fields(Parameters!Format_TableListSortOptions_36.Value).Value),
+	CDATE
+	(
+		IIF
+		(
+			ISDATE(Fields(Parameters!Format_TableListSortOptions_36.Value).Value),
+			Fields(Parameters!Format_TableListSortOptions_36.Value).Value,
+			"01/01/1900"
+		)
+	),
+	TRUE,
+	Fields(Parameters!Format_TableListSortOptions_36.Value).Value
+)</Value>
                     </SortExpression>
                   </SortExpressions>
                 </TablixMember>
@@ -17235,7 +17279,7 @@ SWITCH
 	Parameters!Format_SummaryTableGrouping_37.Value = "match", 
 	Replace
 	(
-		Fields(Code.GetTableListFieldName(Parameters!Format_TableListOptions_35.Value)).Value, 
+		Fields(Parameters!Format_TableListOptions_35.Value).Value, 
 		(Chr(13) + Chr(10)), 
 		"&lt;br&gt;"
 	)
@@ -19174,7 +19218,7 @@ SWITCH
 SWITCH
 (
 	Parameters!Format_SummaryTableGrouping_37.Value = "default", 
-	Fields(Code.GetTableListFieldName(Parameters!Format_TableListOptions_35.Value)).Value, 
+	Fields(Parameters!Format_TableListOptions_35.Value).Value, 
 	Parameters!Format_SummaryTableGrouping_37.Value = "match", 
 	Replace
 	(
@@ -19225,6 +19269,7 @@ SWITCH
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
+                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                         <TablixCell>
@@ -28262,7 +28307,7 @@ SWITCH
 	Parameters!Format_SummaryTableGrouping_37.Value = "default", 
 	Fields(Parameters!Format_ParentRowGrouping_10.Value).Value,
 	Parameters!Format_SummaryTableGrouping_37.Value = "match", 
-	Fields(Code.GetTableListFieldName(Parameters!Format_TableListOptions_35.Value)).Value
+	Fields(Parameters!Format_TableListOptions_35.Value).Value
 )</GroupExpression>
                             </GroupExpressions>
                           </Group>
@@ -28297,55 +28342,33 @@ SWITCH
 		TRUE,
 		Fields(Parameters!ParentRowSorting.Value).Value
 	),
+	
+	
 	Parameters!Format_SummaryTableGrouping_37.Value = "match", 
-	IIF
-	(
-		Parameters!Format_TableListOptions_35.Value = "question" Or Parameters!Format_TableListOptions_35.Value = "group", 
-		CINT(Fields!Evidence_Question_Group_Order.Value), 
-		IIF
-		(
-			Parameters!Format_TableListOptions_35.Value = "month" Or Parameters!Format_TableListOptions_35.Value = "quarter" Or Parameters!Format_TableListOptions_35.Value = "year", 
-			CDATE(Fields!Month_Name_Year.Value), 
-			Fields(Code.GetTableListSortOrder(Parameters!Format_TableListOptions_35.Value)).Value
-		)
-	)
-)</Value>
-                            </SortExpression>
-                            <SortExpression>
-                              <Value>=SWITCH
-(
-	Parameters!Format_SummaryTableGrouping_37.Value = "default", 
 	SWITCH
 	(
-		ISNUMERIC(Fields(Parameters!ParentRowSorting.Value).Value),
+		ISNUMERIC(Fields(Parameters!Format_TableListSortOptions_36.Value).Value),
 		CINT
 		(
 			IIF
 			(
-				ISNUMERIC(Fields(Parameters!ParentRowSorting.Value).Value),
-				Fields(Parameters!ParentRowSorting.Value).Value,
+				ISNUMERIC(Fields(Parameters!Format_TableListSortOptions_36.Value).Value),
+				Fields(Parameters!Format_TableListSortOptions_36.Value).Value,
 				0
 			)
 		),
-		ISDATE(Fields(Parameters!ParentRowSorting.Value).Value),
+		ISDATE(Fields(Parameters!Format_TableListSortOptions_36.Value).Value),
 		CDATE
 		(
 			IIF
 			(
-				ISDATE(Fields(Parameters!ParentRowSorting.Value).Value),
-				Fields(Parameters!ParentRowSorting.Value).Value,
+				ISDATE(Fields(Parameters!Format_TableListSortOptions_36.Value).Value),
+				Fields(Parameters!Format_TableListSortOptions_36.Value).Value,
 				"01/01/1900"
 			)
 		),
 		TRUE,
-		Fields(Parameters!ParentRowSorting.Value).Value
-	),
-	Parameters!Format_SummaryTableGrouping_37.Value = "match", 
-	IIF
-	(
-		Parameters!Format_TableListOptions_35.Value = "question", 
-		CINT(Fields!Question_Sort.Value), 
-		Fields(Code.GetTableListSortOrder(Parameters!Format_TableListOptions_35.Value)).Value
+		Fields(Parameters!Format_TableListSortOptions_36.Value).Value
 	)
 )</Value>
                             </SortExpression>
@@ -28364,7 +28387,7 @@ SWITCH
 SWITCH
 (
 	Parameters!Format_SummaryTableGrouping_37.Value = "default", 
-	Fields(Code.GetTableListFieldName(Parameters!Format_TableListOptions_35.Value)).Value,
+	Fields(Parameters!Format_TableListOptions_35.Value).Value,
 	Parameters!Format_SummaryTableGrouping_37.Value = "match", 
 	Fields(Parameters!Format_ParentRowGrouping_10.Value).Value
 )</GroupExpression>
@@ -28376,56 +28399,32 @@ SWITCH
 SWITCH
 (
 	Parameters!Format_SummaryTableGrouping_37.Value = "default", 
-	IIF
-	(
-		Parameters!Format_TableListOptions_35.Value = "question" Or Parameters!Format_TableListOptions_35.Value = "group", 
-		CINT(Fields!Evidence_Question_Group_Order.Value), 
-		IIF
-		(
-			Parameters!Format_TableListOptions_35.Value = "month" Or Parameters!Format_TableListOptions_35.Value = "quarter" Or Parameters!Format_TableListOptions_35.Value = "year", 
-			CDATE(Fields!Month_Name_Year.Value), 
-			Fields(Code.GetTableListSortOrder(Parameters!Format_TableListOptions_35.Value)).Value
-		)
-	), 
-	Parameters!Format_SummaryTableGrouping_37.Value = "match", 
 	SWITCH
 	(
-		ISNUMERIC(Fields(Parameters!ParentRowSorting.Value).Value),
+		ISNUMERIC(Fields(Parameters!Format_TableListSortOptions_36.Value).Value),
 		CINT
 		(
 			IIF
 			(
-				ISNUMERIC(Fields(Parameters!ParentRowSorting.Value).Value),
-				Fields(Parameters!ParentRowSorting.Value).Value,
+				ISNUMERIC(Fields(Parameters!Format_TableListSortOptions_36.Value).Value),
+				Fields(Parameters!Format_TableListSortOptions_36.Value).Value,
 				0
 			)
 		),
-		ISDATE(Fields(Parameters!ParentRowSorting.Value).Value),
+		ISDATE(Fields(Parameters!Format_TableListSortOptions_36.Value).Value),
 		CDATE
 		(
 			IIF
 			(
-				ISDATE(Fields(Parameters!ParentRowSorting.Value).Value),
-				Fields(Parameters!ParentRowSorting.Value).Value,
+				ISDATE(Fields(Parameters!Format_TableListSortOptions_36.Value).Value),
+				Fields(Parameters!Format_TableListSortOptions_36.Value).Value,
 				"01/01/1900"
 			)
 		),
 		TRUE,
-		Fields(Parameters!ParentRowSorting.Value).Value
-	)
-)</Value>
-                                </SortExpression>
-                                <SortExpression>
-                                  <Value>=
-SWITCH
-(
-	Parameters!Format_SummaryTableGrouping_37.Value = "default", 
-	IIF
-	(
-		Parameters!Format_TableListOptions_35.Value = "question", 
-		CINT(Fields!Question_Sort.Value), 
-		Fields(Code.GetTableListFieldName(Parameters!Format_TableListOptions_35.Value)).Value
-	), 
+		Fields(Parameters!Format_TableListSortOptions_36.Value).Value
+	),
+	
 	Parameters!Format_SummaryTableGrouping_37.Value = "match", 
 	SWITCH
 	(
@@ -28472,39 +28471,6 @@ SWITCH
                                     </GroupExpressions>
                                   </Group>
                                   <SortExpressions>
-                                    <SortExpression>
-                                      <Value>=
-IIF
-(
-	Parameters!Format_ChildRowGrouping_15.Value = "question" Or Parameters!Format_ChildRowGrouping_15.Value = "group", 
-	CINT(Fields!Evidence_Question_Group_Order.Value), 
-	SWITCH
-	(
-		ISNUMERIC(Fields(Parameters!ChildRowSorting.Value).Value),
-		CINT
-		(
-			IIF
-			(
-				ISNUMERIC(Fields(Parameters!ChildRowSorting.Value).Value),
-				Fields(Parameters!ChildRowSorting.Value).Value,
-				0
-			)
-		),
-		ISDATE(Fields(Parameters!ChildRowSorting.Value).Value),
-		CDATE
-		(
-			IIF
-			(
-				ISDATE(Fields(Parameters!ChildRowSorting.Value).Value),
-				Fields(Parameters!ChildRowSorting.Value).Value,
-				"01/01/1900"
-			)
-		),
-		TRUE,
-		Fields(Parameters!ChildRowSorting.Value).Value
-	)
-)</Value>
-                                    </SortExpression>
                                     <SortExpression>
                                       <Value>=
 SWITCH
@@ -29581,128 +29547,7 @@ SWITCH
       <MultiValue>true</MultiValue>
     </ReportParameter>
   </ReportParameters>
-  <Code>Public Function GetTableListFieldName(Format_TableListOptions_35Param As String) As String
-
-		Dim TableListField As String
-		TableListField = "Month_Name_Year"
-
-		If (Format_TableListOptions_35Param = "month") Then
-		TableListField = "Month_Name_Year"
-		ElseIf (Format_TableListOptions_35Param = "quarter") Then
-		TableListField = "Quarter_Name_Year"
-		ElseIf (Format_TableListOptions_35Param = "year") Then
-		TableListField = "Year"
-		ElseIf (Format_TableListOptions_35Param = "dotw") Then
-		TableListField = "Day_Of_Week_Name"
-		ElseIf (Format_TableListOptions_35Param = "system") Then
-		TableListField = "Health_System_Name"
-		ElseIf (Format_TableListOptions_35Param = "org") Then
-		TableListField = "Org_Name"
-		ElseIf (Format_TableListOptions_35Param = "orgunit") Then
-		TableListField = "Org_Unit_Name"
-		ElseIf (Format_TableListOptions_35Param = "setting") Then
-		TableListField = "Location_Name"
-		ElseIf (Format_TableListOptions_35Param = "audit") Then
-		TableListField = "Evidence_Name"
-		ElseIf (Format_TableListOptions_35Param = "group") Then
-		TableListField = "Question_Group_Name"
-		ElseIf (Format_TableListOptions_35Param = "department") Then
-		TableListField = "Staff_Department"
-		ElseIf (Format_TableListOptions_35Param = "uid") Then
-		TableListField = "Evidence_Entry_Local_Code"
-		ElseIf (Format_TableListOptions_35Param = "fullname") Then
-		TableListField = "Staff_Full_Name"
-		ElseIf (Format_TableListOptions_35Param = "lastfirst") Then
-		TableListField = "Staff_Last_Name_First_Name"
-		ElseIf (Format_TableListOptions_35Param = "localid") Then
-		TableListField = "Staff_Local_Code"
-		ElseIf (Format_TableListOptions_35Param = "vergeid") Then
-		TableListField = "Staff_Id"
-		ElseIf (Format_TableListOptions_35Param = "title") Then
-		TableListField = "Staff_Title"
-		ElseIf (Format_TableListOptions_35Param = "mas_fullname") Then
-		TableListField = "MAS_Staff_Full_Name"
-		ElseIf (Format_TableListOptions_35Param = "mas_firstname") Then
-		TableListField = "MAS_Staff_First_Name"
-		ElseIf (Format_TableListOptions_35Param = "mas_lastname") Then
-		TableListField = "MAS_Staff_Last_Name"
-		ElseIf (Format_TableListOptions_35Param = "mas_vergeid") Then
-		TableListField = "MAS_Staff_Local_Code"
-		ElseIf (Format_TableListOptions_35Param = "fullnameid") Then
-		TableListField = "Staff_Full_Name"
-		Else
-		TableListField = "Question_Name"
-		End If
-
-		Return TableListField
-
-		End Function
-
-
-
-
-
-
-		Public Function GetTableListSortOrder(Format_TableListOptions_35Param As String) As String
-
-		Dim TableListSortOrder As String
-		TableListSortOrder = "Month_Name_Year"
-
-		If (Format_TableListOptions_35Param = "month") Then
-		TableListSortOrder = "Month_Name_Year"
-		ElseIf (Format_TableListOptions_35Param = "quarter") Then
-		TableListSortOrder = "Month_Name_Year"
-		ElseIf (Format_TableListOptions_35Param = "year") Then
-		TableListSortOrder = "Month_Name_Year"
-		ElseIf (Format_TableListOptions_35Param = "dotw") Then
-		TableListSortOrder = "Day_Of_Week"
-		ElseIf (Format_TableListOptions_35Param = "system") Then
-		TableListSortOrder = "Health_System_Name"
-		ElseIf (Format_TableListOptions_35Param = "org") Then
-		TableListSortOrder = "Org_Name"
-		ElseIf (Format_TableListOptions_35Param = "orgunit") Then
-		TableListSortOrder = "Org_Unit_Name"
-		ElseIf (Format_TableListOptions_35Param = "setting") Then
-		TableListSortOrder = "Location_Name"
-		ElseIf (Format_TableListOptions_35Param = "audit") Then
-		TableListSortOrder = "Evidence_Name"
-		ElseIf (Format_TableListOptions_35Param = "group") Then
-		TableListSortOrder = "Evidence_Question_Group_Order"
-		ElseIf (Format_TableListOptions_35Param = "department") Then
-		TableListSortOrder = "Staff_Department"
-		ElseIf (Format_TableListOptions_35Param = "uid") Then
-		TableListSortOrder = "Evidence_Entry_Local_Code"
-		ElseIf (Format_TableListOptions_35Param = "fullname") Then
-		TableListSortOrder = "Staff_Full_Name"
-		ElseIf (Format_TableListOptions_35Param = "lastfirst") Then
-		TableListSortOrder = "Staff_Last_Name_First_Name"
-		ElseIf (Format_TableListOptions_35Param = "localid") Then
-		TableListSortOrder = "Staff_Local_Code"
-		ElseIf (Format_TableListOptions_35Param = "vergeid") Then
-		TableListSortOrder = "Staff_Id"
-		ElseIf (Format_TableListOptions_35Param = "title") Then
-		TableListSortOrder = "Staff_Title"
-		ElseIf (Format_TableListOptions_35Param = "mas_fullname") Then
-		TableListSortOrder = "MAS_Staff_Full_Name"
-		ElseIf (Format_TableListOptions_35Param = "mas_firstname") Then
-		TableListSortOrder = "MAS_Staff_First_Name"
-		ElseIf (Format_TableListOptions_35Param = "mas_lastname") Then
-		TableListSortOrder = "MAS_Staff_Last_Name"
-		ElseIf (Format_TableListOptions_35Param = "mas_vergeid") Then
-		TableListSortOrder = "MAS_Staff_Local_Code"
-		ElseIf (Format_TableListOptions_35Param = "fullnameid") Then
-		TableListSortOrder = "Staff_Full_Name"
-		Else
-		TableListSortOrder = "Question_Order"
-
-		End If
-
-		Return TableListSortOrder
-
-		End Function
-
-
-		Public Function GetThresholdColor(ByVal thresholdColorSelection As String, ByVal complianceRatio As Decimal, isBackground As Boolean) As String
+  <Code>Public Function GetThresholdColor(ByVal thresholdColorSelection As String, ByVal complianceRatio As Decimal, isBackground As Boolean) As String
 
 		Dim thresholdColor As String = "White"
 
