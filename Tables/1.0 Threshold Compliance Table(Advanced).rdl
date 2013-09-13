@@ -139,6 +139,9 @@
  MEMBER [Measures].[Health System - Org Name] AS
 	[Health System].[Org Name - Hidden].CURRENTMEMBER.NAME
 	
+ MEMBER [Measures].[Org Unit - Org Unit Sort Order] AS
+	[Org Unit].[Org Unit Sort Order].CURRENTMEMBER.NAME
+	
  MEMBER [Measures].[Org Unit - Org Unit Name] AS
 	[Org Unit].[Org Unit Name].CURRENTMEMBER.NAME
 
@@ -223,6 +226,7 @@
 	[Measures].[Observation Date - Year],
 	[Measures].[Health System - Health System Name],
 	[Measures].[Health System - Org Name],
+	[Measures].[Org Unit - Org Unit Sort Order],
 	[Measures].[Org Unit - Org Unit Name],
 	[Measures].[Health System - Org Zip Code],
 	[Measures].[Location - Location Name],
@@ -433,7 +437,7 @@
           <rd:UserDefined>true</rd:UserDefined>
         </Field>
         <Field Name="dotw_sort">
-          <DataField>[Measures].[Observation Date - Day Of Week Name]</DataField>
+          <DataField>[Measures].[Observation Date - Day Of Week]</DataField>
           <rd:UserDefined>true</rd:UserDefined>
         </Field>
         <Field Name="system">
@@ -457,7 +461,7 @@
           <rd:UserDefined>true</rd:UserDefined>
         </Field>
         <Field Name="orgunit_sort">
-          <DataField>[Measures].[Org Unit - Org Unit Name]</DataField>
+          <DataField>[Measures].[Org Unit - Org Unit Sort Order]</DataField>
           <rd:UserDefined>true</rd:UserDefined>
         </Field>
         <Field Name="setting">
@@ -481,7 +485,7 @@
           <rd:UserDefined>true</rd:UserDefined>
         </Field>
         <Field Name="group_sort">
-          <DataField>[Measures].[Question - Question Group Name]</DataField>
+          <DataField>[Measures].[Evidence Question Group - Evidence Question Group Order]</DataField>
           <rd:UserDefined>true</rd:UserDefined>
         </Field>
         <Field Name="department">
@@ -496,7 +500,15 @@
           <DataField>[Measures].[Evidence Entry - Evidence Entry Local Code]</DataField>
           <rd:UserDefined>true</rd:UserDefined>
         </Field>
+        <Field Name="uid_sort">
+          <DataField>[Measures].[Evidence Entry - Evidence Entry Local Code]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
         <Field Name="fullname">
+          <DataField>[Measures].[Staff - Staff Full Name]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="fullname_sort">
           <DataField>[Measures].[Staff - Staff Full Name]</DataField>
           <rd:UserDefined>true</rd:UserDefined>
         </Field>
@@ -504,7 +516,15 @@
           <DataField>[Measures].[Staff - Staff Last Name First Name]</DataField>
           <rd:UserDefined>true</rd:UserDefined>
         </Field>
+        <Field Name="lastfirst_sort">
+          <DataField>[Measures].[Staff - Staff Last Name First Name]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
         <Field Name="localid">
+          <DataField>[Measures].[Staff - Staff Local Code]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="localid_sort">
           <DataField>[Measures].[Staff - Staff Local Code]</DataField>
           <rd:UserDefined>true</rd:UserDefined>
         </Field>
@@ -512,7 +532,15 @@
           <DataField>[Measures].[Staff - Staff Id]</DataField>
           <rd:UserDefined>true</rd:UserDefined>
         </Field>
+        <Field Name="vergeid_sort">
+          <DataField>[Measures].[Staff - Staff Id]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
         <Field Name="title">
+          <DataField>[Measures].[Staff - Staff Title]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="title_sort">
           <DataField>[Measures].[Staff - Staff Title]</DataField>
           <rd:UserDefined>true</rd:UserDefined>
         </Field>
@@ -520,7 +548,15 @@
           <DataField>[Measures].[Question Answer Staff - Staff Full Name]</DataField>
           <rd:UserDefined>true</rd:UserDefined>
         </Field>
+        <Field Name="mas_fullname_sort">
+          <DataField>[Measures].[Question Answer Staff - Staff Full Name]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
         <Field Name="mas_firstname">
+          <DataField>[Measures].[Question Answer Staff - Staff First Name]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="mas_firstname_sort">
           <DataField>[Measures].[Question Answer Staff - Staff First Name]</DataField>
           <rd:UserDefined>true</rd:UserDefined>
         </Field>
@@ -528,7 +564,15 @@
           <DataField>[Measures].[Question Answer Staff - Staff Last Name]</DataField>
           <rd:UserDefined>true</rd:UserDefined>
         </Field>
+        <Field Name="mas_lastname_sort">
+          <DataField>[Measures].[Question Answer Staff - Staff Last Name]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
         <Field Name="mas_vergeid">
+          <DataField>[Measures].[Question Answer Staff - Staff Local Code]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="mas_vergeid_sort">
           <DataField>[Measures].[Question Answer Staff - Staff Local Code]</DataField>
           <rd:UserDefined>true</rd:UserDefined>
         </Field>
@@ -536,9 +580,20 @@
           <DataField>[Measures].[Staff - Staff Full Name]</DataField>
           <rd:UserDefined>true</rd:UserDefined>
         </Field>
+        <Field Name="fullnameid_sort">
+          <DataField>[Measures].[Staff - Staff Full Name]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
         <Field Name="question">
           <DataField>[Measures].[Question - Question Name]</DataField>
           <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="question_sort">
+          <DataField>[Measures].[Evidence Question - Evidence Question Sort]</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="none">
+          <Value>=NOTHING</Value>
         </Field>
       </Fields>
       <Filters>
@@ -1821,6 +1876,129 @@
         <Field Name="definition_label">
           <DataField>definition_label</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="rpm_tct_grouping_column_sort_default">
+      <Query>
+        <DataSourceName>reports_reporting_server</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@grouping_type">
+            <Value>column_sort_default</Value>
+          </QueryParameter>
+          <QueryParameter Name="@grouping">
+            <Value>=Parameters!Format_ColumnGrouping_5.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>reporting.rpm_tct_grouping</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="id">
+          <DataField>id</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="id_mdx">
+          <DataField>id_mdx</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="id_sort">
+          <DataField>id_sort</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="definition">
+          <DataField>definition</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="definition_label">
+          <DataField>definition_label</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="sort">
+          <DataField>sort</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="rpm_tct_grouping_parent_row_sort_default">
+      <Query>
+        <DataSourceName>reports_reporting_server</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@grouping_type">
+            <Value>parent_row_sort_default</Value>
+          </QueryParameter>
+          <QueryParameter Name="@grouping">
+            <Value>=Parameters!Format_ParentRowGrouping_10.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>reporting.rpm_tct_grouping</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="id">
+          <DataField>id</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="id_mdx">
+          <DataField>id_mdx</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="id_sort">
+          <DataField>id_sort</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="definition">
+          <DataField>definition</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="definition_label">
+          <DataField>definition_label</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="sort">
+          <DataField>sort</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="rpm_tct_grouping_child_rowsort_default">
+      <Query>
+        <DataSourceName>reports_reporting_server</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@grouping_type">
+            <Value>child_row_sort_default</Value>
+          </QueryParameter>
+          <QueryParameter Name="@grouping">
+            <Value>=Parameters!Format_ChildRowGrouping_15.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>reporting.rpm_tct_grouping</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="id">
+          <DataField>id</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="id_mdx">
+          <DataField>id_mdx</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="id_sort">
+          <DataField>id_sort</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="definition">
+          <DataField>definition</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="definition_label">
+          <DataField>definition_label</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="sort">
+          <DataField>sort</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -28293,6 +28471,23 @@ SWITCH
         </DataSetReference>
       </ValidValues>
     </ReportParameter>
+    <ReportParameter Name="ColumnSorting">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>rpm_tct_grouping_column_sort_default</DataSetName>
+          <ValueField>id_sort</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>ColumnSorting</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>rpm_tct_grouping_column_sort_default</DataSetName>
+          <ValueField>id_sort</ValueField>
+          <LabelField>definition</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
     <ReportParameter Name="Format_ParentRowGrouping_10">
       <DataType>String</DataType>
       <DefaultValue>
@@ -28309,6 +28504,23 @@ SWITCH
         </DataSetReference>
       </ValidValues>
     </ReportParameter>
+    <ReportParameter Name="ParentRowSorting">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>rpm_tct_grouping_parent_row_sort_default</DataSetName>
+          <ValueField>id_sort</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>ParentRowSorting</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>rpm_tct_grouping_parent_row_sort_default</DataSetName>
+          <ValueField>id_sort</ValueField>
+          <LabelField>definition</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
     <ReportParameter Name="Format_ChildRowGrouping_15">
       <DataType>String</DataType>
       <DefaultValue>
@@ -28321,6 +28533,23 @@ SWITCH
         <DataSetReference>
           <DataSetName>rpm_tct_grouping_child_row</DataSetName>
           <ValueField>id</ValueField>
+          <LabelField>definition</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="ChildRowSorting">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>rpm_tct_grouping_child_rowsort_default</DataSetName>
+          <ValueField>id_sort</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>ChildRowSorting</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>rpm_tct_grouping_child_rowsort_default</DataSetName>
+          <ValueField>id_sort</ValueField>
           <LabelField>definition</LabelField>
         </DataSetReference>
       </ValidValues>
