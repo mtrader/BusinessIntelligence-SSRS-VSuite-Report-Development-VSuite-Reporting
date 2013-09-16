@@ -1130,6 +1130,15 @@
     </ReportSection>
   </ReportSections>
   <ReportParameters>
+    <ReportParameter Name="SthealthsystemSthealthsystem">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Sthealthsystem].[Sthealthsystem].&amp;[183]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>SthealthsystemSthealthsystem</Prompt>
+    </ReportParameter>
     <ReportParameter Name="OrganizationOrganizationId">
       <DataType>String</DataType>
       <DefaultValue>

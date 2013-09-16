@@ -1659,7 +1659,7 @@
       <DataType>String</DataType>
       <DefaultValue>
         <Values>
-          <Value>[Sthealthsystem].[Sthealthsystem].&amp;[112]</Value>
+          <Value>[Sthealthsystem].[Sthealthsystem].&amp;[183]</Value>
         </Values>
       </DefaultValue>
       <Prompt>Sthealthsystem</Prompt>

@@ -1675,7 +1675,6 @@
                                                             <PaddingBottom>2pt</PaddingBottom>
                                                           </Style>
                                                         </Textbox>
-                                                        <rd:Selected>true</rd:Selected>
                                                       </CellContents>
                                                     </TablixHeader>
                                                     <TablixMembers>
@@ -1821,7 +1820,7 @@
       <DataType>String</DataType>
       <DefaultValue>
         <Values>
-          <Value>[Organization].[Organization Id].&amp;[61756]</Value>
+          <Value>[Organization].[Organization Id].&amp;[62618]</Value>
         </Values>
       </DefaultValue>
       <Prompt>OrganizationOrganizationId</Prompt>

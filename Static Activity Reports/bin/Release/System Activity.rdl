@@ -1039,7 +1039,6 @@
                                       <PaddingBottom>2pt</PaddingBottom>
                                     </Style>
                                   </Textbox>
-                                  <rd:Selected>true</rd:Selected>
                                 </CellContents>
                               </TablixHeader>
                               <TablixMembers>
@@ -1131,8 +1130,22 @@
     </ReportSection>
   </ReportSections>
   <ReportParameters>
+    <ReportParameter Name="SthealthsystemSthealthsystem">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Sthealthsystem].[Sthealthsystem].&amp;[183]</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>SthealthsystemSthealthsystem</Prompt>
+    </ReportParameter>
     <ReportParameter Name="OrganizationOrganizationId">
       <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Organization].[Organization Id].&amp;[62618]</Value>
+        </Values>
+      </DefaultValue>
       <Prompt>OrganizationOrganizationId</Prompt>
       <MultiValue>true</MultiValue>
     </ReportParameter>

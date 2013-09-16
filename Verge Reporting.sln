@@ -395,9 +395,9 @@ Global
 		{6C3EE21B-D800-4881-86F4-19EE10DAF0CF}.DebugLocal|Default.ActiveCfg = DebugLocal
 		{6C3EE21B-D800-4881-86F4-19EE10DAF0CF}.DebugLocal|Default.Build.0 = DebugLocal
 		{6C3EE21B-D800-4881-86F4-19EE10DAF0CF}.DebugLocal|Default.Deploy.0 = DebugLocal
-		{6C3EE21B-D800-4881-86F4-19EE10DAF0CF}.Production Support|Default.ActiveCfg = Release
-		{6C3EE21B-D800-4881-86F4-19EE10DAF0CF}.Production Support|Default.Build.0 = Release
-		{6C3EE21B-D800-4881-86F4-19EE10DAF0CF}.Production Support|Default.Deploy.0 = Release
+		{6C3EE21B-D800-4881-86F4-19EE10DAF0CF}.Production Support|Default.ActiveCfg = Production Support
+		{6C3EE21B-D800-4881-86F4-19EE10DAF0CF}.Production Support|Default.Build.0 = Production Support
+		{6C3EE21B-D800-4881-86F4-19EE10DAF0CF}.Production Support|Default.Deploy.0 = Production Support
 		{6C3EE21B-D800-4881-86F4-19EE10DAF0CF}.Release|Default.ActiveCfg = Release
 		{6C3EE21B-D800-4881-86F4-19EE10DAF0CF}.Release|Default.Build.0 = Release
 		{6C3EE21B-D800-4881-86F4-19EE10DAF0CF}.Release|Default.Deploy.0 = Release
