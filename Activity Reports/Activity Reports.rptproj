@@ -49,6 +49,7 @@
     <Configuration>
       <Name>Production Support</Name>
       <Options>
+        <OutputPath>bin\Production Support</OutputPath>
         <TargetServerVersion>SSRS2008</TargetServerVersion>
       </Options>
     </Configuration>
