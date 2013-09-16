@@ -1039,7 +1039,6 @@
                                       <PaddingBottom>2pt</PaddingBottom>
                                     </Style>
                                   </Textbox>
-                                  <rd:Selected>true</rd:Selected>
                                 </CellContents>
                               </TablixHeader>
                               <TablixMembers>
@@ -1133,6 +1132,11 @@
   <ReportParameters>
     <ReportParameter Name="OrganizationOrganizationId">
       <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>[Organization].[Organization Id].&amp;[62618]</Value>
+        </Values>
+      </DefaultValue>
       <Prompt>OrganizationOrganizationId</Prompt>
       <MultiValue>true</MultiValue>
     </ReportParameter>
